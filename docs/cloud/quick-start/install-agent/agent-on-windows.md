@@ -21,6 +21,12 @@ Tapdata Agent（简称 Agent）通过流式技术从源端获取数据、处理�
 
 2. 基于业务需求创建所需规格的 Agent，具体操作，见[订阅实例](../../billing/purchase.md)。
 
+   :::tip
+
+   推荐选购全托管实例，由 Tapdata Cloud 提供 Agent 运行所需的计算/存储资源并自动部署，同时提供统一的运行维护和资源监控以提升运行可靠性，免去部署和运维精力，专注业务本身。
+
+   :::
+
 3. 订阅完成后，在跳转到的部署页面选择 **Windows（64 bit）**，单击**下载 Tapdata Agent**，然后复制安装命令。
 
    ![复制安装命令](../../images/agent_on_windows_cn.png)
