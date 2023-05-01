@@ -1,8 +1,8 @@
 # 订阅实例
 
-注册 Tapdata Cloud 后，您可以免费创建一个 Agent 实例，如需创建更多的 Agent 或更高的传输性能，您可以跟随本文流程，完成实例的订阅。
+注册 Tapdata Cloud 后，您可以免费创建一个 Agent 实例，如需创建更多的 Agent 或更高的传输性能，您可以跟随本文流程，在 Tapdata Cloud 平台或阿里云市场订阅 Agent 实例。
 
-## 操作步骤
+## 通过 Tapdata Cloud 订阅实例（推荐）
 
 1. 登录 [Tapdata Cloud 平台](https://cloud.tapdata.net/console/v3/)。
 
@@ -48,9 +48,71 @@
 8. 支付成功后，页面将自动跳转回 Tapdata Cloud 平台，可查看到您购买的 Agent 实例处于**待部署**状态。
 
    ![订阅成功](../images/purchase_success.png)
+   :::tip
+   如您选择的是**全托管模式**，Agent 将自动完成部署；如您选择的是**半托管模式**，您需要手动在您的设备上[部署 Agent](../quick-start/install-agent/README.md)。
+   :::
+
+
+
+## 通过阿里云市场订阅实例
+
+1. 登录[阿里云市场](https://market.aliyun.com/)。
+
+2. 在页面顶部的搜索框，输入 **Tapdata** 并搜索。
+
+3. 在搜索结果页，单击 Tapdata 卡片对应的**查看详情**。
+
+   ![查看详情](../images/view_aliyun_market_detail.png)
+
+4. 在跳转到的页面中，选择实例配置。
+
+   * **套餐版本**：基于评估所需的任务数和性能需求，选择产品规格，可免费创建一个 **SMALL** 规格的实例，关于产品定价及规格的详细说明，见[计费概述](billing-overview.md)。
+   * **托管模式**：根据业务需求和下述说明选择托管模式。
+     * **全托管模式（推荐）**：由 Tapdata Cloud 提供 Agent 运行所需的计算/存储资源并自动部署，同时提供统一的运行维护和资源监控以提升运行可靠性，可实现一键交付使用，免去部署和运维精力，专注业务本身。
+     * **半托管模式**：由您提供设备来部署和运维 Agent，为其运行提供计算/存储资源，可充分利用现有硬件资源，获得更低的价格的同时，进一步提升安全性。
+
+   * **购买时长**：根据业务需求选择购买时长，您也可以选择**试用 14 天**（仅一次）。
+
+5. 单击**立即购买**，然后在跳转到的页面完成支付流程。
 
    :::tip
-   
-   如您选择的是**全托管模式**，Agent 将自动完成部署；如您选择的是**半托管模式**，您需要手动在您的设备上[部署 Agent](../quick-start/install-agent/README.md)。
-   
+
+   推荐在此页面选中自动续费，避免实例到期影响任务的执行。
+
    :::
+
+6. 绑定 Agent 实例至 Tapdata Cloud 平台。
+
+   1. 前往[云市场控制台](https://market.console.aliyun.com/imageconsole/index.htm)。
+
+   2. 在**已购买的服务页面**中，单击已购买实例的**详情**。
+
+      ![查看实例详情](../images/aliyun_market_instance_detail.png)
+
+   3. 复制授权码信息，单击**激活地址**。
+
+      ![复制授权码](../images/copy_instance_active_code.png)
+
+   4. 在跳转到的 Tapdata Cloud 平台，完成登录后输入授权信息并单击**激活**。
+
+   5. 页面提示成功后，单击页面右下方的**前往控制台**。
+
+      :::tip
+
+      您可以单击 Tapdata Cloud 平台页面右上角的用户名，选择**用户中心**，下翻至页面底部的**服务订阅信息**区域，可查看到您绑定的授权码信息。
+
+      :::
+
+7. 基于阿里云授权码创建 Agent 实例。
+
+   1. 在 Tapdata Cloud 平台的左侧导航栏，单击**创建 Agent**。
+
+   2. 在弹出的对话框下方，单击**直接使用阿里云市场授权码**。
+
+   3. 页面显示您已绑定的授权码信息，单击右侧的**创建 Agent**。
+
+      ![创建 Agent](../images/create_agent_via_aliyun_market_code.png)
+
+      :::tip
+      如您选择的是**全托管模式**，Agent 将自动完成部署；如您选择的是**半托管模式**，您需要根据跳转到的页面的提示，在您的设备上[部署 Agent](../quick-start/install-agent/README.md)。
+      :::
