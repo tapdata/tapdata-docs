@@ -27,7 +27,72 @@ You can pay for Tapdata Cloud by credit card.
 
 Please select the appropriate Agent specifications according to the amount of data and the number of tasks, the specifications are priced as follows, the unit is dollar($):
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs className="unique-tabs">
+    <TabItem value=" full-managed" label="Fully-Managed Mode" default>
+<p>In Fully-Managed Mode, Tapdata Cloud will provide the necessary computing/storage resources for running the Agent and deploys it automatically. It offers unified operational maintenance and resource monitoring to enhance operational reliability, enabling one-click delivery and usage, allowing users to focus on their core business.</p>
+
 <table>
+<thead>
+  <tr>
+    <th>Specifications</th>
+    <th>One Month Only</th>
+    <th>Monthly</th>
+    <th>One Year Only</th>
+    <th>Annually</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>LARGE</td>
+    <td>232</td>
+    <td>220</td>
+    <td>2,508</td>
+    <td>2,508</td>
+  </tr>
+  <tr>
+    <td>XLARGE</td>
+    <td>464</td>
+    <td>440</td>
+    <td>5,016</td>
+    <td>5,016</td>
+  </tr>
+  <tr>
+    <td>2XLARGE</td>
+    <td>928</td>
+    <td>880</td>
+    <td>10,032</td>
+    <td>10,032</td>
+  </tr>
+    <tr>
+    <td>3XLARGE</td>
+    <td>1,392</td>
+    <td>1,320</td>
+    <td>15,048</td>
+    <td>15,048</td>
+  </tr>
+  <tr>
+    <td>4XLARGE</td>
+    <td>1,856</td>
+    <td>1,764</td>
+    <td>20,064</td>
+    <td>20,064</td>
+  </tr>
+    <tr>
+    <td>8XLARGE</td>
+    <td>3,172</td>
+    <td>3,528</td>
+    <td>40,128</td>
+    <td>40,128</td>
+  </tr>
+</tbody>
+</table> 
+</TabItem>
+   <TabItem value="semi-managed" label="Semi-Managed Mode">
+   <p>In Semi-Managed Mode,  you need to provide the equipment for deploying and maintaining the Agent, which allows for the full utilization of existing hardware resources. This approach enables you to benefit from lower prices while further enhancing security.</p>
+    <table>
 <thead>
   <tr>
     <th>Specifications</th>
@@ -46,46 +111,48 @@ Please select the appropriate Agent specifications according to the amount of da
     <td>LARGE</td>
     <td>116</td>
     <td>110</td>
-    <td>1254</td>
-    <td>1254</td>
+    <td>1,254</td>
+    <td>1,254</td>
   </tr>
   <tr>
     <td>XLARGE</td>
     <td>232</td>
     <td>220</td>
-    <td>2508</td>
-    <td>2508</td>
+    <td>2,508</td>
+    <td>2,508</td>
   </tr>
   <tr>
     <td>2XLARGE</td>
     <td>464</td>
-    <td>441</td>
-    <td>5016</td>
-    <td>5016</td>
+    <td>440</td>
+    <td>5,016</td>
+    <td>5,016</td>
   </tr>
   <tr>
     <td>3XLARGE</td>
     <td>696</td>
-    <td>661</td>
-    <td>7524</td>
-    <td>7524</td>
+    <td>660</td>
+    <td>7,524</td>
+    <td>7,524</td>
   </tr>
   <tr>
     <td>4XLARGE</td>
     <td>928</td>
     <td>882</td>
-    <td>10032</td>
-    <td>10032</td>
+    <td>10,032</td>
+    <td>10,032</td>
   </tr>
   <tr>
     <td>8XLARGE</td>
-    <td>1857</td>
-    <td>1764</td>
-    <td>20065</td>
-    <td>20065</td>
+    <td>1,856</td>
+    <td>1,764</td>
+    <td>20,064</td>
+    <td>20,064</td>
   </tr>
 </tbody>
-</table>
+</table> 
+   </TabItem>
+  </Tabs>
 
 
 
@@ -165,7 +232,7 @@ Please note that the performance of the following tables is provided for referen
 
 :::tip
 
-① In order to ensure the maximum data flow performance, it is recommended that the machine deployed by the Agent (referred to as the **host** in the above table) has sufficient resources such as computing, storage and bandwidth. For more information, see [Install Agent](../quick-start/install-agent/README.md).
+① When purchasing Agent instances, if you choose the **Semi-Managed Mode**, you will need to provide the host machine for [deploying the Agent](../quick-start/install-agent/README.md). Additionally, to ensure maximum data transfer performance, it is essential to ensure that the host machine has sufficient computing, storage, and bandwidth resources. On the other hand, if you choose the **Fully-Managed Mode**, Tapdata Cloud will provide all the necessary computing and storage resources.
 
 :::
 
