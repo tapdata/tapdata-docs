@@ -13,25 +13,21 @@ Tapdata Cloud is a real-time data platform provided by Tapdata that integrates d
 
 Compared with traditional data migration/synchronization tools, Tapdata Cloud can provide a rich, easy-to-use, secure, and reliable data flow service to improve data development efficiency.
 
-* **Out of the Box**
+* **[Rich data sources support](introduction/supported-databases.md)**
 
-  Simply [sign up for an account](https://cloud.tapdata.io/), deploy Tapdata Agent according to the platform with one click, and start data synchronization right away.
+  Support for mainstream data sources, including commercial databases, open source databases, cloud databases, SaaS platform data sources, file data sources, and custom data sources.
 
-* **[Rich database support](introduction/supported-databases.md)**
+* **[Real time data capture & sync, data freshness guaranteed](quick-start/create-task.md)**
 
-  Support for mainstream databases, including commercial databases, open source databases, cloud databases, SaaS platform data sources, file data sources, and custom data sources.
+  Tapdata Cloud focuses on log-based real-time data integration solutions. By adapting various relational and non-relational databases one by one, it can realize real-time incremental event analysis with a delay of seconds and a performance of tens of thousands of levels. The delay is low and almost There is no intrusion into the source database. Tapdata Cloud has completed the collection and application of table structure changes (DDL) for common database types, ensuring that the data source and target are consistent in real time in terms of structure and data.
 
-* **Reliable Data Consistency**
+* **[Flexible & Adaptive Schema, Multi-source data consolidation in a snap](user-guide/data-console/daas-mode/enable-daas-mode.md)**
 
-  Tapdata Cloud ensures high consistency between the target and source databases through a variety of self-developed technologies, supports multiple verification methods, and ensures the strict requirements of the production environment.
+  Using the JSON model of the dynamic schema as the middle platform storage, the data import can be completed quickly without having to build a table in advance. When multi-source data is aggregated, for the same type of data from different sources and different structures, the model can be quickly merged without complex model design, which greatly improves the efficiency of data warehousing.
 
-* **[Unified Data Service Platform](user-guide/data-console/daas-mode/enable-daas-mode.md)**
+* **[Low Code / No Code Pipeline Development & Transformation](user-guide/workshop.md)**
 
-  Based on the concept of data hierarchical governance, data scattered in different business systems can be synchronized to a unified platform cache layer, which minimizes the impact of data extraction on business and provides basic data for subsequent data processing and business, thus building a consistent, real-time data platform and connecting data silos.
-
-* **[Visual Operation without Coding](user-guide/workshop.md)**
-
-  Say goodbye to SQL, you can quickly complete the conversion rules such as renaming the table with a simple mouse drag and drop, and also support the UDF (User Defined Function) based on Javascript.
+  Simply [sign up for an account](https://cloud.tapdata.io/), deploy Tapdata Agent according to the platform with one click, and start data synchronization right away. For data filtering, cleaning, merging, supplementation, calculation, etc., Tapdata Cloud provides a drag-and-drop method to complete most of the data processing work. At the same time, it also supports users to use Javascript custom components, or directly use Javascript UDF for testing.
 
 
 
