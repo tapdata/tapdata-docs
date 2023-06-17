@@ -38,57 +38,57 @@ import TabItem from '@theme/TabItem';
 <thead>
   <tr>
     <th>Specifications</th>
-    <th>One Month Only</th>
     <th>Monthly</th>
-    <th>One Year Only</th>
+    <th>One Month Only</th>
     <th>Annually</th>
+    <th>One Year Only</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>LARGE</td>
-    <td>232</td>
     <td>220</td>
+    <td>232</td>
     <td>2,508</td>
     <td>2,508</td>
   </tr>
   <tr>
     <td>XLARGE</td>
-    <td>464</td>
     <td>440</td>
+    <td>464</td>
     <td>5,016</td>
     <td>5,016</td>
   </tr>
   <tr>
     <td>2XLARGE</td>
-    <td>928</td>
     <td>880</td>
+    <td>928</td>
     <td>10,032</td>
     <td>10,032</td>
   </tr>
-    <tr>
+  <tr>
     <td>3XLARGE</td>
-    <td>1,392</td>
     <td>1,320</td>
+    <td>1,392</td>
     <td>15,048</td>
     <td>15,048</td>
   </tr>
   <tr>
     <td>4XLARGE</td>
-    <td>1,856</td>
     <td>1,764</td>
+    <td>1,856</td>
     <td>20,064</td>
     <td>20,064</td>
   </tr>
-    <tr>
+  <tr>
     <td>8XLARGE</td>
-    <td>3,172</td>
     <td>3,528</td>
+    <td>3,172</td>
     <td>40,128</td>
     <td>40,128</td>
   </tr>
 </tbody>
-</table> 
+</table>
 </TabItem>
    <TabItem value="semi-managed" label="Semi-Managed Mode">
    <p>In Semi-Managed Mode,  you need to provide the equipment for deploying and maintaining the Agent, which allows for the full utilization of existing hardware resources. This approach enables you to benefit from lower prices while further enhancing security.</p>
@@ -96,61 +96,61 @@ import TabItem from '@theme/TabItem';
 <thead>
   <tr>
     <th>Specifications</th>
-    <th>One Month Only</th>
     <th>Monthly</th>
-    <th>One Year Only</th>
+    <th>One Month Only</th>
     <th>Annually</th>
+    <th>One Year Only</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td>SMALL</td>
-    <td colspan="4">Free (1 Agent Instance) </td>
+    <td colspan="4">Free (1 Agent Instance)&nbsp;&nbsp;</td>
   </tr>
   <tr>
     <td>LARGE</td>
-    <td>116</td>
     <td>110</td>
+    <td>116</td>
     <td>1,254</td>
     <td>1,254</td>
   </tr>
   <tr>
     <td>XLARGE</td>
-    <td>232</td>
     <td>220</td>
+    <td>232</td>
     <td>2,508</td>
     <td>2,508</td>
   </tr>
   <tr>
     <td>2XLARGE</td>
-    <td>464</td>
     <td>440</td>
+    <td>464</td>
     <td>5,016</td>
     <td>5,016</td>
   </tr>
   <tr>
     <td>3XLARGE</td>
-    <td>696</td>
     <td>660</td>
+    <td>696</td>
     <td>7,524</td>
     <td>7,524</td>
   </tr>
   <tr>
     <td>4XLARGE</td>
-    <td>928</td>
     <td>882</td>
+    <td>928</td>
     <td>10,032</td>
     <td>10,032</td>
   </tr>
   <tr>
     <td>8XLARGE</td>
-    <td>1,856</td>
     <td>1,764</td>
+    <td>1,856</td>
     <td>20,064</td>
     <td>20,064</td>
   </tr>
 </tbody>
-</table> 
+</table>
    </TabItem>
   </Tabs>
 
