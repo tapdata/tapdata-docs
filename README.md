@@ -55,7 +55,7 @@ We welcome contributions to help improve the documentation! Here is the steps:
 
 ```shell
 ├── docs		       # Docs for the current version
-│   ├── cloud		       # Tapdata Cloud Docs(Chinese language)
+│   ├── cloud		       # Tapdata Cloud Docs
 │   │   ├── images	       # Screen shots, illustrations for docs
 │   │   ├── ………… 
 ├── docusaurus.config.js       # A config file containing the site configuration
@@ -66,7 +66,6 @@ We welcome contributions to help improve the documentation! Here is the steps:
 │   └── pages
 ├── static		       # Static directory that will be copied into the root of the final build directory
 │   └── img
-└── i18n		       # Tapdata Cloud Docs(English language), dir: i18n/docusaurus-plugin-content-docs/current
 ```
 
 
@@ -77,8 +76,4 @@ We have a few channels for contact:
 
 - [Slack channel](https://join.slack.com/t/tapdatacommunity/shared_invite/zt-1biraoxpf-NRTsap0YLlAp99PHIVC9eA)
 - [@tapdata_daas](https://twitter.com/tapdata_daas) on Twitter
-- Wechat: 
 
-<p align="left">
-<a href="https://20778419.s21i.faiusr.com/4/2/ABUIABAEGAAg3Z6tkAYoqdfZ4AIwjAM4jAM.png" rel="nofollow"><img src="https://20778419.s21i.faiusr.com/4/2/ABUIABAEGAAg3Z6tkAYoqdfZ4AIwjAM4jAM.png" style="zoom: 50%;" /></a>
-</p>

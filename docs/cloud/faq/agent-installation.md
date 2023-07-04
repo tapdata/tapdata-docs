@@ -16,6 +16,13 @@ Tapdata Agent obtains data from the source, processes and transforms it, then se
 
 :::
 
+### What's the difference between Full-Managed Mode and Semi-Managed Mode?
+
+| Type                   | Description                                                  | Architecture                                                 |
+| ---------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Fully-Managed Mode** | Tapdata Cloud will provide the necessary computing/storage resources for running the Agent and deploys it automatically. It offers unified operational maintenance and resource monitoring to enhance operational reliability, enabling one-click delivery and usage, allowing users to focus on their core business. | ![全托管](https://docs.tapdata.net/assets/images/fully_managed-12c576a9a02c96a8a7588f6f2d372cf8.png) |
+| **Semi-Managed Mode**  | You have the flexibility to [deploy the Agent](../quick-start/install-agent/README.md) on an existing device, leveraging the available hardware resources. This approach offers cost savings while enhancing security. | ![半托管](https://docs.tapdata.net/assets/images/self_host_managed-ac00059b1099b9c395840c2bd0965445.png) |
+
 ### Where is the Agent deployed?
 
 The Tapdata Agent should be installed in the local network where the database is located since data flow is usually time-sensitive.
