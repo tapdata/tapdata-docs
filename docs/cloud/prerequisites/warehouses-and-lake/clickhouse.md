@@ -64,7 +64,7 @@ If binary-related fields are included, you need to remove them via field mapping
 
    ![clickhouse_connection](../../images/clickhouse_connection.png)
 
-   * Connection Information Settings
+   * **Basic Connection Settings**
       * **Connection name**: Fill in a unique name that has business significance.
       * **Connection type**: ClickHouse databases can only be targets.
       * **Host**: The database connection address.
@@ -72,7 +72,7 @@ If binary-related fields are included, you need to remove them via field mapping
       * **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
       * **user**, **password**: The database username and password.
       * **Connection parameter string**: additional connection parameters, default empty.
-   * Advanced settings
+   * **Advanced Settings**
       * **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
       * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
       * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
