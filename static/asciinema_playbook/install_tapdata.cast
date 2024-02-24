@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "width": 132,
+  "height": 24,
+  "duration": 30.61367,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.031883,
+      "\u001b]0;root@instance-1:~/tapdata\u0007\u001b[?1034h[root@instance-1 tapdata]# "
+    ],
+    [
+      1.817579,
+      "."
+    ],
+    [
+      0.248619,
+      "/"
+    ],
+    [
+      0.658902,
+      "t"
+    ],
+    [
+      0.172198,
+      "a"
+    ],
+    [
+      1.102614,
+      "\u0007pdata"
+    ],
+    [
+      1.005739,
+      " "
+    ],
+    [
+      0.247496,
+      "s"
+    ],
+    [
+      0.270164,
+      "t"
+    ],
+    [
+      0.190728,
+      "a"
+    ],
+    [
+      0.18277,
+      "r"
+    ],
+    [
+      0.200938,
+      "t"
+    ],
+    [
+      0.80238,
+      "\r\n"
+    ],
+    [
+      0.226565,
+      "\u001b[32m _______       _____  _____       _______\u001b[0m\r\n"
+    ],
+    [
+      0.001665,
+      "\u001b[32m|__   __|/\\   |  __ \\|  __ \\   /\\|__   __|/\\    \u001b[0m\r\n\u001b[32m   | |  /  \\  | |__) | |  | | /  \\  | |  /  \\   \u001b[0m\r\n\u001b[32m   | | / /\\ \\ |  ___/| |  | |/ /\\ \\ | | / /\\ \\  \u001b[0m\r\n\u001b[32m   | |/ ____ \\| |    | |__| / ____ \\| |/ ____ \\ \u001b[0m\r\n\u001b[32m   |_/_/    \\_\\_|    |_____/_/    \\_\\_/_/    \\_\\ \u001b[0m\r\n\r\n"
+    ],
+    [
+      0.109327,
+      "WORK DIR:/root/tapdata\r\n"
+    ],
+    [
+      1.438898,
+      "Init tapdata...\r\n"
+    ],
+    [
+      0.00581,
+      "\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      2.325915,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m…\u001b[39m \u001b7\u001b8\r\n\u001b[?25h\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter tapdata port. (Default: 3030): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      2.675021,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter tapdata port. (Default: 3030): \u001b[22m \u001b[90m…\u001b[39m \u001b7\u001b8\r\n\u001b[?25h\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter api server port. (Default: 3080): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      1.902323,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter api server port. (Default: 3080): \u001b[22m \u001b[90m…\u001b[39m \u001b7\u001b8\r\n\u001b[?25h\u001b[?25l\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mDoes MongoDB require username/password?(y/n): \u001b[22m \u001b[90m›\u001b[39m \u001b[90m(Y/n)\u001b[39m"
+    ],
+    [
+      2.467605,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mDoes MongoDB require username/password?(y/n): \u001b[22m \u001b[90m…\u001b[39m no\r\n\u001b[?25h\u001b[?25l\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mDoes MongoDB require TLS/SSL?(y/n): \u001b[22m \u001b[90m›\u001b[39m \u001b[90m(Y/n)\u001b[39m"
+    ],
+    [
+      2.598349,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mDoes MongoDB require TLS/SSL?(y/n): \u001b[22m \u001b[90m…\u001b[39m no\r\n\u001b[?25h\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      2.939783,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m…\u001b[39m \u001b7\u001b8\r\n\u001b[?25h\u001b[?25l\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mDoes API Server response error code?(y/n): \u001b[22m \u001b[90m›\u001b[39m \u001b[90m(Y/n)\u001b[39m"
+    ],
+    [
+      2.192442,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mDoes API Server response error code?(y/n): \u001b[22m \u001b[90m…\u001b[39m yes\r\n\u001b[?25hMongoDB uri:  mongodb://127.0.0.1:27017/tapdata\r\nMongoDB connection command: mongo  mongodb://127.0.0.1:27017/tapdata\r\n"
+    ],
+    [
+      0.006872,
+      "System initialized. To start Tapdata, run: tapdata start\r\n"
+    ],
+    [
+      0.004273,
+      "WORK DIR:/root/tapdata\r\n"
+    ],
+    [
+      2.074692,
+      "Testing JDK...\r\n"
+    ],
+    [
+      0.125515,
+      "java version:1.8\r\nJava environment OK.\r\n"
+    ],
+    [
+      0.040253,
+      "Unpack the files...\r\n"
+    ],
+    [
+      2.286622,
+      "frontend server started.begin deploy initTry to connect to TM for deploy connector...\r\n"
+    ],
+    [
+      1.998703,
+      "\u001b[2K\u001b[1ATry to connect to TM for deploy connector... waiting 2.002sec.\r\n"
+    ],
+    [
+      2.010972,
+      "\u001b[2K\u001b[1ATry to connect to TM for deploy connector... waiting 4.008sec.\r\n"
+    ],
+    [
+      1.996513,
+      "\u001b[2K\u001b[1A......\r\n"
+    ]
+  ]
+}

@@ -19,6 +19,7 @@
     "@docusaurus/preset-classic": "2.2.0",
     "@easyops-cn/docusaurus-search-local": "^0.33.6",
     "@mdx-js/react": "^1.6.22",
+    "asciinema-player": "^3.7.0",
     "clsx": "^1.2.1",
     "docusaurus-plugin-hotjar": "^0.0.2",
     "plugin-image-zoom": "github:flexanalytics/plugin-image-zoom",

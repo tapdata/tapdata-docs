@@ -1,0 +1,334 @@
+{
+  "version": 1,
+  "width": 118,
+  "height": 27,
+  "duration": 40.131265,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.018421,
+      "\u001b]0;root@centos201:~/tapdata\u0007\u001b[?1034h[root@centos201 tapdata]# "
+    ],
+    [
+      1.240731,
+      "."
+    ],
+    [
+      0.163984,
+      "/"
+    ],
+    [
+      0.346253,
+      "t"
+    ],
+    [
+      0.146152,
+      "a"
+    ],
+    [
+      0.202823,
+      "\u0007pdata"
+    ],
+    [
+      1.249939,
+      " "
+    ],
+    [
+      0.481843,
+      "s"
+    ],
+    [
+      0.209587,
+      "t"
+    ],
+    [
+      0.129331,
+      "a"
+    ],
+    [
+      0.238535,
+      "r"
+    ],
+    [
+      1.808619,
+      "t"
+    ],
+    [
+      2.232939,
+      "\r\n"
+    ],
+    [
+      0.187485,
+      "\u001b[32m _______       _____  _____       _______\u001b[0m\r\n\u001b[32m|__   __|/\\   |  __ \\|  __ \\   /\\|__   __|/\\    \u001b[0m\r\n\u001b[32m   | |  /  \\  | |__) | |  | | /  \\  | |  /  \\   \u001b[0m\r\n\u001b[32m   | | / /\\ \\ |  ___/| |  | |/ /\\ \\ | | / /\\ \\  \u001b[0m\r\n\u001b[32m   | |/ ____ \\| |    | |__| / ____ \\| |/ ____ \\ \u001b[0m\r\n\u001b[32m   |_/_/    \\_\\_|    |_____/_/    \\_\\_/_/    \\_\\ \u001b[0m\r\n\r\n"
+    ],
+    [
+      0.161655,
+      "WORK DIR:/root/tapdata\r\n"
+    ],
+    [
+      0.487685,
+      "Init tapdata...\r\n\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      3.88657,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m h\u001b7\u001b8\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m ht\u001b7\u001b8\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m htt\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http:\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m"
+    ],
+    [
+      3.5e-05,
+      "›\u001b[39m http:/\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://1\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://19\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:"
+    ],
+    [
+      2.1e-05,
+      "http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.1\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.16\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http:/"
+    ],
+    [
+      2.1e-05,
+      "/192.168.1.\u001b7\u001b8"
+    ],
+    [
+      1.00888,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.2\u001b7\u001b8"
+    ],
+    [
+      0.474474,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.20\u001b7\u001b8"
+    ],
+    [
+      0.138421,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200\u001b7\u001b8"
+    ],
+    [
+      1.761597,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:\u001b7\u001b8"
+    ],
+    [
+      2.017808,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3\u001b7\u001b8"
+    ],
+    [
+      0.128103,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:30\u001b7\u001b8"
+    ],
+    [
+      0.351971,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:303\u001b7\u001b8"
+    ],
+    [
+      0.162194,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030\u001b7\u001b8"
+    ],
+    [
+      0.740029,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,\u001b7\u001b8"
+    ],
+    [
+      0.782904,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,h\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,ht\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,htt\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http:\u001b7\u001b8\u001b[2K\u001b[1A\u001b"
+    ],
+    [
+      2.9e-05,
+      "[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http:/\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://1\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://19\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://"
+    ],
+    [
+      2.4e-05,
+      "192\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.1\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.16\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[3"
+    ],
+    [
+      2e-05,
+      "9m http://192.168.1.200:3030,http://192.168.\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1\u001b7\u001b8\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.\u001b7\u001b8"
+    ],
+    [
+      1.461813,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.2\u001b7\u001b8"
+    ],
+    [
+      0.191861,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.20\u001b7\u001b8"
+    ],
+    [
+      0.580461,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.201\u001b7\u001b8"
+    ],
+    [
+      1.335341,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.201:\u001b7\u001b8"
+    ],
+    [
+      0.929904,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.201:3\u001b7\u001b8"
+    ],
+    [
+      0.175613,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.201:30\u001b7\u001b8"
+    ],
+    [
+      0.408427,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.201:303\u001b7\u001b8"
+    ],
+    [
+      0.177689,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m›\u001b[39m http://192.168.1.200:3030,http://192.168.1.201:3030\u001b7\u001b8"
+    ],
+    [
+      2.760418,
+      "\u001b[2K\u001b[1A\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/): \u001b[22m \u001b[90m…\u001b[39m http://192.168.1.200:3030,http://192.168.1.201:3030\u001b7\u001b8\r\n\u001b[?25h\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter tapdata port. (Default: 3030): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      5.570989,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter tapdata port. (Default: 3030): \u001b[22m \u001b[90m…\u001b[39m \u001b7\u001b8\r\n\u001b[?25h\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter api server port. (Default: 3080): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      2.793321,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter api server port. (Default: 3080): \u001b[22m \u001b[90m…\u001b[39m \u001b7\u001b8\r\n\u001b[?25h\u001b[?25l\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mDoes MongoDB require username/password?(y/n): \u001b[22m \u001b[90m›\u001b[39m \u001b[90m(Y/n)\u001b[39m"
+    ],
+    [
+      2.466282,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mDoes MongoDB require username/password?(y/n): \u001b[22m \u001b[90m…\u001b[39m no\r\n\u001b[?25h\u001b[?25l\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mDoes MongoDB require TLS/SSL?(y/n): \u001b[22m \u001b[90m›\u001b[39m \u001b[90m(Y/n)\u001b[39m"
+    ],
+    [
+      3.274511,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mDoes MongoDB require TLS/SSL?(y/n): \u001b[22m \u001b[90m…\u001b[39m no\r\n\u001b[?25h\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m \u001b7\u001b8"
+    ],
+    [
+      4.510498,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 1\u001b7\u001b8"
+    ],
+    [
+      0.364674,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 19\u001b7\u001b8"
+    ],
+    [
+      0.190621,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192\u001b7\u001b8"
+    ],
+    [
+      0.54404,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.\u001b7\u001b8"
+    ],
+    [
+      0.132951,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.1\u001b7\u001b8"
+    ],
+    [
+      0.634563,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.16\u001b7\u001b8"
+    ],
+    [
+      0.420209,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168\u001b7\u001b8"
+    ],
+    [
+      0.443711,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.\u001b7\u001b8"
+    ],
+    [
+      0.139877,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1\u001b7\u001b8"
+    ],
+    [
+      0.378616,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.\u001b7\u001b8"
+    ],
+    [
+      0.567015,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.2\u001b7\u001b8"
+    ],
+    [
+      0.26764,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.20\u001b7\u001b8"
+    ],
+    [
+      0.133342,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200\u001b7\u001b8"
+    ],
+    [
+      1.232815,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:\u001b7\u001b8"
+    ],
+    [
+      1.984088,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:2\u001b7\u001b8"
+    ],
+    [
+      0.828147,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27\u001b7\u001b8"
+    ],
+    [
+      0.497391,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:270\u001b7\u001b8"
+    ],
+    [
+      0.400774,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:2701\u001b7\u001b8"
+    ],
+    [
+      0.224085,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017\u001b7\u001b8"
+    ],
+    [
+      0.929713,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/\u001b7\u001b8"
+    ],
+    [
+      1.10313,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/t\u001b7\u001b8"
+    ],
+    [
+      0.141087,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/ta\u001b7\u001b8"
+    ],
+    [
+      0.128474,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/tap\u001b7\u001b8"
+    ],
+    [
+      0.315815,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/tapd\u001b7\u001b8"
+    ],
+    [
+      0.056047,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/tapda\u001b7\u001b8"
+    ],
+    [
+      0.207936,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/tapdat\u001b7\u001b8"
+    ],
+    [
+      0.163385,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m›\u001b[39m 192.168.1.200:27017/tapdata\u001b7\u001b8"
+    ],
+    [
+      4.658097,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mPlease enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata): \u001b[22m \u001b[90m…\u001b[39m 192.168.1.200:27017/tapdata\u001b7\u001b8\r\n\u001b[?25h\u001b[?25l\u001b[2K\u001b[1G\u001b[36m?\u001b[39m \u001b[1mDoes API Server response error code?(y/n): \u001b[22m \u001b[90m›\u001b[39m \u001b[90m(Y/n)\u001b[39m"
+    ],
+    [
+      1.921065,
+      "\u001b[2K\u001b[G\u001b[2K\u001b[1G\u001b[32m✔\u001b[39m \u001b[1mDoes API Server response error code?(y/n): \u001b[22m \u001b[90m…\u001b[39m yes\r\n\u001b[?25hMongoDB uri:  mongodb://192.168.1.200:27017/tapdata\r\nMongoDB connection command: mongo  mongodb://192.168.1.200:27017/tapdata\r\nSystem initialized. To start Tapdata, run: tapdata start\r\nWORK DIR:/root/tapdata\r\n"
+    ],
+    [
+      2.031754,
+      "Testing JDK...\r\n"
+    ],
+    [
+      0.172778,
+      "java version:1.8\r\nJava environment OK.\r\n"
+    ],
+    [
+      0.028922,
+      "Unpack the files...\r\n"
+    ],
+    [
+      10.559156,
+      "frontend server started.begin deploy init\r\n"
+    ],
+    [
+      0.000897,
+      "Try to connect to TM for deploy connector...\r\n"
+    ]
+  ]
+}

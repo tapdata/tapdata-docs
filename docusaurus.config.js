@@ -96,6 +96,12 @@ const config = {
             label: 'Tapdata Cloud',
           },
           {
+            type: 'doc',
+            docId: 'enterprise/what-is-tapdata-enterprise',
+            position: 'right',
+            label: 'Tapdata On-Prem',
+          },
+          {
             href: 'https://github.com/tapdata/docs',
             label: 'GitHub',
             position: 'right',
