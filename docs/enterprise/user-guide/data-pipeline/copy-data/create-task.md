@@ -1,111 +1,103 @@
-# 创建数据复制任务
+# Creating a Data Replication Task
 
-数据复制功能可以帮助您实现同/异构数据源间的实时同步，适用于数据迁移/同步、数据灾备、读性能扩展等多种业务场景。本文介绍数据复制功能的具体使用流程，帮助您快速掌握如何创建数据复制任务。
+The data replication feature can help you achieve real-time synchronization between the same or different types of data sources. It is suitable for various business scenarios such as data migration/synchronization, data disaster recovery, and read performance expansion. This article introduces the specific use process of the data replication feature to help you quickly learn how to create a data replication task.
 
-## 操作步骤
+## Procedure
 
-本文以 MySQL 实时同步至 MongoDB 为例，为您演示数据复制任务的创建流程，其他数据源也可参考此流程。
+This article takes the real-time synchronization from MySQL to MongoDB as an example, showing you the process of creating a data replication task. Other data sources can refer to this process.
 
-<details>
-  <summary>最佳实践</summary>
-  为构建高效可靠的数据复制任务，推荐在开始配置任务前，推荐阅读<a href="../../../best-practice/data-sync">数据同步最佳实践</a>。
-</details>
+1. Log in to the Tapdata platform.
 
-1. 登录 Tapdata 平台。
+2. In the left navigation bar, select **Data Pipeline** > **Data Replication**.
 
-2. 在左侧导航栏，选择**数据管道** > **数据复制**。
+3. Click **Create** on the right side of the page, and navigate to the task configuration page.
 
-3. 单击页面右侧的**创建**，跳转到任务配置页面。
+4. Drag and drop the data connections that will act as the source and target to the right canvas, and then connect them.
 
-4. 在页面左侧，分别拖拽作为源和目标的数据连接至右侧画布中，然后将二者连接。
+5. Connect the source and target nodes.
 
-5. 将源节点和目标节点连接起来。
-
-   ![拖拽数据源至画布](../../../images/drag_database_cn.gif)
-
-   :::tip
-   除添加数据源节点外，您还可以添加处理节点以完成更复杂的任务，如过滤数据、增减字段等，更多介绍，见[处理节点](#process-node)。
-   :::
-
-6. 单击源端节点（本例为 MySQL），根据下述说明完成右侧面板的<span id="310-table-model">参数配置</span>。
-
-   ![源端设置](../../../images/data_source_settings.png)
-
-   * **基础设置**
-     * **节点名称**：默认为连接名称，您也可以设置一个具有业务意义的名称。
-     * **选择表**：根据业务需求选择。
-       * **按表名选择**：在待复制表区域框选中表，然后单击向右箭头完成设置。
-       * **按正则表达式匹配**：填写表名的正则表达式即可，此外，当源库新增的表满足表达式时，该表也会被自动同步至目标库。
-     * **选择可见的表范围**：默认展示全部表，您也可以选择过滤**仅有主键表**或**仅无主键表**，其中，主键表包含具有唯一索引的无主键表。由于无主键表采用全主键的方式来实现数据更新，可能因索引长度超限而报错，且性能可能受限，因此推荐您为无主键表单独建立数据复制任务，避免任务出错，提升数据更新的性能。
-   * **高级设置**
-     * **DDL 事件采集**：打开该开关后，Tapdata 会自动采集所选的源端 DDL 事件（如新增字段），如果目标端支持 DDL 写入即可实现 DDL 语句的同步。
-     * **批量读取条数**：全量同步时，每批次读取的记录条数，默认为 **100**。     
-   * **数据模型**   
-     展示源表的表结构信息，包含字段名称和字段类型。   
-   * **告警设置**   
-     默认情况下，节点的平均处理耗时连续 1 分钟大于等于 5 秒，则发送系统通知和邮件通知，您也可以根据业务需求调整规则或关闭告警。
-   
-7. 单击目标端节点（本例为 MongoDB），根据下述说明完成右侧面板的参数配置。
-
-   ![节点基础设置](../../../images/data_copy_normal_setting.png)
-
-   * **基础设置**
-     * **节点名称**：默认为连接名称，您也可以设置一个具有业务意义的名称。 
-     * **目标表结构**：<span id="release320-col-length">展示</span> Tapdata 将写入目标端的表结构信息，该信息基于源端节点设置所推演，同时会将更新条件自动设置为表的主键，如果没有主键则选用唯一索引字段，无主键和唯一索引时，您需要手动指定更新条件的字段。 
-       
-       :::tip
-       
-       除此以外，您还可以直接单击目标自动的字段类型，在弹出的对话框中调整字段类型和精度，也可以按照系数调整字段的长度，例如原先字段为 `STRING(200)`，系数设置为 2，则字段为 `STRING(400)`，可解决因字符编码对存储长度要求不同等原因引发的数据写入失败问题。
-       
-       :::
-       
-     * **重复处理策略**：根据业务需求选择，默认为**保持目标端原有表结构和数据**。 
-     * **全量多线程写入**：全量数据写入的并发线程数，默认为 **8**，可基于目标端写性能适当调整。 
-     * **增量多线程写入**：增量数据写入的并发线程数，默认未启用，启用后可基于目标端写性能适当调整。 
-     * **每批次写入条数**：全量同步时，每批次写入的条目数。 
-     * **每批写入最大等待时间**：根据目标库的性能和网络延迟评估，设置最大等待时间，单位为毫秒。     
-     
-   * **<span id="advanced-settings">高级设置</span>**
-     * **数据写入模式**：根据业务需求选择。
-       * **按事件类型处理**：选择此项后，还需要选择插入、更新、删除事件的数据写入策略。
-       * **统计追加写入**：只处理插入事件，丢弃更新和删除事件。
-     * **数据源专属配置**：选择是否保存删除数据。
-     * **同步分区属性**：打开该功能后，Tapdata 将自动在目标库中创建分片集合，该功能仅在源和目标库为 MongoDB 集群时生效。     
-     
-   * **数据模型**   
-     展示目标表的表结构信息，包含字段名称和字段类型。     
-     
-   * **告警设置**   
-     默认情况下，节点的平均处理耗时连续 1 分钟大于等于 5 秒，则发送系统通知和邮件通知，您也可以根据业务需求调整规则或关闭告警。
-   
-8. （可选）单击页面右上角的**设置**，配置<span id="task-attr">任务属性</span>。
-
-   * **任务名称**：填写具有业务意义的名称。
-   * **同步类型**：可选择**全量+增量**，也可单独选择**全量**或**增量**。
-     全量表示将源端的存量数据复制到目标端，增量表示将源端实时产生的新数据或数据变更复制到目标端，二者结合可用于实时数据同步场景。
-   * **任务描述**：填写任务的描述信息。
-   * **高级设置**：设置任务开始的时间、共享挖掘、定期调度任务、动态调整内存、增量数据处理模式、处理器线程数、Agent 等。
-
-9. 单击**保存**或**启动**按钮完成创建，为保障任务的正常运行，Tapdata 会基于节点配置和数据源特征进行预检查，同时打印日志信息。
-
-   ![任务预检查](../../../images/task_pre_check.png)
+   ![drag_database](../../../images/drag_database.png)
 
    :::tip
 
-   如提未通过预检查，请根据当前页面的日志提示进行调整。更多信息，见[任务预检查说明](../pre-check.md)。
+   In addition to adding data source nodes, you can also add processing nodes to complete more complex tasks, such as filtering data, adding/reducing fields, etc. For more introduction, see [Processing Nodes](#process-node).
 
    :::
 
-10. 启动成功后会自动跳转至任务监控页面，您可以查看任务的 QPS、延迟、任务事件等信息。
+6. Click the source node (MySQL in this example), and complete the parameter configuration on the right panel according to the instructions below.
 
-    ![任务监控](../../../images/copy_data_monitor_cn.png)
+   ![Source Setting](../../../images/data_source_settings.png)
+
+    * **Basic Settings**
+
+        * **Node Name**: By default, it's the connection name, but you can also set a meaningful business name.
+        * **Table**: Select the source table to operate. The table structure, including column names and types, will be displayed below.
+
+    * **Advanced Settings**
+
+        * **DDL Synchronization**      
+          Choose whether to enable **DDL Event Collection**. When this switch is on, Tapdata will automatically collect the DDL events (like adding fields) from the selected source. If the target side supports DDL writing, the DDL statements can be synchronized.
+
+        * **Incremental Method**      
+          Choose **Log CDC** or **Polling**. If you select **Polling**, you'll also need to specify the polling field, interval, and number of rows read each time.
+
+          **Log CDC** will use the data source's transaction log to parse and sync incremental events. **Polling** will sync incremental events by polling a field, but it often can't sync delete events.
+
+        * **Data Filter**
+
+            * **Fully Customizable Query**: Turn this on to input a custom SQL query for full data sync (doesn't affect the incremental stage). For example, `SELECT id,name,address FROM customer;`.
+              :::tip
+              To use this feature, the target node must be a weak Scheme type of data source (like MongoDB/Kafka) etc.
+              :::
+            * **Filter Settings**: Off by default. Turn it on to specify data filtering conditions.
+
+        * **Batch Read Number**: For full data sync, the number of records read per batch. Default is **100**.
+
+    * **Alert Setting**   
+      By default, if the node's average processing time is continuously 5 seconds or more for 1 minute, a system and email notification will be sent. You can adjust the rules based on your business needs or turn off the alerts.
+
+7. Click the target node (MongoDB in this example), and complete the parameter configuration on the right panel according to the instructions below.
+
+   ![Node Basic Settings](../../../images/data_copy_normal_setting.png)
+
+    * **Basic Settings**
+        * **Node Name**: Defaults to the connection name; you can also set a name that has business significance.
+        * **Deduction Results**: Displays table structure information that Tapdata will write into the target, deduced from the source node setting. The update condition will be automatically set as the table's primary key, or if there isn’t one, a unique index field will be used.
+        * **Duplication Handling Strategy**: Choose according to business needs; defaults to **To maintain the origina table structure on the target side, please clear the data**.
+        * **Full Multi-thread Writing**: The number of concurrent threads for writing full data; default is **8**.
+        * **Incremental Multi-thread Writing**: The number of concurrent threads for writing incremental data.
+        * **Batch Write Item Quantity**: The number of items written per batch during full synchronization.
+        * **Max Wait Time per Batch Write**: Set the maximum waiting time per batch write, evaluated based on the target database’s performance and network latency, in milliseconds.
+    * **Advanced Settings**
+        * **Data Writing Mode**: Select according to business needs.
+            * **Process by Event Type**: If you choose this, you also need to select data writing strategies for insert, update, and delete events.
+            * **Statistical Append Write**: Only processes insert events, discarding update and delete events.
+        * **Data Source Exclusive Configuration**: Choose whether to save deleted data.
+    * **Data Model**
+      Displays table structure information of the target table, including field names and field types.
+    * **Alert Settings**
+      Defaults as per source node alert settings.
+
+8. (Optional) Click **Settings** in the upper right corner of the page, and configure the **Task Attributes**.
+
+    * **Task Name**: Enter a name that has business significance.
+    * **Sync Type**: You can choose both full and incremental, or you can select either full or incremental separately. 'Full' means copying the existing data from the source to the target, while 'incremental' means copying new or changed data produced by the source in real-time. Combining the two can be used for real-time data synchronization scenarios.
+    * **Advanced Settings**: Set the task's start time, incremental data processing mode, the number of processing threads, Agent, etc.
+
+9. Click **Save** or **Start** to complete the creation. To ensure the task runs normally, Tapdata will pre-check based on node configurations and data source features, while printing log information.
+
+   :::tip
+
+   If the pre-check is not passed, please adjust according to the log tips on the current page. For more information, see [Task Pre-check Explanation](../pre-check.md).
+
+   :::
+
+10. After successful startup, it will automatically jump to the task monitoring page, where you can view detailed running status and task monitoring information.
+
+    ![Task implementation](../../../images/copy_data_monitor_en.png)
 
 
 
-## 扩展阅读
+## See also
 
-* [处理节点](process-node.md)：通过组合多个处理节点和多个数据源，可实现更加复杂和个性化的数据流转能力。
-* [常见问题](../../../faq/data-pipeline.md)：介绍数据复制功能使用过程中，可能遇到的问题及解决方案。
-
-
-
+By combining multiple processing nodes and multiple data sources, a more complex and personalized data flow can be achieved. For more information, see [Processing Nodes](../data-development/process-node.md).
