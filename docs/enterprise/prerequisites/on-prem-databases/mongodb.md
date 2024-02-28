@@ -1,134 +1,175 @@
 # MongoDB
 
-MongoDB 是一个流行的、开源 NoSQL 数据库，以灵活/可扩展的方式存储和检索数据。完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加 MongoDB 数据源，后续可将其作为源或目标库来构建数据管道。
+After installing the Agent, the next step is to establish a connection between the Agent and MongoDB through Tapdata. This connection is crucial as it allows you to utilize the MongoDB data source for various data replication or development tasks.
 
-## 支持版本
+Tapdata supports the integration of MongoDB as both the source and target database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB to Tapdata, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
 
-MongoDB 3.2、3.4、3.6、4.0、4.2
+## Supported Versions
+
+MongoDB 3.2, 3.4, 3.6, 4.0, 4.2
 
 :::tip
 
-Tapdata 基于 MongoDB 的 Change Stream 实现，此特性在 MongoDB 4.0 开始支持，因此，推荐源和目标数据库的版本为 4.0 及以上。
+You should use 4.0 or higher versions of the source and target databases since the data reading mechanism relies on MongoDB's Change Stream.
 
 :::
 
-## 准备工作
+## Preparations
 
-### 作为源库
+import Content from '../../../reuse-content/_preparations.md';
 
-1. 保障源库的架构为副本集或分片集群，如果为单节点架构，您可以将其配置为单成员的副本集以开启 Oplog。
-   具体操作，见[如何将单节点转为副本集](https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/)。
+<Content />
 
-2. 配置充足的 Oplog 存储空间，至少需要容纳 24 小时的 Oplog。
-   具体操作，见[修改 Oplog 大小](https://docs.mongodb.com/manual/tutorial/change-oplog-size/)。
 
-3. 根据权限管控需求选择下述步骤，创建用于数据同步/开发任务的账号并授予权限。
+### As a Source Database
+
+1. Make sure that the schema of the source database is a replica set or a sharding cluster. If it is standalone, you can configure it as a single-member replica set to open Oplog.
+   For more information, see [Convert a Standalone to a Replica Set](https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/).
+
+2. To ensure sufficient storage space for the Oplog, it is important to configure it to accommodate at least 24 hours' worth of data. For detailed instructions, see [Change the Size of the Oplog](https://docs.mongodb.com/manual/tutorial/change-oplog-size/).
+
+3. To create an account and grant permissions according to permission management requirements, follow the necessary steps.
 
    :::tip
-   由于分片服务器不会向 config 数据库获取用户权限，因此，当源库为分片集群架构时，您需要在每个分片的主节点上创建相应的用户并授予权限。
+
+   In shard cluster architectures, the shard server is unable to retrieve user permissions from the config database. Therefore, it is necessary to create corresponding users and grant permissions on the master nodes of each shard.
+
    :::
 
-   * 授予指定库（以 **demodata** 库为例）的读权限
+   * Grant read role to specified database (e.g. demodata)
 
-     ```bash
-     use admin
-     db.createUser(
-       {
-         user: "tapdata",
-         pwd: "my_password",
-         roles: [
-            { role: "read", db: "demodata" },
-            { role: "read", db: "local" },
-            { role: "read", db: "config" },
-            { role: "clusterMonitor", db: "admin" },
-         ]
-       }
-     )
-     ```
-     
-   * 授予所有库的读权限。
-   
-     ```bash
-     use admin
-     db.createUser(
-       {
-         user: "tapdata",
-         pwd: "my_password",
-         roles: [
-         { role: "readAnyDatabase", db: "admin" },
-            { role: "clusterMonitor", db: "admin" },
-      ]
-       }
-      )
-     ```
+      ```bash
+      use admin
+      db.createUser({
+          "user" : "tapdata",
+          "pwd"  : "my_password",
+          "roles" : [
+              {
+                  "role" : "clusterMonitor",
+                  "db" : "admin"
+              },
+              {
+                  "role" : "read",
+                  "db" : "demodata"
+              }，
+              {
+                  "role" : "read",
+                  "db" : "local"
+              },
+              {
+                  "role" : "read",
+                  "db" : "config"
+              }
+          ]
+      }
+      ```
+      > Only when using MongoDB version 3.2, it is necessary to grant the **read** role to the local database.
 
-4. 在设置 MongoDB URI 时，推荐将写关注级别设置为大多数，即 `w=majority`，否则可能因 Primary 节点异常宕机导致的数据丢失文档。
+   * Grant read role to all databases.
 
-5. 源库为集群架构时，为提升数据同步性能，Tapdata 将会为每个分片创建一个线程并读取数据，在配置数据同步/开发任务前，您还需要执行下述操作。
+      ```bash
+      use admin
+       db.createUser({
+          "user" : "tapdata",
+          "pwd"  : "my_password",
+          "roles" : [
+              {
+                  "role" : "clusterMonitor",
+                  "db" : "admin"
+              },
+              {
+                  "role" : "readAnyDatabase",
+                  "db" : "admin"
+              }
+          ]
+      }
+      ```
 
-   * 关闭源库的均衡器（Balancer），避免块迁移对数据一致性的影响。具体操作，见[如何停止平衡器](https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/)。
-   * 清除源库中，因块迁移失败而产生的孤立文档，避免 _id 冲突。具体操作，见[如何清理孤立文档](https://docs.mongodb.com/manual/reference/command/cleanupOrphaned/)。
+4. When configuring the MongoDB URI, it is advisable to set the write concern to **majority** (`w=majority`) to mitigate the risk of data loss in the event of a primary node downtime.
+
+5. When the source database is a cluster, in order to improve data synchronization performance, Tapdata will create a thread for each shard and read the data. Before configuring data synchronization/development tasks, you also need to perform the following operations.
+
+   * Turn off the Balancer to avoid the impact of chunk migration on data consistency. For more information, see [Stop the Balancer](https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/).
+   * Clears the orphaned documents due to failed chunk migration to avoid _id conflicts. For more information, see [Clean Up Orphaned Documents](https://docs.mongodb.com/manual/reference/command/cleanupOrphaned/).
 
 
 
-### 作为目标库
+### As a Target Database
 
-授予指定库（以 **demodata** 库为例）的写权限，并授予 **clusterMonitor** 角色以供数据验证使用，示例如下：
+Grant write role to specified database (e.g. demodata) and **clusterMonitor** role for data validation, e.g.:
 
 ```bash
 use admin
-db.createUser(
-  {
-    user: "tapdata",
-    pwd: "my_password",
-    roles: [
-       { role: "readWrite", db: "demodata" },
-       { role: "clusterMonitor", db: "admin" },
-    ]
-  }
-)
+db.createUser({
+  "user" : "tapdata",
+  "pwd"  : "my_password",
+  "roles" : [
+      {
+          "role" : "clusterMonitor",
+          "db" : "admin"
+      },
+      {
+          "role" : "readWrite",
+          "db" : "demodata"
+      },
+      {
+          "role" : "read",
+          "db" : "local"
+      }
+  ]
+}
 ```
 
 :::tip
 
-仅当 MongoDB 为 3.2 版本时，需要授予 local 数据库的读权限。
+Only when using MongoDB version 3.2, it is necessary to grant the read role to the local database.
 
 :::
 
-## 添加数据源
-1. 登录 Tapdata 平台。
 
-2. 在左侧导航栏，单击**连接管理**。
 
-3. 单击页面右侧的**创建**。
+## Connect to MongoDB
 
-4. 在弹出的对话框中，搜索并选择 **MongoDB**。
+1. Log in to Tapdata Platform.
 
-5. 在跳转到的页面，根据下述说明填写 MongoDB 的连接信息。
+2. In the left navigation panel, click **Connections**.
 
-   ![MongoDB 连接示例](../../images/mongodb_connection_cn.png)
+3. On the right side of the page, click **Create connection**.
 
-   * **连接信息设置**
-      * **连接名称**：填写具有业务意义的独有名称。
-      * **连接类型**：支持将 MongoDB 作为源或目标库。
-      * **连接方式**：根据业务需求选择：
-         * **URI 模式**：选择该模式后，您需要填写数据库 URI 连接信息，用户名和密码需拼接在连接串中，例如：` mongodb://admin:password@192.168.0.100:27017/mydb?replicaSet=xxx&authSource=admin`
-         * **标准模式**：选择该模式后，您需要填写数据库地址、名称、账号、密码和其他连接串参数。
-   * **高级设置**
-      * **使用 TLS/SSL 连接**：根据业务需求选择：
-        * TSL/SSL 连接：Tapdata 将连接网络中的单独服务器，该服务器提供到数据库的 TSL/SSL 通道。如果您的数据库位于不可访问的子网中，则可尝试使用此方法。
-        * 直接连接：Tapdata 将直接连接到数据库，您需要设置安全规则以允许访问。
-      * **共享挖掘**：[挖掘源库](../../user-guide/advanced-settings/share-mining.md)的增量日志，可为多个任务共享源库的增量日志，避免重复读取，从而最大程度上减轻增量同步对源库的压力，开启该功能后还需要选择一个外存用来存储增量日志信息。
-      * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-      * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-      * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-      * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照设置的时间定期刷新模型。
-   * **SSL 设置**：选择是否开启 SSL 连接数据源，可进一步提升数据安全性，开启该功能后续上传 CA 文件、客户端证书、密钥填写客户端密码。
+4. In the pop-up dialog, select **MongoDB**.
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+5. Fill in the connection information for MongoDB on the redirected page, following the instructions provided below.
+
+   ![MongoDB Connection Example](../../images/mongodb_connection.png)
+
+    * Connection Information Settings
+
+        * **Connection name**: Fill in a unique name that has business significance.
+
+        * **Connection type**: Supports MongoDB as a source or target database.
+
+        * **Connection method**: Choose how you want to connect:
+            * **URI mode**: After selecting this mode, you will be required to provide the necessary information for the database URI connection. The connection string should include the username and password, which are concatenated in the format.
+
+              For example, the connection string may look like: ` mongodb://admin:password@192.168.0.100:27017/mydb?replicaSet=xxx&authSource=admin`.
+
+            * **Standard mode**: After selecting this mode, you need to fill in the database address, name, account number, password and other connection string parameters.
+
+    * Advanced settings
+
+        * **Connect using TLS/SSL**: Choose how you want to connect:
+          * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, Tapdata offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
+          * **Direct connection**: Tapdata will connect directly to the database and you need to set up security rules to allow access.
+        * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log.
+        * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+        * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+        * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+        * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+
+6. Click **Connection Test**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::

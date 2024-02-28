@@ -303,7 +303,7 @@ const sidebars = {
   'enterprise/what-is-tapdata-enterprise',
     {
      type: 'category',
-     label: '产品简介',
+     label: 'Introduction',
      link: {type: 'doc', id: 'enterprise/introduction/README'},
      items: [
              'enterprise/introduction/architecture',
@@ -316,12 +316,12 @@ const sidebars = {
     },
     {
      type: 'category',
-     label: '快速入门',
+     label: 'Quick Start',
      link: {type: 'doc', id: 'enterprise/quick-start/README'},
      items: [
             {
              type: 'category',
-             label: '部署 Tapdata',
+             label: 'Install Tapdata',
              link: {type: 'doc', id: 'enterprise/quick-start/install/README'},
              items: [
                     'enterprise/quick-start/install/install-tapdata-stand-alone',
@@ -334,12 +334,12 @@ const sidebars = {
     },
 {
          type: 'category',
-         label: '连接数据源',
+         label: 'Connect Data Sources',
          link: {type: 'doc', id: 'enterprise/prerequisites/README'},
          items: [
                  {
                   type: 'category',
-                  label: '数据仓库与数据湖',
+                  label: 'Data Warehouse and Data Lake',
                   link: {type: 'doc', id: 'enterprise/prerequisites/warehouses-and-lake/README'},
                   items: [
                           'enterprise/prerequisites/warehouses-and-lake/big-query',
@@ -355,7 +355,7 @@ const sidebars = {
                   },
                  {
                   type: 'category',
-                  label: '自建数据库',
+                  label: 'On-Premises Databases',
                   link: {type: 'doc', id: 'enterprise/prerequisites/on-prem-databases/README'},
                   items: [
                           'enterprise/prerequisites/on-prem-databases/dameng',
@@ -386,7 +386,7 @@ const sidebars = {
                   },
                   {
                    type: 'category',
-                   label: '云数据库',
+                   label: 'Cloud Databases',
                    link: {type: 'doc', id: 'enterprise/prerequisites/cloud-databases/README'},
                    items: [
                            'enterprise/prerequisites/cloud-databases/aliyun-adb-mysql',
@@ -409,7 +409,7 @@ const sidebars = {
                    },
                   {
                    type: 'category',
-                   label: '消息队列与中间件',
+                   label: 'Message Queue and Middleware',
                    link: {type: 'doc', id: 'enterprise/prerequisites/mq-and-middleware/README'},
                    items: [
                            'enterprise/prerequisites/mq-and-middleware/activemq',
@@ -423,7 +423,7 @@ const sidebars = {
                    },
                    {
                    type: 'category',
-                   label: '客户管理与销售运营分析',
+                   label: 'CRM and Sales Analytics',
                    link: {type: 'doc', id: 'enterprise/prerequisites/crm-and-sales-analytics/README'},
                    items: [
                            'enterprise/prerequisites/crm-and-sales-analytics/hubspot',
@@ -434,7 +434,7 @@ const sidebars = {
                    },
                    {
                     type: 'category',
-                    label: 'SaaS 应用与 API 服务',
+                    label: 'SaaS and APIs',
                     link: {type: 'doc', id: 'enterprise/prerequisites/saas-and-api/README'},
                     items: [
                             'enterprise/prerequisites/saas-and-api/coding',
@@ -450,7 +450,7 @@ const sidebars = {
                    },
                    {
                     type: 'category',
-                    label: '电商平台',
+                    label: 'E-Commerce',
                     link: {type: 'doc', id: 'enterprise/prerequisites/e-commerce/README'},
                     items: [
                             'enterprise/prerequisites/e-commerce/alibaba-1688',
@@ -459,7 +459,7 @@ const sidebars = {
                    },
                    {
                     type: 'category',
-                    label: '文件',
+                    label: 'Files',
                     link: {type: 'doc', id: 'enterprise/prerequisites/files/README'},
                     items: [
                             'enterprise/prerequisites/files/csv',
@@ -470,7 +470,7 @@ const sidebars = {
                    },
                    {
                     type: 'category',
-                    label: '其他',
+                    label: 'Others',
                     link: {type: 'doc', id: 'enterprise/prerequisites/others/README'},
                     items: [
                             'enterprise/prerequisites/others/custom-connection',
@@ -482,72 +482,10 @@ const sidebars = {
     },
     {
      type: 'category',
-     label: '用户指南',
+     label: 'User Guide',
      link: {type: 'doc', id: 'enterprise/user-guide/README'},
      items: [
              'enterprise/user-guide/workshop',
-             /*{
-              type: 'category',
-              label: '连接数据源',
-              link: {type: 'doc', id: 'enterprise/user-guide/connect-database/README'},
-              items:[
-                    {
-                     type: 'category',
-                     label: '认证数据源',
-                     link: {type: 'doc', id: 'enterprise/user-guide/connect-database/certified/README'},
-                     items:[
-                            'enterprise/user-guide/connect-database/certified/connect-clickhouse',
-                            'enterprise/user-guide/connect-database/certified/connect-kafka',
-                            'enterprise/user-guide/connect-database/certified/connect-mysql',
-                            'enterprise/user-guide/connect-database/certified/connect-mongodb',
-                            'enterprise/user-guide/connect-database/certified/connect-oracle',
-                            'enterprise/user-guide/connect-database/certified/connect-postgresql',
-                            'enterprise/user-guide/connect-database/certified/connect-sqlserver',
-                           ]
-                    },
-                    {
-                     type: 'category',
-                     label: 'Beta 数据源',
-                     link: {type: 'doc', id: 'enterprise/user-guide/connect-database/beta/README'},
-                     items:[
-                            'enterprise/user-guide/connect-database/beta/custom-connection',
-                            'enterprise/user-guide/connect-database/beta/connect-csv',
-                            'enterprise/user-guide/connect-database/beta/connect-db2',
-                            'enterprise/user-guide/connect-database/beta/connect-doris',
-                            'enterprise/user-guide/connect-database/beta/connect-dummy',
-                            'enterprise/user-guide/connect-database/beta/connect-excel',
-                            'enterprise/user-guide/connect-database/beta/connect-github',
-                            'enterprise/user-guide/connect-database/beta/connetc-http-receiver',
-                            'enterprise/user-guide/connect-database/beta/connect-larktask',
-                            'enterprise/user-guide/connect-database/beta/connect-lark-im',
-                            'enterprise/user-guide/connect-database/beta/connect-mariadb',
-                            'enterprise/user-guide/connect-database/beta/connect-mongodb-atlas',
-                            'enterprise/user-guide/connect-database/beta/connect-redis',
-                            'enterprise/user-guide/connect-database/beta/connect-salesforce',
-                            'enterprise/user-guide/connect-database/beta/connect-selectdb',
-                            'enterprise/user-guide/connect-database/beta/connect-tdengine',
-                            'enterprise/user-guide/connect-database/beta/connect-tidb',
-                           ]
-                    },
-                    {
-                     type: 'category',
-                     label: 'Alpha 数据源',
-                     link: {type: 'doc', id: 'enterprise/user-guide/connect-database/alpha/README'},
-                     items:[
-                            'enterprise/user-guide/connect-database/alpha/connect-activemq',
-                            'enterprise/user-guide/connect-database/alpha/connect-elasticsearch',
-                            'enterprise/user-guide/connect-database/alpha/connect-gbase-8a',
-                            'enterprise/user-guide/connect-database/alpha/connect-gbase-8s',
-                            'enterprise/user-guide/connect-database/alpha/connect-json',
-                            'enterprise/user-guide/connect-database/alpha/connect-oceanbase',
-                            'enterprise/user-guide/connect-database/alpha/connect-opengauss',
-                            'enterprise/user-guide/connect-database/alpha/connect-rabbitmq',
-                            'enterprise/user-guide/connect-database/alpha/connect-rocketmq',
-                            'enterprise/user-guide/connect-database/alpha/connect-xml',
-                           ]
-                    },
-                    ]
-             },*/
              'enterprise/user-guide/manage-connection',
              {
               type: 'category',
@@ -608,7 +546,7 @@ const sidebars = {
              },
              {
               type: 'category',
-              label: '高级设置',
+              label: 'Advanced Settings',
               link: {type: 'doc', id: 'enterprise/user-guide/advanced-settings/README'},
               items:[
                      'enterprise/user-guide/advanced-settings/share-cache',
@@ -619,7 +557,7 @@ const sidebars = {
              },
              {
               type: 'category',
-              label: '数据服务',
+              label: 'Data Service',
               link: {type: 'doc', id: 'enterprise/user-guide/data-service/README'},
               items:[
                      'enterprise/user-guide/data-service/manage-app',
@@ -636,7 +574,7 @@ const sidebars = {
              },
              {
               type: 'category',
-              label: '系统管理',
+              label: 'Manage System',
               link: {type: 'doc', id: 'enterprise/user-guide/manage-system/README'},
               items:[
                      'enterprise/user-guide/manage-system/manage-role',
@@ -647,7 +585,7 @@ const sidebars = {
              },
              {
               type: 'category',
-              label: '其他设置',
+              label: 'Other Settings',
               link: {type: 'doc', id: 'enterprise/user-guide/other-settings/README'},
               items:[
                      'enterprise/user-guide/other-settings/system-settings',
@@ -661,7 +599,7 @@ const sidebars = {
     },
     {
      type: 'category',
-     label: '生产部署与运维',
+     label: 'Production Admin',
      link: {type: 'doc', id: 'enterprise/production-admin/README'},
      items: [
             'enterprise/production-admin/install-tapdata-ha',
@@ -672,7 +610,7 @@ const sidebars = {
     },
     {
      type: 'category',
-     label: '同步案例',
+     label: 'Data Pipeline Tutorial',
      link: {type: 'doc', id: 'enterprise/pipeline-tutorial/README'},
      items: [
             'enterprise/pipeline-tutorial/excel-to-mysql',
@@ -683,7 +621,7 @@ const sidebars = {
     },
     {
          type: 'category',
-         label: '最佳实践',
+         label: 'Best Practices',
          link: {type: 'doc', id: 'enterprise/best-practice/README'},
          items: [
                 'enterprise/best-practice/data-sync',
@@ -696,7 +634,7 @@ const sidebars = {
         },
     {
      type: 'category',
-     label: '故障排查',
+     label: 'TroubleShooting',
      link: {type: 'doc', id: 'enterprise/troubleshooting/README'},
      items: [
             'enterprise/troubleshooting/error-code',
@@ -705,7 +643,7 @@ const sidebars = {
     },
     {
      type: 'category',
-     label: '常见问题',
+     label: 'FAQs',
      link: {type: 'doc', id: 'enterprise/faq/README'},
      items: [
             'enterprise/faq/use-product',
@@ -714,7 +652,7 @@ const sidebars = {
     },
     {
      type: 'category',
-     label: '附录',
+     label: 'Appendix',
      link: {type: 'doc', id: 'enterprise/appendix/README'},
      items: [
             'enterprise/appendix/standard-js',

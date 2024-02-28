@@ -1,114 +1,112 @@
 # MongoDB Atlas
 
-MongoDB Atlas 是 MongoDB 提供的多云应用程序数据平台，Tapdata 支持将 MongoDB Atlas 作为源或目标库构建数据管道，本文介绍如何在 Tapdata 中添加 MongoDB Atlas 数据源。
+MongoDB Atlas is a multi-cloud application data platform provided by MongoDB. Tapdata supports building data pipelines with MongoDB Atlas as the source or target database.
 
-## 支持版本
+This article describes how to add MongoDB Atlas to Tapdata.
+
+
+## Supported Versions
 
 MongoDB Atlas 5.0.15
 
 :::tip
 
-为保障数据兼容性，MongoDB 间数据同步时，推荐源/目标库均为 5.0 及以上版本。
+When synchronrizing data between MongoDB, it is recommended source/target database are 5.0 and above for ensure data compatibility.
 
 :::
 
-## 准备工作
+## Preparations
 
-1. 登录 [MongoDB Atlas 平台](https://cloud.mongodb.com/v2)。
+Before establishing the connection, it is essential to complete the necessary preparations outlined in the provided article. These preparations may include authorizing an account and performing other relevant steps to ensure a smooth and secure connection.
 
-2. 设置网络访问控制，确保网络连通性。
+1. Log in to [MongoDB Atlas](https://cloud.mongodb.com/v2).
 
-    1. 在左侧导航栏，单击 **Network Access**。
+2. Set up network access control to ensure network connectivity.
 
-    2. 单击右侧的 **ADD IP ADDRESS**。
+   1. In the left navigation panel, click **Network Access**.
 
-    3. 在弹出的对话框中，填写 Tapdata 所属的公网地址（CIDR 格式）并单击 **Confirm**。
+   2. On the right, click **ADD IP ADDRESS**.
 
-       ![设置网络白名单](../../images/atlas_add_ip_address.png)
+   3. In the pop-up dialog, fill in the public address of the Tapdata Agent (CIDR format) and click **Confirm**.
 
-3. 创建账号并授予权限，用于数据库连接。
+      ![Set Network Whitelist](../../images/atlas_add_ip_address.png)
 
-    1. 在左侧导航栏，单击 **Database Access**。
+3. Create an account and grant permissions for database connectivity.
 
-    2. 在页面右侧，单击 **ADD NEW DATABASE USER**。
+   1. In the left navigation panel, click **Database Access**.
 
-    3. 在弹出的对话框中，选择认证方式并设置权限。
+   2. On the right side of the page, click **ADD NEW DATABASE USER**.
 
-       ![创建账号并授权](../../images/atlas_create_user.png)
+   3. In the pop-up dialog, select the authentication method and grant permissions.
 
-       本案例中，我们以密码认证方式为例演示操作流程，权限选择说明如下
+      ![Create an account and authorize](../../images/atlas_create_user.png)
 
-        * **作为源库**：选择 **Built-in Role** 为 **Only read any database**。
+      In this case, we will use password authentication as an example to demonstrate the operation process. The permission selection instructions are as follows.
 
-        * **作为目标库**：选择 **Built-in Role** 为 **Read and write to any database**。
+      * **As a Source Database**: Select **Built-in Role** as **Only read any database**.
 
-    4. 单击 **Add User**。
+      * **As a Target Database**: Select **Built-in Role** for **Read and Write to any Database**.
 
-4. 获取数据库连接信息。
+   4. Click **Add User**.
 
-    1. 在左侧导航栏，单击 **Database**。
+4. Gets database connection information.
 
-    2. 找到目标数据库，单击 **Connect**。
+   1. In the left navigation panel, click **Database**.
 
-    3. 在弹出的对话框中，选择 **Connect your application** 即可获取连接信息，该信息将在连接数据库时用到。
+   2. Locate the target database and click **Connect**.
 
-       ![获取连接信息](../../images/atlas_obtain_connection.png)
+   3. In the pop-up dialog, select **Connect to your application** to get connection information, which will be used when connecting to the database.
 
-## 连接 MongoDB Atlas
+      ![Get Connection Information](../../images/atlas_obtain_connection.png)
 
-1. 登录 Tapdata 平台。
+## Connect to MongoDB Atlas
 
-2. 在左侧导航栏，单击**连接管理**。
+1. Log in to Tapdata Platform.
 
-3. 单击页面右侧的**创建**。
+2. In the left navigation panel, click **Connections**.
 
-4. 在弹出的对话框中，搜索并选择 **MongoDB Atlas**。
+3. On the right side of the page, click **Create**.
 
-5. 根据下述说明完成数据源配置。
+4. In the pop-up **dialog**, select **MongoDB Atlas**.
 
-   ![MongoDB Atlas 连接示例](../../images/mongodb_atlas_connection_setting.png)
+5. Fill in the connection information for MongoDB Atlas on the redirected page, following the instructions provided below.
 
-    * 连接信息设置
+   ![MongoDB Connection Example](../../images/mongodb_atlas_connection_setting.png)
 
-        * **连接名称**：填写具有业务意义的独有名称。
+   * Connection Information Settings
 
-        * **连接类型**：支持将 MongoDB Atlas 作为源或目标库。
+      * **Connection name**: Fill in a unique name that has business significance.
 
-        * **连接方式**：固定为**URI 模式**，选择该模式后，您需要填写数据库 URI 连接信息（需替换账号、密码并设置），获取方式见准备工作，
-          
-          例如：` mongodb+srv://tapdata:Tap123456@cluster****.mongodb.net/admin?retryWrites=true&w=majority`
-          
-          :::tip
-          
-          请务必在连接串中设置认证数据库，例如上述示例中设置为 **admin**，否则会导致连接失败并提示错误：“datbaseName can not be null”。
-          
-          :::
-          
-        * **使用 TLS/SSL 连接**：根据业务需求选择：
-            * **TSL/SSL 连接**：Tapdata 将连接网络中的单独服务器，该服务器提供到数据库的 TSL/SSL 通道。如果您的数据库位于不可访问的子网中，则可尝试使用此方法并提供私钥文件、私钥密码等信息。
-            * **直接连接**：Tapdata 将直接连接到数据库。
+      * **Connection type**: Supports MongoDB Atlas as a source or target database.
 
-    * 高级设置
-        * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-        
-        * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-        
-        * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-        
-        * **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
-        
-        * **开启心跳表**：当连接类型选择为**源头和目标**、**源头**时，支持打开该开关，由 Tapdata 在源库中创建一个名为 **_tapdata_heartbeat_table** 的心跳表并每隔 10 秒更新一次其中的数据（数据库账号需具备相关权限），用于数据源连接与任务的健康度监测。
-          
-          :::tip
-          
-          数据源需在数据复制/开发任务引用并启动后，心跳任务任务才会启动，此时您可以再次进入该数据源的编辑页面，即可单击**查看心跳任务**。
-          
-          :::
+      * **Connection method**: Fixed in **URI Mode**.
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+      * **Database URI**: Fill in the Database URI connection information, and URI should include the username and password, which are concatenated in the format.
+
+        For example, the connection string may look like: ` mongodb+srv://tapdata:Tap123456@cluster****.mongodb.net/demodata?retryWrites=true&w=majority`
+        :::tip
+        Be sure to set the database you want to connect in the connection string, for example, in the above example set to **demodata**, otherwise, it will cause the connection to fail and prompt for an error: 'datbaseName can not be null'.
+        :::
+
+      * **Connect using TLS/SSL**: Choose how you want to connect:
+
+         * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, Tapdata offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
+         * **Direct connection**: Tapdata will connect directly to the database and you need to set up security rules to allow access.
+
+   * Advanced settings
+      * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+      * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+      * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+      * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+      * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Tapdata will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+        :::tip
+        After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
+        :::
+
+6. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::

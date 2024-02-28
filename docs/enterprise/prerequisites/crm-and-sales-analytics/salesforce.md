@@ -1,43 +1,34 @@
 # Salesforce
 
-Salesforce 是一个集成 CRM 平台，可以为您的所有部门提供所有客户的单一共享视图。Tapdata 支持将 Salesforce 作为源库构建数据管道，本文介绍如何在 Tapdata 中添加 Salesforce 数据源。
+Salesforce is a massive infrastructure of customer relationship management software products that help marketing, sales, commerce, service, and IT teams connect with their customers. Tapdata supports building data pipelines with Salesforce as a source database, and this article describes how to add Salesforce data sources to Tapdata.
 
-## 连接 Salesforce
+## Connect to Salesforce
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation panel, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. On the right side of the page, click **Create**.
 
-4. 在弹出的对话框中，搜索并选择 **Salesforce**。
+4. In the pop-up **dialog**, select **Salesforce**.
 
-5. 根据下述说明完成数据源配置。
+5. Fill in the connection information for Salesforce on the redirected page, following the instructions provided below.
 
-   ![MongoDB Atlas 连接示例](../../images/salesforce_connection_setting.png)
+   ![Salesforce Connection Example](../../images/salesforce_connection_setting.png)
 
-   * **连接名称**：填写具有业务意义的独有名称。
-
-   * **连接类型**：仅支持将 Salesforce 作为源头。
-
-   * **授权**：单击授权，在跳转到的页面，登录 Salesforce 账号以完成授权操作（推荐以管理员身份操作）。
-     
+   * **Connection name**: Fill in a unique name that has business significance.
+   * **Connection type**: Salesforce is only supported as a Source.
+   * **Authorization**: Click Authorize, and on the page that you are redirected to, log in to your Salesforce account to complete the authorization (recommended as an administrator).
      :::tip
-     
-     完成操作后，页面将返回至数据源配置页面并显示**成功授权**。
-     
-     :::
-     
-   * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。   
+      After completing the operation, the page will return to the data source configuration page and display **Authorization successful**.
+   * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+   * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
 
-   * ***模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
-
-6. 单击**连接测试**，测试通过后单击**保存**。
+6. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
 
-   

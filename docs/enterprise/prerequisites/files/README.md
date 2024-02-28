@@ -1,6 +1,6 @@
-# 文件
+# Files
 
-Tapdata 支持读取文件中的数据并将其同步到数据库中，请选择要添加的文件数据源：
+Tapdata supports reading data from files and synchronizing it to databases. Please select the file data source you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

@@ -1,46 +1,38 @@
-# 产品优势
+# Benefits
 
-Tapdata 支持丰富的数据源间的数据流转能力，为您提供了数据复制、数据转换、数据服务等多种核心功能，相对于传统数据迁移/同步工具，Tapdata 可为您提供功能丰富、简单易用、安全可靠的数据流转服务，极大提升数据开发效率。
+Tapdata offers robust capabilities for data flow between a wide range of data sources, providing core functions such as data replication, data transformation, and data services. Compared to traditional data migration/synchronization tools, Tapdata provides a feature-rich, easy-to-use, and secure data flow service, significantly enhancing data development efficiency.
 
-## 支持丰富数据源
+## Comprehensive Data Sources Support
 
-支持主流的开源数据库、国产信创、离线文件、云上应用和湖仓类型等数据源，更多介绍，见[支持的数据源](supported-databases.md)。
+Supports mainstream open-source databases, offline files, cloud applications, and lakehouse data sources. For more details, see [Supported Data Sources](supported-databases.md).
 
-以外，Tapdata 还基于数据源注册框架全新定义数据源检测项，从而保障数据处理任务稳定可靠地运行。
+Additionally, Tapdata redefines data source detection items based on the data source registration framework, ensuring stable and reliable operation of data processing tasks.
 
-## 零代码界面化操作
+## Zero-Code Graphical Interface
 
-Tapdata 支持通过拖拽式操作完成任务的编排与设置，且支持多级多节点同时同步操作，极大降低了同步任务流定义的复杂度，提升了效率和质量。
+Tapdata supports task orchestration and settings through drag-and-drop operations, and supports multi-level, multi-node synchronization operations simultaneously, greatly reducing the complexity of defining synchronization task flows, thus improving efficiency and quality.
 
-![界面操作](../images/drag_database_cn.gif)
+## Flexible Definition of Data Processing Logic
 
-## 灵活定义数据处理逻辑
+On top of data replication, Tapdata provides a series of [data processing nodes](../user-guide/data-pipeline/data-development/process-node.md) for single-table development (such as master-slave merging, field calculation, etc.). You can define your own data processing logic to meet scenarios like data analysis, processing, and disaster recovery.
 
-Tapdata 在数据复的基础上，提供了一系列针对单表开发的[数据处理节点](../user-guide/data-pipeline/data-development/process-node.md)（如主从合并、字段计算等），您可以自行定义数据处理逻辑，可满足数据分析、处理、灾备等场景。
+## Visual Task Monitoring
 
-## 可视化任务监控
+Tapdata supports visual monitoring of task operation status, allowing you to quickly obtain key monitoring information such as data read statistics, data write statistics, and latency statistics for nodes in the data chain.
 
-Tapdata 支持对任务运行状态的可视化监控，您可以快速获取数据链路中节点的数据读取统计、数据写入统计、延迟统计等关键监控信息。
+## Shared Log Mining
 
-![任务监控](../images/task_monitor.png)
+Tapdata employs shared mining technology, extracting logs from the source database to a cache database. Data replication tasks, acting as consumers, directly read data from the cache database, achieving rapid synchronization of data changes. This approach avoids issues such as performance impact on the source database due to multiple tasks reading the logs simultaneously, loss of large transactions, and traceability issues in data synchronization faults commonly seen in traditional approaches.
 
+## Real-Time Incremental Data Verification
 
+Tapdata supports real-time comparison of the data synchronized to the target database with the source database on an incremental data synchronization basis to ensure consistency and completeness without the need for SQL script verification, avoiding the time-consuming issues of full verification.
 
-## 共享日志挖掘
+## High Availability and Fault Tolerance
 
-![共享挖掘流程](../images/share_mining_cn.png)
+Tapdata supports high availability deployment and on-demand scaling. The management side itself, through dual nodes and three copies of the distributed database, can ensure 99.99% system high availability, comfortably meeting the stringent requirements of production environments.
 
-Tapdata 采用共享挖掘技术，将源端数据库的日志抽取到缓存数据库中，而数据复制任务作为消费者直接从缓存数据库中读取数据，实现数据变更的快速同步，可避免传统方案下，多个任务同时读取源库的日志信息而影响源库的性能、大型事务丢失、数据同步故障无法溯源等问题。
+Furthermore, Tapdata provides idempotent operations to ensure tasks can continue running and data eventually remains consistent, as follows:
 
-## 增量数据实时校验
-
-Tapdata 支持在数据增量同步的基础上，实时对比同步到目标库的数据与源库是否一致且完整，无需编写 SQL 脚本进行校验，避免全量检查耗时久的问题。
-
-## 高可用与容错机制
-
-Tapdata 支持高可用部署和按需扩容，管理端本身通过双节点和三副本的分布式数据库可保障 99.99% 的系统高可用性，从容应对生产环境的严苛要求。
-
-此外，Tapdata 还提供幂等性操作保障任务可以持续运行且数据的最终一致，具体如下：
-
-- 数据处理任务在运行时会定期向管理端汇报健康状况，如果管理端在 1 分钟内未收到则判断该处理节点异常，由另一个正常节点接管该任务。
-- 数据处理任务会定期记录当前处理流的位置，任务重启后会自动从该位置重新开始。
+- Data processing tasks periodically report their health status to the management side. If the management side does not receive a report within 1 minute, it deems the processing node abnormal and another normal node takes over the task.
+- Data processing tasks periodically record the current position of the processing flow. Upon restart, the task automatically resumes from that position.

@@ -1,197 +1,134 @@
-# 任务错误码及解决方案
+# Task Error Codes and Solutions
 
-如果遇到任务异常，您可以通过任务的[监控页面](../user-guide/data-pipeline/data-development/monitor-task.md)的底部查看相关日志信息，针对常见的问题，Tapdata 将其固化为特定的错误码方便您查找，同时提供了错误原因及其解决方案。
+If you encounter an issue with a task, you can view related log information at the bottom of the task's [monitoring page](../user-guide/data-pipeline/data-development/monitor-task.md). For common issues, Tapdata has defined specific error codes for easier identification, along with their causes and solutions.
 
 ## 10001
 
-**错误码描述**：客户端连接被服务端关闭，原因：
-
-* 服务端手动关闭了连接。
-* 服务端连接数过多，自动关闭或者拒绝了后续连接。
-
-
+**Description**: Client connection closed by the server due to:
+- Manual server-side connection closure.
+- Server-side automatic closure or rejection of subsequent connections due to excessive connections.
 
 ## 10002
 
-**错误码描述**：用户名或者密码错误，原因：
+**Description**: Username or password error due to:
+- Incorrect entry.
+- Special characters in the password.
 
-* 填写错误。
-* 密码中含有特殊字符。
-
-**解决方案**：
-
-* 尝试重新填写密码，并进行连接测试。
-* 尝试换一个没有特殊字符的密码，并反馈给[技术支持](../support.md)解决。
-
-
+**Solution**:
+- Retry entering the password and test the connection.
+- Use a password without special characters and contact [technical support](../support.md) for a resolution.
 
 ## 10003
 
-**错误码描述**：该错误发生在启动增量阶段，启动起始点在源库日志中已经不存在，大部分情况起始点为时间或者源库的日志 ID。对于大部分数据库，增量功能是基于数据库的日志文件实现的，引擎通过监听或者主动读取数据库日志文件，完成增量的读取阶段。
+**Description**: This error occurs at the start of the incremental stage when the starting point is no longer in the source database log, typically due to:
+- Manual or scheduled log file cleanup at the source.
+- Incorrect "incremental collection start time" settings or timezone mismatches.
+- Slow incremental speed causing the oldest logs to be overwritten.
 
-所以在读取前，引擎需要在日志中，依据起始点找到监听或者读取日志文件的具体位置，无法在日志文件中找到位置时，则会导致错误，原因：
-
-* 源库执行了日志文件的人工或定时清理。
-* 如果是增量任务，任务设置中\"增量采集开始时刻\"，设置错误，或者时区与数据库时区不匹配导致的错误。
-* 增量速度过慢，导致延迟过大，此时源库的写入覆盖了最旧的日志，比如 MongoDB 的 Oplog，可以尝试调大日志空间，或者排查增量速度过慢的原因。
-
-**解决方案**：
-
-* 重置任务后再次启动，此时任务会重新初始化并顺利进入增量阶段
-* 重置任务后，将任务改为增量模式，设置增量起始时间后，再次启动任务。该方案需要人工的在源库中查询出最早的日志时间，确保设置的增量起始点包含在日志文件中，否则会丢失一部分增量数据。
-
-
+**Solution**:
+- Reset and restart the task to reinitialize and smoothly enter the incremental stage.
+- After resetting, change the task to incremental mode, set the incremental start time, and restart.
 
 ## 10004
 
-**错误码描述**：读取数据时，缺失了相应权限，原因：
-
-* 使用的数据连接中的用户，没有相应的读取权限。
-* 部分数据库，增量读取所需的权限较多，请查看创建数据源右侧的说明，确认权限是否设置正确。
-
-
+**Description**: Lack of read permissions when reading data due to:
+- User in the data connection lacks read permissions.
+- Insufficient permissions for incremental reading in some databases.
 
 ## 10005
 
-**错误码描述**：写入数据时，缺失了相应权限。
+**Description**: Lack of write permissions when writing data.
 
-**解决方案**：检查目标节点所使用的数据连接中用户名是否缺失了写入权限。
-
-
+**Solution**: Check the data connection used by the target node to ensure the user has write permissions.
 
 ## 10006
 
-**错误码描述**：写入的数据类型与数据库实际的字段类型不一致，原因：
+**Description**: Data type mismatch during data write due to:
+- Pre-existing target table with mismatched field types.
+- Non-structured source database to structured target database type mismatches.
+- Type changes in the data during processing through nodes.
 
-* 运行任务前，目标表名在数据库中已存在，Tapdata 则不会自动创建该表，可能原有的表中字段存在与源表不一致的情况。
-* 源库是非结构化数据库，目标为结构化数据库，比如 MongoDB 同步到 Oracle，源端的某一个字段可能有多个类型，而目标结构化数据库一个字段不允许多个类型写入，会导致该错误。
-* 同步过程中，加入了计算节点，如js处理器，导致数据在处理节点类型变化，触发了该错误。
-
-**解决方案**：
-
-* 参考下方报错信息，比对出错的字段在源库和目标库的类型是否一致，如果不一致，使用数据库的DDL或类似命令进行修正后，再次运行任务。
-* 使用 [JS 处理节点](../user-guide/data-pipeline/data-development/process-node.md#js-process)，将出错字段过滤，如出错字段为 field1，对应的 JS 为\"record.remove('field1')\"。
-* 如果用 JS 处理节点对数据类型进行了改动，则应在 JS 编辑框的下方，按照模型语法，将新的类型传递给 Tapdata，删除目标表后，再次运行任务。
-
-
+**Solution**:
+- Adjust the mismatched field types or remove the error-causing fields using a JS processing node.
 
 ## 10007
 
-**错误码描述**：写入的数据长度与数据库实际的字段长度不一致，原因：
+**Description**: Data length mismatch during data write due to:
+- Pre-existing target table with mismatched field lengths.
+- Non-structured source database to structured target database length mismatches.
+- Changes in data length during processing through nodes.
 
-* 运行任务前，目标表名在数据库中已存在，Tapdata 则不会自动创建该表，可能原有的表中字段存在与源表不一致的情况。
-* 源库是非结构化数据库，目标为结构化数据库，比如 MongoDB 同步到 Oracle，字符串类型在 MongoDB 中并没有固定长度限制，而 Oracle 在创建表的时候需要指定长度。此时可能导致超出长度的报错。
-* 同步过程中，加入了计算节点，如js处理器，导致数据在处理节点变化，触发了该错误。
-
-**解决方案**：
-
-* 参考下方报错信息，找到出错的字段，使用数据库的DDL或类似命令进行修正后，再次运行任务。
-* 使用 [JS 处理节点](../user-guide/data-pipeline/data-development/process-node.md#js-process)，将出错字段过滤，如出错字段为 field1，对应的 JS 为\"record.remove('field1')\"。
-* 如果用 JS 处理节点对数据类型进行了改动，则应在 JS 编辑框的下方，按照模型语法，将新的类型传递给 Tapdata，删除目标表后，再次运行任务。
-
-
+**Solution**:
+- Adjust the mismatched field lengths or remove the error-causing fields using a JS processing node.
 
 ## 10008
 
-**错误码描述**：写入数据时，违反了唯一约束，原因：目标表的唯一索引或主键与源表不一致。
+**Description**: Data write violates unique constraints due to mismatched unique indexes or primary keys.
 
-**解决方案**：
-
-* 使用数据库的 DDL 或类似命令，修改目标表的主键或唯一索引后，再次尝试启动任务。
-* 删除目标表，让 Tapdata 的自动建表功能重新创建表，再次尝试启动任务。
-* 在 Tapdata 的任务编辑界面，将目标表的并发写入关闭，再次尝试启动任务。
-
-
+**Solution**:
+- Adjust the target table's primary keys or unique indexes, delete the target table for Tapdata to recreate, or disable concurrent writing in the task settings.
 
 ## 10009
 
-**错误码描述**：写入数据时，违反了非空约束，原因：
+**Description**: Data write violates non-null constraints due to:
+- Mismatched non-null constraints between source and target tables.
+- Null values set during processing with a JS processing node.
 
-* 目标表的字段非空约束与源表不一致。
-* 使用了 JS 处理节点，在同步过程中将某些字段值设置为空，同时目标表中，该字段又是非空约束。
-
-**解决方案**：
-
-* 使用数据库的DLL或类似命令，去除目标表的非空约束后，再次尝试启动任务。
-* 检查 JS 逻辑，是否错误的将数据值改为了空或删除了报错字段。
-
-
+**Solution**:
+- Remove the non-null constraints from the target table or adjust the JS logic to prevent null values.
 
 ## 11001
 
-**错误码描述**：未知错误。
+**Description**: Unknown error.
 
-**解决方案**：联系[技术支持](../support.md)解决。
-
-
+**Solution**: Contact [technical support](../support.md) for resolution.
 
 ## 11002
 
-**错误码描述**：日志挖掘任务，将单条日志数据写入外部持久缓存失败，原因：外部缓存配置的数据库无法提供正常的服务。
+**Description**: Failure to write single log data to external cache due to non-operational external cache database.
 
-**解决方案**：在挖掘任务监控界面，找到外部缓存的配置。检查该配置的数据库是否正常。
+**Solution**: Check the external cache configuration in the mining task monitor and ensure the database is operational.
 
+## 13001
 
+**Description**: Unknown error.
 
-## 13001 
-
-**错误码描述**：未知错误。
-
-**解决方案**：联系[技术支持](../support.md)解决。
+**Solution**: Contact [technical support](../support.md) for resolution.
 
 ## 13002
 
-**错误码描述**：无法从日志数据获取正确的操作类型。
+**Description**: Unable to obtain the correct operation type from log data.
 
-**解决方案**：查看详细的报错信息，其中op字段为空值或不存在，则代表数据可能已经被破坏，需要检查对应的日志挖掘任务是否出现错误。
-
-
+**Solution**: Examine detailed error information. If data has been corrupted, check for errors in the corresponding log mining task.
 
 ## 13003
 
-**错误码描述**：更新数据日志事件，更新后数据是空值或不存在。
-
-
+**Description**: Update data log event with empty or non-existent post-update data.
 
 ## 13004
 
-**错误码描述**：日志事件中，源表名为空或不存在
-
-
+**Description**: Log event with empty or non-existent source table name.
 
 ## 13005
 
-**错误码描述**：元数据操作日志事件，操作的具体内容为空或不存在。
-
-
+**Description**: Metadata operation log event with empty or non-existent content.
 
 ## 13006
 
-**错误码描述**：日志事件为空。
-
-
+**Description**: Empty log event.
 
 ## 13007
 
-**错误码描述**：日志事件中，缺失操作类型属性。
-
-
+**Description**: Log event missing operation type attribute.
 
 ## 13008
 
-**错误码描述**：日志事件中，缺失断点信息。
-
-
+**Description**: Log event missing checkpoint information.
 
 ## 13009
 
-**错误码描述**：删除数据日志事件，删除数据是空值或不存在。
-
-
+**Description**: Delete data log event with empty or non-existent data.
 
 ## 13010
 
-**错误码描述**：写入数据日志事件，写入数据是空值或不存在。
-
-
-
+**Description**: Write data log event with empty or non-existent data.

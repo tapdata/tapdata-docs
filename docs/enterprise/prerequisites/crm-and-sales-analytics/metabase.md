@@ -1,13 +1,15 @@
 # Metabase
 
-### 1、填写连接名称（必填）
+This article serves as a comprehensive guide, providing step-by-step instructions on adding Metabase to Tapdata, enabling efficient data synchronization and development for your projects.
 
-第一步但不一定是第一步也可以是最后一步，要填写连接名称，因为这是第一个必填项。
+## Fill in the connection name
 
-### 2、输入Metabase的登录账号和密码（必填）
+The first but not necessarily the first or the last step is to fill in the connection name, because that is the first required field.
 
-账号需要获得管理员权限。
+## Enter Metabase login account and password
 
-### 3、输入Metabase的HTTP地址（必填）
+The account must be granted administrator rights.
 
-例如：http://36.134.131.166:1234
+## Enter Metabase's HTTP address
+
+For example: http://36.134.131.166:1234

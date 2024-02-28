@@ -1,4 +1,4 @@
-# 同步实践教程
+# Data Pipeline Tutorial
 
 import DocCardList from '@theme/DocCardList';
 

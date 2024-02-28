@@ -1,33 +1,33 @@
-# 管理函数
+# Manage Functions
 
-Tapdata 支持丰富的函数，可帮助您更加便捷地完成处理过程的定义，从而在 [JS 节点](../data-pipeline/data-development/process-node#js-process)中引用。除此以外，您还可以根据需求自由定义函数或导入第三方 jar 包来引入函数。
+Tapdata supports a wide range of functions to facilitate the definition of processing steps, allowing for their use in [JavaScript (JS) nodes](../data-pipeline/data-development/process-node#js-process). Additionally, you can freely define custom functions or import third-party JAR packages to introduce new functions as needed.
 
-## 操作步骤
+## Procedure
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata platform.
 
-2. 在左侧导航栏，选择**数据管道** > **函数管理**。
+2. In the left navigation bar, select **Data Pipeline** > **Function Management**.
 
-3. 在本页面，您可以看到当前已有的函数，例如单击系统函数右侧的**查看**来了解详情。
+3. On this page, you can see the functions currently available. For example, click **View** next to a system function to learn more about it.
 
-   ![查看函数](../../images/view_functions.png)
+   ![View Functions](../../images/view_functions.png)
 
-4. 如已有的函数无法满足您的需求，您可以单击右上角的创建来自定义一个新的函数，设置完成后单击**保存**。
+4. If the existing functions do not meet your needs, you can click **Create** in the upper right corner to define a new function. Click **Save** once setup is complete.
 
    :::tip
 
-   除此方法外，您还可以单击导入 jar 包**，然后导入包中的函数（需符合 Tapdata 规范），后续在 JS 节点中即可使用该 jar 包中的函数，通用格式为：函数名称.方法名（具体参数）。
+   Alternatively, you can click **Import JAR Package** and then import functions from the package (which must comply with Tapdata standards). Subsequently, functions from that JAR package can be used in JS nodes using the general format: function name.method name (specific parameters).
 
    :::
 
    ![](../../images/create_function.png)
 
-   - **代码详情**：用户可以在代码详情里编写自己的函数逻辑。
-   - **描述**：自定义函数的功能描述。
-   - **命令格式**：自定义函数的命令格式，方便在调用函数输入命令后的提示。
-   - **参数说明**：支持输入的参数类型以及返回参数类型的具体说明。
-   - **返回值**：自定义函数的返回值。
+   - **Code Details**: You can write your own function logic here.
+   - **Description**: A description of what the custom function does.
+   - **Command Format**: The command format for the custom function, useful for prompting when calling the function.
+   - **Parameter Explanation**: Specific explanations for the supported input parameter types and the return parameter types.
+   - **Return Value**: The return value of the custom function.
 
-5. 对于自定义的函数，您可以将其选中并导出备份或分享给其他团队成本，您也可以导入自定义函数。
+5. For custom functions, you can select them to export for backup or share with other team members. You can also import custom functions.
 
-   ![导入/导出函数](../../images/import_export_functions.png)
+   ![Import/Export Functions](../../images/import_export_functions.png)

@@ -1,55 +1,48 @@
----
-sidebar_position: 1
----
+# What is Tapdata On-Prem
 
-# 什么是 Tapdata On-Prem
+[Tapdata](https://tapdata.net) is a platform-centric product designed for data services, aimed at assisting enterprises in breaking down data silos and facilitating rapid data delivery. Leveraging real-time data synchronization, it enhances data transfer efficiency. Moreover, it supports task creation through a low-code approach, where simple drag-and-drop actions suffice, significantly reducing development complexity and shortening project launch timelines.
 
-[Tapdata](https://tapdata.net) 是一款面向数据服务的平台化产品，旨在帮助企业打破多个数据孤岛，完成数据快速交付，同时依靠实时数据同步，提高数据传输效率。我们还支持通过低代码的方式创建任务，简单的拖拽节点即可完成创建，有效降低开发难度，缩短项目上线周期。
+## Why Choose Tapdata On-Prem
 
-<iframe      src="https://20778419.s21v.faiusr.com/58/2/ABUIABA6GAAg-NP9pQYokaGd7AE.mp4"   width="100%"   height="500"      frameborder="0"    allowfullscreen="true" > </iframe>
+Unlike traditional data migration/synchronization tools, Tapdata offers a rich-feature, easy-to-use, and secure data flow service. It also supports instant API publishing to boost data development efficiency.
 
+* **Minimal Impact on Source Databases**
 
-## 为什么选择 Tapdata
+  Utilizing proprietary CDC log parsing technology for zero-intrusion real-time data collection, it virtually leaves the source databases unaffected. Additionally, it supports sharing incremental data to avoid redundant reads of the source database's incremental logs.
 
-相对于传统数据迁移/同步工具，Tapdata可为您提供功能丰富、简单易用、安全可靠的数据流转服务，同时支持即时发布 API，提升数据开发效率。
+* **High Data Consistency**
 
-* **源库影响小**
+  Based on a variety of proprietary technologies, it ensures high consistency between target and source data, supporting multiple verification methods to meet the stringent requirements of production environments.
 
-  基于自研的 CDC 日志解析技术，零入侵实时采集数据，对源库几乎无影响，此外，还支持共享增量数据避免重复读取源库增量日志。
+* **End-to-End Real-Time**
 
-* **数据一致性高**
+  Unlike traditional ETL, each new piece of data entering the platform is responded to, computed, processed, and written into the target table within seconds.
 
-  基于多种自研技术，保障目标端数据与源数据的高一致性，支持多种校验方式，保障生产环境的严苛要求。
+* **Code-Free Operation Interface**
 
-* **全链路实时**
+  Say goodbye to SQL and coding; with simple mouse dragging and dropping, you can quickly complete tasks like renaming tables and transforming rules, achieving **real-time data synchronization** between different types of databases.
 
-  不同于传统 ETL，每一条新产生并进入到平台的数据，会在秒级范围被响应、计算、处理并写入到目标表里。
+## Pricing
 
-* **无代码的操作页面**
-
-  告别 SQL 与代码，只需简单的鼠标拖拉拽即可快速完成重命名表等转换规则，快速完成不同类型数据库之间的**实时数据同步**。
-
-## 产品定价
-
-采用订阅制收费，基于部署的服务器节点数量，按年支付相应的订阅费用。
+Subscription-based pricing is adopted, with annual subscription fees based on the number of server nodes deployed.
 
 :::tip
 
-在正式采购前，您可以点击“[申请试用](https://tapdata.net/tapdata-on-prem/demo.html)‍”‍，Tapdata 工程师会联系您并协助您试用。
+Before making a purchase, you can click on "[Apply for a Trial](https://tapdata.net/tapdata-on-prem/demo.html)", and a Tapdata engineer will contact you to assist with the trial.
 
 :::
 
-更多介绍，见[产品定价](https://tapdata.net/pricing.html)。
+For more details, see [Pricing](https://tapdata.net/pricing.html).
 
-## 第一次使用
+## First Time Use
 
-不用担心，Tapdata 提供图形化操作平台，仅需几分钟即可轻松上手，同时，我们还为您准备了丰富的教程帮助您快速实现数据流转需求：
+Don't worry, Tapdata provides a graphical operating platform that allows you to get started in just a few minutes. Additionally, we have prepared a wealth of tutorials to help you quickly meet your data flow needs:
 
-- [连接数据库](quick-start/connect-database.md)
-- [开始数据同步](quick-start/create-task.md)
+- [Connecting Databases](quick-start/connect-database.md)
+- [Starting Data Synchronization](quick-start/create-task.md)
 
-## 推荐阅读
+## See Also
 
-- [功能特性](introduction/features.md)
-- [应用场景](introduction/use-cases.md)
-- [支持的数据库](introduction/supported-databases.md)
+- [Features](introduction/features.md)
+- [Use Cases](introduction/use-cases.md)
+- [Supported Databases](introduction/supported-databases.md)

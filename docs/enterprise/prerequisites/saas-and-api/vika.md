@@ -1,23 +1,28 @@
 # Vika
 
-### 维格表限制
+This article describes how to connect to Vika data sources on Tapdata.
 
-发送API请求时，你需要注意一下两种限制：频率限制和用量限制
+### Vika Table Limitations
 
-请遵循以下限制以确保在 Tapdata 中成功添加和使用维格表。
+When adding and using Vika Table in Tapdata, please follow the following limitations, including rate limits and usage limits.
 
-### 频率限制
+#### Rate Limitations
 
-同一个用户对同一张表的API请求频率上线为 5 次/秒
+- For the same user making API requests to the same table, the request rate limit is 5 requests per second.
+- If the request rate exceeds the limit, the system will display an error with an error status code of 429.
 
-请求频率超过限制时，会提示错误操作太频繁（错误状态码 429 ）
+#### Usage Limitations
 
-### 用量限制
+Usage limits consist of two types: API usage limits and Space Station resource usage limits.
 
-用量限制包含两种：一是 API 用量的限制；二是空间站资源用量的限制
+**API Usage Limits:**
 
-青铜级和白银级空间站每月可免费调用 10000 次API，累计用量每月账单日清零
+- Bronze and Silver-level Space Stations can make up to 10,000 API requests per month for free. The cumulative usage will be reset on the billing day each month.
 
-公测阶段，你可以创建做多 1000 张维格表。单个维格表做多支持创建 50000 行记录、200 个字段、30 个视图
+**Space Station Resource Usage Limits:**
 
-单个空间站上传附件的容量上限为 1 GB
+- During the public beta phase, you can create up to 1,000 WPS Spreadsheets.
+- A single WPS Spreadsheet can support creating up to 50,000 rows, 200 columns, and 30 views.
+- The maximum upload attachment capacity for a single Space Station is 1 GB.
+
+Please make sure to adhere to the above limitations to successfully add and use WPS Spreadsheets in Tapdata.

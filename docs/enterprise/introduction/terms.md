@@ -1,79 +1,54 @@
-# 名词解释
+# Terminology
+This document introduces common terminologies in Tapdata, aiming to help you quickly understand the concepts of products and functionalities.
 
-本文介绍 Tapdata 常见的术语，帮助您快速理解产品和功能概念。
+## Data Replication
 
-## 数据复制
+Also referred to as database replication or cloning. In data flow tasks, it involves the full or real-time incremental migration of data between various library-level data sources, suitable for instance data migration, data cloud migration, database splitting, and expansion business scenarios.
 
-又指数据库复制/数据库克隆，在数据流任务中，各种库级别数据源之间的数据全量或实时增量迁移，适用于实例数据迁移、数据上下云迁移、数据库拆分扩容等业务场景。
+## Data Transformation
 
+In data flow tasks, real-time synchronization of data between multiple tables or other types of data through specific associations or processing, applicable to scenarios like data analysis, processing, and disaster recovery without affecting user operations.
 
+## Data Service
 
-## 数据转换
+In data flow tasks, generating a new model with different fields from one or more tables and publishing it externally via an API, allowing users to proactively retrieve data content.
 
-在数据流任务中，多个表或其他类型数据类型之间通过特定的关联关系或处理的数据实时同步，适用于在不影响用户业务的情况下，满足用户对数据的分析、处理、灾备等方面的场景
+## Connection
 
+Also known as the data source, referring to the databases that connect externally to the Tapdata system. Currently supported connections include MySQL, Oracle, MongoDB, SQL Server, PostgreSQL, Kafka, Redis, etc.
 
+## Node
 
-## 数据服务
+Refers to the general term for the data sources and processing methods selected in the data task orchestration page.
 
-在数据流任务中，将一个或多个表不同的字段生成新的模型以API的方式发布到外部环境，用户可通过API主动的获取数据内容。
+## Processing Node
 
+Refers to nodes that offer various processing functionalities to meet data synchronization requirements, including JavaScript/Java processing, database table filtering, field processing, row-level processing, etc.
 
+## Source Node
 
-## 连接
+In data tasks, it refers to any of two adjacent connected nodes, where the position is at the source or originating end of the connection.
 
-又称数据源，即从外部连接到Tapdata系统的数据库。当前支持的连接包含：mysql、Oracle、MongoDB、 SQL Server、PostgreSQL、Kafka、 Redis 等。
+## Target Node
 
+In data tasks, it refers to any of two adjacent connected nodes, where the position is at the target or the end being connected to.
 
+## Shared Mining
 
-## 节点
+Refers to the sharing of incremental logs. When this feature is enabled, shared mining will extract incremental logs, avoiding the need to start the log collection process repeatedly for multiple incremental tasks from the same source, significantly relieving the resource consumption and waste on the source database.
 
-指的是数据任务的编排页面里所拖选的数据源、处理方式的统称。
+## Shared Cache
 
+Refers to storing part of the frequently used data from the table in the cache for different tasks to call and process, improving efficiency by eliminating the need to fetch data from the source.
 
+## Initialization
 
-## 处理节点
-
-指的是为满足数据同步需求的各种处理功能的节点，当前支持的处理节点包含：JavaScript/Java处理、数据库表过滤、字段处理、行级处理等。
-
-
-
-## 源节点
-
-指的是数据任务中，任意两个相邻连接的节点中，位置处于源头/生出连线的节点。
-
-
-
-## 目标节点
-
-指的是数据任务中，任意两个相邻连接的节点中，位置处于目标/被连接指向的节点。
-
-
-
-## 共享挖掘
-
-指增量日志的共享，当开启功能后，共享挖掘会挖掘增量日志，当多个增量任务都从同一个源获取增量日志时不需要重复开启日志采集进程，能极大缓解源库资源的占用和浪费
-
-
-
-## 共享缓存
-
-指将表中部分常用数据存放到缓存中供不同任务进行调用及处理，不用再从源端获取数据从而提高效率。
-
-
-
-## 初始化
-
-数据迁移或同步的任务中，对数据源节点已存在的数据进行迁移或同步的模式。
-
-
+In data migration or synchronization tasks, it refers to the mode of migrating or synchronizing already existing data from the data source node.
 
 ## Schema
 
-源和目标数据连接模型。
+The connection model for source and target data.
 
+## Database Name
 
-
-## Database name
-
-源和目标数据库的连接名称。
+The connection name of the source and target databases.

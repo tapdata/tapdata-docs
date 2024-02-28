@@ -1,145 +1,134 @@
-# Dameng（达梦）
+# Dameng
 
-达梦数据库管理系统（DM）是新一代大型通用关系型数据库，全面支持 SQL 标准和主流编程语言接口/开发框架。行列融合存储技术，在兼顾 OLAP 和 OLTP 的同时，满足 HTAP 混合应用场景。
+Dameng Database Management System (DM) is a new generation of large-scale general-purpose relational databases, providing comprehensive support for SQL standards and mainstream programming language interfaces/development frameworks. It adopts row-column hybrid storage technology, achieving a balance between OLAP and OLTP, and satisfying the needs of HTAP hybrid application scenarios.
 
-完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加 Dameng 数据源，后续可将其作为源或目标库来构建数据管道。
+After completing the Agent deployment, you can follow this tutorial to add a Dameng data source in Tapdata, and subsequently use it as either a source or a target database to build data pipelines.
 
+## Supported Versions
 
+DM 7.x, 8.x
 
-## 支持版本 
-
-DM 7.x、8.x
-
-import Content1 from '../../../reuse-content/beta/_beta.md';
+import Content1 from '../../../reuse-content/_beta.md';
 
 <Content1 />
 
-## 准备工作
+## Prerequisites
 
-在连接达梦数据库前，您还需要完成数据库账号的授权等准备工作：
+Before connecting to the Dameng database, you need to complete some preparatory work regarding database account authorization:
 
-* 作为源库
-* 作为目标库
+* [As a source database](#source)
+* [As a target database](#target)
 
+### <span id="source">As a Source Database</span>
 
+1. Log in to the Dameng database with an account that has DBA privileges.
 
-### <span id="source">作为源库</span>
-
-1. 以拥有 DBA 权限的身份登录达梦数据库。
-
-2. 依次执行下述格式的命令，创建用于数据复制/转换任务的用户。
+2. Execute the following commands in sequence to create a user for data replication/transformation tasks.
 
    ```sql
    CREATE USER username IDENTIFIED BY "password" DEFAULT TABLESPACE table_space_name;
    ```
    
-   * **username**：用户名。
-   * **pass_word**：密码。
-   * **table_space_name**：表空间名称。
+   * **username**: The username.
+   * **password**: The password.
+   * **table_space_name**: The tablespace name.
    
-3. 为刚创建的账号授予权限，您也可以基于业务需求自定义权限控制。
+3. Grant permissions to the newly created account. You can also customize permission control based on your business needs.
 
    ```sql
-   -- 替换下述命令中的 username 为真实的用户名
+   -- Replace the username in the following command with the actual username
    GRANT dba TO username;
    
-   -- 或者使用下述更精细化的授权
+   -- Or use the following more fine-grained authorization
    GRANT SELECT TABLE, SELECT VIEW TO username;
    GRANT SELECT ON "SYS"."V$RLOG" TO username;
    GRANT SELECT ON "SYS"."V$ARCHIVED_LOG" TO username;
    ```
    
-4. 如需获取源库的数据变更以实现增量同步，您还需要跟随下述步骤开启数据库的归档功能和归档日志。
+4. To capture data changes in the source database for incremental synchronization, you need to enable the database archiving function and archived logs by following these steps:
 
    :::tip
 
-   您也可以执行 `SELECT para_name, para_value FROM v$dm_ini WHERE para_name IN ('ARCH_INI','RLOG_APPEND_LOGIC');` 命令来查看是否已开启该功能，返回结果中， **PARA_VALUE** 列的值为 **1** 表示已开启，可跳过本步骤。
+   You can also execute the `SELECT para_name, para_value FROM v$dm_ini WHERE para_name IN ('ARCH_INI','RLOG_APPEND_LOGIC');` command to check if this function is already enabled. If the value in the **PARA_VALUE** column is **1**, it means the function is enabled, and you can skip this step.
 
    :::
 
    ```sql
-   -- 修改数据库为 MOUNT 状态
+   -- Change the database status to MOUNT
    ALTER DATABASE MOUNT;
    
-   -- 配置本地归档，DEST 指定的目录不存在时会自动创建
-   -- FILE_SIZE 表示归档文件大小、space_limit 表示空间大小限制
+   -- Configure local archiving; the specified directory will be created automatically if it does not exist
+   -- FILE_SIZE represents the archive file size, space_limit represents the space size limit
    ALTER DATABASE ADD ARCHIVELOG 'DEST = /bak/dmdata/dameng, TYPE = local, FILE_SIZE = 1024, SPACE_LIMIT = 0';
    
-   -- 开启归档模式
+   -- Enable archiving mode
    ALTER DATABASE ARCHIVELOG;
    
-   -- 开启附加日志，如果有主键列，则记录 UPDATE/DELETE 时只包含主键列信息
+   -- Enable supplemental logging; if there are primary key columns, only the primary key column information will be recorded when UPDATE/DELETE is performed
    ALTER SYSTEM SET 'RLOG_APPEND_LOGIC'=1 MEMORY;
    
-   -- 修改数据库为 OPEN 状态
+   -- Change the database status to OPEN
    ALTER DATABASE OPEN;
    ```
 
+### <span id="target">As a Target Database</span>
 
+1. Log in to the Dameng database with an account that has DBA privileges.
 
-### <span id="source">作为目标库</span>
-
-1. 以拥有 DBA 权限的身份登录达梦数据库。
-
-2. 依次执行下述格式的命令，创建用于数据复制/转换任务的用户。
+2. Execute the following commands in sequence to create a user for data replication/transformation tasks.
 
    ```sql
    CREATE USER username IDENTIFIED BY "password" DEFAULT TABLESPACE table_space_name;
    ```
 
-   * **username**：用户名。
-   * **password**：密码。
-   * **table_space_name**：表空间名称。
+   * **username**: The username.
+   * **password**: The password.
+   * **table_space_name**: The tablespace name.
 
-3. 为刚创建的账号授予权限，您也可以基于业务需求自定义权限控制。
+3. Grant permissions to the newly created account. You can also customize permission control based on your business needs.
 
    ```sql
-   -- 替换下述命令中的 username 为真实的用户名
+   -- Replace the username in the following command with the actual username
    GRANT CREATE TABLE, DELETE TABLE, INSERT TABLE, SELECT TABLE, UPDATE TABLE, CREATE INDEX TO username;
    ```
 
-## 添加数据源
+## Adding a Data Source
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation bar, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. Click **Create** on the right side of the page.
 
-4. 在弹出的对话框中，搜索并选择 **Dameng**。
+4. In the pop-up dialog box, search and select **Dameng**.
 
-5. 在跳转到的页面，根据下述说明填写达梦数据库的连接信息。
+5. On the redirected page, fill in the connection information for the Dameng database according to the following instructions:
 
-   * **连接信息设置**
-     * **连接名称**：填写具有业务意义的独有名称。
-     * **连接类型**：支持将达梦数据库作为源或目标库。
-     * **地址**：数据库连接地址。
-     * **端口**：数据库的服务端口。
-     * **数据库**：填写数据库名称。
-     * **Schema**：Schema 名称，创建数据库用户时，达梦数据库会为自动创建一个与用户名相同的 Schema（全大写），如需连接多个 Schema 则需创建多个数据连接。
-     * **账号**：数据库的账号。
-     * **密码**：数据库账号对应的密码。
-     * **连接参数**：额外的连接参数，默认为空。
-     * **时区**：默认为数据库所用的时区，您也可以根据业务需求手动指定。
-   * **高级设置**
-     * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-     * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-     * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-     * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照设置的时间定期刷新模型。
-     * **开启心跳表**：当连接类型选择为**源头和目标**、**源头**时，支持打开该开关，由 Tapdata 在源库中创建一个名为 **_tapdata_heartbeat_table** 的心跳表并每隔 10 秒更新一次其中的数据（数据库账号需具备相关权限），用于数据源连接与任务的健康度监测。
-     
+   * **Connection Basic Settings**
+     * **Connection Name**: Fill in a unique name that has business significance.
+     * **Connection Type**: Supports Dameng as a source or target database.
+     * **Host**: The database connection address.
+     * **Port**: The service port of the database.
+     * **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
+     * **Schema**: The schema name. When creating a database user, Dameng database will automatically create a schema with the same name as the username (in uppercase). If you need to connect to multiple schemas, you need to create multiple data connections.
+     * **username**: The database username.
+     * **Password**: The database password.
+     * **Connection Parameters**: Additional connection parameters, default is empty.
+     * **Time Zone**: Defaults to the time zone used by the database, but you can also manually specify it based on business needs.
+   * **Advanced Settings**
+     * **Include Tables**: Defaults to **All**. You can also choose to customize and enter the tables to include, separated by commas (,).
+     * **Exclude Tables**: Turn on this switch to set tables to exclude, separated by commas (,).
+     * **Agent settings**: Defaults to **Platform Automatic Allocation**, you can also manually specify an agent.
+     * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+     * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Tapdata will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
        :::tip
-     
-       数据源需在数据复制/开发任务引用并启动后，心跳任务任务才会启动，此时您可以再次进入该数据源的编辑页面，即可单击**查看心跳任务**。
-     
+       After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
        :::
 
-
-6. 单击**连接测试**，测试通过后单击**保存**。
+6. Click **Test**. After the test passes, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
-

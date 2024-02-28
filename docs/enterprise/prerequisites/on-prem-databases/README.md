@@ -1,6 +1,6 @@
-# 自建数据库
+# On-Premises Databases
 
-Tapdata 支持丰富的数据库类型，包括关系型、非关系型等数据库，请选择要添加的数据库：
+Tapdata supports a variety of database types, including relational and non-relational databases. Please select the database you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

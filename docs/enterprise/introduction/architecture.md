@@ -1,18 +1,16 @@
-# 产品架构与工作原理
+# Architecture and Working Principles
 
-作为新一代实时数据服务平台，Tapdata 通过实时的数据采集技术、灵活的数据处理方式、完整的数据治理能力、便捷的数据发布方式，让企业轻松打破数据孤岛的限制，为分析型和交易型业务提供实时、准确的数据，支撑企业实现更敏捷的业务创新。
+As a next-generation real-time data service platform, Tapdata facilitates the easy breakage of data silos for businesses through real-time data collection technology, flexible data processing methods, comprehensive data governance capabilities, and convenient data publishing methods. It provides real-time and accurate data for analytical and transactional operations, supporting businesses in achieving more agile innovation.
 
-![产品架构](https://20778419.s21i.faiusr.com/3/2/ABUIABADGAAgtLr-lgYotInUhwYwgA84uAg.gif)
+Tapdata is structured into four layers, from left to right:
 
-Tapdata 分为四层架构，从左到右分别为：
-
-- **数据采集层**：基于日志解析的能力，通过开放式框架 Plugin Framework，以实时方式采集数据源中的变更数据并标准化，形成标准时间后进入流处理框架。
-- **流数据处理层**：通过 Tapdata 自研方案，在进程内即可完成数据计算、建模和转型，快速得出结果，进入存储层。
-- **存储层**：在将数据放入存储层时，实际上已经形成了一套逻辑模型，用户只需要专注于业务所需的数据，无需关心存储位置。
-- **服务层**：在服务层，有两种主流的数据服务模式 Pull 和 Push。API 支持低代码发布，可按照具体需求发布数据。当所需数据在业务系统中已有存储时，可通过 REVERSE ETL，反向把经过整理、治理的数据推送给用户。
+- **Data Collection Layer**: Leveraging log parsing capabilities through an open Plugin Framework, it collects changes in the data source in real-time and standardizes them. After standardizing, the data enters the stream processing framework as standardized events.
+- **Stream Data Processing Layer**: Utilizing Tapdata's proprietary solutions, data calculations, modeling, and transformations are completed in-process, quickly producing results that move to the storage layer.
+- **Storage Layer**: By the time data enters the storage layer, a logical model has already been formed. Users need only focus on the data required for their business, without worrying about where it is stored.
+- **Service Layer**: In the service layer, there are two mainstream data service models: Pull and Push. APIs support low-code publishing and can be published according to specific requirements. When the required data is already stored in the business system, REVERSE ETL can be used to push the organized and governed data back to users.
 
 :::tip
 
-如您无需本地部署 Tapdata，您也可以选择使用半托管形式的 [Tapdata Cloud](../../cloud/what-is-tapdata-cloud.md)（基础版可免费试用）。更多介绍，见[版本对比](https://tapdata.net/pricing.html)。
+If you do not require Tapdata to be deployed locally, you can opt for the [Tapdata Cloud](../../cloud/what-is-tapdata-cloud.md) (the basic version is available for a free trial). For more details, see [Version Comparison](https://tapdata.net/pricing.html).
 
 :::

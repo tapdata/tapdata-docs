@@ -1,48 +1,46 @@
-# Zoho CRM
+# Zoho-CRM
 
-Zoho CRM 可以将您的销售，营销和客户支持活动整合在一起，帮助您在一个平台上实现流程的简化，提升工作效率。Tapdata 支持将 Zoho CRM 作为数据来源构建数据管道，帮助您读取 CRM 中的数据并同步到指定的数据源，快速打通数据流转通道。本文介绍如何在 Tapdata 中添加 Zoho CRM 数据源。
+Zoho CRM acts as a single repository to bring your sales, marketing, and customer support activities together, and streamline your process, policy, and people in one platform. Tapdata supports Zoho CRM as a data source to build a data pipeline to help you read data in CRM and synchronize it to the specified data source, helps you quickly open the data flow channel. This article explains how to add a Zoho CRM data source to Tapdata.
 
 
 
-## 支持读取的数据
+## Readable Data
 
-Tapdata 支持将 Zoho CRM 中的数据以表的形式来读取，并同步至目标库，表名与 Zoho CRM 中功能模块对应关系如下：
+Tapdata allows you to read data in Zoho CRM as a table and synchronize it to the target database. Here is the data can be easily accessed in Zoho CRM:
 
-- **Accounts**：客户
-- **Contacts**：联系人
-- **Leads**：线索
-- **Potentials**：商机
-- **Quotes**：报价
-- **Sales_Order**：销售订单
+- **Accounts**
+- **Contacts**
+- **Leads**
+- **Potentials**
+- **Quotes**
+- **Sales_Order**
 
-## 连接 Zoho CRM
+## Connect to Zoho CRM
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation panel, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. On the right side of the page, click **Create**.
 
-4. 在弹出的对话框中，搜索并选择 **Zoho CRM**。
+4. In the pop-up dialog box, search for and select **Zoho CRM**.
 
-5. 根据下述说明完成数据源配置。
-   - **连接名称**：填写具有业务意义的独有名称。
-   - **连接类型**：仅支持**源头**。
-   - **高级设置**
-     - **Agent 设置**：默认为**平台自动分配**，您也可以手动指定。
-     - **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
+5. Fill in the connection information for Zoho CRM on the redirected page, following the instructions provided below.
+   - **Name**: Fill in a unique name with business significance.
+   - **Type**: Currently only supported as a **Source**.
+   - **Advanced Settings**
+      - **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+      - **Model Load Time**: When the number of models in the data source is less than 10,000, the model information is refreshed every hour; if the model data exceeds 10,000, the model information is refreshed every day at the time you specify.
 
-6. 单击**授权**，在跳转到的 Zoho CRM 授权页面，以**管理员**的身份完成登录和授权操作。
-
-   ![完成授权](../../images/grant_zoho_crm.png)
+6. Click **Authorize**, and on the Zoho CRM authorization page that you are redirected to, complete the login and authorization (it is recommended to authorize as an organization administrator). 
 
    :::tip
 
-   完成操作后，页面将自动返回至数据源配置页面并显示**成功授权**。
+   After completing the operation, the page will return to the data source configuration page and display **Authorization successful**.
 
    :::
 
-7. 单击**连接测试**，测试通过后单击**保存**。
+7. Click **Test**, and when passed, click **Save**.
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 

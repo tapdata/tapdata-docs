@@ -1,56 +1,64 @@
 # Tablestore
 
-阿里云[表格存储](https://help.aliyun.com/document_detail/27280.html)（Tablestore）是面向海量结构化数据提供 Serverless 表存储服务，同时针对物联网场景深度优化提供一站式的IoTstore解决方案。
+[Alibaba Cloud Tablestore](https://www.alibabacloud.com/help/en/tablestore) is a serverless table storage service designed for handling large volumes of structured data. It also provides a comprehensive solution for IoT scenarios, offering optimized data storage capabilities. Tapdata supports data synchronization tasks with Tablestore as the target database. 
 
-完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加 CSV 数据源，后续可将其作为目标库来构建数据管道。
+This article provides instructions on how to add Tablestore data sources to Tapdata.
 
-## <span id="prerequisite"> 准备工作 </span>
 
-1. [创建阿里云 Tablestore 实例](https://help.aliyun.com/document_detail/342853.html)，获取该实例的公网连接地址和实例名称。
 
-   ![获取 Tablestore 连接地址和名称](../../images/obtain_tablestore_info_cn.png)
+## <span id="prerequisite">Preparations</span>
 
-2. 在阿里云平台创建 RAM 用户并获取访问密钥 AccessKey（AK） 信息，该信息将在连接时使用。
+1. After [creating an Alibaba Cloud Tablestore instance](https://help.aliyun.com/document_detail/342853.html), you can retrieve the public network connection address and instance name of the instance.
 
-   1. [创建RAM用户](https://help.aliyun.com/document_detail/93720.htm#task-187540)，需选中 **OpenAPI 调用访问**。
-   2. 在跳转到的页面，单击**下载 CSV 文件**，该文件包含了 AccessKey 信息。
+   ![Get Tablestore Connection Address and Name](../../images/obtain_tablestore_info_en.png)
 
-3. 为该 RAM 用户并授予 **AliyunOTSFullAccess** 权限（管理 Tablestore 服务的权限）。
+2. Create a RAM user on the Alibaba Cloud and get AccessKey (AK), which will be used when connecting.
 
-   1. 选中刚创建的 RAM 用户，单击**添加权限**。
+   1. To [create a RAM user](https://help.aliyun.com/document_detail/93720.htm#task-187540), select **OpenAPI access**.
+   2. On the redirected page, click **Download CSV file** that contains the AccessKey information.
 
-   2. 在对话框的文本框中输入 **AliyunOTSFullAccess**，然后单击选择搜索结果中的权限策略名称。
+3. Grant the **AliyunOTSFullAccess** permission to the RAM user, which will provide them with full management permissions for the Tablestore service.
 
-      ![授予 RAM 用户权限](../../images/add_ram_permission_cn.png)
+   1. Select the newly created RAM user and click **Add permissions**.
 
-   3. 单击**确定**，然后单击**完成**。
+   2. Enter **AliyunOTSFullAccess** in the text box of the dialog, and then click on the search result to select the permissions policy name.
 
-## 添加数据源
+      ![Grant RAM User Permissions](../../images/add_ram_permission_en.png)
 
-1. 登录 Tapdata 平台。
+   3. Click **OK**, and then click **Complete**.
 
-2. 在左侧导航栏，单击**连接管理**。
+## Connect to Tablestore
 
-3. 单击页面右侧的**创建**。
+1. Log in to Tapdata Platform.
 
-4. 在弹出的对话框中，单击 **Alpha 数据源**，然后选择 **Tablestore**。
+2. In the left navigation panel, click **Connections**.
 
-5. 在跳转到的页面，根据下述说明填写 Tablestore 的连接信息。
+3. On the right side of the page, click **Create connection**.
 
-   ![填写 Tablestore 连接信息](../../images/create_tablestore_connection_cn.png)
+4. In the pop-up dialog, select **Tablestore**.
 
-   * **连接名称**：填写具有业务意义的独有名称。
-   * **连接类型**：固定为**目标**。
-   * **服务地址**、**实例名称**：填写在[准备工作](#prerequisite)中获取的 Tablestore 公网连接地址和实例名称。
-   * **访问账号**、**密码**：填写在[准备工作](#prerequisite)中获取的 RAM 用户的 AccessKey 信息。
-   * **安全令牌**：默认为空。
-   * **模型类型**：固定为**宽表**。
-   * **agent 设置**：选择**平台自动分配**。
+5. Fill in the connection information for Tablestore on the redirected page, following the instructions provided below.
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+   ![Fill in Tablestore Connection Information](../../images/create_tablestore_connection_en.png)
+
+   * **Connection name**: Fill in a unique name that has business significance.
+   * **Connection type**: Currently only supported as a**Target**.
+   * **Endpoint**, **Instance**: Fill in the Tablestore public network connection address and instance name that you obtained during the [preparatory work](#prerequisite).
+   * **AccessKey ID**, **AccessKey Secret**: Fill in the AccessKey information of the RAM user obtained in the [preparation](#prerequisite).
+   * **AccessKey Token**: Default empty.
+   * **Client type**: fixed as **Wide table**.
+   * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+
+6. Click **Connection Test**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
+
+
+
+## Related Topics
+
+[Oracle to Tablestore Real-Time Sync](../../best-practice/oracle-to-tablestore.md)

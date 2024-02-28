@@ -1,6 +1,6 @@
-# 故障排查
+# Troubleshooting
 
-本章节将介绍 Tapdata 的故障排查相关参考资料：
+This section offers guidance and reference materials for troubleshooting issues with Tapdata.
 
 import DocCardList from '@theme/DocCardList';
 

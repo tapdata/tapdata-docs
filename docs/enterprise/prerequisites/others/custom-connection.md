@@ -1,85 +1,62 @@
 # Custom Connection
 
-如果现有的数据源暂未满足您的需求，您也可以基于业务需求创建自定义连接，本文介绍配置流程。
+If the existing data sources don't meet your requirements, you can create custom connections based on your business needs. This article outlines the configuration process.
 
+## Connect to Custom Connection
 
-## 连接 Custom Connection
+1. Log in to the [Tapdata platform](https://cloud.tapdata.net/console/v3/).
 
-1. 登录 Tapdata 平台。
+2. In the left sidebar, click on **Connection Management**.
 
-2. 在左侧导航栏，单击**连接管理**。
+3. Click on **Create Connection** on the right side of the page.
 
-3. 单击页面右侧的**创建**。
+4. In the pop-up dialog, search for and select **Custom Connection**.
 
-4. 在弹出的对话框中，搜索并选择 **Custom Connection**。
+5. Follow the instructions below to complete the data source configuration.
 
-5. 根据下述说明完成数据源配置。
+   * **Basic Information Settings**
+        * **Connection Name**: Provide a meaningful and unique name.
+        * **Connection Type**: Can be used as a source or target database.
+        * **Collection Name**: Also known as the table name. When used as a source database, this represents the name of the data model generated from the data retrieved from the Custom Connection.
+        * **Unique Primary Key**: Specify the field name serving as the primary key.
+        * **Synchronization Method**: When used as a source database:
+             * **Historical Data**: Select this option if Tapdata should only execute a historical data script once.
+             * **Incremental Data**: Select this option for Tapdata to periodically execute an incremental data script every 2 seconds.
+             * **Historical and Incremental Data**: Choose this option for Tapdata to execute a historical data script followed by periodic incremental script execution.
+   
+   
+   * **JS Script Settings**
+       * **JS Engine Version**: Select **New Version**.
+       * **Pre-processing**: When enabled, Tapdata will execute your defined JS operation script before running data scripts (only once).
+       * **Target Data Processing Script**: JS script for processing target data, used to format data to match the format of the target Custom Connection. This option is displayed only when the **Connection Type** includes a target.
+       * **Incremental Data Script**: JS script for obtaining and processing incremental data. This is required when the **Synchronization Method** includes incremental data.
+       * **Historical Data Script**: JS script for obtaining and processing historical data. This is required when the **Synchronization Method** includes historical data.
+       * **Post-processing**: When enabled, Tapdata will execute your defined JS script after the data script is completed (only once).
+   
+   
+   * **Advanced Settings**
+       * **Agent Configuration**: Defaults to **Platform Automatic Allocation**, but you can also specify manually.
+       * **Model Loading Time**: When the number of models in the data source is less than 10,000, the model information is refreshed every hour. If model data exceeds 10,000, it's refreshed daily at the specified time.
+       * **Enable Heartbeat Table**: When the connection type is selected as **Source and Target** or **Source**, you can enable this option to create a heartbeat table named **_tapdata_heartbeat_table** in the source database. It will be updated every 10 seconds by Tapdata (requires relevant permissions) and used for monitoring the health of the data source connection and tasks.
+   
+6. Configuration is complete, click on **Script Debugging**.
 
-   ![自定义连接设置](../../images/custom_connection_setting.png)
+7. On the redirected page, select either source or target, set a timeout, and click on "Run Test" to test script execution.
 
-    * 基本信息设置
+8. After completing the debugging with test runs, click the close button on the right to return to the connection configuration page.
 
-        * **连接名称**：填写具有业务意义的独有名称。
-        * **连接类型**：支持作为源或目标库。
-        * **集合名称**：即表名称，作为源库时需设置，表示从 Custom Connection 里获取到的数据要生成的数据模型的名字。
-        * **唯一主键**：填写作为主键的字段名。
-        * **同步方式**：作为源库时需设置：
-            * **历史数据**：选择该选项，Tapdata 只会执行一次历史数据脚本。
-            * **增量数据**：选择该选项，Tapdata 每隔 2 秒定期执行增量数据脚本。
-            * **历史数据和增量数据**：选择该选项，Tapdata 执行一次历史数据脚本后，再定期执行增量脚本。
+9. Click on **Connection Test** and, upon successful testing, click **Save**.
 
-    * JS 脚本设置
-        * **JS 引擎版本**：选择为**新版**。
-        * **前置操作**：打开该开关后，Tapdata 将在执行数据脚本前，执行您定义的 JS 操作脚本（仅一次）。
-        * **目标数据处理脚本**：目标数据处理的 JS 脚本，用来将数据处理为符合目标 Custom Connection 的格式，**连接类型**包含目标时才会显示该选项。
-        * **增量数据脚本**：增量数据获取和处理的 JS 脚本，**同步方式**包含增量数据时需设置。
-        * **历史数据脚本**：历史数据获取和处理的 JS 脚本，**同步方式**包含历史数据时需设置。
-        * **后置操作**：打开该开关后，Tapdata 将在数据脚本执行完成之后，执行您定义的 JS 脚本（仅一次）。
+## Introduction to Common Functions
 
-    * 高级设置
-        * **共享挖掘**：打开共享挖掘开关后，多个任务共享增量日志读取结果，无需从源库重复读取，可极大降低源库负载。
-        
-        * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定。
-        
-        * **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
-        
-        * **开启心跳表**：当连接类型选择为**源头和目标**、**源头**时，支持打开该开关，由 Tapdata 在源库中创建一个名为 **_tapdata_heartbeat_table** 的心跳表并每隔 10 秒更新一次其中的数据（数据库账号需具备相关权限），用于数据源连接与任务的健康度监测。
-          
-          :::tip
-          
-          数据源需在数据复制/开发任务引用并启动后，心跳任务任务才会启动，此时您可以再次进入该数据源的编辑页面，即可单击**查看心跳任务**。
-          
-          :::
+Below are commonly used function introductions that you can reference while writing JS scripts.
 
-6. 设置完成，单击**脚本调试**。
-
-7. 在跳转到的页面，选择源头或目标、设置超时时间并单击试运行，测试脚本运行正确性。
-
-   运行结束后，页面右侧将打印本次运行结果，如遇错误则会打印相关错误日志，帮助您快速定位并修改脚本。
-
-   ![试运行](../../images/custom_connection_dry_run.png)
-
-8. 试运行调试完毕后，单击页面右侧的关闭按钮返回至连接配置页面。
-
-9. 单击**连接测试**，测试通过后单击**保存**。
-
-   :::tip
-
-   如提示连接测试失败，请根据页面提示进行修复。
-
-   :::
-
-
-## 常用函数介绍
-
-下文列出常用函数介绍，您可以在编写 JS 脚本时参考。
-
-### Http
+### HTTP
 
 ```javascript
 Http Return Instructions
 
-// data为返回的body，可能是array或object或string
+// The 'data' is the returned body, which could be an array, object, or string
 
 {code:200, data:[]}
 rest.get(url, header)
@@ -87,10 +64,10 @@ rest.get(url, header, returnType)
 rest.get(url, header, connectTimeOut, readTimeOut)
 rest.get(url, header, returnType, connectTimeOut, readTimeOut)
 
-// 调用http的 get 方法
-// returnType: 返回的结果类型，默认为array
-// connectTimeOut：连接超时时间，单位毫秒(ms)，默认为 10000 ms，需要指定连接超时时间时可以使用该参数
-// readTimeOut：读取超时时间，单位毫秒(ms)，默认为 30000 ms，需要指定读取超时时间时可以使用该参数
+// Call the http 'get' method
+// returnType: The type of the returned result, default is an array
+// connectTimeOut: Connection timeout in milliseconds (ms), default is 10000 ms. Use this parameter to specify the connection timeout if needed.
+// readTimeOut: Read timeout in milliseconds (ms), default is 30000 ms. Use this parameter to specify the read timeout if needed.
 
 var result = rest.get('http://127.0.0.1:1234/users?id=1', {}, '[array/object/string]', 30, 300);
 rest.post(url, parameters)
@@ -98,10 +75,10 @@ rest.post(url, parameters, headers, returnType)
 rest.post(url, parameters, connectTimeOut, readTimeOut)
 rest.post(url, parameters, headers, returnType, connectTimeOut, readTimeOut)
 
-// 调用http的 post 方法
-// returnType: 返回的结果类型，默认为array
-// connectTimeOut：连接超时时间，单位毫秒(ms)，默认为 10000 ms，需要指定连接超时时间时可以使用该参数
-// readTimeOut：读取超时时间，单位毫秒(ms)，默认为 30000 ms，需要指定读取超时时间时可以使用该参数
+// Call the http 'post' method
+// returnType: The type of the returned result, default is an array
+// connectTimeOut: Connection timeout in milliseconds (ms), default is 10000 ms. Use this parameter to specify the connection timeout if needed.
+// readTimeOut: Read timeout in milliseconds (ms), default is 30000 ms. Use this parameter to specify the read timeout if needed.
 
 var result = rest.post('http://127.0.0.1:1234/users/find', {}, {}, '[array/object/string]', 30, 300);
 rest.patch(url, parameters)
@@ -109,9 +86,9 @@ rest.patch(url, parameters, headers)
 rest.patch(url, parameters, connectTimeOut, readTimeOut)
 rest.patch(url, parameters, headers, connectTimeOut, readTimeOut)
 
-// 调用http的 patch 方法
-// connectTimeOut：连接超时时间，单位毫秒(ms)，默认为 10000 ms，需要指定连接超时时间时可以使用该参数
-// readTimeOut：读取超时时间，单位毫秒(ms)，默认为 30000 ms，需要指定读取超时时间时可以使用该参数
+// Call the http 'patch' method
+// connectTimeOut: Connection timeout in milliseconds (ms), default is 10000 ms. Use this parameter to specify the connection timeout if needed.
+// readTimeOut: Read timeout in milliseconds (ms), default is 30000 ms. Use this parameter to specify the read timeout if needed.
 
 var result = rest.patch('http://127.0.0.1:1234/users?where[user_id]=1', {status: 0}, {}, 30, 300);
 rest.delete(url)
@@ -119,37 +96,37 @@ rest.delete(url, headers)
 rest.delete(url, connectTimeOut, readTimeOut)
 rest.delete(url, headers, connectTimeOut, readTimeOut)
 
-// 调用http的 delete 方法
-// connectTimeOut：连接超时时间，单位毫秒(ms)，默认为 10000 ms，需要指定连接超时时间时可以使用该参数
-// readTimeOut：读取超时时间，单位毫秒(ms)，默认为 30000 ms，需要指定读取超时时间时可以使用该参数
+// Call the http 'delete' method
+// connectTimeOut: Connection timeout in milliseconds (ms), default is 10000 ms. Use this parameter to specify the connection timeout if needed.
+// readTimeOut: Read timeout in milliseconds (ms), default is 30000 ms. Use this parameter to specify the read timeout if needed.
 
 var result = rest.delete('http://127.0.0.1:1234/users?where[user_id]=1', {}, 30, 300);
 ```
 
-### **MongoDB**
+### MongoDB
 
 ```javascript
 mongo.getData(uri, collection)
 mongo.getData(uri, collection, filter)
 mongo.getData(uri, collection, filter, limit, sort)
 
-// MongoDB 查询数据
-
+// Query data in MongoDB
 var result = mongo.getData('mongodb://127.0.0.1:27017/test', 'users', {id: 1}, 10, {add_time: -1});
+
 mongo.insert(url, collection, inserts)
 
-// MongoDB 插入数据
-// inserts 表示插入的数据，可以传入数组或者对象
-
+// Insert data in MongoDB
+// 'inserts' represents the data to be inserted, it can be an array or an object
 mongo.insert('mongodb://127.0.0.1:27017/test', 'users', [{id: 1, name: 'test1'}, {id: 2, name: 'test2'}]);
+
 mongo.update(url, collection, filter, update)
 
-// MongoDB更新数据
-
+// Update data in MongoDB
 var modifyCount = mongo.update('mongodb://127.0.0.1:27017/test', 'users', {id: 1}, {name: 'test3'});
+
 mongo.delete(url, collection, filter)
 
-// MongoDB删除数据
-
+// Delete data in MongoDB
 var deleteCount = mongo.delete('mongodb://127.0.0.1:27017/test', 'users', {id: 1});
 ```
+

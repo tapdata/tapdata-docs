@@ -1,4 +1,4 @@
-# 数据集成模式
+# Data Integration Mode
 
 import DocCardList from '@theme/DocCardList';
 

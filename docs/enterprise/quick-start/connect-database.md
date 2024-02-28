@@ -1,23 +1,19 @@
-# 连接数据库
+# Connect to Data Source
 
-完成[部署](install/README.md)后，您需要在 Tapdata 平台为数据库建立连接，完成操作后即可创建数据同步任务。
+After completing the [deployment](install/README.md), you need to establish a connection to your database on the Tapdata platform. Once this is done, you can create data synchronization tasks.
 
+## Procedure
 
+1. Log in to the Tapdata platform.
 
-## 操作步骤
+2. Click **Connection Management** in the left navigation bar.
 
-1. 登录 Tapdata 平台。
+3. Click **Create Connection** on the right side of the page.
 
-2. 在左侧导航栏栏，单击**连接管理**。
-
-3. 单击页面右侧的**创建连接**。
-
-4. 选择要添加的数据库并填写连接信息。
+4. Select the database you want to add and fill in the connection information.
 
    ![](../images/connect_database_demo.png)
 
+## Next Steps
 
-
-## 下一步
-
-[创建数据同步任务](create-task.md)
+[Create Data Synchronization Tasks](create-task.md)

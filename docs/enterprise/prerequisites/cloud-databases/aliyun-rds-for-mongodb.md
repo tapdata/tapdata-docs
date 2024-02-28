@@ -1,162 +1,149 @@
 # Aliyun MongoDB
 
-请遵循以下说明以确保在 Tapdata 中成功添加和使用 MongoDB 数据库。
+Please follow the instructions below to ensure that the MongoDB database is successfully added and used in Tapdata.
 
-:::tip
-
-MongoDB 作为源端连接时，必须是副本集。
-
-:::
-
-### 支持版本
+## Supported versions
 
 MongoDB 3.2、3.4、3.6、4.0、4.2
 
-:::tip
+> Since Tapdata data synchronization is currently based on MongoDB's Change Stream, which supports multi-table merging, and MongoDB officially supports Change Stream from version 4.0, please try to ensure that the source and target databases are both version 4.0 and above.
 
-由于 Tapdata 数据同步目前是基于 MongoDB 的 Change Stream 支持对多表合并的操作，而 MongoDB 官方是从 4.0 版本开始支持 Change Stream 的，因此，请尽量保证源端数据库和目标端数据库都是 4.0 及以上版本。
+## Prerequisites
 
-:::
+### As a Source Database
 
-### 作为源数据库
+**1. Basic configuration**
 
-#### 基本配置
+- The source MongoDB supports replica sets and sharding clusters.
+- If the source MongoDB has only one node, you can configure it as a single-member replication set to enable the oplog function.
+- You should configure enough oplog space. We suggest that it is at least enough to accommodate 24 hours of oplog.
 
-- 源端 MongoDB 支持副本集和分片集群。
-- 如果源端 MongoDB 只有一个节点，您可以将其配置为单成员的复制集，以开启 oplog 功能。
-- 您应该配置足够的 oplog 空间。 我们建议至少足以容纳 24 小时的 oplog。
+**2. Account permissions**
 
-#### 帐户权限
+If security authentication is enabled for the source MongoDB, the user account that Tapdata uses to connect to the source MongoDB must have the following built-in roles:
 
-如果源端 MongoDB 启用了安全身份验证，则 Tapdata 用于连接源端 MongoDB 的用户帐户必须具有以下内置角色：
-
-```sql
-clusterMonitor（读取 oplog ） 
+```
+ClusterMonitor (read oplog)
 readAnyDatabase
 ```
 
+To create a user with the above permissions, you can refer to the following example:
 
-
-要创建具有上述权限的用户，您可以参考以下示例：
-
-```json
-use admin
- db.createUser({
-    "user" : "johndoe",
-    "pwd"  : "my_password",
-    "roles" : [
-        {
-            "role" : "clusterMonitor",
-            "db" : "admin"
-        },
-        {
-            "role" : "readAnyDatabase",
-            "db" : "admin"
-        }
-    ]
-}
 ```
-
-
-
-如果您不希望授予 readAnyDatabase 角色，则还可以向特定的数据库以及 local 和 config 数据库赋予读取权限。例如：
-
-```json
 use admin
 db.createUser({
-    "user" : "johndoe",
-    "pwd"  : "my_password",
-    "roles" : [
-        {
-            "role" : "clusterMonitor",
-            "db" : "admin"
-        },
-        {
-            "role" : "read",
-            "db" : "my_db"
-        }，
-        {
-            "role" : "read",
-            "db" : "local"
-        },
-        {
-            "role" : "read",
-            "db" : "config"
-        }
-    ]
+"user" : "johndoe",
+"pwd"  : "my_password",
+"roles" : [
+{
+"role" : "clusterMonitor",
+"db" : "admin"
+},
+{
+"role" : "readAnyDatabase",
+"db" : "admin"
+}
+]
 }
 ```
 
-请注意，只有 MongoDB 版本 3.2 需要 local 数据库的读取权限。
+If you do not want to grant the 'readAnyDatabase' role, you can also grant read permissions to specific databases and local and config databases. For example:
 
-**重要事项**
-对于集群分片，您必须在每个分片主节点上创建适当的用户权限。 这是由于MongoDB的安全架构设计。 当登录到每个单独的分片时，分片服务器不会向config数据库获取用户权限。 相反，它将使用其本地用户数据库进行身份验证和授权。
-
-**参考**
-
-[MongoDB Documentation: 如何更改oplog的大小](https://docs.mongodb.com/manual/tutorial/change-oplog-size/)
-[MongoDB Documentation: 如何将单节点转为复制集](https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/)
-
-**注意**
-如果 MongoDB URI 未设置 w=majority ，Tapdata 会使用默认的配置w=1，表示数据写到 primary 节点后就返回了。 如果在数据从 primary 节点同步到 secondary 节点前，primary 节点发生异常宕机，此时就会发生数据丢失。因此建议使用 w=majority 配置。 w=majority表示只有当数据写到大多数节点后才会返回客户端正确写入。
-
-### 作为目标数据库
-
-#### 基本配置
-
-- 目标端 MongoDB 支持副本集和分片集群。
-- 如果您的目标端 MongoDB 只有一个节点，您可以将其配置为单成员的复制集，以开启 oplog 功能。
-- 确保为目标 MongoDB 配置了足够的资源来处理源数据库的工作负载。
-
-#### 帐户权限
-
-如果目标 MongoDB 启用了安全身份验证，则 Tapdata 使用的用户帐户必须具有以下角色 / 权限：
-
-- clusterMonitor（数据验证功能需要使用）
-- readWrite（作为目标数据库需要拥有的角色） 要创建具有以上权限的用户，您可以参考以下示例：
-
-```json
-  use admin
-  db.createUser({
-  "user" : "johndoe",
-  "pwd"  : "my_password",
-  "roles" : [
-      {
-          "role" : "clusterMonitor",
-          "db" : "admin"
-      },
-      {
-          "role" : "readWrite",
-          "db" : "my_db"
-      },
-      {
-          "role" : "read",
-          "db" : "local"
-      }
-  ]
+```
+use admin
+db.createUser({
+"user" : "johndoe",
+"pwd"  : "my_password",
+"roles" : [
+{
+"role" : "clusterMonitor",
+"db" : "admin"
+},
+{
+"role" : "read",
+"db" : "my_db"
+}，
+{
+"role" : "read",
+"db" : "local"
+},
+{
+"role" : "read",
+"db" : "config"
+}
+]
 }
 ```
 
-**注意**：只有 MongoDB 版本 3.2 需要 local 数据库的读取权限。
+Please note that only MongoDB version 3.2 requires read access to the local database.
 
-### 同步 MongoDB 集群说明
+> **Important matters**
+> For cluster sharding, you must create appropriate user permissions on each sharding master node. This is due to the security architecture design of MongoDB. When logging into each separate partition, the partition server will not obtain user permissions from the config database. Instead, it will use its local user database for authentication and authorization.
 
-当使用 MongoDB 集群作为源库时，Tapdata 会为每个分片创建一个线程，以直接从分片主节点（或次节点）读取数据。
-为提高负载性能，我们认为有必要使用这种多线程并行的设计方案。但是需要注意的是，这种方法的副作用是可能会在源集群库中产生孤立文档。孤立文档是当 MongoDB 发生自动数据迁移所导致的。
-要解决此问题，建议在使用 MongoDB 集群作为源库同步前，完成以下任务：
+**3. Reference**
 
-- **停止平衡器**
-  有关停止平衡器的详细说明，请参阅:
-  [MongoDB Documentation: 如何停止平衡器](https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/)
-- **使用cleanOrphan命令,请参阅**
-  [MongoDB Documentation: 如何清理孤儿文档](https://docs.mongodb.com/manual/reference/command/cleanupOrphaned/)
+```
+ [MongoDB Documentation: How to change the size of oplog]（ https://docs.mongodb.com/manual/tutorial/change-oplog-size/ )<br>
+ [MongoDB Documentation: How to convert a single node into a replica set]（ https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/ )<br>
+```
 
-### MongoDB TLS/SSL配置
+> If MongoDB URI is not set to w=major, Tapdata will use the default configuration of w=1, which means that the data is returned after being written to the primary node. If the primary node goes down abnormally before the data is synchronized from the primary node to the secondary node, data loss will occur. Therefore, it is recommended to use w=major configuration. W=majority means that the client can only write the data correctly after it is written to most nodes.
 
-- **启用TLS/SSL**
-  请在左侧配置页的 “使用TLS/SSL连接”中选择“是”项进行配置
-- **设置MongoDB PemKeyFile**
-  点击“选择文件”，选择证书文件，若证书文件有密码保护，则在“私钥密码”中填入密码
-- **设置CAFile**
-  请在左侧配置页的 “验证服务器证书”中选择“是”
-  然后在下方的“认证授权”中点击“选择文件”
+### As a Target Database
+
+**1. Basic configuration**
+
+- MongoDB on the target side supports replica sets and sharding clusters.
+- If your target MongoDB has only one node, you can configure it as a single-member replication set to enable the oplog function.
+- Ensure that sufficient resources are configured for the target MongoDB to handle the workload of the source database.
+
+**2. Account permissions**
+
+If the target MongoDB has security authentication enabled, the user account used by Tapdata must have the following roles/permissions:
+
+- 'clusterMonitor' (data validation function needs to be used)
+- 'readWrite '(as the role of the target database) To create a user with the above permissions, you can refer to the following example:
+
+```
+> use admin
+> db.createUser({
+"user" : "johndoe",
+"pwd"  : "my_password",
+"roles" : [
+{
+"role" : "clusterMonitor",
+"db" : "admin"
+},
+{
+"role" : "readWrite",
+"db" : "my_db"
+},
+{
+"role" : "read",
+"db" : "local"
+}
+]
+}
+```
+
+> **Note**: Only MongoDB version 3.2 requires read access to the local database.
+
+## Synchronize MongoDB cluster
+
+When using the MongoDB cluster as the source library, Tapdata will create a thread for each shard to read data directly from the primary node (or secondary node) of the shard< br> In order to improve the load performance, we think it is necessary to use this multi-thread parallel design scheme. However, it should be noted that the side effect of this method is that isolated documents may be generated in the source cluster library. Orphaned documents are caused by MongoDB's automatic data migration< br> To solve this problem, it is recommended to complete the following tasks before using MongoDB cluster as source database synchronization:
+
+- **Stop balancer**
+  For detailed instructions on stopping the balancer, see:
+  [MongoDB Documentation: How to stop the balancer]( https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/ )
+- **Use the cleanOrphan command, see**
+  [MongoDB Documentation: How to clean up orphan documents](https://docs.mongodb.com/manual/reference/command/cleanupOrphaned/ )
+
+##  MongoDB TLS/SSL configuration
+
+- **Enable TLS/SSL**
+  Please select "Yes" in "Connect using TLS/SSL" on the left configuration page to configure
+- **Set MongoDB PemKeyFile**
+  Click "Select File" and select the certificate file. If the certificate file is password protected, fill in the password in "Private Key Password"
+- **Set CAFile**
+  Please select "Yes" in "Validate server certificate" on the left configuration page
+  Then click "Select File" in "Authentication and Authorization" below

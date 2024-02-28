@@ -1,6 +1,6 @@
-# 数据仓库与数据湖
+# Data Warehouse and Data Lake
 
-Tapdata 支持连接数据仓库与数据湖，请选择要添加的数据源：
+ Please select the database you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

@@ -170,7 +170,7 @@
 * 当任务配置为全量+增量时，支持开启[定期调度任务功能](user-guide/data-pipeline/copy-data/create-task#task-attr)，到达该时间点后任务会自动停止、重置并重新运行
 * 对于[增删字段节点](user-guide/data-pipeline/data-development/process-node#add-and-del-cols)，支持字段顺序调整功能
 * 任务设置新增[动态调整内存功能](user-guide/data-pipeline/copy-data/create-task#task-attr)（默认开启），全量同步阶段，识别内存占用量并自动调整内存队列，可有效避免内存资源短缺场景下的内存溢出
-* 数据面板更名为[实时数据中心](user-guide/data-console/README.md)，同时增加使用和任务创建引导
+* 数据面板更名为[实时数据中心](user-guide/real-time-data-hub/README.md)，同时增加使用和任务创建引导
 * 新增目标写入策略，当更新事件不存在时，支持将更新事件写入到本地日志
 
 ### 功能优化
@@ -195,7 +195,7 @@
 - 新增 [API 接口文档导出功能](user-guide/data-service/create-api-service#release330-export-api)，帮助团队快速建立并完善 API 使用资料
 - 共享挖掘功能支持[配置任务告警](user-guide/advanced-settings/share-mining#release330-alert)，可通过系统通知消息或邮件来发出告警信息，帮助更好地掌握任务的运行状态
 - [数据校验功能](user-guide/data-pipeline/verify-data.md)，支持设置数据过滤，从而实现只对特定条件的数据进行校验，可帮助您减少校验规模，提升效率
-- 在数据服务平台模式下，向平台缓存层拖拽数据表生成任务时，支持[设置任务的同步类型为全量或增量](user-guide/data-console/daas-mode/create-daas-task/#release330-task)
+- 在数据服务平台模式下，向平台缓存层拖拽数据表生成任务时，支持[设置任务的同步类型为全量或增量](user-guide/real-time-data-hub/daas-mode/create-daas-task/#release330-task)
 
 ### 功能优化
 
@@ -219,8 +219,8 @@
 
 ### 新增功能
 
-- 数据平台模式下，可直接[展示表级溯源的关系](user-guide/data-console/daas-mode/daas-mode-dashboard#release320-daas)，帮助您可视化展示数据表产生的链路关系
-- 数据平台模式下，支持[删除**平台加工层**的表](user-guide/data-console/daas-mode/daas-mode-dashboard#release320-daas)
+- 数据平台模式下，可直接[展示表级溯源的关系](user-guide/real-time-data-hub/daas-mode/dashboard#release320-daas)，帮助您可视化展示数据表产生的链路关系
+- 数据平台模式下，支持[删除**平台加工层**的表](user-guide/real-time-data-hub/daas-mode/dashboard#release320-daas)
 - 在配置任务的目标节点时，支持[按照系数来调整字段长度](user-guide/data-pipeline/copy-data/create-task#release320-col-length)，避免因字符编码不同等原因引发的数据写入失败问题
 - [数据校验](user-guide/data-pipeline/verify-data)功能支持 SelectDB 数据源
 - Redis 作为目标节点场景下，存储为 List 或 Hash 格式，且选择为单键方式时，[支持将源表 Schema 写入一个 Hash 键](pipeline-tutorial/mysql-to-redis#release320-contain-table-head)（默认名称为 `-schema-key-`），其值用来存放源表的表名和列名信息。
@@ -260,7 +260,7 @@
 
 ### 新增功能
 
-- [数据面板功能](user-guide/data-console/etl-mode)新增支持表级溯源能力，可通过表详情查看数据血缘关系
+- [数据面板功能](user-guide/real-time-data-hub/etl-mode)新增支持表级溯源能力，可通过表详情查看数据血缘关系
 - [配置数据复制任务](./user-guide/data-pipeline/copy-data/create-task#310-table-model)时，支持在处理节点中查看表模型
 - 支持基于 Doris 数据源[发布 API 数据服务](user-guide/data-service/create-api-service.md)
 - [集群管理](user-guide/manage-system/manage-cluster.md)页面，支持下载线程资源监控和数据源使用情况数据

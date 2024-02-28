@@ -1,61 +1,46 @@
-# 应用场景
+# Use Cases
+Tapdata is a next-generation real-time data platform that centralizes core enterprise data into a centralized data platform in real-time. It supports downstream interactive applications, microservices, or interactive analytics through APIs or reverse synchronization, providing real-time data.
 
-Tapdata 是新一代的实时数据平台，通过把企业核心数据实时集中到中央化数据平台的方式并通过 API 或者反向同步方式，为下游的交互式应用、微服务或交互式分析提供实时数据。
+## Building Real-time Data Pipelines
 
+Traditional master data management retrieves source data from business systems in a T+1 manner, processes it into standardized enterprise data, and delivers it to business systems via export. This approach is limited by data lag. Building real-time data pipelines with CDC + Kafka + Flink encounters challenges like CDC data collection errors and Kafka blockages, making troubleshooting difficult.
 
+Tapdata offers a one-stop real-time data synchronization experience, allowing for the construction of complete data collection and flow pipelines in just a few steps, with advantages such as:
 
-## 构建实时数据管道
+- Support for a wide range of [data sources](supported-databases.md), enabling data synchronization between homogenous and heterogeneous data sources.
+- Event-triggered data processing logic, various data check methods, ensuring high reliability and low latency.
+- Powerful UDF functions for deduplication, rule judgment, and other master data governance functionalities.
+- Low-code [API services](../user-guide/data-service/README.md) for end-to-end data consumption.
 
-传统的主数据管理采用T+1的方式从业务系统获取源数据，加工处理后形成企业的标准数据， 并通过导出方式输送到业务系统使用。这种方案的局限性在于数据更新较为滞后，而采用 CDC + Kafka + Flink 构建实时数据管道时，遇到 CDC 数据采集错误、Kafka 阻塞时，链路排查困难。
+## Extract, Transform, Load (ETL)
 
-Tapdata 提供一站式实时数据同步体验，仅需简单几步即可构建完整的数据采集与流转的管道，优势如下：
+Traditionally, tools like Kettle, Informatica, Python, etc., are used for processing and transporting data to new business system databases. Such ETL solutions often involve complex workflows, lack reusability, and can significantly impact source performance.
 
-* 支持丰富的[数据源](supported-databases.md)，可实现同/异构数据源间的数据同步。
-* 支持基于事件触发的数据处理逻辑，多种数据检查方式，保障高可靠与低延迟。
-* 支持通过强大的 UDF 功能实现去重、规则判断等主数据治理功能。
-* 支持 [API 服务](../user-guide/data-service/README.md)低代码发布，可实现端到端的数据消费。
+Tapdata's real-time data service can perform the last ETL, synchronizing data to a distributed data platform based on MongoDB. Combined with a no-code API, it can support rapid data API for numerous downstream businesses directly on the data platform, with advantages like:
 
+- New-generation data development based on drag-and-drop is more convenient.
+- Distributed deployment capabilities offer higher processing performance.
+- JS or Python-based UDF functions can infinitely extend processing capabilities.
+- Support for custom operators to quickly expand the platform's data processing and enhancement capabilities.
 
+## Database Cloud Migration/Cross-cloud Sync
 
-## 提取/转换/加载数据（ETL）
+Tapdata provides seamless data migration and synchronization from offline to cloud, cloud to offline, and across cloud platforms.
 
-传统的方式是通过 Kettle、Informatica、Python 等工具处理并搬运至新业务系统数据库，此类 ETL 的方案通常链路繁杂、无法复用，且可能对源端性能影响较大。
+## Enhancing Query Performance
 
-Tapdata 的实时数据服务可以通过将数据做最后一次 ETL，同步到基于 MongoDB 的分布式数据平台，结合无代码 API，可以为众多下游业务直接在数据平台提供快速的数据 API 支撑，优势如下：
+In scenarios with high read but low write demands, a single database may not handle all read requests. Data can be synchronized to another database to distribute read requests to these read-only databases, horizontally expanding the overall read performance and alleviating the pressure on the primary database.
 
-* 基于拖拉拽的新一代数据开发更加简便。
-* 分布式部署能力可以提供更高的处理性能。
-* 基于 JS 或者 Python 的 UDF 功能可以无限扩展处理能力。
-* 支持通过自定义算子快速扩展平台的数据处理及加工能力。
+Furthermore, data can be synchronized to next-generation NoSQL databases like Redis, MongoDB, Elasticsearch, etc., providing high concurrency and low latency query capabilities for your system.
 
+## Database Disaster Recovery
 
+To avoid service continuity impacts from unexpected situations like power or network interruptions, you can continuously synchronize data between business centers and disaster recovery centers through Tapdata, offering remote data replication and backup capabilities.
 
-## 数据库上云/跨云同步
+## Building Materialized Views (Wide Tables)
 
-从线下到云上、从云上到线下、跨云平台场景下，Tapdata 可提供数据的无缝迁移和同步。
+From big data analytics to data warehouse construction to dashboards, data engineers often need to use batch processing tasks to display and analyze wide tables or views, which consumes considerable resources and has delayed data updates. Tapdata supports the construction of incremental wide tables with minimal cost, providing up-to-date data.
 
+## Real-time Metric Calculation
 
-
-## 提升查询性能
-
-对于读多写少的场景，单个数据库可能无法承担全部的读压力，此时可将数据同步至另一个数据库中，将读请求分流至这些只读数据库中，横向扩展整体的读性能，分担主数据库的压力。
-
-不仅如此，您还可以选择将数据同步到 Redis、MongoDB、ElasticSearch 等新一代 NoSQL 数据库，为您的系统提供高并发低延迟查询能力。
-
-
-
-## 数据库灾备
-
-为避免电力或网络中断等意外情况影响服务的持续性，您可以通过 Tapdata 将业务中心和灾备中心的数据实现持续同步，可提供异地数据复制、备份能力。
-
-
-
-## 构建物化视图（宽表）
-
-从大数据分析到数仓建设到数据看板，数据工程人员通常需要大量使用批处理任务来展现和分析的宽表或者视图，不仅耗费大量的资源，而且数据更新滞后。Tapdata 支持增量宽表的构建能力，以最小化的成本提供最新的数据。
-
-
-
-## 实时指标计算
-
-使用 Tapdata 的实时聚合计算能力，对来自日志、点击流或者数据库事件进行流式的统计计算，并得出不同的运营指标，如登录数、转化漏斗等。
+Tapdata's real-time aggregation and calculation capabilities allow for streaming statistical calculations of logs, clickstreams, or database events, yielding various operational metrics such as login counts and conversion funnels.

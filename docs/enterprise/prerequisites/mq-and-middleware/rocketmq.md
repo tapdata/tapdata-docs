@@ -1,7 +1,12 @@
 # RocketMQ
 
-请遵循以下说明以确保在 Tapdata 中成功添加和使用 RocketMQ。
+Please follow the instructions below to ensure successful addition and usage of RocketMQ in Tapdata.
 
-import Content from '../../../reuse-content/_rocketmq.md';
+## **Configuration Instructions**
 
-<Content />
+- Topic Name -- The topic to be subscribed;
+- MQ Address -- The RocketMQ server address;
+- MQ Port -- The RocketMQ server port;
+- Account
+- Password
+- Use TLS/SSL Conne

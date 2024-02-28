@@ -1,12 +1,12 @@
 # GBase 8a
 
-GBase 8a 数据库是一款基于 MySQL 数据库研发的分析型数据库，对 MySQL 的语法、特性、字段类型基本兼容。
+GBase 8a database is an analytical database developed based on MySQL, with basic compatibility in terms of syntax, features, and field types.
 
-## 支持版本
+## Supported Versions
 
-目前 GBase 8a 向外开放的所有版本
+All versions currently offered by GBase 8a.
 
-## 数据库特殊性提示（作为目标）
+## As a Target
 
-- GBase 8a产品主要用于数据分析使用，可以设置主键，但约束不生效，另外索引也不允许创建。接入Tapdata后只能依赖于逻辑主键，且数据幂等性不可靠。
-- GBase 8a对事务的支持度相对较低，同一事务内除了多条插入以外，均不支持。
+- GBase 8a is primarily used for data analysis. While it allows setting primary keys, constraints are not enforced, and creating indexes is not allowed. After integrating with Tapdata, it will rely on logical primary keys, and data idempotence cannot be guaranteed.
+- GBase 8a has relatively limited support for transactions. Except for multiple insertions within the same transaction, other transaction operations are not supported.

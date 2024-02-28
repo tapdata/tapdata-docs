@@ -1,36 +1,159 @@
 # MySQL
 
-MySQL 是应用最广泛的开源关系数据库，是许多网站、应用程序、商业产品使用的关系数据存储。完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加 MySQL 数据源，后续可将其作为源或目标库来构建数据管道。
+MySQL, the highly popular open-source relational database, is widely utilized as a relational data store by numerous websites, applications, and commercial products.
 
-## 支持版本 
+Tapdata extends support for constructing data pipelines with MySQL as both the source and target database. This article provides comprehensive instructions on incorporating a MySQL database into Tapdata, enabling seamless integration for your data pipelines.
 
-MySQL 5.0、5.1、5.5、5.6、5.7、8.x
+## Supported Versions
 
-## 准备工作
+MySQL 5.0, 5.1, 5.5, 5.6, 5.7, 8.x
 
-### 作为源库
+## Preparations
 
-import Content1 from '../../../reuse-content/certificate/_mysql-as-source.md';
+import Content from '../../../reuse-content/_preparations.md';
 
-<Content1 />
+<Content />
 
-​      
+* [Enabling SSL Connection (Optional)](#ssl)
 
-### 作为目标库
+### As a Source Database
 
-import Content2 from '../../../reuse-content/certificate/_mysql-as-target.md';
+To ensure the smooth execution of the task, you need to turn on Binlog for MySQL database (incremental data synchronization can be achieved), and then create a database account for data replication/development tasks.
 
-<Content2 />
+1. Log in to the MySQL database and execute the following commands to create an account.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs className="unique-tabs">
+    <TabItem value="mysql5" label="MySQL 5.x" default>
+    <pre>CREATE USER 'username'@'host' IDENTIFIED BY 'password';</pre>
+   </TabItem>
+   <TabItem value="mysql8" label="MySQL 8.x">
+    <pre>CREATE USER 'username'@'host' IDENTIFIED WITH mysql_native_password BY 'password';</pre>
+   </TabItem>
+  </Tabs>
+
+* **username**: Enter user name.
+* **password**: Enter password.
+* **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host.
+
+Example: Create an account named tapdata.
+
+```sql
+CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';
+```
 
 
 
-### <span id="ssl">开启 SSL 连接（可选）</span>
+2. Grant permissions to the account that we just created, we recommend setting more granular permissions control based on business needs.
 
-为进一步提升数据链路的安全性，您还可以选择为 MySQL 数据库开启 SSL（Secure Sockets Layer）加密，实现在传输层对网络连接的加密，在提升通信数据安全性的同时，保证数据的完整性，具体操作流程如下：
+<Tabs className="unique-tabs">
+    <TabItem value="onedatabase" label="Grant to Specified DB" default>
+    <pre>GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'username' IDENTIFIED BY 'password';<br /> 
+GRANT SELECT ON database_name.* TO 'username' IDENTIFIED BY 'password';</pre>
+   </TabItem>
+   <TabItem value="all" label="Grant to All DB">
+    <pre>GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'username' IDENTIFIED BY 'password';<br /> 
+GRANT SELECT ON *.* TO 'username' IDENTIFIED BY 'password';</pre>
+   </TabItem>
+  </Tabs>
 
-1. 登录 MySQL 数据库所属的设备，运行 **mysql_ssl_rsa_setup** 程序来创建 SSL/RSA 文件，您可以通过 find 命令查找该程序的位置。
+* **database_name**: Enter database name.
+* **username**: Enter user name.
+* **password**: Enter password.
 
-   在执行本步骤前，您可以登录 MySQL 数据库并执行 `SHOW GLOBAL VARIABLES LIKE '%ssl%';` 命令，查看是否生成过 SSL/RSA 文件及 SSL 开启状态。
+3. To ensure that the incremental data of the MySQL database can be read, you need to follow the steps below to turn on Binlog.
+
+   1. Use the `vim` command to modify the configuration in `$MYSQL_HOME/mysql.cnf`, for example:
+
+      ```
+      server_id         = 223344
+      log_bin           = mysql-bin
+      expire_logs_days  = 1
+      binlog_format     = row
+      binlog_row_image  = full
+      ```
+
+      - **server_id**: Set to an integer greater than 0, this value must be unique per server and replication client.
+      - **log_bin**: The base name of the Binlog file.
+      - **expire_logs_days**: The number of days to keep the binary log file, automatically deleted when it expires.
+      - **binlog_format**: Set to row.
+      - **binlog_row_image**: Set to full.
+
+   2. After the modification is completed, execute the following command to restart the MySQL server.
+
+      ```bash
+      /etc/init.d/mysqld restart
+      ```
+
+   3. (Optional) Log in to the MySQL database and execute the following command to confirm that the configuration has taken effect, that is, in the output result, the value of the **binlog_format** is **ROW**.
+
+      ```sql
+      SHOW VARIABLES LIKE 'binlog_format';
+      ```
+
+      The output is as follows:
+
+      ```sql
+      +---------------+-------+
+      | Variable_name | Value |
+      +---------------+-------+
+      | binlog_format | ROW   |
+      +---------------+-------+
+      1 row in set (0.00 sec)
+      ```
+
+
+
+### As a Target Database
+
+1. Log in to the MySQL database and execute the following commands to create an account.
+
+<Tabs className="unique-tabs">
+    <TabItem value="mysql5" label="MySQL 5.x" default>
+    <pre>CREATE USER 'username'@'host' IDENTIFIED BY 'password';</pre>
+   </TabItem>
+   <TabItem value="mysql8" label="MySQL 8.x">
+    <pre>CREATE USER 'username'@'host' IDENTIFIED WITH mysql_native_password BY 'password';</pre>
+   </TabItem>
+  </Tabs>
+
+* **username**: Enter user name.
+* **password**: Enter password.
+* **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host.
+
+Example: Create an account named tapdata.
+
+```sql
+CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';
+```
+
+
+
+2. Grant permissions to the account that we just created, we recommend setting more granular permissions control based on business needs.
+
+<Tabs className="unique-tabs">
+    <TabItem value="onedatabase" label="Grant to Specified DB" default>
+    <pre>GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, INDEX, DROP ON database_name.* TO 'username';</pre>
+   </TabItem>
+   <TabItem value="all" label="Grant to All DB">
+    <pre>GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, INDEX, DROP ON *.* TO 'username';</pre>
+   </TabItem>
+  </Tabs>
+
+* **database_name**: Enter database name.
+* **username**: Enter user name.
+
+
+
+### <span id="ssl">Enabling SSL Connection (Optional)</span>
+
+To further enhance the security of the data connection, you can choose to enable SSL (Secure Sockets Layer) encryption for MySQL databases. This provides encryption at the transport layer for network connections, enhancing the security of communication data while ensuring data integrity. The specific steps are as follows:
+
+1. Log in to the device hosting the MySQL database and run the **mysql_ssl_rsa_setup** program to create SSL/RSA files. You can locate this program using the find command.
+
+   Before performing this step, you can log into the MySQL database and execute `SHOW GLOBAL VARIABLES LIKE '%ssl%';` to check if SSL/RSA files have been generated and the status of SSL.
 
    ```bash
    /usr/bin/mysql_ssl_rsa_setup
@@ -38,117 +161,124 @@ import Content2 from '../../../reuse-content/certificate/_mysql-as-target.md';
 
    :::tip
 
-   * 运行该程序需确保您的设备已安装 **openssl**，例如在 CentOS 系统中，可执行 `yum install openssl -y` 命令来安装。
-   * 命令执行完毕后，会自动生成文件： `ca-key.pem`、`server-key.pem` 和 `client-key.pem`，通常位于 `/var/lib/mysql/` 目录中，您可以将其下载至本机中，后续在 Tapdata 中配置连接时使用。
+   * Ensure that **openssl** is installed on your device to run this program. For example, on a CentOS system, you can install it with the command `yum install openssl -y`.
+   * Once the command is executed, files such as `ca-key.pem`, `server-key.pem`, and `client-key.pem` will be automatically generated, usually located in the `/var/lib/mysql/` directory. You can download them to your local machine for later use in configuring connections in Tapdata.
 
    :::
 
-2. 使用 `vim` 命令，修改 `$MYSQL_HOME/mysql.cnf` 中的配置，开启强制 SSL 认证并指定相关 SSL/RSA 文件位置，修改完成后保存并退出编辑。
+2. Use the `vim` command to modify the configuration in `$MYSQL_HOME/mysql.cnf`, enabling forced SSL authentication and specifying the locations of related SSL/RSA files. Save and exit the editor after making changes.
 
    ```bash
    [mysqld]
    require_secure_transport=ON
-   # 自签名的 CA 证书
+   # Self-signed CA certificate
    ssl-ca=/var/lib/mysql/ca.pem
-   # 服务端证书文件
+   # Server certificate file
    ssl-cert=/var/lib/mysql/server-cert.pem
-   # 服务端私钥文件
+   # Server private key file
    ssl-key=/var/lib/mysql/server-key.pem
    [client]
    ssl-mode=REQUIRED
-   # 客户端连接服务端所需提供的证书文件
+   # Certificate file required for the client to connect to the server
    ssl-cert=/var/lib/mysql/client-cert.pem
-   # 客户端连接服务端所需提供的私钥文件
+   # Private key file required for the client to connect to the server
    ssl-key=/var/lib/mysql/client-key.pem
    ```
 
-3. 登录 MySQL 数据库，**选择**执行下述格式的命令，调整数据同步/开发任务的账号。
+3. Log into the MySQL database and **choose** to execute the following format of commands to adjust the account for data synchronization/development tasks.
 
    ```sql
-   ALTER USER 'username'@'host' REQUIRE x509; -- 强制要求客户端提供有效证书
-   ALTER USER 'username'@'host' REQUIRE ssl; -- 不强制要求客户端提供有效证书
+   ALTER USER 'username'@'host' REQUIRE x509; -- Force the client to provide a valid certificate
+   ALTER USER 'username'@'host' REQUIRE ssl; -- Do not force the client to provide a valid certificate
    FLUSH PRIVILEGES;
    ```
 
-   * **username**：用户名。
-   * **host**：允许该账号登录的主机，例如使用百分号（%）以允许任意主机。
+   * **username**: The username.
+   * **host**: The host allowed for account login, e.g., use the percentage sign (%) to allow any host.
 
-4. 重启 MySQL 数据库。
-
-   
+4. Restart the MySQL database.
 
 
-## 添加数据源
+## Connect to MySQL
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation panel, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. On the right side of the page, click **Create**.
 
-4. 在弹出的对话框中，搜索并选择 **MySQL**。
+4. In the pop-up dialog, search and select **MySQL**.
 
-5. 在跳转到的页面，根据下述说明填写 MySQL 的连接信息。
+5. On the page that you are redirected to, follow the instructions below to fill in the connection information for MySQL.
 
-   ![连接配置示例](../../images/mysql_connection_demo.png)
+   ![Connection configuration example](../../images/mysql_connection_demo.png)
 
-    * **连接信息设置**
-        * **连接名称**：填写具有业务意义的独有名称。
-        * **连接类型**：支持将 MySQL 作为源或目标库。
-        * **地址**：数据库连接地址。
-        * **端口**：数据库的服务端口。
-        * **数据库**：数据库名称，即一个连接对应一个数据库，如有多个数据库则需创建多个数据连接。
-        * **账号**：数据库的账号。
-        * **密码**：数据库账号对应的密码。
-    * **高级设置**
-        * **连接参数**：额外的连接参数，默认为空。
-        * **时区**：默认为数据库所用的时区，您也可以根据业务需求手动指定。
-          如果源库为默认数据库时区（+8:00），目标端数据库为指定时区+0:00，那么假设源端数据库存储的时间为 2020-01-01 16:00:00，目标端数据库存储的时间则为 2020-01-01 08:00:00
-        * **共享挖掘**：[挖掘源库](../../user-guide/advanced-settings/share-mining.md)的增量日志，可为多个任务共享源库的增量日志，避免重复读取，从而最大程度上减轻增量同步对源库的压力，开启该功能后还需要选择一个外存用来存储增量日志信息。
-        * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-        * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-        * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-        * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照设置的时间定期刷新模型。
-    * **SSL 设置**：选择是否开启 SSL 连接数据源，可进一步提升数据安全性，开启该功能后还需要上传 CA 文件、客户端证书、客户端密钥文件等，相关文件已在[开启 SSL 连接](#ssl)中获取。
+    * **Connection Information Settings**
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+        * **Connection name**: Fill in a unique name that has business significance.
+        * **Connection type**: Supports MySQL as a source or target database.
+        * **Host**: The database connection address.
+        * **Port**: The service port of database.
+        * **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
+        * **username**: The database username.
+        * **Password**: The database password.
+        * **Connection parameter string**: Additional connection parameters, default empty.
+
+    * **Advanced settings**
+
+        * **Timezone**: By default, Tapdata utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+
+          For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
+
+        * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log.
+
+        * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+
+        * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+
+        * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+        
+        * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+        
+    * **SSL Settings**: Choose whether to enable SSL connections for the data source, which can further enhance data security. After turn on the switch, you will need to upload CA files, client certificates, client key files, etc. The related files can be obtained as outlined in the [Enabling SSL Connection](#ssl) section.
+
+6. Click **Connection Test**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
 
-## 常见问题
 
-* 问：可以使用从库作为源进行数据同步吗？
+## FAQ
 
-  答：可以，除在从库上开启以上设置外，还需要：
+* Q: Can I synchronze data from MySQL replicas?
 
-  1. 执行下述命令，检查 MySQL 库的参数配置，确保 **log_slave_updates** 的值为 1。
+   A: Yes, in addition to implementing the above settings for MySQL replicas, you also need to:
 
-     ```sql
-     Select @@log_slave_updates
-     ```
+   1. Execute the following command to check the parameter configuration of the MySQL replicas and ensure that the value of **log_slave_updates** is 1.
 
-  2. 检查主从库是否一致，不一致时可查看从节点状态：`SHOW SLAVE STATUS`，
+      ```sql
+      Select @@log_slave_updates
+      ```
 
-     根据具体报错修复后，再执行数据同步。
+   2. Execute the command `SHOW SLAVE STATUS` or `SHOW REPLICA STATUS` to check the delay information of the replica.
 
-* 问：Tapdata 连接测试时，提示错误：“Unknown error 1044”
+      Perform data synchronization after repairing according to specific error reporting.
 
-  答：如果已经授予了正确的权限，可以通过下述方法检查并修复：
+* Q: "Unknown error 1044" appears in the dialog after the connection test.
 
-  ```sql
-  SELECT host,user,Grant_priv,Super_priv FROM mysql.user where user='username';
-  //查看Grant_priv字段的值是否为Y
-  //如果不是，则执行以下命令
-  UPDATE mysql.user SET Grant_priv='Y' WHERE user='username';
-  FLUSH PRIVILEGES;
-  ```
+   A: If the correct permissions have been granted, can be checked and fixed by:
 
-## 相关文档
+   ```sql
+   SELECT host,user,Grant_priv,Super_priv FROM mysql.user where user='username';
+   // Check if the value of Grant_priv field is Y, if not, execute the following command.
+   UPDATE mysql.user SET Grant_priv='Y' WHERE user='username';
+   FLUSH PRIVILEGES;
+   ```
 
-* [MySQL 实时同步至 Redis](../../pipeline-tutorial/mysql-to-redis.md)
-* [采集 Excel 数据至 MySQL](../../pipeline-tutorial/excel-to-mysql.md)
-* [构建数组提取链路简化数据分析](../../pipeline-tutorial/extract-array.md)
+## Related Topics
+
+[MySQL to BigQuery Real-Time Sync](../../best-practice/mysql-to-bigquery.md)
+

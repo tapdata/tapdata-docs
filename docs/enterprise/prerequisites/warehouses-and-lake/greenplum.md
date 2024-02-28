@@ -1,43 +1,45 @@
-# GreenPlum
+# Greenplum
 
-Greenplum 数据库是一种大规模并行处理（MPP）数据库服务器，其架构特别针对管理大规模分析型数据仓库以及商业智能工作负载而设计。本文介绍如何在 Tapdata 平台上连接 GreenPlum。
+Greenplum Database is a massively parallel processing (MPP) database server with an architecture specially designed to manage large-scale analytic data warehouses and business intelligence workloads.
 
+This article provides detailed instructions on adding a Greenplum database to Tapdata, facilitating seamless integration and data flow in your pipelines.
 
+## Connect to Greenplum
 
-## 连接 GreenPlum
+1. Log in to Tapdata Platform.
 
-1. 登录 Tapdata 平台。
+2. In the left navigation panel, click **Connections**.
 
-2. 在左侧导航栏，单击**连接管理**。
+3. On the right side of the page, click **Create connection**.
 
-3. 单击页面右侧的**创建**。
+4. In the pop-up dialog, select **Greenplum**.
 
-4. 在弹出的对话框中，搜索并选择 **GreenPlum**。
+5. On the page that you are redirected to, follow the instructions below to fill in the connection information for Greenplum.
 
-5. 在跳转到的页面，根据下述说明填写 GreenPlum 的连接信息。
+   * Connection Information Settings
 
-   * 连接信息设置
-     * **连接名称**：填写具有业务意义的独有名称。
-     * **连接类型**：支持将 GreenPlum 作为源或目标库。
-     * **地址**：数据库连接地址。
-     * **端口**：数据库的服务端口。
-     * **数据库**：数据库名称，即一个连接对应一个数据库，如有多个数据库则需创建多个数据连接。
-     * **模型**：Schema 名称。
-     * **额外参数**：额外的连接参数，默认为空。
-     * **账号**：数据库的账号。
-     * **密码**：数据库账号对应的密码。
-     * **日志插件**：通过插件读取 GreenPlum 的数据变更，实现增量数据同步。
-   * 高级设置
-     * **时区**：默认为数据库所用的时区，您也可以根据业务需求手动指定。
-     * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-     * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-     * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-     * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照设置的时间定期刷新模型。
+      * **Connection name**: Fill in a unique name that has business significance.
+      * **Connection type**: Supports Greenplum as a source or target database.
+      * **Host**: The database connection address.
+      * **Port**: The service port of database.
+      * **Database**: database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
+      * **Schema**: Schema name.
+      * **extParams**: Additional connection parameters, default empty.
+      * **User**: The database username.
+      * **Password**: The database password.
+      * **Log plugin name**: To read the data changes of Greenplum and achieve incremental data synchronization, you need to complete the installation of the plugin.
+   * Advanced settings
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+      * **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
+      * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+      * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+      * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+      * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+
+6. Click **Connection Test**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::

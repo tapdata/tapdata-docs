@@ -1,6 +1,6 @@
-# 快速入门
+# Quick Start
 
-跟随我们的教程，体验 Tapdata 强大、便捷的数据流转能力。
+Follow our tutorials to experience the powerful and convenient data flow capabilities of Tapdata.
 
 import DocCardList from '@theme/DocCardList';
 

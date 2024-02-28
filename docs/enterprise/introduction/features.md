@@ -1,21 +1,21 @@
-# 功能特性
+# Features
 
-## 数据复制
+## Data Replication
 
-该功能可以完成不同类型数据库之间的**实时数据复制**。
+This feature enables **real-time data replication** between different types of databases.
 
-例如，您可以将数据从 Oracle数据库中的表复制到 MongoDB，或从 MySQL 复制到 Elastic Search 等。此外，Tapdata 还可用于在两个 MongoDB 集群之间复制数据。
+For example, data can be replicated from a table in an Oracle database to MongoDB, or from MySQL to Elastic Search. Tapdata can also replicate data between two MongoDB clusters.
 
-## 数据转换
+## Data Transformation
 
-该功能可以帮您进行数据的各种处理。
+This feature allows for various data processing operations.
 
-例如，JS处理、多表合并、数据拆分、关联映射、字段增减合并、内容过滤等功能。
+Examples include JS processing, multi-table merging, data splitting, association mapping, field addition/removal/merging, and content filtering.
 
-## 数据服务
+## Data Services
 
-该功能可以在1分钟内快速发布一个标准 Restful 的接口并实现对API的管理。
+This feature enables the rapid publishing of a standard Restful interface within one minute and the management of APIs.
 
-## 数据发现
+## Data Discovery
 
-它可以帮助您快速完成元数据管理、数据搜索等工作。
+It assists in quickly completing tasks like metadata management and data search.

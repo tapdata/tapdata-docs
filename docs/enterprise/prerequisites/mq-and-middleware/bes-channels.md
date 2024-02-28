@@ -1,21 +1,21 @@
 # BesChannels
 
-致趣·百川 B2B 一站式营销云（BesChannels），专注B2B赛道，帮助B2B市场部获取更多线索、提高线索转化率，为销售输送更多商机。
+BesChannels B2B one-stop marketing cloud that focusing on the B2B track, helping the B2B marketing department obtain more leads, improve lead conversion rates, and deliver more business opportunities for sales.
 
-## 作为目标
+### As Target
 
-将微信扫码注册的用户与致趣营销平台进行对接，实现致趣平台对用户自动打标签。
+Connect users registered through WeChat QR code scanning with the BesChannels marketing platform to achieve automatic labeling of users by the BesChannels platform.
 
-***了解更多***: http://wiki.martech-global.com/web/?from_wecom=1#/19/354
+***more***: http://wiki.martech-global.com/web/?from_wecom=1#/19/354
 
-### 创建连接
+#### Create Connection
 
-- 客户唯一加密串：需要联系对应的项目经理获取，如已获取直接输入即可。
-- 微信公众号的App ID：需要联系对应的项目经理获取，如已获取直接输入即可。
-- 客户唯一识别码：需要联系对应的项目经理获取，如已获取直接输入即可。
+- Customer Unique Encrypted String: The customer's unique encrypted string needs to be obtained by contacting the corresponding project manager. If it has been obtained, it can be directly input.
+- App ID of WeChat official account: The App ID of WeChat official account needs to be obtained by contacting the corresponding project manager. If it has been obtained, it can be entered directly.
+- Customer unique identification code: The customer's unique identification code needs to be obtained by contacting the corresponding project manager. If it has been obtained, it can be entered directly.
 
-### 创建任务
+#### Create Task
 
-- 用户的Open ID字段：请输入或选择与Open ID值对应的源表字段，例如源表中存在字段名为Key的字段，保存了用户的微信openID，那么这里选择或输入：Key。
-- 标签名称串：标签名称串，多个以“，”隔开，最多50。例如：“吃货,旅行”等。
-- 注册来源字段：请输入或选择源表中的注册来源字段，例如：源表存在字段名为RegisterFrom的字段，保存了用户注册来源类型，那么这里选择或输入：RegisterFrom。
+- User's Open ID field: Please enter or select the source table field corresponding to the Open ID value. For example, if there is a field named Key in the source table that saves the user's WeChat openID, then select or enter: Key here.
+- Tag's name: Label name string, multiple separated by ',', up to 50. For example, 'food, travel', etc.
+- Field of registration source: Please enter or select the registration source field in the source table. For example, if a field named RegisterFrom exists in the source table and the user registration source type is saved, then select or enter: RegisterFrom here.

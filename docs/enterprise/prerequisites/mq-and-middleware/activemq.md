@@ -1,28 +1,28 @@
 # ActiveMQ
 
-请遵循以下说明以确保在 Tapdata 中成功添加和使用 ActiveMQ。
+Please follow the instructions below to ensure successful addition and usage of ActiveMQ in Tapdata.
 
-## 支持版本
+## Supported Versions
 
 5.14.x
 
-## ACTIVEMQ 配置说明
+## ActiveMQ Configuration Instructions
 
-- 队列名称为空，默认加载所有队列；如果需要指定，可以用逗号分隔。
-- MQ连接串（BrokerUrl）格式：tcp://[host]:[port]。
+- If the queue name is left empty, all queues are loaded by default. If specific queues need to be specified, they can be separated by commas.
+- The format of the MQ connection string (BrokerUrl) is: tcp://[host]:[port].
 
-## 使用限制
+## Usage Limitations
 
-- 仅支持 JSON Object 字符串的消息格式 (如 `{"id":1, "name": "张三"}`)，后续会补充JSONBytes，XML等格式。
-- 可以不用提前创建好队列
-- PDK框架限制且topic方式不能很好的支持全量，topic暂时不可用。
+- Only JSON object string message format is supported (e.g., `{"id": 1, "name": "Jack"}`). Support for JSONBytes, XML, and other formats will be added later.
+- It is not necessary to create queues in advance.
+- There are limitations in the PDK framework, and the topic mode does not support full synchronization well. The topic mode is temporarily unavailable.
 
-## 识别数据类型
+## Data Types
 
 - OBJECT
 - ARRAY
 - NUMBER
 - INTEGER
 - BOOLEAN
-- STRING（长度200以下）
+- STRING (length up to 200)
 - TEXT

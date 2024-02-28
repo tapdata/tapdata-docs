@@ -1,132 +1,134 @@
-# 单节点部署（Windows 平台）
+# Stand-alone Deployment (Windows Platform)
 
-本文介绍如何快速在本地的 Windows 平台部署 Tapdata 服务。
+This guide explains how to quickly deploy Tapdata services on a local Windows platform.
 
 :::tip
 
-单节点部署可用于功能测试场景，如需用作生产环境，推荐采用[高可用部署](../../production-admin/install-tapdata-ha.md)。
+Single node deployment is suitable for functional testing scenarios. For production environments, it is recommended to use [high-availability deployment](../../production-admin/install-tapdata-ha.md).
 
 :::
 
-## 软硬件环境要求
+## Hardware and Software Requirements
 
-* CPU：8 核
-* 内存：16 GB
-* 存储空间：100 GB
-* 操作系统：Windows 操作系统（64 位）
+- CPU: 8 cores
+- Memory: 16 GB
+- Storage Space: 100 GB
+- Operating System: Windows OS (64-bit)
 
-## 准备工作
+## Preparation
 
-1. 部署 MongoDB 数据库，该库将作为 Tapdata 存储系统运行相关数据，例如日志、元数据等，相关部署方法，可参考[官方文档](https://www.mongodb.com/docs/v4.4/administration/install-on-linux/)。
+1. Deploy MongoDB, which will serve as the storage system for Tapdata to run related data, such as logs and metadata. For deployment methods, refer to the [official documentation](https://www.mongodb.com/docs/v4.4/administration/install-on-linux/).
 
-2. 登录至待部署的设备上，安装 Java 1.8 并设置环境变量。
+2. Log in to the deployment device and install Java 1.8 and set environment variables.
 
-   1. [下载 Java 1.8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html) 并根据提示完成安装。
+   1. [Download Java 1.8](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html) and follow the prompts to complete the installation.
 
-   2. 进入**控制面板** > **系统和安全** > **系统**。
+   2. Go to **Control Panel** > **System and Security** > **System**.
 
-   3. 单击左侧的**高级系统设置**，然后单击**环境变量**。
+   3. Click **Advanced System Settings** on the left, then click **Environment Variables**.
 
-      ![选择环境变量](../../images/select_system_env.png)
+      ![Select Environment Variables](../../images/select_system_env.png)
 
-   4. 在弹出的对话框中，单击**系统变量**下方的**新建**，然后填写变量名和值，最后单击**确定**。
-   
-      ![添加变量](../../images/add_system_env.png)
-   
-      * **变量名**：`JAVA_HOME`
-      * **变量值**：JDK 的安装路径，本例为 `C:\Program Files\Java\jdk1.8.0_202`
-   
-   5. 在**系统变量**区域框中，找到并双击名为 **Path** 的变量，然后在弹出的对话框中，分别新建下述环境变量，最后单击**确定**。
-   
-      ![修改变量](../../images/edit_system_env.png)
-   
-      * `%JAVA_HOME%\bin`
-      * `%JAVA_HOME%\jre\bin`
-   
-   6. 参考步骤 4，继续新增系统变量，变量名和值如下，完成设置后单击**确定**。
-   
-      * **变量名**：`CLASSPATH`
-      * **变量值**：`.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar`
-   
-   7. （可选）打开命令行，执行`java -version` 命令验证环境变量有效性，执行成功后示例如下：
+   4. In the dialog that appears, click **New** under **System Variables**, fill in the variable name and value, and click **OK**.
+
+      ![Add Variable](../../images/add_system_env.png)
+
+      - **Variable Name**: `JAVA_HOME`
+      - **Variable Value**: The installation path of JDK, for example, `C:\Program Files\Java\jdk1.8.0_202`
+
+   5. In the **System Variables** area, find and double-click the **Path** variable, then in the dialog that appears, add the following environment variables, and click **OK**.
+
+      ![Edit Variable](../../images/edit_system_env.png)
+
+      - `%JAVA_HOME%\bin`
+      - `%JAVA_HOME%\jre\bin`
+
+   6. Following step 4, continue to add a system variable with the name and value as follows, then click **OK** after completing the setup.
+
+      - **Variable Name**: `CLASSPATH`
+      - **Variable Value**: `.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar`
+
+   7. (Optional) Open the command line, execute `java -version` to verify the effectiveness of the environment variable. Successful execution example:
 
       ```bash
       java version "1.8.0_202"
       Java(TM) SE Runtime Environment (build 1.8.0_202-b08)
       Java HotSpot(TM) 64-Bit Server VM (build 25.202-b08, mixed mode)
       ```
-   
-      
 
-## 操作步骤
+
+
+## Procedure
 
 :::tip
 
-本文以 Windows Server 2019 为例，演示部署流程。
+This example uses Windows Server 2019 to demonstrate the deployment process.
 
 :::
 
-1. 下载 Tapdata 安装包（可[联系我们](mailto:team@tapdata.io)获取），将安装包解压到所需目录。
+1. Download the Tapdata installation package (you can [contact us](mailto:team@tapdata.io) to obtain it) and unzip the package to the desired directory.
 
-2. 打开命令行，执行下述格式的命令进入到解压到的目录，本案例中为 `D:\tapdata`。
+2. Open the command line, navigate to the unzipped directory by executing the following command, in this example, `D:\tapdata`.
 
    ```bash
    cd /d D:\tapdata
    ```
 
-3. 准备 License 文件。
+3. Prepare the License file.
 
-   1. 执行下述命令获取申请所需的 SID 信息。
+   1. Execute the following command to obtain the SID information required for the application.
 
       ```bash
       java -cp components/tm.jar -Dloader.main=com.tapdata.tm.license.util.SidGenerator org.springframework.boot.loader.PropertiesLauncher
       ```
 
-   2. 将打印出的 SID 信息提供给 Tapdata 支持团队，完成 License 申请流程。
+   2. Provide the printed SID information to the Tapdata support team to complete the License application process.
 
-   3. 将申请到的 License 文件上传至解压后的目录中。
+   3. Upload the obtained License file to the unzipped directory.
 
-2. 执行 `./tapdata.exe start`，跟随命令行提示，依次设置 Tapdata 的登录地址、API 服务端口、MongoDB 连接信息等，示例及说明如下：
+2. Execute `./tapdata.exe start` and follow the command line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc. Example and explanations are as follows:
 
    ```bash
     ./tapdata.exe start
     _______       _____  _____       _______
    |__   __|/\   |  __ \|  __ \   /\|__   __|/\    
       | |  /  \  | |__) | |  | | /  \  | |  /  \   
-      | | / /\ \ |  ___/| |  | |/ /\ \ | | / /\ \  
+      | | / /\ \ |  ___/| |  |/ /\ \ | | / /\ \  
       | |/ ____ \| |    | |__| / ____ \| |/ ____ \ 
-      |_/_/    \_\_|    |_____/_/    \_\_/_/    \_\ 
+      |_/_/    \_\_|    |_____/_/    \_\_/_/    \_\
    
    WORK DIR:/root/tapdata
    Init tapdata...
-   ✔ Please enter backend url, comma separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/):  …
+   ✔ Please enter backend url, comma-separated list. e.g.:http://127.0.0.1:3030/ (Default: http://127.0.0.1:3030/):  …
    ✔ Please enter tapdata port. (Default: 3030):  …
-   ✔ Please enter api server port. (Default: 3080):  …
+   ✔ Please enter API server port. (Default: 3080):  …
    ✔ Does MongoDB require username/password?(y/n):  … no
    ✔ Does MongoDB require TLS/SSL?(y/n):  … no
    ✔ Please enter MongoDB host, port, database name(Default: 127.0.0.1:27017/tapdata):  …
    ✔ Does API Server response error code?(y/n):  … yes
-   MongoDB uri:  mongodb://127.0.0.1:27017/tapdata
+   MongoDB URI:  mongodb://127.0.0.1:27017/tapdata
    MongoDB connection command: mongo  mongodb://127.0.0.1:27017/tapdata
    System initialized. To start Tapdata, run: tapdata start
    WORK DIR:/root/tapdata
    Testing JDK...
-   java version:1.8
+   Java version:1.8
    Java environment OK.
    Unpack the files...
-   Restart TapdataAgent ...:
-   TapdataAgent starting ...:
+   Restart Tap
+
+dataAgent ...:
+TapdataAgent starting ...:
    ```
 
-   * **Please enter backend url**：设置 Tapdata 平台的登录地址，默认为 `http://127.0.0.1:3030/`
-   * **Please enter tapdata port**：设置 Tapdata 平台的登录端口，默认为 `3030`。
-   * **Please enter api server port**：设置 API Server 的服务端口，默认为 `3080`。
-   * **Does MongoDB require username/password?**：MongoDB 数据库是否启用了安全认证，未启用则输入 **n**，如果启用则输入 **y**，然后根据提示分别输入用户名、密码和鉴权数据库（默认为 `admin`）。
-   * **Does MongoDB require TLS/SSL?(y/n)**：MongoDB 数据库是否启用 TSL/SSL 加密，未启用则输入 **n**，如果启用则输入 **y**，然后根据提示分别输入 CA 证书和 Certificate Key 文件的绝对地址路径，以及 Certificate Key 的文件密码。
-   * **Please enter MongoDB host, port, database name**：设置 MongoDB 数据库的 URI 连接信息，默认为 `127.0.0.1:27017/tapdata`。
-   * **Does API Server response error code?**：是否启用 API Server 响应错误码功能。
+   * **Please enter backend url**: Set the login address for the Tapdata platform, default is `http://127.0.0.1:3030/`.
+   * **Please enter tapdata port**: Set the login port for the Tapdata platform, default is `3030`.
+   * **Please enter API server port**: Set the service port for the API Server, default is `3080`.
+   * **Does MongoDB require username/password?**: If MongoDB database has enabled security authentication, enter **n** if not enabled, or **y** if enabled, then follow prompts to enter username, password, and the authentication database (default is `admin`).
+   * **Does MongoDB require TLS/SSL?(y/n)**: If MongoDB database has enabled TSL/SSL encryption, enter **n** if not enabled, or **y** if enabled, then follow prompts to enter the absolute path of the CA certificate and Certificate Key file, and the file password of the Certificate Key.
+   * **Please enter MongoDB host, port, database name**: Set the URI connection information for the MongoDB database, default is `127.0.0.1:27017/tapdata`.
+   * **Does API Server response error code?**: Whether to enable API Server response error code function.
 
-   部署成功后，命令行返回示例如下：
+   After successful deployment, the command line returns the following example:
 
    ```bash
    deployed connector.
@@ -135,36 +137,30 @@
    API service started
    ```
 
-3. 通过浏览器登录 Tapdata 平台，本机的登录地址为  [http://127.0.0.1:3030](http://127.0.0.1:3030)，首次登录请及时修改密码以保障安全性。
+3. Log in to the Tapdata platform through a browser. The local login address is [http://127.0.0.1:3030](http://127.0.0.1:3030). Please change the password promptly after the first login to ensure security.
 
    :::tip
 
-   如需在同一内网的其他设备上访问 Tapdata 服务，请确保网络可互通，例如[设置 Windows 防火墙](https://learn.microsoft.com/zh-cn/windows/security/operating-system-security/network-security/windows-firewall/configure)，允许访问本机的 3030 和 3080 端口。
+   To access the Tapdata service from other devices on the same internal network, ensure the network is intercommunicable, for example, [setting Windows Firewall](https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/configure-the-windows-firewall-to-allow-sql-server-access) to allow access to ports 3030 and 3080 on the local machine.
 
    :::
 
-
-
-## 部署命令执行示例
+## Deployment Command Example
 
 import AsciinemaPlayer from '@site/src/components/AsciinemaPlayer/AsciinemaPlayer.tsx';
 
 <AsciinemaWidget src="https://docs.tapdata.io/asciinema_playbook/install_tapdata.cast" rows={20} idleTimeLimit={3} preload={true} />
 
-
 <AsciinemaPlayer
-    src="/asciinema_playbook/install_tapdata.cast"
-    poster="npt:0:20"
-    rows={25}
-    speed={1.8}
-    preload={true}
-    terminalFontSize="15px"
-    fit={false}
+src="/asciinema_playbook/install_tapdata.cast"
+poster="npt:0:20"
+rows={25}
+speed={1.8}
+preload={true}
+terminalFontSize="15px"
+fit={false}
 />
 
+## Next Steps
 
-
-## 下一步
-
-[连接数据库](../connect-database.md)
-
+[Connect to Databases](../connect-database.md)

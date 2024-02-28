@@ -1,55 +1,61 @@
 # mrs-hive3
 
-请遵循以下说明以确保在 Tapdata 中成功添加和使用 Hive 数据库。
+Follow these instructions to ensure that the Hive database is successfully added and used in Tapdata.
 
-## 限制说明
+### **Restriction Description **
 
-Tapdata 系统当前版本 Hive 仅支持作为目标。
+Tapdata The current version of the Hive system supports only the target.
 
-## 支持版本
+### **Supported version **
 
 Hive3.1.2
 
-## 配置说明
+### **Configuration description **
 
-#### 数据源配置
+#### Data source configuration
 
 - Host/IP
 - Port
-- 数据库名名称
-- 账户、密码
+- Database name Name of the database
+- Account and Password
 
-#### 开启 CDC 配置
+#### Enables the CDC configuration
 
-Hive 中 行级操作 update 和 delete 是属于事务操作，所以需要在 Hive 中开启事务操作，修改 `hive-site.xml` 中配置项为如下配置，修改完成后重启生效。
+Hive row-level operations UPDATE and DELETE are transaction operations. Therefore, you need to enable transaction operations in Hive and modify the configuration items in 'hive-site. XML' to take effect after the modification is complete.
 
 ```
 <property>
-    <name>hive.support.concurrency</name>
-    <value>true</value>
+<name>hive.support.concurrency</name>
+<value>true</value>
 </property>
 <property>
-    <name>hive.enforce.bucketing</name>
-    <value>true</value>
+<name>hive.enforce.bucketing</name>
+<value>true</value>
 </property>
 <property>
-    <name>hive.exec.dynamic.partition.mode</name>
-    <value>nonstrict</value>
+<name>hive.exec.dynamic.partition.mode</name>
+<value>nonstrict</value>
 </property>
 <property>
-    <name>hive.txn.manager</name>
-    <value>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</value>
+<name>hive.txn.manager</name>
+<value>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</value>
 </property>
 <property>
-    <name>hive.compactor.initiator.on</name>
-    <value>true</value>
+<name>hive.compactor.initiator.on</name>
+<value>true</value>
 </property>
 <property>
-    <name>hive.compactor.worker.threads</name>
-    <value>1</value>
+<name>hive.compactor.worker.threads</name>
+<value>1</value>
 </property>
 <property>
-    <name>hive.in.test</name>
-    <value>true</value>
+<name>hive.in.test</name>
+<value>true</value>
 </property>
 ```
+
+### Connect test items
+
+- Checks host/IP and port
+- Check the database name
+- Check account and password

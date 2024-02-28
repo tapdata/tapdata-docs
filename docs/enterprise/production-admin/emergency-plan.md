@@ -1,196 +1,175 @@
-# 系统维护与应急处理策略
+# System Maintenance & Emergency Plans
 
-本文档提供了全面的产品应急处理流程和预案策略，旨在帮助您在面临突发事件和产品问题时，如何迅速、有效地进行响应，减轻故障带来的影响，提升产品的整体稳定性和安全性。
-
-:::tip
-
-Tapdata 支持单机或高可用部署，如您部署在生产环境中，推荐采用[高可用部署](install-tapdata-ha.md)方式。
-
-:::
-
-## 组件恢复与任务重启策略说明
-
-为确保系统的高可用性和数据同步任务的稳定性，Tapdata 设计了异常复策略，旨在快速响应组件异常，并自动恢复服务和任务，从而最大程度地减少对业务的影响。
-
-| 组件   | 说明                                                         |
-| ------ | ------------------------------------------------------------ |
-| 引擎   | ●  引擎启动后，其他组件正常，任务将根据当前阶段逐步恢复，恢复时间受任务数影响，例如任务数小于 10 个，预计在几秒内恢复任务数不超过 100 个，预计在 5 分钟内恢复。 <br />●  增量同步任务将直接恢复正常运行，同步延迟将逐步减少。<br />●  全量同步任务将重新开始全量同步，直至进入增量阶段。 |
-| 管理端 | 管理端恢复正常后，如果引擎环境未受影响，所有引擎预计在 30 秒内自动恢复，随后任务逐步回到正常状态。 |
-| 数据库 | 数据库从异常状态恢复后（大部分节点正常），且管理端与引擎环境正常的情况下，预计在 1 分钟内实现全面恢复，所有管理端和引擎将自动重启，任务随之逐步恢复。 |
-
-
-
-## 资源监控与管理
-
-为有效地管理和维护 Tapdata 系统的运行，确保数据处理任务的连续性和效率，推荐定期对机器资源进行检查和维护，以预防潜在的问题：
-
-
-
-* **磁盘空间**：为了维护系统的稳定性，建议定期监控和管理磁盘空间。在发现磁盘空间不足时，可以按照以下步骤进行处理：
-  - 安全清理 Tapdata 工作目录下的 `logs` 文件夹中的日志文件。
-  - 对于非 Tapdata 服务占用的磁盘空间，建议进行相应的排查和清理工作。
-* **内存**：
-  - 对于元数据库（例如 MongoDB 中间库），建议通过添加参数 `storage.wiredTiger.engineConfig.cacheSizeGB: X` 来有效管理内存使用。此设置有助于控制数据库内存占用，建议设置为物理内存的一半左右。
-  - 对于 Tapdata 引擎和管理端，可通过配置文件中的 `tapdataJavaOpts` 和 `tapdataTMJavaOpts` 控制内存使用。例如，设置 "-Xmx4G -Xms4G" 可将进程内存限制在 4GB 内。
-* **网络**：
-  - 网络的短暂中断通常不会影响 Tapdata 任务的正常运行。但在网络长时间中断的情况下，可能会导致任务出错或中断。这种情况下，建议尽快排查网络问题，并在解决后重启相关进程以恢复任务。
-
-
-
-
-
-## 服务异常处理策略
-
-### 引擎异常恢复
-
-在面临引擎服务异常时，我们的目标是最大限度地减少对业务的影响并快速恢复正常运行。不论是单引擎部署还是高可用（HA）部署，我们提供了一系列的策略和步骤来应对引擎异常的情况。
-
-#### 高可用（HA）部署
-
-在[高可用环境](install-tapdata-ha.md)下，单个引擎异常后，其任务预计在 10 分钟内逐渐被其他引擎接管，最小化任务影响，同时会在后台尝试自动恢复异常的引擎。
-
-#### 单引擎部署
-
-对于单引擎部署，引擎异常可能导致同步任务立即中断。此时如果守护进程或操作系统进程正常运行，引擎因 OOM（内存溢出）或意外终止，Tapdata 通常会在 30 秒内自动重启引擎。如果未能启动成功，您需要手动干预，例如：
-
-- 如遇服务器硬件故障、断电或网络故障等情况，需待环境恢复后检查引擎状态。
-- 如果引擎未能自动启动，可通过以下步骤手动重启：
-  1. 进入 Tapdata 工作目录：`cd 工作目录`。
-  2. 检查组件状态：`./tapdata status`。
-  3. 启动或重启引擎：`./tapdata start backend` 或 `./tapdata restart backend`
-  4. 确认引擎状态：如果显示 `Tapdata Engine PID`，则表示启动成功。
-
-
-
-### 管理端异常恢复
-
-面对管理端异常的情况，我们的目标是确保业务连续性并迅速恢复服务，以下是应对管理端异常的策略和步骤。
-
-#### 高可用（HA）部署
-
-在[高可用环境](install-tapdata-ha.md)下，至少有一个管理端正常运行时，所有任务将继续无影响地运行。如果所有管理端均发生了异常，恢复策略与单管理端部署相同。
-
-#### 单管理端部署
-
-在单管理端部署中，管理端异常通常不会立即影响同步任务。此时如果守护进程或操作系统进程正常运行，管理端因 OOM（内存溢出）或意外终止，Tapdata 通常会在 30 秒内自动重启管理端。如果未能启动成功，您需要手动干预，例如：
+This document provides a comprehensive emergency handling process and contingency strategies for Tapdata products, aiming to help you respond quickly and effectively in the event of an emergency or product issue, thereby mitigating the impact of failures and enhancing the overall stability and security of the product.
 
 :::tip
 
-如果10分钟后管理端未成功启动，所有引擎可能会停止任务并退出。在这种情况下，推荐手动重启管理端 。
+Tapdata supports both standalone and high-availability deployments. For production environments, it is recommended to use a [high-availability deployment](install-tapdata-ha.md) method.
 
 :::
 
-- 如遇服务器硬件故障、断电或网络故障等情况，需待环境恢复后检查管理端状态。
-- 如果引擎未能自动启动，可通过以下步骤手动重启：
-  1. 进入 Tapdata 工作目录：`cd 工作目录`。
-  2. 检查组件状态：`./tapdata status`。
-  3. 启动或重启管理端：`./tapdata start frontend` 或 `./tapdata restart frontend`。
-  4. 确认启动成功：显示 `Tapdata Frontend PID` 信息表示启动完成。
+## Component Recovery and Task Restart Strategy
 
+To ensure the high availability of the system and the stability of data synchronization tasks, Tapdata has designed a failure recovery strategy aimed at quickly responding to component anomalies and automatically restoring services and tasks to minimize business impact.
 
+| Component | Description |
+| --------- | ----------- |
+| Engine    | ●  Once the engine starts and other components are normal, tasks will gradually recover based on the current phase. The recovery time is influenced by the number of tasks. For instance, tasks fewer than 10 are expected to recover within seconds, and those not exceeding 100 within 5 minutes. <br />●  Incremental synchronization tasks will resume normal operation directly, and the synchronization delay will gradually decrease. <br />●  Full synchronization tasks will restart the full synchronization until they enter the incremental phase. |
+| Management End | After the management end returns to normal, if the engine environment is unaffected, all engines are expected to automatically recover within 30 seconds, followed by a gradual return of tasks to normal status. |
+| Database | After the database recovers from an abnormal state (most nodes are normal), and both the management end and engine environment are normal, a comprehensive recovery is expected within 1 minute. All management ends and engines will automatically restart, and tasks will gradually resume. |
 
-### 数据库异常
+## Resource Monitoring and Management
 
-Tapdata 会将任务的必要配置、共享缓存等信息存储至指定的 MongoDB 数据库中，如果该数据库发生异常，恢复策略如下。
+To effectively manage and maintain the operation of the Tapdata system, ensuring the continuity and efficiency of data processing tasks, it is recommended to regularly check and maintain machine resources to prevent potential issues:
 
-#### 高可用（HA）部署
+* **Disk Space**: To maintain system stability, it's advisable to regularly monitor and manage disk space. In case of insufficient disk space, follow these steps for resolution:
+  - Safely clear log files in the `logs` folder under the Tapdata working directory.
+  - For disk space occupied by services other than Tapdata, appropriate investigation and cleanup actions are recommended.
+* **Memory**:
+  - For the meta-database (e.g., MongoDB intermediary), it's advisable to manage memory usage effectively by adding the parameter `storage.wiredTiger.engineConfig.cacheSizeGB: X`. This setting helps control database memory usage, recommended to be set to about half of the physical memory.
+  - For the Tapdata engine and management end, memory usage can be controlled through the `tapdataJavaOpts` and `tapdataTMJavaOpts` in the configuration file. For example, setting "-Xmx4G -Xms4G" limits the process memory to within 4GB.
+* **Network**:
+  - Short-term network interruptions usually do not affect the normal operation of Tapdata tasks. However, long-term network interruptions might cause tasks to error or interrupt. In such cases, it's recommended to troubleshoot network issues as soon as possible and restart related processes to recover tasks.
 
-在高可用环境中，少数节点的数据库异常通常不会对系统运行产生影响。但如果异常节点超过半数，则需要立即着手修复这些节点，以降低全部数据库异常的风险。
+## Service Exception Handling Strategy
 
-#### 单数据库部署
+### Engine Exception Recovery
 
-对于单数据库部署环境，数据库的短暂异常一般不会立即影响服务。但如果异常时间超过 10 分钟，管理端可能会退出运行，此时的处理方法如下：
+Facing engine service exceptions, our goal is to minimize business impact and quickly restore normal operation. Whether in a single engine deployment or high-availability (HA) deployment, we offer a series of strategies and steps to address engine exceptions.
 
-- **及时监控**：持续监控数据库状态，一旦异常，立即着手排查并修复。
-- **紧急措施**：如果数据库超过 10 分钟，采取紧急措施，例如重启管理端，具体操作参见**管理端异常**章节。
+#### High-Availability (HA) Deployment
 
+In a [high-availability environment](install-tapdata-ha.md), tasks from a single exceptional engine are expected to be gradually taken over by other engines within 10 minutes to minimize task impact, while attempts to automatically recover the exceptional engine will be made in the background.
 
+#### Single Engine Deployment
 
+For single-engine deployments, engine exceptions may cause synchronization tasks to interrupt immediately. If the daemon or operating system processes are running normally and the engine terminates unexpectedly due to OOM (Out of Memory) or other reasons, Tapdata will typically automatically restart the engine within 30 seconds. If the engine does not restart successfully, manual intervention is required, for example:
 
+- In case of server hardware failure, power outage, or network failure, check the engine status after the environment is restored.
+- If the engine fails to start automatically, follow these steps to manually restart:
+  1. Enter the Tapdata working directory: `cd working_directory`.
+  2. Check component status: `./tapdata status`.
+  3. Start or restart the engine: `./tapdata start backend` or `./tapdata restart backend`.
+  4. Confirm engine status: If `Tapdata Engine PID` is displayed, it indicates successful startup.
 
-## 进程异常处理策略
+### Management End Exception Recovery
 
-### 引擎性能及异常处理
+Facing management end exceptions, our goal is to ensure business continuity and quickly restore services. Below are the strategies and steps for dealing with management end exceptions.
 
-引擎运行过程中可能会遇到不同的性能问题或异常情况。以下是常见的几种情况及其处理策略：
+#### High-Availability (HA) Deployment
 
-* **内存耗尽状况**：如果进程存活，但 CPU 接近满载，且任务监控显示垃圾回收（GC）活动持续超过90%，这通常表示内存不足。此时，您可能会发现任务的心跳不再更新或仅有少数任务更新。
+In a [high-availability environment](install-tapdata-ha.md), as long as at least one management end is running normally, all tasks will continue to run unaffected. If all management ends are exceptional, the recovery strategy is the same as for a single management end deployment.
 
-  **解决方案**：减少引擎上运行的任务数量或调整引擎运行内存的最大值，然后重启引擎。
+#### Single Management End Deployment
 
-* **任务过载状况**：如果进程存活，CPU 接近满载，所有任务都在运行中，但 GC 活动持续低于10%，同时多数任务性能较低，这种情况通常是任务数超载引起的。
+In single management end deployments, management end exceptions usually do not immediately affect synchronization tasks. If the daemon or operating system processes are running normally and the management end terminates unexpectedly due to OOM (Out of Memory) or other reasons, Tapdata will typically automatically restart the management end within 30 seconds. If it does not restart successfully, manual intervention is required, for example:
 
-  **解决方案**：停止不必要的任务或使用更高 CPU 配置的机器运行引擎，或进行引擎扩容。
+:::tip
 
-* **不健康工作状态**：如果引擎进程存活，但任务不运行，且 CPU 利用率为 0%，这可能意味着引擎处于不健康状态。
+If the management end does not successfully restart after 10 minutes, all engines may stop tasks and exit. In this case, it is recommended to manually restart the management end.
 
-  **解决方案**：重启引擎，并将`logs`目录下最近几天的日志发送给支持 Tapdata 技术支持团队以获得帮助。
+:::
 
+- In case of server hardware failure, power outage, or network failure, check the management end status after the environment is restored.
+- If the engine fails to start automatically, follow these steps to manually restart:
+  1. Enter the Tapdata working directory: `cd working_directory`.
+  2. Check component status: `./tapdata status`.
+  3. Start or restart the management end: `./tapdata start frontend` or `./tapdata restart frontend`.
+  4. Confirm startup success: Display of `Tapdata Frontend PID` indicates completion.
 
+### Database Exception
 
-### 管理端稳定性及异常处理
+Tapdata stores necessary configurations, shared cache, and other information in a designated MongoDB database. In case of database exceptions, the recovery strategy is as follows.
 
-管理端通常不运行数据同步任务，因此出现故障的概率相对较低。但在某些情况下，资源问题（如磁盘、内存或网络问题）可能导致服务运行异常。此外，如果管理端出现 CPU 已经接近满载的情况，请适当调大配置文件中 `tapdataTMJavaOpts` 限制的内存使用值，并将其重启。
+#### High-Availability (HA) Deployment
 
+In a high-availability environment, database exceptions in a minority of nodes usually do not affect system operation. However, if the number of exceptional nodes exceeds half, immediate action is required to repair these nodes to reduce the risk of a complete database failure.
 
+#### Single Database Deployment
 
-### 数据库异常处理与恢复策略
+For single database deployments, short-term database exceptions generally do not immediately affect services. However, if exceptions last for more than 10 minutes, the management end may exit operation. In this case, the following measures should be taken:
 
-Tapdata 会将任务的必要配置、共享缓存等信息存储至指定的 MongoDB 数据库中，推荐数据库本身采用[副本集部署](https://www.mongodb.com/docs/manual/replication/)方式，保障其高可用性。
+- **Timely Monitoring**: Continuously monitor the database status and immediately start troubleshooting and repairing upon detection of anomalies.
+- **Emergency Measures**: If the database has been exceptional for more than 10 minutes, take emergency measures, such as restarting the management end, as detailed in the **Management End Exception
 
-#### 高可用（HA）部署
+** section.
 
-在推荐的高可用环境下，以下是常见的数据库问题及其解决方案：
+### Process Exception Handling Strategy
 
-* **副本集节点状态异常**：如果副本集的节点状态长期不是 PRIMARY、SECONDARY 或 ARBITER，应及时联系数据库管理员或 Tapdata 支持团队，避免潜在的安全风险。
-* **副本集同步延迟**：使用 `rs.status()` 命令检查主从同步延迟。其 **[optimeDate](https://www.mongodb.com/docs/v7.0/reference/command/replSetGetStatus/#mongodb-data-replSetGetStatus.members-n-.optimeDate)** 字段的值应当接近或相差在数秒以内，如果延迟过高，这意味着节点间的同步速率较低，应及时联系数据库管理员或 Tapdata 支持团队处理。
-* **日志窗口大小不足**：通过 `rs.printReplicationInfo()` 检查日志窗口。如窗口时间过短（例如小时或分钟级），可能意味着写入过载或日志配置不当，联系数据库管理员或 Tapdata 支持团队进行调整。
+#### Engine Performance and Exception Handling
 
-#### 非 HA 部署
+The engine may encounter various performance issues or exceptions during operation. Below are common scenarios and their handling strategies:
 
-对于少于 3 个节点的数据库部署（例如单节点部署），应只用于测试环境，不可用于生产环境。一旦此类数据库中的节点发生异常，可能引发数据丢失或损坏，从而引发业务中断，常见异常处理方案如下：
+- **Memory Exhaustion**: If the process is alive but CPU is nearly full and task monitoring shows continuous garbage collection (GC) activity over 90%, it typically indicates insufficient memory. In this case, you might notice that the task heartbeat is no longer updating or only a few tasks are updating.
 
-* **磁盘用尽**：
-  * **管理磁盘用尽**：清理不必要的文件，并重启数据库。
-  * **数据磁盘用尽**：避免删除任何数据文件，并联系数据库管理员或 Tapdata 技术支持团队。
-* **内存用尽**：调整 `storage.wiredTiger.engineConfig.cacheSizeGB` 配置，然后重启数据库。
-* **数据库响应缓慢**：如果数据库 CPU 满载或 `db.currentOp()` 显示异常操作，联系数据库管理员或 Tapdata 技术支持团队。
+  **Solution**: Reduce the number of tasks running on the engine or adjust the maximum memory allocation for the engine, then restart the engine.
 
-在处理任何数据库异常时，建议先联系 DBA 团队或 Tapdata 技术支持团队处理，确保数据库稳定运行和数据安全。
+- **Task Overload**: If the process is alive, CPU is nearly full, all tasks are running, but GC activity is consistently below 10%, and most tasks are performing poorly, it's likely due to task overload.
 
+  **Solution**: Stop unnecessary tasks or run the engine on a machine with higher CPU configuration, or scale out the engine.
 
+- **Unhealthy Working State**: If the engine process is alive but tasks are not running, and CPU utilization is 0%, it may indicate the engine is in an unhealthy state.
 
-## 任务异常处理与恢复策略
+  **Solution**: Restart the engine and send the logs from the `logs` directory of the last few days to the Tapdata technical support team for help.
 
-在任务执行过程中遇到异常，我们的目标是迅速诊断问题并恢复任务。以下是处理不同任务异常情况的策略。
+#### Management End Stability and Exception Handling
 
-### 任务报错停止
+The management end typically does not run data synchronization tasks, so the probability of faults is relatively lower. However, in some cases, resource issues (such as disk, memory, or network problems) may cause service to run abnormally. Additionally, if the management end experiences CPU near full capacity, consider increasing the memory usage limit in the `tapdataTMJavaOpts` configuration file and restart it.
 
-- **重启任务**：尝试手动重启任务。如果任务恢复并且延迟降至可接受范围内，则解除告警，随后将保留的报错日志发送给支持团队以便深入分析，避免后续出现类似问题。
-- **任务重置**：如果任务数据量小且全量同步可快速完成，选择保留目标表数据与结构，重置任务后重新同步；如重置后任务仍失败，且可接受短暂数据表不可用，选择清除目标表数据与结构后重置任务。
-- **无法重启任务**：如果任务无法重启（如长期处于“启动中”或“重置失败”状态），首先检查源/目标数据库及 Tapdata 组件健康状况。如发现故障，先排除故障后再尝试恢复任务；如无明显故障，联系支持团队寻求帮助。
+#### Database Exception Handling and Recovery Strategy
 
-### 任务延迟过高
+Tapdata stores essential configuration, shared cache, and other information in a designated MongoDB database. It's recommended that the database itself adopts a [replica set deployment](https://www.mongodb.com/docs/manual/replication/) method to ensure its high availability.
 
-* **全局延迟**：若所有任务延迟升高，检查引擎资源和网络状况，可能由引擎过载或网络问题导致，尝试调整引擎配置或网络设置以解决问题。
-* **突发延迟**：若延迟突然升高但逐渐降低，可能源于源库的大批量修改。如果频繁发生，与源库使用方协调，调整大批量修改的时间。
-* **同源任务延迟**：若增加同源任务后延迟升高，考虑源库负载问题，也可以合并任务或启用共享挖掘，重启相关任务。
-* **数据量增长导致的延迟**：如同步速度上升且延迟升高，可能由数据量增长导致。可尝试暂停任务，调整目标写入参数，如增加并发线程数。
+#### High-Availability (HA) Deployment
 
-### 任务无法操作
+In the recommended high-availability environment, below are common database issues and their solutions:
 
-如果任务无法操作（如处于“启动中”、“停止中”等状态），请尝试以下步骤：
+- **Replica Set Node Status Abnormal**: If the status of nodes in the replica set is not PRIMARY, SECONDARY, or ARBITER for an extended period, contact the database administrator or Tapdata support team promptly to avoid potential security risks.
+- **Replica Set Synchronization Delay**: Check the primary-secondary synchronization delay using the `rs.status()` command. The **[optimeDate](https://www.mongodb.com/docs/v7.0/reference/command/replSetGetStatus/#mongodb-data-replSetGetStatus.members-n-.optimeDate)** field values should be close or differ by a few seconds. If the delay is significant, it indicates a low synchronization rate between nodes. Contact the database administrator or Tapdata support team for assistance.
+- **Insufficient Log Window Size**: Check the log window using `rs.printReplicationInfo()`. If the window time is short (e.g., hours or minutes), it may indicate write overload or improper log configuration. Contact the database administrator or Tapdata support team for adjustments.
 
-1. 检查所有 Tapdata 组件状态，确保无异常情况。
-2. 如组件正常，可复制任务在新任务中操作，优先保障业务正常运转。
-3. 在任务恢复后，联系支持团队进行进一步排查。
+#### Non-HA Deployment
 
-### 共享挖掘任务异常
+For database deployments with fewer than 3 nodes (e.g., single-node deployment), they should only be used in testing environments and are not suitable for production. Anomalies in such database nodes can lead to data loss or corruption, causing business interruption. Common exception handling strategies include:
 
-如果共享挖掘任务出现异常，可能会导致所有相关的任务进入增量同步延迟状态，您可以在相关任务列表上看到一个黄色感叹号，提示此任务相关的挖掘任务停止运行，相关排查流程如下：
+- **Disk Exhaustion**:
+  - **Manage Disk Exhaustion**: Clear unnecessary files and restart the database.
+  - **Data Disk Exhaustion**: Avoid deleting any data files and contact the database administrator or Tapdata technical support team.
+- **Memory Exhaustion**: Adjust the `storage.wiredTiger.engineConfig.cacheSizeGB` configuration, then restart the database.
+- **Slow Database Response**: If the database CPU is overloaded or `db.currentOp()` shows abnormal operations, contact the database administrator or Tapdata technical support team.
 
-1. 如共享挖掘任务异常，及时启动停止的共享挖掘任务。
-2. 如共享挖掘启动报错，避免重置以防数据丢失。
-3. 如可接受重跑全量，先停止所有相关任务，重置共享挖掘，再重启正常任务。
-4. 如果问题持续，及时联系我们的支持团队获取帮助。
+In any case of database exceptions, it is advisable to first contact the DBA team or Tapdata technical support team for resolution, ensuring stable operation and data security of the database.
 
+### Task Exception Handling and Recovery Strategy
+
+When encountering exceptions during task execution, our goal is to diagnose the issue quickly and restore the task. Below are strategies for handling different task exceptions.
+
+#### Task Error Stopped
+
+- **Restart Task**: Try manually restarting the task. If the task resumes and the delay drops to an acceptable range, the alarm can be cleared. Subsequently, send the retained error logs to the support team for further analysis to prevent similar issues in the future.
+- **Task Reset**: If the task data volume is small and full synchronization can be completed quickly, choose to retain the target table data and structure, reset the task, and resynchronize; if the task still fails after reset and the temporary unavailability of the data table is acceptable, choose to clear the target table data and structure before resetting the task.
+- **Unable to Restart Task**: If the task cannot be restarted (e.g., remains in "Starting" or "Reset Failed" status for a long time), first check the health of the source/target databases and Tapdata components. If a fault is found, eliminate it before attempting to recover the task; if no apparent fault is found, contact the support team for assistance.
+
+#### Excessive Task Delay
+
+- **Global Delay**: If all tasks experience increased delay, check the engine resources and network conditions. It may be caused by engine overload or network issues. Try adjusting engine configurations or network settings to resolve the issue.
+- **Sudden Delay**: If the delay suddenly increases but gradually decreases, it may be due to large batch modifications in the source database. If this occurs frequently, coordinate with the source database users to adjust the timing of large batch modifications.
+- **Same Source Task Delay**: If delay increases after adding tasks from the same source, consider source database load issues. Also, consider merging tasks or enabling shared mining, then restart related tasks.
+- **Delay Caused by Data Volume Growth**: If the synchronization speed rises and delay increases, it may be due to data volume growth. Try pausing tasks, adjusting target write parameters, such as increasing the number of concurrent threads.
+
+### Task Unable to Operate
+
+If a task cannot be operated (e.g., remains in "Starting", "Stopping", etc., status), try the following steps:
+
+1. Check the status of all Tapdata components to ensure no anomalies.
+2. If components are normal, copy the task to operate in a new task, prioritizing business continuity.
+3. After task recovery, contact the support team for further investigation.
+
+### Shared Mining Task Exception
+
+If a shared mining task encounters an exception, it may cause all related tasks to enter an incremental synchronization delay state. You can see a yellow exclamation mark on the related task list, indicating that the shared mining task related to this task has stopped running. The troubleshooting process includes:
+
+1. If the shared mining task is exceptional, promptly start the stopped shared mining task.
+2. If starting shared mining reports an error, avoid resetting to prevent data loss.
+3. If it's acceptable to rerun full synchronization, first stop all related tasks, reset shared mining, then restart normal tasks.
+4. If the issue persists, contact our support team for assistance.

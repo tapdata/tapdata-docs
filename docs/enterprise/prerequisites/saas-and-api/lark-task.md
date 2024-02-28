@@ -1,50 +1,32 @@
-# LarkTask
+# Lark Task
 
-飞书是一款协作与管理平台，支持即时通讯、音视频会议等功能。完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加  Larktask（飞书任务）数据源，后续可将其作为目标库来构建数据管道。
+This article serves as a comprehensive guide, providing step-by-step instructions on adding Lark Task data sources to Tapdata, enabling efficient data synchronization and development for your projects.
 
+## Preparation
 
-## <span id="prerequisite">准备工作</span>
-
-1. 以管理员的身份登录[飞书开放平台](https://open.feishu.cn/app)。
-
-2. 在开发平台首页，进入企业自建的应用。
-
-   :::tip
-
-   关于企业自建应用的创建方法，见[开发流程](https://open.feishu.cn/document/home/introduction-to-custom-app-development/self-built-application-development-process)。
-
-   :::
-
-3. 在左侧导航栏，单击**凭证与基础信息**，获取 App ID 和 App Secret 信息，后续将在连接数据源时使用。
-
-   ![](../../images/obtain_feishu_app_ak.png)
+1. Log in to https://open.feishu.cn/app.
+1. Locate the corresponding application and find it in the ***voucher and basic information*** of the application.
+1. Get **App ID** and **App Secret**, we will fill these in Tapdata.
 
 
+## Use Lark to Creation Quest
 
-## 添加数据源
+The creation task must contain the following fields：：
 
-1. 登录 Tapdata 平台。
+```json
+[
+  {
+    "richSummary": "Here is the title of the task",
+    "richDescription": "Here is the task description",
+    "time": "Here is the task expiration time, need to pass in the timestamp",
+    "collaboratorIds": "Here is the task leader's phone number or email address",
+    "followerIds": "Here the task focuses on the person's phone number or email address",
+    "title": "Here is the linkable title in the task description, which can be used with the following url",
+    "url": "Here's a link to the title above"
+  }
+]
+```
 
-2. 在左侧导航栏，单击**连接管理**。
-
-3. 在页面右侧，单击**创建连接**。
-
-4. 在跳转到的页面，单击 **Beta 数据源**标签页，然后选择 **LarkTask**。
-
-5. 根据下述说明完成数据源配置。
-
-   ![](../../images/feishu_connection_setting.png)
-
-   * **连接名称**：填写具有业务意义的独有名称。
-   * **连接类型**：仅支持**目标**。
-   * **应用 ID**、**应用 Secret**：可通过飞书开放平台获取，具体操作，见[准备工作](#prerequisite)。
-   * **agent 设置**：默认为**平台自动分配**，您也可以手动指定。
-   * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照本参数的设定定期刷新模型。
-
-6. 单击**连接测试**，测试通过后单击**保存**。
-
-   :::tip
-
-   如提示连接测试失败，请根据页面提示进行修复。
-
-   :::
+- cUserIds/fUserIds is the ***mobile phone number*** or ***email address*** of the task owner/task follower. The APP uses these two fields to create a task or add a task.
+- You need to use the user's registered phone number or email address to obtain the user_id to create tasks for the user.
+- You need to ensure that the user with the current mobile phone number or email address is in the visible range of this application. If not in the visible range of the current application version, you will not be able to send messages to this user. If necessary, you can check the visible range under the latest version in the application version management and publishing, and create a new version and add this user to the visible range.

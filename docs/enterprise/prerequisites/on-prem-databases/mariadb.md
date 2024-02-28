@@ -1,39 +1,50 @@
 # MariaDB
 
-MariaDB 是一个通用的开源关系数据库管理系统，可用于高可用性事务数据、分析、作为嵌入式服务器，并且广泛的工具和应用程序支持 MariaDB。完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加 MariaDB 数据源，后续可将其作为源或目标库来构建数据管道。
+MariaDB is a versatile open-source relational database management system used for high-availability transaction data, analytics, as an embedded server, and is widely supported by various tools and applications. Tapdata provides comprehensive support for building data pipelines utilizing MariaDB as both the source and target database.
+
+This article serves as a detailed guide, outlining the steps to seamlessly incorporate a MariaDB database into Tapdata, enabling efficient data integration and management within your pipelines.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 支持版本
+
+## Supported versions
+
 MariaDB 10.x
 
-import Content from '../../../reuse-content/beta/_beta.md';
+import Content from '../../../reuse-content/_beta.md';
 
 <Content />
 
-## 准备工作
+## Preparations
 
-### 作为源库
+Before establishing the connection, it is essential to complete the necessary preparations outlined in the provided article. These preparations may include authorizing an account and performing other relevant steps to ensure a smooth and secure connection.
 
-为保障任务的顺利执行，您需要为 MariaDB 数据库开启 Binlog（可实现增量数据同步），然后为数据复制/开发任务创建一个数据库账号。
+* [As a Source Database](#source)
+* [As a Target Database](#target)
+* [Enabling SSL Connection (Optional)](#ssl)
 
-1. 登录 MariaDB 数据库，执行下述格式的命令，创建用于数据同步/开发任务的账号。
+
+
+### <span id="source">As Source Database</span>
+
+To ensure smooth execution of tasks, you need to enable Binlog in the MariaDB database (for incremental data synchronization) and then create a database account for data replication/development tasks.
+
+1. Log into the MariaDB database and execute the following format of command to create an account for data synchronization/development tasks.
 
    ```sql
    CREATE USER 'username'@'host' IDENTIFIED BY 'password'
    ```
 
-   * **username**：用户名。
-   * **password**：密码。
-   * **host**：允许该账号登录的主机，百分号（%）表示允许任意主机。
-     示例：创建一个名为 tapdata 的账号：`CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';`
+   * **username**: Enter user name.
+   * **password**: Enter password.
+   * **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host. Example: Create an account named tapdata: `CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';`
    
-2. 为刚创建的账号授予权限，简易示例如下，推荐基于业务需求设置更精细化的权限控制。
+2. Grant privileges to the newly created account. Below is a simplified example, and it is recommended to set more detailed permissions based on business needs.
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="授予指定库权限">
+<TabItem value="Grant Specific Database Permissions">
 ```
 ```sql
 GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'username' IDENTIFIED BY 'password';
@@ -41,7 +52,7 @@ GRANT SELECT ON database_name.* TO 'username' IDENTIFIED BY 'password';
 ```
 </TabItem>
 
-<TabItem value="授予所有库权限">
+<TabItem value="Grant All Database Permissions">
 
 ```sql
 GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'username' IDENTIFIED BY 'password';
@@ -50,17 +61,18 @@ GRANT SELECT ON *.* TO 'username' IDENTIFIED BY 'password';
 </TabItem>
 </Tabs>
 
-* **database_name**：要授予权限的数据库名称。
-* **username**：用户名。
-* **password**：密码。
+* **username**: Enter user name.
+* **password**: Enter password.
+* **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host.
 
-3. 为保障读取 MariaDB 数据库的增量数据，您需要跟随下述步骤开启 Binlog。
+3. To ensure access to incremental data from the MariaDB database, follow the steps below to enable Binlog.
 
-   1. 使用 `vim` 命令，修改 MariaDB 的配置内容，例如：
+   1. Use the `vim` command to modify the configuration of MariaDB. For instance:
 
-      本文演示的场景中，MariaDB 部署在 Ubuntu 操作系统，该配置文件位于 `/etc/mysql/mariadb.cnf`，更多介绍，见 [MariaDB 配置文件介绍](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)。
+      In the scenario demonstrated in this article, MariaDB is deployed on the Ubuntu operating system, and the configuration file is located at `/etc/mysql/mariadb.cnf`. For more information, see [MariaDB Configuration File Introduction](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/).
    
       ```bash
+      [mysqld]
       server-id              = 1
       log_bin                = /var/log/mysql/myriadb-bin
       expire_logs_days       = 10
@@ -69,26 +81,26 @@ GRANT SELECT ON *.* TO 'username' IDENTIFIED BY 'password';
       binlog_row_image = FULL
       ```
    
-      - **server_id**：对于 MariaDB 中的每个服务器和复制客户端必须是唯一的，设置为大于 0 的整数。
-      - **log_bin**：binlog 文件的基本名称。
-      - **expire_logs_days**：二进制日志文件保留的天数，到期自动删除。
-      - **max_binlog_size**：单个 binlog 文件的最大大小。
-      - **binlog_format**：设置为 row，即记录修改了哪些行。
-      - **binlog_row_image**：设置为 full，即记录所有列的数据，无论它们是否更改。
+      - **server_id**: Must be unique for each server and replication client in MariaDB, set as an integer greater than 0.
+      - **log_bin**: The base name of the binlog file.
+      - **expire_logs_days**: The number of days to keep binary log files before automatic deletion.
+      - **max_binlog_size**: The maximum size of a single binlog file.
+      - **binlog_format**: Set to row, which records which rows were modified.
+      - **binlog_row_image**: Set to full, recording data for all columns, whether they changed or not.
    
-   2. 修改完成后，执行下述命令重启 MariaDB 数据库，请在业务低峰期操作以免影响服务。
-
+   2. After modification, execute the following command to restart the MariaDB database. Perform this during off-peak hours to avoid impacting services.
+   
       ```bash
       systemctl restart mariadb
       ```
    
-   3. （可选）登录 MariaDB 数据库，执行下述命令确认配置已生效，即输出的结果中，**format** 的值为 **ROW**。
-
+   3. (Optional) Log into the MariaDB database and execute the following command to confirm that the configuration has taken effect, i.e., the output shows **format** as **ROW**.
+   
       ```sql
       SHOW VARIABLES LIKE 'binlog_format';
       ```
    
-      输出示例如下：
+      Example output:
    
       ```sql
       +---------------+-------+
@@ -101,24 +113,23 @@ GRANT SELECT ON *.* TO 'username' IDENTIFIED BY 'password';
 
 
 
-### 作为目标库
+### <span id="target">As Target Database</span>
 
-1. 登录 MariaDB 数据库，执行下述格式的命令，创建用于数据同步/开发任务的账号。
+1. Log into the MariaDB database and execute the following format of command to create an account for data synchronization/development tasks.
 
    ```sql
    CREATE USER 'username'@'host' IDENTIFIED BY 'password'
    ```
 
-   * **username**：用户名。
-   * **password**：密码。
-   * **host**：允许该账号登录的主机，百分号（%）表示允许任意主机。
-     示例：创建一个名为 tapdata 的账号：`CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';`
+   * **username**: Enter user name.
+   * **password**: Enter password.
+   * **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host. Example: Create an account named tapdata: `CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';`
 
-2. 为刚创建的账号授予权限。
+2. Grant privileges to the newly created account.
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="授予指定库权限">
+<TabItem value="Grant Specific Database Permissions">
 ```
 ```sql
 GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, 
@@ -126,7 +137,7 @@ DROP ON database_name.* TO 'username';
 ```
 </TabItem>
 
-<TabItem value="授予所有库权限">
+<TabItem value="Grant All Database Permissions">
 
 ```sql
 GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, 
@@ -135,30 +146,30 @@ DROP ON *.* TO 'username';
 </TabItem>
 </Tabs>
 
-* **database_name**：要授予权限的数据库名称。
-* **username**：用户名。
+* **database_name**: The name of the database to which permissions are granted.
+* **username**: Enter user name.
 
 
 
-### <span id="ssl">开启 SSL 连接（可选）</span>
+### <span id="ssl">Enabling SSL Connection (Optional)</span>
 
-为进一步提升数据链路的安全性，您还可以选择为 MariaDB 数据库开启 SSL（Secure Sockets Layer）加密，实现在传输层对网络连接的加密，在提升通信数据安全性的同时，保证数据的完整性，具体操作流程如下：
+To further enhance the security of the data link, you can choose to enable SSL (Secure Sockets Layer) encryption for the MariaDB database. This ensures encryption at the transport layer for network connections, enhancing communication data security while maintaining data integrity. The specific steps are as follows:
 
-1. 创建 SSL 证书和私钥，可以使用自签名证书或从证书颁发机构获得的证书。
+1. Create SSL certificates and private keys, which can be self-signed or obtained from a certificate authority.
 
-   接下来，我们将演示如何通过 OpenSSL 创建自签名证书，在执行本步骤前，您可以登录 MariaDB 数据库并执行 `SHOW GLOBAL VARIABLES LIKE '%ssl%';` 命令，查看是否生成过 SSL/RSA 文件及 SSL 开启状态。
+   Next, we will demonstrate how to create a self-signed certificate using OpenSSL. Before proceeding, you can log into the MariaDB database and execute `SHOW GLOBAL VARIABLES LIKE '%ssl%';` to check if SSL/RSA files have been generated and the SSL status.
 
-   1. 登录 MariaDB 数据库所属的设备，执行下述命令生成 CA 证书。
+   1. Log into the device hosting the MariaDB database and execute the following commands to generate a CA certificate. For more information, see [OpenSSL](https://www.openssl.org/docs/man1.1.1/man1/openssl.html).
 
       ```bash
-      # 创建并进入证书文件存放目录，您也可以自由调整
+      # Create and enter the directory where the certificate files will be stored, adjust as needed
       mkdir -p /etc/mysql/ssl&&cd /etc/mysql/ssl
-      # 生成 CA 证书
+      # Generate the CA certificate
       openssl genrsa 2048 > ca-key.pem
       openssl req -new -x509 -nodes -days 365000 -key ca-key.pem -out ca-cert.pem
       ```
 
-   2. 生成服务器证书和密钥，后续将用于服务端的 SSL 加密。
+   2. Generate server certificates and keys, which will be used for server-side SSL encryption.
 
       ```bash
       openssl req -newkey rsa:2048 -days 365000 -nodes -keyout server-key.pem -out server-req.pem
@@ -166,7 +177,7 @@ DROP ON *.* TO 'username';
       openssl x509 -req -in server-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out server-cert.pem
       ```
 
-   3. 为双向认证生成客户端证书和密钥。
+   3. Generate client certificates and keys for two-way authentication.
 
       ```bash
       openssl req -newkey rsa:2048 -days 365000 -nodes -keyout client-key.pem -out client-req.pem
@@ -174,51 +185,51 @@ DROP ON *.* TO 'username';
       openssl x509 -req -in client-req.pem -days 365000 -CA ca-cert.pem -CAkey ca-key.pem -set_serial 01 -out client-cert.pem
       ```
 
-   4. 验证密钥正确性，如无问题则返回 `OK`。
+   4. Verify the correctness of the keys, returning `OK` if there are no issues.
 
       ```bash
       openssl verify -CAfile ca-cert.pem server-cert.pem
       openssl verify -CAfile ca-cert.pem client-cert.pem 
       ```
 
-2. 编辑 MariaDB 的配置文件，在 `[mysqld]` 部分添加以下内容，需将 `filepath` 更换为 CA 证书相关文件的生成地址，修改完成后保存并退出编辑。
+2. Edit the configuration file of MariaDB, adding the following content in the `[mysqld]` section. Replace `filepath` with the path where the CA certificate files are located. Save and exit the editor after making changes.
 
-   本案例中 MariaDB 部署在 Ubuntu 操作系统，该配置文件位于 `/etc/mysql/mariadb.cnf`，更多介绍，见 [MariaDB 配置文件介绍](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/)。
+   In this case, MariaDB is deployed on the Ubuntu operating system, and the configuration file is located at `/etc/mysql/mariadb.cnf`. For more information, see [MariaDB Configuration File Introduction](https://mariadb.com/kb/en/configuring-mariadb-with-option-files/).
 
    ```bash
    [mysqld]
-   # 自签名的 CA 证书
+   # Self-signed CA certificate
    ssl-ca=/etc/mysql/ssl/ca-cert.pem
-   # 服务端证书文件
+   # Server certificate file
    ssl-cert=/etc/mysql/ssl/server-cert.pem
-   # 服务端私钥文件
+   # Server private key file
    ssl-key=/etc/mysql/ssl/server-key.pem
    
    [client]
-   # 客户端连接服务端所需提供的证书文件
+   # Certificate file required for the client to connect to the server
    ssl-cert=/etc/mysql/ssl/client-cert.pem
-   # 客户端连接服务端所需提供的私钥文件
+   # Private key file required for the client to connect to the server
    ssl-key=/etc/mysql/ssl/client-key.pem
    ```
 
-3. 执行下述命令，调整证书文件权限。
+3. Execute the following command to adjust the permissions of the certificate files.
 
    ```bash
    chown -R mysql:mysql /etc/mysql/ssl/
    ```
 
-4. 登录 MariaDB 数据库，**选择**执行下述格式的命令，调整数据同步/开发任务的账号。
+4. Log into the MariaDB database and **choose** to execute the following format of commands to adjust the account for data synchronization/development tasks.
 
    ```sql
-   ALTER USER 'username'@'host' REQUIRE x509; -- 强制要求客户端提供有效证书
-   ALTER USER 'username'@'host' REQUIRE ssl; -- 不强制要求客户端提供有效证书
+   ALTER USER 'username'@'host' REQUIRE x509; -- Force the client to provide a valid certificate
+   ALTER USER 'username'@'host' REQUIRE ssl; -- Do not force the client to provide a valid certificate
    FLUSH PRIVILEGES;
    ```
 
-   * **username**：用户名。
-   * **host**：允许该账号登录的主机，例如使用百分号（%）以允许任意主机。
+   * **username**: Enter user name.
+   * **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host. 
 
-5. 修改完成后，执行下述命令重启 MariaDB 数据库，请在业务低峰期操作以免影响服务。
+5. Restart the MariaDB database.
 
    ```bash
    systemctl restart mariadb
@@ -227,42 +238,53 @@ DROP ON *.* TO 'username';
    
 
 
-## 添加数据源
 
-1. 登录 Tapdata 平台。
+## Connect to MariaDB
 
-2. 在左侧导航栏，单击**连接管理**。
+1. Log in to Tapdata Platform.
 
-3. 单击页面右侧的**创建**。
+2. In the left navigation panel, click **Connections**.
 
-4. 在弹出的对话框中，搜索并选择 **MariaDB**。
+3. On the right side of the page, click **Create**.
 
-5. 在跳转到的页面，根据下述说明填写 MariaDB 的连接信息。
+4. In the pop-up dialog, search and select **MariaDB**.
 
-   ![连接配置示例](../../images/connect_mariadb.png)
+5. On the page that you are redirected to, follow the instructions below to fill in the connection information for MariaDB.
 
-    * **连接信息设置**
-      * **连接名称**：填写具有业务意义的独有名称。
-      * **连接类型**：支持将 MariaDB 作为源或目标库。
-      * **地址**：数据库连接地址。
-      * **端口**：数据库的服务端口。
-      * **数据库**：数据库名称，即一个连接对应一个数据库，如有多个数据库则需创建多个数据连接。
-      * **账号**：数据库的账号。
-      * **密码**：数据库账号对应的密码。
-    * **高级设置**
-      * **连接参数**：额外的连接参数，默认为空。
-      * **时区**：默认为数据库所用的时区，您也可以根据业务需求手动指定。
-        如果源库为默认数据库时区（+8:00），目标端数据库为指定时区+0:00，那么假设源端数据库存储的时间为 2020-01-01 16:00:00，目标端数据库存储的时间则为 2020-01-01 08:00:00
-      * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-      * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-      * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-      * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照设置的时间定期刷新模型。
-    * **SSL 设置**：选择是否开启 SSL 连接数据源，可进一步提升数据安全性，开启该功能后还需要上传 CA 文件、客户端证书、客户端密钥文件等，相关文件已在[开启 SSL 连接](#ssl)中获取。
+   ![Connection configuration example](../../images/connect_mariadb.png)
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+    * **Connection Information Settings**
+
+      * **Connection name**: Fill in a unique name that has business significance.
+      * **Connection type**: Supports MariaDB as a source or target database.
+      * **Host**: The database connection address.
+      * **Port**: The service port of database.
+      * **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
+      * **username**: The database username.
+      * **Password**: The database password.
+      * **Connection parameter string**: Additional connection parameters, default empty.
+
+    * **Advanced settings**
+
+      * **Timezone**: By default, Tapdata utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+
+        For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
+
+      * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+
+      * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+
+      * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+
+      * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+
+    * **SSL Settings**: Choose whether to enable SSL connections for the data source, which can further enhance data security. After turn on the switch, you will need to upload CA files, client certificates, client key files, etc. The related files can be obtained as outlined in the [Enabling SSL Connection](#ssl) section.
+
+6. Click **Connection Test**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
+

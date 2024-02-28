@@ -1,34 +1,29 @@
 # Lark Doc
 
-本文介绍如何添加 Lark Doc（飞书文档）数据源。
+This article describes how to connect to Lark Doc data sources on Tapdata.
 
-#### ***数据源配置***
+## Data Source Configuration
 
-您需要前往 https://open.feishu.cn/app 找到对应的应用，并在应用的 ***凭证与基础信息*** 中找到：
+You need to go to https://open.feishu.cn/app Find the corresponding application and find it in the ***credentials and basic information*** of the application:
 
-![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/FeiShu/doc/findApp.PNG)
+1. Obtain your **App ID** and fill it in here: `<your_app_id>`.
+2. Obtain your **App Secret** and fill it in here: `<your_app_secret>`.
 
-![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/FeiShu/doc/appIdAndSecret.PNG)
+## Lark WiKi/Document Permission Configuration
 
-1. 获取到***App ID***,并填写到此处。
-2. 获取到***App Secret***,并填写到此处。
+1. You can refer to the official document:
 
-#### ***飞书 WiKi/文档 权限配置***
+   For details, please refer to: How to add an application as a knowledge base administrator (member).
 
-1. 您可以参阅官方文档：
+2. You can also configure according to the following wizard:
 
-   详情见：如何将应用添加为知识库管理员（成员） https://open.feishu.cn/document/ukTMukTMukTM/uUDN04SN0QjL1QDN/wiki-v2/wiki-qa#b5da330b
+   1. Create or add robots to designated group chats. 
+   2. Enter the knowledge base management interface.
+   3. Select an existing knowledge base or create a new one.
+      1. Select an existing knowledge base and directly enter the editing page.
+      2. Create a new knowledge base and then enter the editing page.
 
-2. 您也可以按以下向导进行配置：
+   4. Enter member settings and click on Add Administrator.
+   5. Add the group where the robot is located.
+   6. Permission configuration completed.
 
-（1）创建或者将机器人加入到指定群聊。 ![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/lark-doc/doc/robot.PNG)
-
-（2）进入知识库管理界面：https://fvs22k9l2w.feishu.cn/wiki/ ![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/lark-doc/doc/home.PNG)
-
-（3）选择已有知识库或新建新的知识库 a. 选择已有知识库，直接进入编辑页面 ![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/lark-doc/doc/chiose-wiki.PNG) b. 新建新的知识库，新建后再进入编辑页面 ![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/lark-doc/doc/new-wiki.PNG)
-
-（4）进入成员设置并点击添加管理员 ![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/lark-doc/doc/config-1.PNG)
-
-（5）添加将机器人所在的群 ![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/lark-doc/doc/config-2.PNG)
-
-（6）权限配置完成。

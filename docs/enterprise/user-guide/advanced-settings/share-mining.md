@@ -1,125 +1,103 @@
-# 管理共享挖掘
+# Managing Shared Mining
 
-为减轻增量时源端数据库压力，Tapdata 支持对增量日志进行共享挖掘，挖掘功能开启后并不会马上开始挖掘，而是在用户创建该数据源下所属表的任务时开启挖掘，无论挖掘任务暂停或者错误均不会影响同步任务正常运行。
+To alleviate the pressure on the source database during incremental updates, Tapdata supports shared mining of incremental logs. The mining feature does not start immediately after activation but begins when you create tasks for tables under that data source. Both paused or errored mining tasks will not affect the normal operation of synchronization tasks.
 
+## Enabling Shared Mining
 
-
-## 开启共享挖掘
-
-可在[创建连接](../../quick-start/connect-database.md)时开启共享挖掘，开启后从共享源读取数据，如果是首次开启则需填写存储挖掘连接（可选择一个 MongoDB 作为存储库）。
+You can enable shared mining when [creating a connection](../../quick-start/connect-database.md). Once enabled, data is read from the shared source. If this is the first time enabling it, you need to fill in the mining connection storage (a MongoDB can be chosen as the storage database).
 
 ![](../../images/enable_shared_mining.png)
 
+## Using Shared Mining
 
-
-## 使用共享挖掘
-
-创建数据转换或数据复制任务，当任务包含增量的任务且数据源已开启共享挖掘，即可在任务设置中使用共享挖掘功能。更多关于任务配置的介绍，见[创建数据复制/开发任务](../../quick-start/create-task.md)。
+Create data transformation or replication tasks. If the task includes incremental operations and the data source has shared mining enabled, you can use the shared mining feature in the task settings. For more about task configuration, see [creating data replication/development tasks](../../quick-start/create-task.md).
 
 ![](../../images/create_shared_mining.png)
 
+## Managing Shared Mining
 
+After successfully creating the task, the system automatically generates a mining task. On the Tapdata platform, click **Data Pipeline** > **Shared Mining** in the left navigation bar. You will see the mining name prefixed with **the name of the data source** to help you identify it quickly:
 
-## 管理共享挖掘
+![Task List](../../images/share_mining_list.png)
 
-任务创建成功后系统会自动生成挖掘任务，在 Tapdata 平台，单击左侧导航栏的**数据管道** > **共享挖掘**，可查看到挖掘名称以**数据源名称**为前缀以帮助您快速识别：
+Available management actions include:
 
-![任务列表](../../images/share_mining_list.png)
+- **Stopping shared mining tasks**: If you no longer need to run a shared mining task or need to adjust configurations, click **Stop**.
+- **Editing shared mining configurations**: When a shared mining task is stopped, click **Edit**, then in the dialog that appears, set the mining name, log retention duration, mining start time, whether to enable multi-threaded incremental writes, and whether to supplement updated data with complete fields.
 
-可执行的管理操作如下：
+  ![Edit Shared Mining](../../images/edit_share_mining.png)
 
-* **停止共享挖掘任务**：当不再需要执行共享挖掘任务或需要调整配置时，可单击**停止**。
-
-* **编辑共享挖掘配置**：当共享挖掘任务处于停止状态时，可单击**编辑**，然后在弹出的对话框中，设置挖掘名称、日志保存时长、挖掘开始时间、是否启用增量多线程写入和补充更新数据的完整字段。
-
-  ![编辑共享挖掘](../../images/edit_share_mining.png)
-
-* **监控任务详情**：单击挖掘任务对应**监控**，可查看详细挖掘信息，例如 QPS、增量延迟等关键指标。
+- **Monitoring task details**: Click **Monitor** corresponding to the mining task to view detailed mining information, such as QPS, incremental delay, and other key indicators.
 
   ![](../../images/shared_mining_detail.png)
 
-* **配置任务告警**：单击挖掘任务对应**监控**，单击页面右上角的设置，在右侧弹出的面板中<span id="release330-alert">配置任务告警</span>，可通过系统通知消息或邮件来发出告警信息，帮助更好地掌握任务的运行状态。
+- **Configuring task alerts**: Click **Monitor** corresponding to the mining task, then click settings in the top right corner. In the panel that appears on the right, configure task alerts to send out alert messages through system notifications or emails, helping you better grasp the running status of the task.
 
-  ![配置任务告警](../../images/share_mining_alert_settings.png)
+  ![Configuring Task Alerts](../../images/share_mining_alert_settings.png)
 
-* <span id="release310-share-mining">启停指定表的挖掘任务</span>：单击挖掘任务对应的<b>监控</b>，然后单击源节点，在页面右侧的面板中可查看到共享挖掘所涉及的表、挖掘的数量等信息，如下图所示。
-  
-  ![挖掘表信息](../../images/shared_mining_detail_2.png)
-  
-  当遇到某个表因大事务而引发增量事件获取异常时，您可以在此页面选中相关的表并单击**停止挖掘**，在弹出的对话框中确认影响范围后单击**确定**。
-  
-  后续完成大事务的提交处理后，可单击**已停止挖掘**页签，选中目标表并单击**恢复挖掘**。
+- **Starting and stopping specific table mining tasks**: Click **Monitor** corresponding to the mining task, then click the source node. In the panel that appears on the right, you can see the tables involved in shared mining, the number of mined entries, etc., as shown below.
 
+  ![Mining Table Information](../../images/shared_mining_detail_2.png)
 
+  If a table causes an abnormal acquisition of incremental events due to a large transaction, you can select the relevant table on this page and click **Stop Mining**. After confirming the impact range in the dialog that appears, click **OK**.
 
+  After completing the large transaction submission process, click the **Stopped Mining** tab, select the target table, and click **Resume Mining**.
 
+## Use Case Scenario
 
+Suppose you want to create a synchronization task from MySQL to Oracle but wish to reduce the source database's load through shared mining.
 
+**Operational Approach:**
 
-## 应用场景
+First, create a MongoDB as an intermediate database to store the mining logs. Then, enable shared mining for the connection that requires incremental log mining and select that MongoDB. Finally, enable shared mining when creating the task.
 
-希望创建一个 MySQL 到 Oracle 的同步任务，但为了减轻源库压力所以想通过共享挖掘来实现。
+**Detailed Process:**
 
-**操作思路：**
+1. Create a database connection to store shared mining data.
+    1. Open connection management and click the **Create Connection** button in the top right corner.
+    2. Create a MongoDB connection with the following configuration:
+        - Connection Name: Any name, e.g., lyl_mongo
+        - Connection Type: Source and Target
+        - Connection Mode: Standard Connection
+        - Database Address: 47.115.163.**
+        - Database Name: test
+        - Other fields are not mandatory
+    3. Click the **Save** button to return to the connection management interface.
 
-先创建一个mongo DB作为存储挖掘日志的中间库，再将需要进行增量日志挖掘的连接开启共享挖掘并选择该mongo DB，最后在创建任务时开启共享挖掘即可
+2. Click the **Create Connection** button in the top right corner to create a MySQL connection as the source and enable shared mining.
 
-**具体流程：**
+3. Select the MongoDB connection you just created as the intermediate storage database (this step can also be performed in the shared mining - mining settings section). If setting it again, it won't show up for the second time.
+    - Storage MongoDB Connection Name: lyl_mongo
+    - Storage MongoDB Table Name: david_mongo_share
 
-1. 创建一个数据库连接，用来存储共享挖掘的数据。
+4. Click the **Save** button.
 
-   1. 打开连接管理，点击右上角**创建连接**按钮。
-   2. 创建一个 MongoDB 连接，配置信息如下：
-      * 连接名称：可任意命名，例：lyl_mongo
-      * 连接类型：源和目标
-      * 连接方式：标准连接
-      * 数据库地址：47.115.163.**
-      * 数据库名称：test
-      * 其他为非必填项
-   3. 点击下方**保存**按钮，跳转至连接管理界面。
+5. Create an Oracle connection as the target (no need to enable shared mining).
 
-2. 点击右上角**创建连接**按钮，创建一个MySQL连接作为源，开启共享挖掘。
+6. Open the data transformation page and click the **Create** button in the top right corner to create a task.
+    1. Select the newly created MySQL connection as the source, table selection: lyl_demo_mysql.
+    2. Select another connection as the target, table selection or creation: lyl_demo_oracle_target, and connect them.
+    3. In the DAG canvas, click the **Settings** button in the top right corner.
+    4. Turn on the **Shared Mining** button and then click the **Save** button in the top right corner.
 
-3. 选择刚才创建的 MongoDB 连接作为存储中间库（这一步也可在共享挖掘-挖掘设置中操作）二次设置不会再显示
+7. Click the **Back** button in the top left corner to return to the task list page.
 
-   * 存储MongoDB连接名称：lyl_mongo
-   * 存储MongoDB表名：david_mongo_share
+8. Click the **Start** button for the task. The system will automatically generate a shared mining task along with starting the task.
 
-4. 点击**保存**按钮。
+   You can view this mining task by clicking Data Pipeline - Shared Mining and clicking the **Details** button for more information.
 
-5. 创建一个 Oracle 连接作为目标（不需要开启共享挖掘）。
+**Demonstration:**
 
-6. 打开数据转换页面，单击右上角**创建**按钮创建一个任务。
-
-   1. 选择刚刚创建的 MySQL 连接作为源，表选择：lyl_demo_mysql。
-   2. 再选择一个连接作为目标，表选择或新建：lyl_demo_oracle_target，将他们连线。
-   3. 在DAG画布中点击右上角**设置**按钮。
-   4. 打开**共享挖掘**按钮，然后单击右上角**保存**按钮。
-
-7. 点击左上角**返回**按钮，跳转至任务列表页。
-
-8. 点击该任务的**启动**按钮，系统在启动任务的同时会自动生成一个共享挖掘任务。
-
-   您可点击数据管道-共享挖掘查看该挖掘任务，也可点击该挖掘任务的**详情**按钮查看详细信息。
-
-
-
-**演示：**
-
-在源库新增一条数据
+Add a new data entry in the source database:
 
 ![](../../images/shared_mining_demo_1.png)
 
+Check the MongoDB intermediate database (to see if incremental logs are present):
 
-
-查看MongoDB中间库：（看是否有增量日志）
-
- python376 tap.py --source_type=MongoDB --name=lyl_mongo --table=david_mongo_share  common_query
+python376 tap.py --source_type=MongoDB --name=lyl_mongo --table=david_mongo_share  common_query
 
 ![](../../images/shared_mining_demo_2.png)
 
-
-
-在目标库查看是否有增量数据
+Check the target database to see if incremental data is present:
 
 ![](../../images/shared_mining_demo_3.png)

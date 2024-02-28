@@ -1,113 +1,108 @@
 # Doris
 
-Doris 适用于实时数据分析和报表，支持高并发查询和复杂分析，广泛应用于数据仓库、BI报表和数据可视化。Tapdata 支持将 Doras 作为源或目标库来构建数据管道，帮助您快速完成大数据分析场景下的数据流转。
+Apache Doris is a new-generation open-source real-time data warehouse based on MPP architecture, with easier use and higher performance for big data analytics. Tapdata supports Doris as a source or target database to build data pipelines to help you quickly complete data flow in big data analytics scenarios.
 
-接下来，跟随本文介绍在 Tapdata 平台上连接 Doris 数据源。
+Next, follow this article to connect a Doris data source on the Tapdata platform.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## 支持版本
+## Supported Versions
 
-Dorix 1.x、2.x
+Dorix 1.x, 2.x
 
-import Content from '../../../reuse-content/beta/_beta.md';
+import Content from '../../../reuse-content/_beta.md';
 
 <Content />
 
-## 注意事项
 
-如需使用 Doris 作为源库并同步增量数据变更，您需要[创建数据转换任务](../../user-guide/data-pipeline/data-development/create-task.md)并选择**增量同步方式**为**字段轮询**。
 
-## 准备工作
+## Precautions
 
-1. 登录 Doris 数据库，执行下述格式的命令，创建用于数据同步/开发任务的账号。
+If you want to use Doris as the source database to synchronize incremental data changes, you need to [create a data transformation task](../../user-guide/data-development/create-task.md) and select **Incremental Synchronization Method** as the **Polling**.
+
+## Preparations
+
+1. To create an account, log in to the Doris database and run the following commands.
 
    ```sql
    CREATE USER 'username'@'host' IDENTIFIED BY 'password';
    ```
 
-   - **username**：用户名。
-   - **password**：密码。
-   - **host**：允许该账号登录的主机，百分号（%）表示允许任意主机。
+   - **username**: Enter user name.
+   - **password**: Enter password.
+   - **host**: Which host can be accessed by the account, percent (%) means to allow all host.
 
-   示例：创建一个名为 tapdata 的账号。
+   Example: Create an account named tapdata.
 
    ```sql
    CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';
    ```
 
-2. 为刚创建的账号授予权限，您也可以基于业务需求设置更精细化的权限控制。
+2. Grant permissions to the account we just created, we recommend setting more granular permissions control based on business needs.
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="作为源库">
+<TabItem value="As a Source Database">
 ```
 ```sql
--- 请根据下述提示更换 catalog_name、database_name 和 username
+-- Replace the catalog_name, database_name, and username follow the tips below
 GRANT SELECT_PRIV ON catalog_name.database_name.* TO 'username'@'%';
 ```
 </TabItem>
 
-<TabItem value="作为目标库">
+<TabItem value="As a Target Database">
 
 ```sql
--- 请根据下述提示更换 catalog_name、database_name 和 username
+-- Replace the catalog_name, database_name, and username follow the tips below
 GRANT SELECT_PRIV, ALTER_PRIV, CREATE_PRIV, DROP_PRIV, LOAD_PRIV ON catalog_name.database_name.* TO 'username'@'%';
 ```
 </TabItem>
 </Tabs>
 
- 
-
 :::tip
 
-请更换上述命令中的信息：
-* **catalog_name**：数据目录名称，默认名称为 **internal**，可以通过 [SHOW CATALOGS](https://doris.apache.org/zh-CN/docs/1.2/sql-manual/sql-reference/Show-Statements/SHOW-CATALOGS) 命令查看已创建的数据目录。更多介绍，见[多源数据目录](https://doris.apache.org/zh-CN/docs/1.2/lakehouse/multi-catalog/)。
-* **database_name**：要授予权限的数据库名称。
-* **username**：用户名。
+Please replace the username, password, and host in the command above.
+* **catalog_name**: The name of the data catalog. The default name is **internal**. You can view the created data catalog through the [SHOW CATALOGS](https://doris.apache.org/zh-CN/docs/1.2/sql-manual/sql-reference/Show-Statements/SHOW-CATALOGS) command. For more information, see [Multi Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
+* **database_name**: Enter database name.
+* **username**: Enter user name.
 
 :::
 
 
 
+## Connect to Doris
 
+1. Log in to Tapdata Platform.
 
+2. In the left navigation panel, click **Connections**.
 
+3. On the right side of the page, click **Create**.
 
-## 连接 Doris
+4. In the pop-up dialog, search for and select **Doris**.
 
-1. 登录 Tapdata 平台。
+5. On the page you are redirected to, follow the instructions below to fill in the connection information for Doris.
 
-2. 在左侧导航栏，单击**连接管理**。
+   ![Connect Doris](../../images/connect_doris.png)
 
-3. 单击页面右侧的**创建**。
+   - **Name**: Fill in a unique name that has business significance.
+   - **Type**: Doris is supported as a source or target database.
+   - **DB Address**: The connection address of Doris.
+   - **Port**: The query service port for Doris, the default port is **9030**.
+   - **HTTP Address**: The HTTP protocol address of the BE service, including address and port(e.g. http://192.168.1.18:8040), the default port is **8040**.
+   - **Doris Catalog**: The catalog of Doris, whose hierarchy is above the database. If you use the default catalog, you can leave it empty. For more information, see [Multi-Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
+   - **DB Name**: database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
+   - **User**, **Password**: The database username and password.
+   - **Other Connection String Parameters**: Additionally connection parameters, empty by default.
+   - **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
+   - **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an Agent.
 
-4. 在弹出的对话框中，搜索并选择 **Doris**。
-
-5. 在跳转到的页面，根据下述说明填写 Doris 的连接信息。
-
-   ![连接 Doris](../../images/connect_doris.png)
-
-    - **连接名称**：填写具有业务意义的独有名称。
-    - **连接类型**：支持将 Doris 作为源或目标库。
-    - **数据库地址**：Doris 的连接地址。
-    - **端口**：Doris 的查询服务端口，默认端口为 **9030**。
-    - **HTTP 接口地址**：BE 服务的 HTTP 协议访问地址，包含地址和端口信息，默认端口为 **8040**。
-    - **Doris 目录**：Doris 的目录，其层级在数据库之上，如使用默认目录可置空，更多介绍，见[多源数据目录](https://doris.apache.org/zh-CN/docs/1.2/lakehouse/multi-catalog/)。
-    - **数据库名称**：一个连接对应一个数据库，如有多个数据库则需创建多个数据连接。
-    - **账号**、**密码**：分别填写数据库的账号和密码。
-    - **其他连接参数**：额外的连接参数，默认为空。
-    - **时间类型的时区**：默认为数据库所用的时区，您也可以根据业务需求手动指定。 
-    - **agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-
-6. 单击页面下方的**连接测试**，提示通过后单击**保存**。
+6. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
-

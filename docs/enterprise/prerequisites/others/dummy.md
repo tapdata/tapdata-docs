@@ -1,48 +1,35 @@
 # Dummy
 
-Dummy 是测试数据源，可以生成测试数据。本文介绍如何在 Tapdata 中添加 Dummy 数据源。
+Dummy is a data source that generates test data. This article describes how to add Dummy data sources to Tapdata.
 
-## 操作步骤
+## Connect to Dummy
 
-1. 登录 Tapdata 平台。
-
-2. 在左侧导航栏，单击**连接管理**。
-
-3. 单击页面右侧的**创建**。
-
-4. 在弹出的对话框中，搜索并选择 **Dummy**。
-
-5. 在跳转到的页面，根据下述说明填写连接信息。
-
-   ![](../../images/connect_dummy.png)
-
-   * **连接名称**：填写具有业务意义的独有名称。
-   * **连接类型**：选择源头或目标，也可以选择源头和目标。
-   * **初始化数据量**：全量同步的数据总数，范围：0 ~ 9223372036854775807。
-   * **增量间隔**、**增量间隔上限**：控制增量产生数据的频率，表示**增量间隔时间**内产生的**增量间隔总数**条数据，范围：0 ~ 2147483647。
-   * **增量事件类型**：表示生成哪些事件类型的数据，如果全选，则以插入事件 > 更新事件 > 删除事件 的顺序循环。
-   * **写入间隔**：作为目标数据源时，控制消费事件的频率，单位为毫秒，
-   * **写入间隔总数**：表示 **写入间隔** 时间内消费 **写入间隔总数条**数据，范围 0 ~ 2147483647。
-   * **打印写入日志**：打开时输出接收到的事件数据。
-   * **表名**、**字段定义**：定义作为源头时表的结构，支持批量新增字段。
-   * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-   * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-   * **agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent 。
-   * **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
-   * **开启心跳表**：当连接类型选择为**源头和目标**、**源头**时，支持打开该开关，由 Tapdata 在源库中创建一个名为 **_tapdata_heartbeat_table** 的心跳表并每隔 10 秒更新一次其中的数据（数据库账号需具备相关权限），用于数据源连接与任务的健康度监测。
-
-     :::tip
-
-     数据源需在数据复制/开发任务引用并启动后，心跳任务任务才会启动，此时您可以再次进入该数据源的编辑页面，即可单击**查看心跳任务**。
-
-     :::
-
-6. 单击**连接测试**，测试通过后单击**保存**。
+1. Log in to Tapdata Platform.
+2. In the left navigation panel, click **Connections**.
+3. On the right side of the page, click **Create**.
+4. In the pop-up dialog, select **Dummy**.
+5. Fill in the connection information for Dummy on the redirected page, following the instructions provided below.![](../../images/connect_dummy.png)
+      * **Connection Information Settings**
+        * **Connection name**: Fill in a unique name that has business significance.
+        * **Connection type**: Supports Dummy as a source or target database.
+        * **Initialization data amount**: The total number of data that can be migrated in full data synchronization, ranging from 0 to 9223372036854775807.
+        * **Incremental interval**, **Incremental interval upper limits**: The frequency of generating new data by specifying the total number of incremental interval data to be generated during a specified time interval. The Initial data amount number can range from 0 to 2147483647.
+        * **Incremental event types**: Select which event types of data are generated, if select all, the sequential loop for Insert > Update > Delete.
+        * **Write interval**: When serving as the target data source, control the frequency of consumption events in milliseconds.
+        * **Write interval upper limit**: The total number of write interval data consumed during the write interval, ranging from 0 to 2147483647.
+      * **Advanced settings**
+        * **Print write log**: After turning on the switch, Tapdata will output the received event data.
+        * **Table name**, **Field definitions**: define the structure of the table as the source, support batch new fields.
+        * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+        * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+        * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an Agent.
+        * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+      
+6. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
 
-   

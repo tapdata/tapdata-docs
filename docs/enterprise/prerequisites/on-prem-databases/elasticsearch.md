@@ -1,40 +1,40 @@
 # Elasticsearch
 
-Elasticsearch 是一个开放的分布式搜索和分析引擎，适用于包括文本、数字、地理空间、结构化和非结构化数据等在内的所有类型的数据。
+Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
 
-Tapdata 支持将 Elasticsearch 作为目标，帮助您快速构建数据链路，可用于日志数据写入分析、内容管理和搜索分析等场景。接下来，我们将介绍如何在 Tapdata 平台中连接 Elasticsearch 数据源。
+Tapdata supports Elasticsearch as a target data source to help you quickly build data pipelines for scenarios such as log data write analytics, content management, and search analytics.  This article provides a comprehensive guide on how to add Elasticsearch to Tapdata.
 
-## 支持版本
+## Supported Versions
 
 Elasticsearch 7.6
 
-## 连接 Elasticsearch
+## Connect to Elasticsearch
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation panel, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. On the right side of the page, click **Create**.
 
-4. 在弹出的对话框中，搜索并选择 **Elasticsearch**。
+4. In the pop-up dialog box, search for and select **Elasticsearch**.
 
-5. 根据下述说明完成数据源配置。
+5. Fill in the connection information for Elasticsearch on the redirected page, following the instructions provided below.
 
-   ![Elasticsearch 连接示例](../../images/elasticsearch_connection_setting.png)
+   ![Elastic Connection Example](../../images/elasticsearch_connection_setting.png)
 
-   * **连接名称**：填写具有业务意义的独有名称。
-   * **连接类型**：目前仅支持将 Elasticsearch 作为目标库。
-   * **数据库地址**：填写 Elasticsearch 的连接地址。
-   * **端口**：填写 Elasticsearch 的服务端口，例如 **9200**。
-   * **账号**、**密码**：分别填写登录 Elasticsearch 的账号和密码，如未设置密码可置空。
-   * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-   * **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
+   * **Name**: Fill in a unique name that has business significance.
+   * **Type**: Currently only supported as a Target.
+   * **DB Host**: Fill in the Elasticsearch connection address.
+   * **Port**: Fill in the service port for Elasticsearch, for example **9200**.
+   * **User Name**, **Password**: Fill in the username and password for Elasticsearch separately. If authentication is not enabled, you can leave it blank.
+   * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+   * **Model load time**: When the number of models in the data source is less than 10,000, the model information is refreshed every hour; if the model data exceeds 10,000, the model information is refreshed every day at the time you specify.
 
-6. 单击**连接测试**，测试通过后单击**保存**。
+6. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
 

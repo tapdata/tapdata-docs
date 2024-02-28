@@ -1,37 +1,39 @@
 # GitHub
 
-GitHub 是一个用于版本控制和协作的代码托管平台，它允许您和其他人随时随地协同处理项目。Tapdata 支持将 GitHub 作为源库构建数据管道，帮助您读取指定仓库的 Issue 和 Pull Requests 变更数据，并同步到指定的数据源，本文介绍如何在 Tapdata 中添加 GitHub 数据源。
+GitHub is a website and cloud-based service that helps developers store and manage their code, as well as track and control changes to their code. Tapdata supports building data pipelines with GitHub as a source database, helping you to read the Issue and Pull Requests change data of the specified repository and synchronize to the specified data source. 
+
+This article describes how to add GitHub data source to Tapdata.
 
 
 
-## 连接 GitHub
+## Procedure
 
-1. 登录 Tapdata 平台。
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation panel, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. On the right side of the page, click **Create**.
 
-4. 在弹出的对话框中，搜索并选择 **GitHub**。
+4. In the pop-up **dialog**, select **GitHub**.
 
-5. 根据下述说明完成数据源配置。
+5. Fill in the connection information for GitHub on the redirected page, following the instructions provided below.
 
-   ![GitHub 连接设置](../../images/github_connection_setting.png)
+   ![GitHub Connection Settings](../../images/github_connection_setting.png)
 
-   * **连接名称**：填写具有业务意义的独有名称。
-   * **连接类型**：仅支持**源头**。
-   * **agent 设置**：默认为**平台自动分配**，您也可以手动指定。
-   * **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
+   * **Connection name**: Fill in a unique name that has business significance.
+   * **Connection type**: Currently only supported as a **Source**.
+   * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+   * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
 
-6. 单击**授权**，在跳转到的 GitHub 授权页面，完成登录和授权操作（推荐以组织管理员身份授权）。
+6. Click **Authorize**, and on the GitHub authorization page that you are redirected to, complete the login and authorization (it is recommended to authorize as an organization administrator).
 
-   完成操作后，页面将返回至数据源配置页面并显示**成功授权**。
+   After completing the operation, the page will return to the data source configuration page and display **Authorization successful**.
 
-7. 单击**连接测试**，测试通过后单击**保存**。
+7. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
 

@@ -1,6 +1,6 @@
-# 云数据库
+# Cloud Databases
 
-请选择要添加的云数据库：
+ Please select the database you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

@@ -1,28 +1,9 @@
 # Lark Approval
 
-本文介绍如何添加 Lark Approval（飞书审批）数据源。
+This article describes how to connect to Lark Approval data sources on Tapdata.
 
-您需要前往 https://open.feishu.cn/app 找到对应的应用，并在应用的 ***凭证与基础信息*** 中找到：
+You need to go to https://open.feishu.cn/app Find the corresponding application and find it in the ***voucher and basic information*** of the application.
 
-![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/FeiShu/doc/findApp.PNG)
-
-![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/FeiShu/doc/appIdAndSecret.PNG)
-
-1. 获取到***App ID***,并填写到此处。
-2. 获取到***App Secret***,并填写到此处。
-
-此时，飞书数据源创建成功！
-
-### 注意事项
-
-#### 飞书获取审批类型Code
-
-***注意事项：***：
-
-审批类型Code：49636CC4-9156-48C0-9609-32CAACC85E00
-
-审批类型Code需要在飞书管理员后台获取，如图所示位置：
-
-![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/LarkApproval/doc/ht.jpg)
-
-![img](https://tapdata-bucket-01.oss-cn-beijing.aliyuncs.com/LarkApproval/doc/code.jpg)
+1. Obtain your **App ID** and fill it in here: `<your_app_id>`.
+2. Obtain your **App Secret** and fill it in here: `<your_app_secret>`.
+3. Contact your Feishu administrator to get the Code for the approval type, and fill it in here: `<approval_code>`.

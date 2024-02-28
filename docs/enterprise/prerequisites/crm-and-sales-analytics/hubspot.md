@@ -1,8 +1,11 @@
 # HubSpot
-如果您感兴趣的话，不妨前往GitHub提供的OpenAPI文档文档，详细了解全部内容：
 
-HubSpot CRM 文档：[https://www.hubspot.com/]
-当然，您也可以浏览以下内容，快速上手 HubSpot CRM Sources 的设置过程。
+This article serves as a comprehensive guide, providing step-by-step instructions on adding HubSpot data sources to Tapdata, enabling efficient data synchronization and development for your projects.
 
-## 如何授权
-要从 Hubspot 获取访问令牌，您必须首先单击授权按钮，这会将您重定向到 Hubspot 凭据页面，您需要在该页面输入有效的登录凭据。 成功验证后，您将被重定向回配置页面，您将在此处看到 [授权成功] 消息，并且重定向 URL 中将提供一个临时代码。 此时，您可以测试连接并在成功结果后，继续保存连接并启动操作。
+If you are interested, you may want to go to the HubSpot CRM documents：[HubSpot CRM Documentation](https://www.hubspot.com/).
+
+Of course, you can also browse the following to quickly get started with the setup process of HubSpot CRM Sources.
+
+## How to Authorize?
+
+To obtain an access token from Hubspot, you must first click on the authorize button which will redirect you to the Hubspot credentials page where you will need to enter valid login credentials. Once successfully authenticated, you will be redirected back to the configuration page, where you will see the message of [Authorization successful] and a temporary code will be provided in the redirect URL. At this point, you can test the connection and upon a successful result, proceed to save the connection and initiate the operation.

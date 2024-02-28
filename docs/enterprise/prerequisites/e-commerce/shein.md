@@ -1,20 +1,22 @@
 # Shein
 
-## 使用须知
+This article describes how to connect to Shein data sources on Tapdata.
 
-使用SHEIN作为源前，您需要前往SHEIN联系您对应的系统对接人：
+### Instructions for use
 
-- 申请开通接入账号
-- 向SHEIN具体系统对接人获取openKeyId、secretKey
+Before using SHEIN as the source, you need to go to SHEIN to contact your corresponding system contact:
 
-## 创建连接
+- Apply to open an access account
+- Obtain openKeyId and secretKey from the specific system contact of SHEIN
 
-创建连接需要配置的连接属性包含以下部分：
+#### Create Connection
 
-- Open Key ID：申请开通接入账号后（由 SHEIN 后台录入，提供给用户 openKeyId），将获取到的openKeyId填入此输入框
-- Secret Key：申请开通接入账号（由 SHEIN 后台录入，提供给用户 secretKey），将获取到的secretKey填入到此输入款
+The connection properties that need to be configured to create a connection include the following parts:
 
-## 作为源
+- Open Key ID: After applying to open an access account (entered by the SHEIN backend and provided to the user with openKeyId), fill the obtained openKeyId in this input box
+- Secret Key: Apply to open an access account (entered by the SHEIN backend and provided to the user's secretKey), and fill the obtained secretKey into this input account
 
-- 您可以获取到 商家服务-采购 模块中的采购订单，包含急采、备货。
-- SHEIN数据源作为目标，支持全量获取采购单和增量轮询获取采购单。
+#### As a source
+
+- You can obtain purchase orders from the merchant service procurement module, including urgent purchases and stock up
+- The SHEIN data source serves as the target, supporting full quantity procurement and incremental polling procurement

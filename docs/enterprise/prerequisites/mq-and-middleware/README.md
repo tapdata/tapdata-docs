@@ -1,6 +1,6 @@
-# 消息队列与中间件
+# Message Queue and Middleware
 
-请选择要添加的消息队列与中间件数据源：
+ Please select the database you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

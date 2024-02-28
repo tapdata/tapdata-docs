@@ -1,29 +1,29 @@
 # Hive3
 
-请遵循以下说明以确保在 Tapdata 中成功添加和使用 Hive 数据库。
+Please follow the instructions below to successfully add and use the Hive database in Tapdata.
 
-## 限制说明
+## Limitations
 
-Hive 仅支持作为目标。
+Hive is only supported as a target.
 
-## 支持版本
+## Supported Version
 
 Hive 3.1.2
 
-## 配置说明
+## Configuration Instructions
 
-### 数据源配置
+### Data Source Configuration
 
 - Host/IP
 - Port
-- 数据库名名称
-- 账户、密码
+- Database Name
+- Account and Password
 
-#### 开启 CDC 配置
+#### Enable CDC Configuration
 
-Hive 中行级操作 update 和 delete 是属于事务操作，所以需要在 Hive 中开启事务操作，修改 `hive-site.xml` 中配置项为如下配置，修改完成后重启生效。
+In Hive, row-level operations like update and delete are transactional operations. Therefore, you need to enable transactional operations in Hive by modifying the `hive-site.xml` configuration with the following settings. After making the changes, restart for the changes to take effect.
 
-```
+```xml
 <property>
     <name>hive.support.concurrency</name>
     <value>true</value>

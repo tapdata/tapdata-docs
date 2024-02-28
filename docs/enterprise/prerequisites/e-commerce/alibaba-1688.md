@@ -1,24 +1,30 @@
 # Alibaba 1688
 
-阿里巴巴（1688）是全球企业间（B2B）电子商务的著名品牌，为数千万网商提供海量商机信息和便捷安全的在线交易市场。本文介绍如何将 Alibaba 1688 数据源连接至 Tapdata，实现数据流转。
+This article describes how to connect to Alibaba 1688 data sources on Tapdata.
 
-## 连接 Alibaba 1688
+## Connect to Alibaba 1688
 
-1. 登录 Tapdata 平台。
-2. 在左侧导航栏，单击**连接管理**。
-3. 单击页面右侧的**创建**。
-4. 在弹出的对话框中，搜索并选择 **Alibaba 1688**。
-5. 在跳转到的页面，根据下述说明填写 Alibaba 1688 的连接信息。
-    * **连接名称**：填写具有业务意义的独有名称。
-    * **连接类型**：目前仅支持作为源。
-    * **App Key**：填写 App Key 信息。
-    * **App Secret**：填写 App Secret。
-    * **agent 设置**：默认为**平台自动分配**，您也可以手动指定。
-    * **模型加载时间**：当数据源中模型数量小于 10,000 时，每小时刷新一次模型信息；如果模型数据超过 10,000，则每天按照您指定的时间刷新模型信息。
-6. 单击**连接测试**，测试通过后单击**保存**。
+1. Log in to Tapdata Platform.
+
+2. In the left navigation panel, click **Connections**.
+
+3. On the right side of the page, click **Create**.
+
+4. In the pop-up dialog, select **Alibaba 1688**.
+
+5. Fill in the connection information for Alibaba 1688 on the redirected page, following the instructions provided below.
+
+    * **Name**: Fill in a unique name that has business significance.
+    * **Type**: Currently only supported as a **Source**.
+    * **App Key**: Fill in the App Key of Alibaba 1688.
+    * **App Secret**: Fill in the App Secret.
+    * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+    * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+
+6. Click **Test Connection**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::

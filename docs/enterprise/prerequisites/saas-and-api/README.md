@@ -1,6 +1,6 @@
-# SaaS 应用与 API 服务
+# SaaS and APIs
 
-请选择要添加的数据源：
+ Please select the database you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

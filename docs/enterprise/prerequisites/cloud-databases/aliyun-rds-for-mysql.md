@@ -1,112 +1,83 @@
-# Aliyun RDS for MySQL
+# Aliyun RDS MySQL
 
-阿里云关系型数据库 RDS（Relational Database Service）是一种稳定可靠、可弹性伸缩的在线数据库服务。完成 Agent 部署后，您可以跟随本文教程在 Tapdata 中添加 Aliyun RDS for MySQL 数据源，后续可将其作为源或目标库来构建数据管道。
+ApsaraDB RDS MySQL is a relational database service with high availability, scalability, security and reliability provided by Alibaba Cloud. 
 
-## 支持版本
+Tapdata extends support for constructing data pipelines with Aliyun RDS MySQL as both the source and target database. This article introduces how to connect to Aliyun RDS MySQL, helping you quickly achieve data migration to the cloud or data flow across different cloud platforms.
 
-5.1、5.5、5.6、5.7、8.0
+## Supported Versions
 
+5.1, 5.5, 5.6, 5.7, 8.0
 
-## 准备工作
+## Prerequisites
 
-连接阿里云 RDS for MySQL 时，作为源或目标库均可参考下述步骤操作。
+1. Access the [RDS instance list](https://rdsnext.console.aliyun.com/rdsList/basic) on Aliyun Cloud, select the region at the top, and click on the target instance ID.
 
-1. 访问阿里云 [RDS 实例列表](https://rdsnext.console.aliyun.com/rdsList/basic)，在上方选择地域，然后单击目标实例ID。
+2. Create a Privileged Account.
 
-2. 创建高权限账号。
+   1. In the left navigation, select **Account Management**.
 
-   1. 在左侧导航栏，选择**账号管理**。
+   2. On the right side of the page, click on **Create Account**.
 
-   2. 在页面右侧，单击**创建账号**。
+   3. Complete the following settings in the panel on the right.
 
-   3. 在右侧的面板中，完成下述设置。
+      ![Create Account](../../images/aliyun_mysql_create_account.png)
 
-      ![创建账号](../../images/aliyun_mysql_create_account.png)
+      * **Database Account**: Starts with a lowercase letter, ends with a lowercase letter or number, supports lowercase letters, numbers, and underscores, with a length of 2 to 32 characters.
+      * **Account Type**: Choose **Privileged Account**  to have access to the database's Binlog and read-write permissions. For more account types, see [Account Types](https://www.alibabacloud.com/help/en/apsaradb-for-rds/latest/create-an-account-on-an-apsaradb-rds-for-mysql-instance#section-b3f-whz-q2b).
+      * **Password**: Length of 8 to 32 characters, with at least three of the following: uppercase letter, lowercase letter, number, special character `!@#$%^&*()_+-=`.
+   4. Click **OK**.
 
-      * **数据库账号**：以小写字母开头，以小写字母或数字结尾，支持小写字母、数字和下划线，长度为 2~32 个字符。
-      * **账号类型**：选择为**高权限**账号，以便可获取数据库的 Binlog 和读写数据库。更多账号类型介绍，见[账号类型](https://help.aliyun.com/document_detail/96089.htm#section-b3f-whz-q2b)。
-      * **账号密码**：长度为 8~3 2个字符，至少包含大写字母、小写字母、数字、特殊字符中的任意三种。特殊字符为 `!@#$%^&*()_+-=`。
+3. Create a database.
 
-   4. 单击**确定**。
+   1. In the left navigation, select **Database Management**.
+   2. Click on **Create Database**, fill in the database name and select the character set in the pop-up dialog.
+   3. Click **Create**.
 
-3. 创建数据库。
-
-   1. 在左侧导航栏，选择**数据库管理**。
-   2. 单击创建数据库，在弹出的对话框中填写数据库名称并选择字符集。
-   3. 单击**创建**。
-
-4. 开通外网访问地址，如您的 Agent 部署的机器与 RDS MySQL 属于同一内网，可跳过本步骤。
-   1. 在左侧导航栏，选择**数据库连接**。
-   
-   2. 单击**开通外网地址**。
-   
-   3. 在弹出的对话框中，保持选项：**将0.0.0.0/0 加入白名单** 处于选中状态。
-      ![开通外网地址](../../images/aliyun_mysql_ip_white_list.png)
-   
-      
-   
-   4. 单击**确定**。
-   
+4. Enable external network access address. Skip this step if your Agent-deployed machine and RDS MySQL are in the same intranet.
+   1. In the left navigation, select **Database Connection**.
+   2. Click on **Enable External Network Address**.
+   3. In the pop-up dialog, keep the option: **Add 0.0.0.0/0 to Whitelist** selected.
+   4. Click **OK**.
       :::tip
-   
-      完成操作后，您可以在本页面查看到外网连接地址，后续将在连接数据源时填写该地址。
-   
+      After completing this operation, you can view the external network connection address on this page, which you will use when connecting to the data source later.
       :::
 
-## 添加数据源
-1. 登录 Tapdata 平台。
+## Connect to Aliyun RDS MySQL
+1. Log in to Tapdata Platform.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation, click on **Connection Management**.
 
-3. 单击页面右侧的**创建**。
+3. Click on **Create** on the right side of the page.
 
-4. 在弹出的对话框中，搜索并选择 **Aliyun RDS MySQL**。
+4. In the pop-up dialog, search and select **Aliyun RDS MySQL**.
 
-5. 在跳转到的页面，根据下述说明填写 Aliyun RDS MySQL 的连接信息。
+5. On the page that opens, fill in the MySQL connection information according to the instructions below.
 
-   ![连接配置示例](../../images/aliyun_mysql_connection_settings.png)
+   ![Aliyun MySQL Connection](../../images/aliyun_mysql_connection_settings.png)
 
-   * 连接信息设置
-      * **连接名称**：填写具有业务意义的独有名称。
-      * **连接类型**：支持作为源或目标库。
-      * **地址**：数据库连接地址，即您在准备工作获取到的外网连接地址。
-      * **端口**：数据库的服务端口，默认为 **3306**。
-      * **数据库**：数据库名称，即一个连接对应一个数据库，如有多个数据库则需创建多个数据连接。
-      * **账号**：具备高权限的账号名称。
-      * **密码**：数据库账号对应的密码。
-      * **连接参数**：额外的连接参数，默认为空。
-   * 高级设置
-      * **时区**：默认为数据库所用的时区，您也可以根据业务需求手动指定。
-        如果源库为默认数据库时区（+8:00），目标端数据库为指定时区+0:00，那么假设源端数据库存储的时间为 2020-01-01 16:00:00，目标端数据库存储的时间则为 2020-01-01 08:00:00
-      * **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-      * **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-      * **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-      * **模型加载频率**：数据源中模型数量大于 1 万时，Tapdata 将按照设置的时间定期刷新模型。
+   * **Connection Information Settings**
+      * **Name**: Fill in a meaningful and unique name.
+      * **Type**: Supports both source and target databases.
+      * **Host**: Database connection address, the external network connection address you obtained during the preparation.
+      * **Port**: Database service port, default is **3306**.
+      * **Database**: Database name, each connection corresponds to a database. If there are multiple databases, you need to create multiple data connections.
+      * **Account**: Fill in the Privileged Account name.
+      * **Password**: Password corresponding to the database account.
+      * **Connection parameter string**: Additional connection parameters, default empty.
+      
+   * **Advanced Settings**
+      * **Time Zone**: By default, Tapdata utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+        For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
+      * **Contain Tables**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
+      * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+      * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+      * **Model Loading Frequency**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+      * **Enable Heartbeat Table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Tapdata will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+        :::tip
+        After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
+        :::
 
-6. 单击**连接测试**，测试通过后单击**保存**。
-
+6. Click **Test**, and when passed, click **Save**.
    :::tip
-
-   如提示连接测试失败，请根据页面提示进行修复。
-
+   If the connection test fails, follow the prompts on the page to fix it.
    :::
-
-
-
-## 常见问题
-
-* 问：执行异构数据源之间同步时，表级联出发的数据更新和删除没有同步到目标库？
-
-  答：此场景下，如需要在目标端构建级联处理能力，可以视目标情况，通过触发器等手段来实现该类型的数据同步。
-
-* 问：Tapdata 连接测试时，提示错误：“Unknown error 1044”？
-
-  答：如果已经授予了正确的权限，可以通过下述方法检查并修复：
-
-  ```sql
-  SELECT host,user,Grant_priv,Super_priv FROM mysql.user where user='username';
-  //查看Grant_priv字段的值是否为Y
-  //如果不是，则执行以下命令
-  UPDATE mysql.user SET Grant_priv='Y' WHERE user='username';
-  FLUSH PRIVILEGES;
-  ```

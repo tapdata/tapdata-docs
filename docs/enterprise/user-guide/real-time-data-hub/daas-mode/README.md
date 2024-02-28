@@ -1,4 +1,4 @@
-# 数据服务平台模式（Beta）
+# Data as Sevice Mode
 
 
 

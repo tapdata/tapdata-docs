@@ -1,6 +1,6 @@
-# 高级设置
+# Advanced Settings
 
-本章节介绍 Tapdata 的高级设置，帮助您更好地使用该平台：
+This section covers the advanced settings of Tapdata, designed to help you make the most of the platform:
 
 import DocCardList from '@theme/DocCardList';
 

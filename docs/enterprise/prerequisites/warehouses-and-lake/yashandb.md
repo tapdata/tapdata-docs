@@ -1,15 +1,19 @@
 # YashanDB
 
-崖山数据库管理系统（YashanDB）是深圳计算科学研究院在经典数据库理论基础上，融入新的原创理论，自主设计、研发的新型数据库管理系统。Tapdata 支持将 YashanDB 作为目标库来构建数据管道，帮助您快速完成数据流转。
+YashanDB is powered by Bounded Evaluation, which uniquely delivers Just in Time analytic capabilities focusing on conquering some of the challenges surrounding big data characterized by Volume, Velocity and Variety. Tapdata supports using YashanDB as a target database to build data pipelines, facilitating rapid data transfer.
 
-接下来，跟随本文介绍在 Tapdata 平台上连接 YashanDB 数据源。
+This article will guide you through connecting a YashanDB data source on the Tapdata.
 
-## 准备工作
+import Content from '../../../reuse-content/_certificate.md';
 
-以 DBA 管理员身份登录 YashanDB，执行下述格式的命令完成账号授权操作：
+<Content />
+
+## Preparation
+
+Log in to YashanDB as a DBA administrator and execute the following commands to complete account authorization:
 
 ```sql
--- 将 username 更换为真实的用户名
+-- Replace username with the actual username
 GRANT CREATE SESSION TO username;
 GRANT INSERT ANY TABLE TO username;
 GRANT UPDATE ANY TABLE TO username;
@@ -17,38 +21,37 @@ GRANT DELETE ANY TABLE TO username;
 GRANT SELECT ANY TABLE TO username;
 ```
 
-## 连接 YashanDB
+## Connecting to YashanDB
 
-1. 登录 Tapdata 平台。
+1. Log in to [Tapdata](https://cloud.tapdata.net/console/v3/).
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation panel, click **Connections**.
 
-3. 单击页面右侧的**创建**。
+3. On the right side of the page, click **Create**.
 
-4. 在弹出的对话框中，搜索并选择 **YashanDB**。
+4. In the pop-up dialog box, search for and select **YashanDB**.
 
-5. 在跳转到的页面，根据下述说明填写 YashanDB 的连接信息。
+5. On the redirected page, fill in the connection information for YashanDB as per the instructions below.
 
-   ![连接 YashanDB](../../images/connect_yashandb.png)
+   ![Connect to YashanDB](../../images/connect_yashandb.png)
 
-    - **基本设置**
-      - **连接名称**：填写具有业务意义的独有名称。
-      - **连接类型**：仅支持**目标**。
-      - **地址**：填写数据的连接地址。
-      - **端口**：数据库的服务端口，默认为 **1688**。
-      - **模式**：要连接的 Schema（模式），即全大写的用户名，例如 用户名为 `tapdata`，则 Schema 为 `TAPDATA`。
-      - **用名名**、**密码**：分别填写数据库的用户名和密码。
-    - **高级设置**
-      - **包含表**：默认为**全部**，您也可以选择自定义并填写包含的表，多个表之间用英文逗号（,）分隔。
-      - **排除表**：打开该开关后，可以设定要排除的表，多个表之间用英文逗号（,）分隔。
-      - **Agent 设置**：默认为**平台自动分配**，您也可以手动指定 Agent。
-      - **模型加载时间**：当数据源中模型数量小于 1 万时，Tapdata 会每小时刷新一次；当数据源中模型数量大于 1 万时，Tapdata 会每天按照指定的时间进行模型刷新。
+    - **Basic Settings**
+      - **Name**: Fill in a unique name that has business significance.
+      - **Type**: Currently only supported as a **Target**.
+      - **Host**: Fill in the connection address of YashanDB.
+      - **Port**: The service port of the database, default is **1688**.
+      - **Schema**: The Schema to connect to, which is the uppercase username, e.g., if the username is `tapdata`, the Schema is `TAPDATA`.
+      - **Username**, **Password**: Fill in the database username and password respectively.
+    - **Advanced Settings**
+      - **Contain Table**: Defaults to **all**, you can also choose to custom and fill in the included tables, separated by commas (,) between multiple tables.
+      - **Exclude Tables**: After turning on the switch, you can set the tables to be excluded, separated by commas (,) between multiple tables.
+      - **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an Agent.
+      - **Model Load Time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
 
-6. 单击页面下方的**连接测试**，提示通过后单击**保存**。
+6. Click **Test**, and when passed, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the prompts on the page to fix it.
 
    :::
-

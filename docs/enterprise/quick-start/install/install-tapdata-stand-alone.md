@@ -1,73 +1,69 @@
-# 单节点部署（Linux 平台）
+# Stand-alone Deployment on Linux Platform
 
-本文介绍如何快速在本地的 Linux 平台上部署 Tapdata 服务。
+This document explains how to quickly deploy Tapdata service on a local Linux platform.
 
 :::tip
 
-单节点部署可用于功能测试场景，如需用作生产环境，推荐采用[高可用部署](../../production-admin/install-tapdata-ha.md)。
+Stand-alone deployment is suitable for functional testing scenarios. For production environments, it is recommended to use [high availability deployment](../../production-admin/install-tapdata-ha.md).
 
 :::
 
-## 软硬件环境要求
+## Hardware and Software Requirements
 
-* CPU：8 核
-* 内存：16 GB
-* 存储空间：100 GB
-* 操作系统：CentOS 7 + 或 Ubuntu 16.04 +
+* CPU: 8 cores
+* Memory: 16 GB
+* Storage Space: 100 GB
+* Operating System: CentOS 7+ or Ubuntu 16.04+
 
-## 操作步骤
+## Deployment Steps
 
+This guide uses CentOS 7 as an example to demonstrate the deployment process.
 
-
-本文以 CentOS 7 为例，演示部署流程。
-
-
-
-1. 登录至待部署的设备上，依次执行下述命令完成文件访问数、防火墙等系统参数设置。
+1. Log in to the target device and execute the following commands to set system parameters such as file access numbers and firewall.
 
    ```bash
-   ulimit -n 1024000 
-   echo "* soft nofile 1024000" >> /etc/security/limits.conf 
-   echo "* hard nofile 1024000" >> /etc/security/limits.conf 
-   systemctl disable firewalld.service 
-   systemctl stop firewalld.service 
-   setenforce 0 
-   sed -i "s/enforcing/disabled/g" /etc/selinux/config 
+   ulimit -n 1024000
+   echo "* soft nofile 1024000" >> /etc/security/limits.conf
+   echo "* hard nofile 1024000" >> /etc/security/limits.conf
+   systemctl disable firewalld.service
+   systemctl stop firewalld.service
+   setenforce 0
+   sed -i "s/enforcing/disabled/g" /etc/selinux/config
    ```
 
-2. 安装环境依赖。
+2. Install environmental dependencies.
 
-   1. 执行下述命令安装 Java 1.8 版本。
+    1. Install Java 1.8 version using the following command.
 
-      ```bash
-      yum -y install java-1.8.0-openjdk
-      ```
+       ```bash
+       yum -y install java-1.8.0-openjdk
+       ```
 
-   2. 安装 MongoDB（4.0 及以上版本），该库将作为中间库存储任务等数据，具体操作，见[官方文档](https://www.mongodb.com/docs/v4.4/administration/install-on-linux/)。
+    2. Install MongoDB (version 4.0 and above), which will serve as an intermediary library to store task data and others. See [official documentation](https://www.mongodb.com/docs/v4.4/administration/install-on-linux/) for the installation process.
 
-3. 下载 Tapdata 安装包（可[联系我们](mailto:team@tapdata.io)获取），将其上传至待部署的设备中。
+3. Download the Tapdata installation package (contact us at [team@tapdata.io](mailto:team@tapdata.io) to obtain it) and upload it to the target device.
 
-4. 在待部署的设备上，执行下述格式的命令，解压安装包并进入解压后的路径。
+4. On the target device, execute the command below to unzip the package and enter the unzipped directory.
 
    ```bash
-   tar -zxvf 安装包名&&cd tapdata
+   tar -zxvf package_name && cd tapdata
    ```
 
-   例如：`tar -zxvf tapdata-release-v2.14.tar.gz&&cd tapdata `
+   For example: `tar -zxvf tapdata-release-v2.14.tar.gz && cd tapdata`
 
-5. 准备 License 文件。
+5. Prepare the License file.
 
-   1. 执行下述命令获取申请所需的 SID 信息。
+    1. Execute the following command to obtain the SID information required for the application.
 
-      ```bash
-      java -cp components/tm.jar -Dloader.main=com.tapdata.tm.license.util.SidGenerator org.springframework.boot.loader.PropertiesLauncher
-      ```
+       ```bash
+       java -cp components/tm.jar -Dloader.main=com.tapdata.tm.license.util.SidGenerator org.springframework.boot.loader.PropertiesLauncher
+       ```
 
-   2. 将打印出的 SID 信息提供给 Tapdata 支持团队，完成 License 申请流程。
+    2. Provide the printed SID information to the Tapdata support team to complete the License application process.
 
-   3. 将申请到的 License 文件上传至解压后的目录（**tapdata**）中。
+    3. Upload the acquired License file to the unzipped directory (**tapdata**).
 
-6. 执行 `./tapdata start`，跟随命令行提示，依次设置 Tapdata 的登录地址、API 服务端口、MongoDB 连接信息等，示例及说明如下：
+6. Execute `./tapdata start` and follow the command-line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc. The example and explanation are as follows:
 
    ```bash
     ./tapdata start
@@ -99,15 +95,15 @@
    TapdataAgent starting ...:
    ```
 
-   * **Please enter backend url**：设置 Tapdata 平台的登录地址，默认为 `http://127.0.0.1:3030/`
-   * **Please enter tapdata port**：设置 Tapdata 平台的登录端口，默认为 `3030`。
-   * **Please enter api server port**：设置 API Server 的服务端口，默认为 `3080`。
-   * **Does MongoDB require username/password?**：MongoDB 数据库是否启用了安全认证，未启用则输入 **n**，如果启用则输入 **y**，然后根据提示分别输入用户名、密码和鉴权数据库（默认为 `admin`）。
-   * **Does MongoDB require TLS/SSL?(y/n)**：MongoDB 数据库是否启用 TSL/SSL 加密，未启用则输入 **n**，如果启用则输入 **y**，然后根据提示分别输入 CA 证书和 Certificate Key 文件的绝对地址路径，以及 Certificate Key 的文件密码。
-   * **Please enter MongoDB host, port, database name**：设置 MongoDB 数据库的 URI 连接信息，默认为 `127.0.0.1:27017/tapdata`。
-   * **Does API Server response error code?**：是否启用 API Server 响应错误码功能。
+    * **Please enter backend url**: Set the login address for the Tapdata platform, by default `http://127.0.0.1:3030/`
+    * **Please enter tapdata port**: Set the login port for the Tapdata platform, by default `3030`.
+    * **Please enter api server port**: Set the service port for the API Server, by default `3080`.
+    * **Does MongoDB require username/password?**: If MongoDB database has security authentication enabled, enter **n** if not, or **y** if yes, then follow the prompts to enter the username, password, and the authentication database (default `admin`).
+    * **Does MongoDB require TLS/SSL?(y/n)**: If MongoDB database has TLS/SSL encryption enabled, enter **n** if not, or **y** if yes, then follow the prompts to enter the absolute path addresses of the CA certificate and Certificate Key files, as well as the file password for the Certificate Key.
+    * **Please enter MongoDB host, port, database name**: Set the URI connection information for the MongoDB database, by default `127.0.0.1:27017/tapdata`.
+    * **Does API Server response error code?**: Whether to enable the API Server to respond with error codes.
 
-   部署成功后，命令行返回示例如下：
+   After successful deployment, the command line will return a message similar to the following:
 
    ```bash
    deployed connector.
@@ -116,35 +112,32 @@
    API service started
    ```
 
-7. 通过浏览器登录 Tapdata 平台，本机的登录地址为  [http://127.0.0.1:3030](http://127.0.0.1:3030)，首次登录请及时修改密码以保障安全性。
+7. Log in to the Tapdata platform through a browser. The login address for this machine is [http://127.0.0.1:3030](http://127.0.0.1:3030).
 
-   :::tip
+Please change your password promptly upon first login to ensure security.
 
-   如需在同一内网的其他设备上访问 Tapdata 服务，请确保网络可互通。
+:::tip
 
-   :::
+If you need to access the Tapdata service from other devices in the same network, ensure network interoperability.
+
+:::
 
 
 
-## 部署命令执行示例
-
-import AsciinemaPlayer from '@site/src/components/AsciinemaPlayer/AsciinemaPlayer.tsx';
-
-<AsciinemaWidget src="https://docs.tapdata.io/asciinema_playbook/install_tapdata.cast" rows={20} idleTimeLimit={3} preload={true} />
-
+## Deployment Command Execution Example
 
 <AsciinemaPlayer
-    src="/asciinema_playbook/install_tapdata.cast"
-    poster="npt:0:20"
-    rows={25}
-    speed={1.8}
-    preload={true}
-    terminalFontSize="15px"
-    fit={false}
+src="/asciinema_playbook/install_tapdata.cast"
+poster="npt:0:20"
+rows={25}
+speed={1.8}
+preload={true}
+terminalFontSize="15px"
+fit={false}
 />
 
 
 
-## 下一步
+## Next Steps
 
-[连接数据库](../connect-database.md)
+[Connect to Databases](../connect-database.md)
