@@ -1,33 +1,31 @@
-# 管理用户
+# Manage
 
-Tapdata 部署完成后，会自动创建一个名为 `admin@admin.com`  的系统管理员，为更好地管理平台操作权限，您可以通过该账号登录 Tapdata 平台，为组织内的其他成员执行创建用户、赋予权限等管理操作。
+After Tapdata is deployed, a system administrator named `admin@admin.com` will be automatically created. To better manage platform operation permissions, you can log into the Tapdata platform with this account and perform management operations, such as creating users and granting permissions, for other members within the organization.
 
-## 操作步骤
+## Procedure
 
-1. 以系统管理员身份登录 Tapdata 平台。
+1. Log in to Tapdata as a system administrator.
 
-2. 在左侧导航栏，选择**系统管理** > **用户管理**。
+2. In the left navigation bar, select **System** > **Users**.
 
-3. 创建新用户。
+3. Create a new user.
 
-   1. 单击页面右侧的**创建**。
+    1. Click **Create** on the right side of the page.
 
-   2. 在弹出的对话框中，根据下述说明完成设置。
+    2. In the pop-up dialog, complete the setup according to the instructions below.
 
-      ![创建用户](../../images/create_user.png)
+        * **Username**: Fill in the username for easy business identification.
+        * **Email**: Fill in a unique email address, which will be used for logging in subsequently.
+        * **Password**: Set the user password, recommending the inclusion of uppercase and lowercase letters, numbers, and special characters.
+        * **Associated Role**: A role is a collection of one or more permissions. Selecting a role to associate with the user means inheriting the permissions that the role possesses. For more introduction, see [Create Role](manage-role.md).
+        * **Status**: Set to **Activated**.
+        * **Access Code**: No need to set, it can be used to integrate the Tapdata platform.
 
-      * **用户名**：填写用户名，便于业务识别。
-      * **邮箱**：填写唯一的邮箱地址，后续将使用邮箱地址登录。
-      * **密码**：设置用户密码，推荐包含大小写英文字母、数字和特殊字符。
-      * **关联角色**：角色是一个或多个权限合集，选择该用户关联的角色即继承该角色所拥有的权限。更多介绍，见[创建角色](manage-role.md)。
-      * **状态**：设置为**已激活**。
-      * **访问码**：无需设置，可用于集成 Tapdata 平台。
+4. If you need to manage existing users, choose the operation to perform:
 
-4. 如需对已有用户进行管理，可选择要执行的操作：
-
-   * **冻结/激活用户**：如需临时控制用户是否可以登录 Tapdata 平台，可单击**冻结**或**激活**。   
-   * **编辑用户**：单击目标用户的**编辑**，在弹出的对话框中，调整用户密码、角色和状态等配置。
-   * **删除用户**：单击目标用户的**删除**，在弹出的对话框中单击**确定**。
-     :::caution   
-     用户被删除后不可恢复，请谨慎操作。   
-     :::
+    * **Freeze/Activate User**: If you need to temporarily control whether a user can log in to the Tapdata platform, click **Freeze** or **Activate**.
+    * **Edit User**: Click **Edit** for the target user, and in the pop-up dialog, adjust user configurations like password, role, and status, etc.
+    * **Delete User**: Click **Delete** for the target user, and click **Confirm** in the pop-up dialog.
+      :::caution   
+      Once a user is deleted, it cannot be recovered. Please proceed with caution.   
+      :::

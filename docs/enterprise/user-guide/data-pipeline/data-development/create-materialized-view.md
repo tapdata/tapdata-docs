@@ -1,58 +1,53 @@
-# 构建实时物化视图（Beta）
+# Building Real-Time Materialized Views (Beta)
 
-物化视图是一种特殊的数据库视图，它能预存复杂查询的结果，大大提升数据读取的速度。而在整合多种数据源或需要确保数据实时更新的场景下，您可以通过 Tapdata 来创建实时物化视图，帮助您轻松创建、管理物化视图，同时确保数据的准确性和实时性，简化了数据管理和应用开发过程。
+Materialized views, a special kind of database view, pre-store the results of complex queries, significantly speeding up data retrieval. In scenarios integrating multiple data sources or requiring real-time data updates, you can create real-time materialized views with Tapdata, simplifying data management and application development while ensuring data accuracy and timeliness.
 
+## Background
 
+As data grows exponentially, enterprises and developers face increasingly complex data management challenges. Traditional data handling methods, such as manually managing and synchronizing multiple related data tables, are not only inefficient but may also lead to data consistency issues. Efficient and real-time data integration tools become crucial in this context.
 
-## 背景介绍
+Tapdata's real-time materialized view feature is designed to address these challenges, allowing easy integration of different data sources and ensuring automatic updates of materialized views when source table data changes. This automation and real-time capability significantly simplify data management complexity and improve query efficiency.
 
-随着数据的爆炸式增长，企业和开发者们面临着日益复杂的数据管理挑战。传统的数据处理方式，如手动管理和同步多个相关数据表，不仅效率低下，还可能带来数据一致性的问题。此时，高效和实时的数据整合工具变得尤为关键。
+To bring this feature closer to practical application, we chose data from the e-commerce domain as an example. In e-commerce platforms, order management is a core component, with common data tables like orders, sub-orders, products, user information, and logistics playing crucial roles. Suppose the development team decides to use MongoDB and plans to integrate data from these tables into a new order table. With Tapdata, this task becomes straightforward.
 
-Tapdata 的实时物化视图功能正是为解决这类问题而设计，帮助您可以轻松地整合不同的数据源，实现源表数据发生变动时自动更新物化视图，确保数据始终保持时效性和准确性。这种自动化和实时性大大简化了数据管理的复杂性，同时提高了查询的效率。
+Next, we'll demonstrate how to apply Tapdata's real-time materialized view feature in an e-commerce scenario, helping you understand its powerful capabilities.
 
-为了使这一功能更加贴近实际应用，我们选择了电商领域的数据作为例子。在电商平台中，订单管理是其核心环节，常见的数据表如订单表、子订单表、货品表、用户信息表和物流表都扮演着重要的角色。假设开发团队决定使用 MongoDB，并计划将上述表格的数据整合到一个新的 order 表中。这样的任务，借助于 Tapdata，将变得轻而易举。
+## Operational Steps
 
-接下来，我们将详细演示如何在电商场景中应用 Tapdata 的实时物化视图功能，助您深入理解其强大之处。
+1. Log into the Tapdata platform.
 
+2. In the left navigation bar, select **Data Pipeline** > **Data Transformation**.
 
+3. Click **Build Materialized View** on the right side of the page, then complete the main table configuration on the redirected task configuration page.
 
-## 操作步骤
+   1. Select the database and table to serve as the source for the materialized view. In this example, we choose the **order** table as the main table.
 
-1. 登录 Tapdata 平台。
+      ![Select Main Table](../../../images/select_main_table.png)
 
-2. 在左侧导航栏，选择**数据管道** > **数据转换**。
+   2. As mentioned, we aim to build a materialized view containing complete data, including user information and product tables. First, click **+ Add Field**, select embedded document, and enter the field name as **user**.
 
-3. 单击页面右侧的**构建物化视图**，在跳转到任务配置页面完成主表配置。
+   3. In the field edit box that appears, sequentially complete the associated library, table, and joining condition. In this example, we associate it with the **user_id** from the **users** table.
 
-   1. 选择要作为物化视图来源的数据库和表，本案例中选择 **order** 表作为主表。
+      After setting, you'll see a new embedded document field named **user** in the **orders** table.
 
-      ![选择主表](../../../images/select_main_table.png)
+      ![Add Fields](../../../images/add_columns.png)
 
-   2. 前面我们提到，我们希望能够构建包含用户信息、货品表等完整数据的物化视图，首先我们单击 **+ 新增字段**，在弹出的菜单中选择内嵌文档并输入字段名称为 **user**。
+   4. Add a **sub_orders** field to store sub-order information by clicking **+ Add Field** on the **orders** table, selecting **embedded array**, and entering the path **sub_orders**. Then, follow the previous step to complete the table and joining condition settings.
 
-   3. 在浮现的字段编辑框中，依次完成要关联的库、表和关联条件，本案例中我们关联到 **users** 表的 **user_id** 。
+   5. Add product and logistics information to the **sub_orders** field. This time, click **+ Add Field** on the **sub_orders** table, choose to flatten, and complete the table and joining condition settings.
 
-      完成设置后，即可看到 **orders** 表中多了一个名为 **user** 的内嵌文档字段。
+      After all configurations, the specific relationship looks like the following image, and thus, the **orders** table includes all table information.
 
-      ![添加字段](../../../images/add_columns.png)
+      ![Materialized View Overview](../../../images/materialized_view_overview.png)
 
-   4. 增加一个 **sub_orders** 字段来存储子订单信息，即在 **orders** 表上单击 **+ 新增字段**, 选择**内嵌数组**并输入路径 **sub_orders**，然后参考上一步骤完成表和关联条件的设置。
+4. Click the **+ Write Target** in the top right corner of the **orders** table edit box, then select the MongoDB data source and collection name to write to.
 
-   5. 将货品和物理信息增加至 **sub_orders** 字段内，这次需要在 **sub_orders** 表上单击 **+ 新增字段**，选择平铺并完成表和关联条件的设置。
+   As shown below, you can see the field types and details in the target collection **order_view** on the right.
 
-      完成所有配置后，具体关联关系如下图所示，至此，**orders** 表包含了全部的表信息。
+   ![Select Target Table](../../../images/select_view_write_target.png)
 
-      ![物化视图概览](../../../images/materialized_view_overview.png)
+5. Click the **X** icon in the top left to return to the task configuration page, then click **Start** at the top right to complete the construction of the real-time materialized view.
 
-4. 单击 **orders** 表编辑框右上角的 **+ 写入目标**，然后选择要写入的 MongoDB 数据源和集合名称。
+   After successful startup, it will automatically redirect to the task monitoring page where you can view the task's QPS, latency, task events, etc.
 
-   如下图所示，我们可以在右侧的目标集合 **order_view** 中看到其字段类型和详情。
-
-   ![选择目标表](../../../images/select_view_write_target.png)
-
-5. 单击左上角的 **X** 图标返回至任务配置页面，单击右上角的**启动**，即可完成实时物化视图的构建。
-
-   启动成功后会自动跳转至任务监控页面，您可以查看任务的 QPS、延迟、任务事件等信息。
-
-   ![查看](../../../images/monitor_view_task.png)
-
+   ![Monitoring](../../../images/monitor_view_task.png)

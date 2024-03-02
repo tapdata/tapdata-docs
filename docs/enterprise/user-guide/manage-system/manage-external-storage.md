@@ -1,57 +1,48 @@
-# 管理外存
+# Manage External Storage
 
-为便于后续快速读取任务相关信息，Tapdata 会将任务的必要配置、共享缓存等信息存储至内部的 MongoDB 数据库中。为存储更多的数据（如缓存数据），您可以创建一个外部数据库来存储相关数据。
+To facilitate quick access to task-related information in the future, Tapdata stores essential configuration and shared cache information in an internal MongoDB database. For storing additional data (e.g., cache data), you can create an external database for this purpose.
 
+## Prerequisite
 
+An external database has been created for data storage, currently supporting MongoDB and RocksDB.
 
-## 前提条件
+## Create External Storage
 
-已创建用作数据存储的外部数据库，当前支持 MongoDB 和 RocksDB。
+1. Log in to the Tapdata platform.
 
+2. In the left navigation bar, select **System Management** > **External Storage Management**.
 
+3. On the right side of the page, click **Create External Storage**.
 
-## 创建外存
+4. In the popup dialog, complete the <span id="320-external-storage">configuration</span> based on the instructions below.
 
-1. 登录 Tapdata 平台。
+   ![Create External Storage](../../images/create_external_storage_cn.png)
 
-2. 在左侧导航栏，选择**系统管理** > **外存管理**。
+    - **External Storage Name**: Enter a meaningful name for the storage to facilitate future identification.
+    - **External Storage Type**: Supports **MongoDB** and **RocksDB**.
+    - **Storage Path**: Fill in the database connection address, for example, MongoDB format reference:
 
-3. 在页面右侧，单击**创建外存**。
+      `mongodb:/admin:password@127.0.0.1:27017/mydb?replicaSet=xxx&authSource=admin`.
 
-4. 在弹出的对话框中，根据下述说明完成<span id="320-external-storage">配置</span>。
+    - **Use TLS/SSL Connection**: Choose whether to enable TSL/SSL encryption. If this feature is enabled, you will also need to upload the client private key.
+    - **Set as Default**: Choose whether to set this as the default external storage.
 
-   ![创建外存](../../images/create_external_storage_cn.png)
-
-   * **外存名称**：填写具有业务意义的换成名称，便于后续识别。
-
-   * **外存类型**：支持 **MongoDB** 和 **RocksDB**。
-
-   * **存储路径**：填写数据库连接地址，例如 MongoDB 格式参考：
-
-      `mongodb:/admin:password@127.0.0.1:27017/mydb?replicaSet=xxx&authSource=admin`。
-
-   * **使用 TLS/SSL 连接**：选择是否启用 TSL/SSL 加密，如开启该功能，您还需要上传客户端私钥。
-
-   * **设为默认**：选择是否作为默认外存。
-
-5. 单击**连接测试**，测试通过后单击**保存**。
+5. Click **Test Connection**. After passing the test, click **Save**.
 
    :::tip
 
-   如提示连接测试失败，请根据页面提示进行修复。
+   If the connection test fails, follow the on-screen instructions to make corrections.
 
    :::
 
+## Use External Storage
 
+You can use the newly configured external storage in shared caches, and some processing nodes (e.g., Join Node) as shown below:
 
-## 使用外存
+- When [creating a shared cache](../advanced-settings/share-cache.md), you can select external storage.
 
-您可以在共享缓存、部分处理节点（如**连接节点**）中使用刚刚配置的外存，示例如下：
+  ![Use External Storage in Shared Cache](../../images/apply_external_storage_shared_cache_cn.png)
 
-* [创建共享缓存](../advanced-settings/share-cache.md)时，可选择外存。
+- When creating data replication/development tasks, adding [processing nodes](../data-pipeline/data-development/process-node.md) (such as Join Node), you can select external storage.
 
-  ![共享缓存](../../images/apply_external_storage_shared_cache_cn.png)
-
-* 创建数据复制/开发任务时，增加[处理节点](../data-pipeline/data-development/process-node.md)（如连接节点）时，可选择外存。
-
-  ![处理节点](../../images/apply_external_storage_join_cn.png)
+  ![Use External Storage in Processing Node](../../images/apply_external_storage_join_cn.png)

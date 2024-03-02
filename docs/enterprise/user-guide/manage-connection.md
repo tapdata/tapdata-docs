@@ -1,31 +1,31 @@
-# 管理连接
+# Manage Connections
 
-Tapdata 通过连接保存了各数据库的连接信息，方便您在创建数据复制/开发任务时直接引用，无需重复配置，提升运维便利性。本文介绍连接的常见运维操作。
+Tapdata stores connection information for various databases through connections, facilitating direct reference when creating data replication/development tasks, eliminating the need for repeated configurations, and enhancing operational convenience. This document introduces common operational actions for connections.
 
-## 操作步骤
+## Procedure
 
-1. 登录 Tapdata 平台。
+1. Log in to the Tapdata.
 
-2. 在左侧导航栏，单击**连接管理**。
+2. In the left navigation bar, click **Connection Management**.
 
-3. 根据业务需求，选择要执行的操作。
+3. Based on business needs, select the action to perform.
 
-   ![管理连接](../images/manage_connection.png)
+   ![Manage Connections](../images/manage_connection.png)
 
-   - **筛选连接**：可基于状态、连接类型、数据类型进行快速筛选，也可以通过连接名称搜索。
-   
-   - **连接测试**：测试该连接是否有效，如发现异常可根据对话框提示进行排查。
-   
-   - **加载 Schema**：手动加载数据源中的模型信息。
-   
-   - **编辑**：可对连接的名称和配置信息进行修改。
-   
-   - **复制**：快速基于指定的连接复制一个配置相同的连接。
-   
-   - **删除**：对于不再需要的连接，可执行删除操作，执行该操作后不可恢复，请谨慎操作。
-   
-     :::tip
-   
-     执行本操作时，需删除所有使用该连接的任务，否则无法删除。
-   
-     :::
+    - **Filter Connections**: Quickly filter based on status, connection type, and data type, or search by connection name.
+
+    - **Test Connection**: Test whether the connection is effective. If anomalies are found, follow the prompts in the dialog box for troubleshooting.
+
+    - **Load Schema**: Manually load model information from the data source.
+
+    - **Edit**: Modify the name and configuration information of the connection.
+
+    - **Copy**: Quickly copy a connection with the same configuration based on a specified connection.
+
+    - **Delete**: Perform the delete operation for connections that are no longer needed. This operation is irreversible, so proceed with caution.
+
+      :::tip
+
+      When executing this operation, all tasks using this connection must be deleted; otherwise, the connection cannot be deleted.
+
+      :::

@@ -1,4 +1,4 @@
-# 系统管理
+# Manage System
 
 import DocCardList from '@theme/DocCardList';
 

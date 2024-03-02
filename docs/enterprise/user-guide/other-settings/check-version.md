@@ -1,9 +1,5 @@
-# 查看系统版本
+# View System Version
 
-在页面右上角，单击账户信息，然后单击系统版本按钮查看当前版本。
+In the upper right corner of the Tapdata platform, click on your account, and then click on **Version** to view the current version.
 
-![](../../images/check_version_1.png)
-
-
-
-![](../../images/check_version_2.png)
+![Check Version](../../images/check_version_1.png)

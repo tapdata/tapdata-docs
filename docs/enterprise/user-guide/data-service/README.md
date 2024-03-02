@@ -1,18 +1,14 @@
-# 数据服务
+# Data Services
 
-Tapdata 支持 API 形式发布表数据，帮助企业构建统一的数据服务平台，各类应用可基于 API 为推送服务等应用提供支持，推荐的使用顺序如下：
+Tapdata supports publishing table data as APIs, aiding enterprises in building a unified data services platform. Various applications can use these APIs to provide support for services such as push notifications. The recommended sequence of use is as follows:
 
-| 步骤                                              | 说明                                                         |
-| ------------------------------------------------- | ------------------------------------------------------------ |
-| [创建 API 应用](manage-app.md)                    | 基于 API 的用途进行分组管理。                                |
-| [创建 API 服务](create-api-service.md)            | 选择需要关联的表，设置 API 的名称、版本、访问路径、权限范围等信息，设置完成后发布上线即可。 |
-| [创建 API 客户端](create-api-client.md)           | 基于业务需求设置权限范围和认证方式，保障 API 服务的安全性。  |
-| 调用 API 服务                                     | 支持 [RESTful](query-via-restful.md) 和 [GraphQL](query-via-graphql.md) 访问方式。 |
-| [审计](audit-api.md)和[监控](monitor-api-request) | 审计和监控 API 调用情况，满足合规和安全性等需求。            |
-
-
-
-
+| Step                                           | Description                                                                 |
+|------------------------------------------------|-----------------------------------------------------------------------------|
+| [Create an API Application](manage-app.md)     | Manage based on the purpose of the API in groups.                           |
+| [Create an API Service](create-api-service.md) | Select the tables to associate, set the API's name, version, access path, permission scope, etc. Once set up, publish it online. |
+| [Create an API Client](create-api-client.md)   | Set the scope of permissions and authentication methods based on business needs to ensure the security of the API service.       |
+| Invoke API Service                             | Supports [RESTful](query-via-restful.md) and [GraphQL](query-via-graphql.md) access methods.                                       |
+| [Audit](audit-api.md) and [Monitor](monitor-api-request) | Audit and monitor API usage to meet compliance and security requirements.   |
 
 import DocCardList from '@theme/DocCardList';
 

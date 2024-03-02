@@ -1,48 +1,15 @@
-# 管理数据转换任务
+# Manage Data Transformation Task
 
-## 任务列表
+After the data transformation task is created, you can monitor and manage the task in the task list.
 
-任务列表展示当前已创建的所有数据转换任务，展示的任务信息包括：
+![manage_copy_dev_task_en](../../../images/manage_copy_dev_task_en.png)
 
-- 任务名称：任务的名称，点击名称可以打开任务查看页面查看任务的设置
-- 任务类型：任务的类型，包括全量、增量、全量+增量
-- 任务状态：任务的运行状态，包括
+| Operation          | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| **Start**/**Stop** | After stopping the task, the next start will continue to replicate the data based on the last stopped incremental point in time. |
+| **Edit**           | Configure the task, including node settings, synchronized tables, task start schedule, and other information. Please note that the task cannot be altered during execution. |
+| **Monitor**        | View the running progress, running logs, connections, history, synchronized content, and more. For more information, see [monitor data dev task](monitor-task.md). |
+| **Copy**           | Clear the data synchronization progress of the task, and the next start will initiate the data synchronization task from the beginning. |
+| **Reset**          | Clear the data synchronization progress of the task, and the next start will restart the data synchronization task. |
+| **Delete**         | Please note that once a task is deleted, it cannot be recovered. Please proceed with caution when deleting tasks. |
 
-- - 编辑中
-  - 待启动
-  - 启动中
-  - 运行中
-  - 已完成
-  - 停止中
-  - 已停止 
-  - 错误
-  - 重置中
-  - 重置失败
-
-- 创建时间：任务的创建时间
-- 操作：当前任务可以进行的操作：
-
-- - 启动
-  - 停止
-  - 编辑
-  - 运行监控
-  - 查看
-  - 导出
-  - 复制
-  - 重置
-  - 删除
-  - 添加标签
-
-## 导入/导出任务
-
-支持对任务进行导出和导入操作，导出的任务会生成一个gz文件。
-
-然后通过任务的导入功能可以将gz文件导入生成任务。
-
-![](../../../images/manage_data_dev_1.png)
-
-## 任务分类管理
-
-支持对任务进行自定义分类管理。通过列表左侧的数据分类管理功能，可以新增自定义分类。然后支持将单个任务或者批量任务添加到对应分类下进行管理。
-
-![](../../../images/manage_data_dev_2.png)

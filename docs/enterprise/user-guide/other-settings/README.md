@@ -1,4 +1,4 @@
-# 其他设置
+# Other Settings
 
 import DocCardList from '@theme/DocCardList';
 

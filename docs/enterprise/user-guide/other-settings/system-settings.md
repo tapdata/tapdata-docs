@@ -1,165 +1,134 @@
-# 系统设置
+# System Settings
 
-系统设置功能主要用来对系统的一些参数进行设置，例如日志、SMTP、API 分发等设置。
+The system settings feature is mainly used to configure some parameters of the system, such as logging, SMTP, API distribution, and more.
 
+## Accessing System Settings
 
+In the upper-right corner of the page, click on the ![Settings](../../images/setting.png) icon, and then click on **System Settings**.
 
-## 设置入口
+## Log Settings
 
-在页面右上角，单击![](../../images/setting.png)图标，然后单击**系统设置**。
+![Log Settings](../../images/log_settings.png)
 
+**Log Level**: In the log settings, you can set the log level. Available log levels include: **error**/**warn**/**info**/**debug**/**trace**. When you select a level, only logs of that level and higher will be printed in the logs.
 
+**Log Filtering Interval (seconds)**: Set the time interval during which the same log will only appear once (effective after 1 minute).
 
-## 日志设置
+**Log Output Frequency (lines/second)**: Set the average number of events allowed per second in the log settings.
 
-![日志设置](../../images/log_settings.png)
+## SMTP Settings
 
-**日志等级**：在日志设置可以设置日志的等级。输入任务日志等级包括: **error**/**warn**/**info**/**debug**/**trace**。用户选择了一个等级，则在日志内只会打印该等级及其以上等级的日志。
+![SMTP Settings](../../images/smtp_settings.png)
 
-**日志过滤间隔(秒)**：设置相同日志在指定时间内只出现一次（1分钟后生效）。
+Configure SMTP service settings, including:
 
-**日志输出频率(行/秒)**：日志设置每秒允许的事件平均数量
+- **SMTP Service Account**: Set the SMTP account.
+- **SMTP Service Password**: Set the password for the SMTP account.
+- **Encryption Method**: Choose the encryption method, supporting SSL and TLS.
+- **SMTP Service Host**: Set the host address of the SMTP service.
+- **SMTP Service Port**: Set the port number of the SMTP service.
+- **Email Sending Address**: Set the email address from which emails will be sent.
+- **Email Receiving Address**: Set the email address where emails will be received.
+- **Send Email Title Prefix**  (optional): Set the prefix for email subjects.
 
+After configuring the settings, you can view the email templates. You can test the configuration by conducting a connection test.
 
+After a successful connection test, click the Save button to save the SMTP settings.
 
+## API Distribution Settings
 
+![API Distribution Settings](../../images/api_distribution_settings.png)
 
-## SMTP 设置
+Configure API distribution policies, including:
 
-![SMTP 设置](../../images/smtp_settings.png)
+- **The Number of Rows returned by the Default Query:** Set the default number of rows returned by API queries.
+- **Maximum Number of  Rows Returned by the Query**: Set the maximum number of rows returned by API queries.
+- **Enable API Statistics**: Set whether to enable API statistics.
+- **Maximum Number of API Request Cache**: Set the maximum number of cached API requests.
+- **API Request Report Frequency** (seconds): Set the frequency of API request reporting.
 
-配置SMTP服务，设置项包括：
+## Connection Settings
 
-- SMTP 服务账号：设置SMTP账号
-- SMTP服务密码：设置SMPT账号的密码
-- 加密方式：选择加密方式，支持SSL和TLS
-- SMTP 服务Host：设置SMPT服务的主机地址
-- SMTP服务端口：设置SMTP服务的端口号
-- Email发送邮件地址：设置发送邮件的邮箱地址
-- Email接受邮件地址：设置接受邮件的邮箱地址
-- 发送Email标题的前缀(可选)：设置邮件标题的前缀
+![Connection Settings](../../images/connection_settings.png)
 
-按照设置项设置完成后，可以查看邮件模板。可以通过连接测试来检测配置是否正确。
+Configure some settings related to connection management, including:
 
-连接测试通过之后点击保存按钮，保存SMTP设置。
+- **MongoDB Load Model Sampling Records** (rows): Set the number of sampling records when loading MongoDB models.
+- **Data Source Schema Update Time**: Set the specific time for automatic data source schema updates.
+- **Data Source Schema Update Interva**l (days): Set the update period for data source schemas in days.
+- **Allow the Creation of Duplicate Data Sources**: Set whether to allow the creation of duplicate data sources.
 
+## Operation Display Settings
 
+![Operation Display Settings](../../images/operation_settings.png)
 
-## API 分发设置
+Operation display settings include:
 
-![API 分发设置](../../images/api_distribution_settings.png)
+- **O&M Operation Control URL**
+- **Flow Engine Version**
+- **Tapdata Agent Version**
 
-设置API分发策略，设置项包括：
+## Global System Settings
 
-- 默认查询返回行数：设置API查询时默认的返回行数
-- 最大查询返回行数：设置API查询时的最大返回行数
-- 启用API统计：设置是否启用API统计
-- API请求缓存最大个数：设置API请求时缓存的最大个数
-- API请求汇报频率(秒)：设置API请求时汇报的频率
+![Global System Settings](../../images/global_settings.png)
 
+Global system settings support the following options:
 
+- **Maximum CPU Usage** (range 0.1 to 1)
+- **Maximum Heap Memory Usage** (range 0.1 to 1)
+- **License Expiration Reminder**
 
-## 连接设置
+## Disaster Drill Settings
 
-![连接设置](../../images/connection_settings.png)
+![Disaster Drill Settings](../../images/disaster_drill_settings.png)
 
-设置连接管理的一些配置，设置项包括：
+Disaster drill settings mainly include:
 
-- MongoDB加载模型采样记录数(行)：设置加载MongoDB模型时进行采样记录行数
-- 数据源schema更新时间：设置自动更新数据源schema的具体时间
-- 数据源schema更新周期（天）：设置数据源schema的更新周期，单位为天
-- 允许创建重复数据源：设置是否允许创建重复的数据源
+- **Allow Disaster Recovery Exercises**
+- **Mongod Path**
+- **SSH Username**
+- **SSH Port**
 
+## Background Analysis Settings
 
+![Background Analysis Settings](../../images/background_settings.png)
 
-## 运维展示设置
+Background analysis settings mainly set the interval for data quality analysis. You can adjust these settings according to your needs.
 
-![运维展示设置](../../images/operation_settings.png)
+## System Resource Monitoring Settings
 
-运维展示支持设置项包括：
+![System Resource Monitoring Settings](../../images/resource_monitor_settings.png)
 
-- 运维运控URL
-- 流程引擎版本
-- Tapdata agent版本
+System resource monitoring settings mainly set the data collection frequency for system resource monitoring. You can adjust these settings according to your needs.
 
+## Process Settings
 
+![Process Settings](../../images/process_settings.png)
 
+Process settings are primarily used to set the expiration time for process heartbeats.
 
+- **Process Heartbeat Period Time** (seconds)
 
-## 系统全局设置
+## Task Settings
 
-![系统全局设置](../../images/global_settings.png)
+![Task Settings](../../images/task_settings.png)
 
-系统全局设置，支持的设置项包括：
+Task settings are mainly used to configure some parameters during task runtime. Supported settings include:
 
-- 最大CPU使用率(取值范围 0.1 ~ 1)
-- 最大堆内存使用率(取值范围 0.1 ~ 1)
-- License 到期提醒
-
-
-
-## 灾备演习设置
-
-![灾备演习设置](../../images/disaster_drill_settings.png)
-
-灾备演习设置主要的配置项包括：
-
-- 允许灾备演习
-- Mongod 路径
-- SSH 用户名
-- SSH 端口
-
-
-
-## 后台分析设置
-
-![后台分析设置](../../images/background_settings.png)
-
-后台分析设置主要设置数据质量分析间隔，用户根据需要设置即可。
-
-
-
-## 系统资源监控设置
-
-![系统资源监控设置](../../images/resource_monitor_settings.png)
-
-系统资源监控设置主要设置系统资源监控的采集频率，用户根据需要设置即可。
-
-
-
-## 进程设置
-
-![进程设置](../../images/process_settings.png)
-
-- 进程设置主要用来设置进程心跳的过期时间
-
-- 进程心跳过期时间（秒）
-
-
-
-## 任务设置
-
-![任务设置](../../images/task_settings.png)
-
-任务设置主要用来对任务运行时的一些参数进行设置。支持的设置项包括：
-
-
-
-- 增量滞后判定时间（秒）：可以设置任务增量延迟超过多少时才算滞后
-- 是否在目标端数据集添加创建时间：true or false
-- 缓存一份当前整体数据，合并到目标数据集中
-- 缓存一份修改前的整体数据，合并到目标数据集中
-- 是否传输任务日志到云端
-- 增量模式下切换到批量插入模式间隔时间（秒）
-- 采样率
-- 负载阈值（百分比）
-- 负载统计时间（分钟）
-- 非法字符替换
-- 同步任务心跳超时（毫秒）
-- 增量同步任务共享模式
-- 增量任务强制使用共享模式
-- 自动保存增量事件
-- 增量事件保存时长（天）
-- 重试间隔（秒）
-- 最大重试时间（分钟）
-
+- **Incremental Lag Decision Time** (seconds): Sets the time threshold for determining if a task is lagging.
+- **Whether to Add the Creation Time to Target Data Set**: true or false
+- **Cache a copy of the current overall data and merge it into the target data set**
+- **Cache a copy of the overall data before modification and merge it into the target data set**
+- **Whether to transfer task logs to the cloud**
+- **Interval time for switching to batch insert mode in incremental mode** (unit: second)
+- **Sampling rate**
+- **Task load threshold** (percentage)
+- **Task load statistics time** (minute)
+- **Illegal characters replaced with**
+- **Synchronization task heartbeat timeout** (milliseconds)
+- **Incremental synchronization task sharing mode**
+- **Incremental tasks are forced to use shared mode**
+- **Automatically save incremental events**
+- **Incremental event save time** (days)
+- **Retry Interval** (Second)
+- **Maximum Retry Time**(Minute)

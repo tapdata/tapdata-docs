@@ -1,31 +1,29 @@
-# 管理集群
+# Manage Clusters
 
-通过集群管理页面，您可以查看当前集群内所有组件的运行状态和对外建立的连接数等信息，同时支持管理操作。
+Through the Cluster Management page, you can view the running status of all components within the current cluster, the number of external connections established, and other information. It also supports management operations.
 
+## Procedure
 
+1. Log in to Tapdata.
 
-## 操作步骤
+2. In the left navigation bar, select **System** > **Cluster** to view the running status and connection information of each component.
 
-1. 登录 Tapdata 平台。
+   You can also start/stop, and restart services. Note that stopping and restarting operations will affect the normal operation of related services, so please operate during maintenance windows or during business off-peak periods.
 
-2. 在左侧导航栏，选择**系统管理** > **集群管理**，即可查看各组件的运行状态和连接信息。
+   ![Cluster Management](../../images/manage_cluster_1.png)
 
-   您还可以对服务执行启动/关闭、重启操作，其中关闭与重启操作会影响相关服务的正常运行，请在运维窗口或业务低峰期操作。
+3. On this page, choose the following operations according to business needs.
 
-   ![集群管理](../../images/manage_cluster_1.png)
+    * Click ![](../../images/process_monitor_icon.png) to download the thread resource usage details of the current engine, in JSON format.
 
-3. 在此页面，根据业务需求选择下述操作。
+    * Click ![](../../images/data_source_monitor_icon.png) to download the data source usage details of the current engine, in JSON format.
 
-   * 单击![](../../images/process_monitor_icon.png)可下载当前引擎的线程资源使用详情，格式为 JSON。
+    * Click ![](../../images/cluster_setting_icon.png) to adjust the server name and switch the network card display information.
 
-   * 单击![](../../images/data_source_monitor_icon.png)可下载当前引擎的数据源使用详情，格式为 JSON。
+      :::tip
 
-   * 单击![](../../images/cluster_setting_icon.png)可调整服务器名称与切换网卡展示信息。
+      Switching the network card display information only changes the IP address display under the server on the Cluster Management page and will not affect functional operation.
 
-     :::tip
+      :::
 
-     切换网卡展示信息仅改变集群管理页服务器下 IP 地址的展示，不会影响功能运行。
-
-     :::
-
-   * 单击![](../../images/cluster_add_icon.png)可增加自定义的服务监控。
+    * Click ![](../../images/cluster_add_icon.png) to add custom service monitoring.

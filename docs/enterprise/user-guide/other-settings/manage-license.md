@@ -1,11 +1,6 @@
-# 管理 License
+# Manage License
 
-在页面右上角，单击账户信息，然后单击 License 管理 可进入管理界面。
+For partners of the Tapdata platform, you can view and manage your license by clicking on the username and selecting "**License**". Here, you have the options to copy and update your License.
 
 ![](../../images/manage_license_1.png)
 
-
-
-可对 License 进行复制及更新操作
-
-![](../../images/manage_license_2.png)

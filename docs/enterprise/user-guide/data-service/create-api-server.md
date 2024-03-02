@@ -1,24 +1,21 @@
-# 创建服务器
+# Creating a Server
 
-API 服务器可以配置对外暴露的API服务器地址，也可以增加多个服务器。
+API servers can be configured to expose API server addresses externally, and multiple servers can also be added.
 
+## Procedure
 
+1. Log in to Tapdata.
 
-## 操作步骤
+2. In the left navigation bar, select **Data Services** > **API Servers**.
 
-1. 登录 Tapdata 平台。
+3. Click **New Server** on the right side of the page.
 
-2. 在左侧导航栏，选择**数据服务** > **服务器**。
-
-3. 单击页面右侧的**新建服务端**。
-
-4. 在弹出的对话框中，填写服务器名称和访问地址，然后单击**确定**。
+4. In the pop-up dialog box, enter the server name and access address, and then click **OK**.
 
    ![](../../images/create_api_server.png)
 
    :::tip
 
-   Tapdata 默认包含一个 API 服务器，其地址和端口信息可从 Tapdata 安装目录下的 `application.yml` 文件中获取，请确保连接信息一致以免无法使用该功能。
+   Tapdata includes an API server by default. Its address and port information can be obtained from the `application.yml` file in the Tapdata installation directory. Ensure the connection information is consistent to avoid the inability to use this feature.
 
    :::
-

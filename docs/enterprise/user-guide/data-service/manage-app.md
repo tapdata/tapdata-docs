@@ -1,31 +1,29 @@
-# 应用管理
+# Manage Application
 
-为更好地管理和区分  API 服务，我们可以基于业务对其进行分类，将不同的 API 划入不同的应用中，本文介绍具体的操作流程。
+To better manage and distinguish API services, we can categorize them based on business needs, assigning different APIs into different applications. This article introduces the specific operation process.
 
+## Procedure
 
+1. Log in to Tapdata.
 
-## 操作步骤
+2. In the left navigation bar, select **Data Services** > **Application List**.
 
-1. 登录 Tapdata 平台。
+3. At the top right of the page, click **Create Application**.
 
-2. 在左侧导航栏，选择**数据服务** > **应用管理**。
+4. In the pop-up dialog, enter the application name and description, then click **Save**.
 
-3. 在页面右上角，单击**创建应用**。
-
-4. 在弹出的对话框中，填入应用名称和描述，单击**保存**。
-
-   ![创建应用](../../images/create_app_category.png)
+   ![Create Application](../../images/create_app_category.png)
 
    :::tip
 
-   操作完成后，[在创建 API 服务](create-api-service.md)时，即可选择要加入的应用。
+   After completing the operation, when [creating an API service](create-api-service.md), you can select the application to join.
 
    :::
 
-5. （可选）管理已有应用。
+5. (Optional) Manage existing applications.
 
-   ![管理应用](../../images/manage_app.png)
+   ![Manage Application](../../images/manage_app.png)
 
-   * **编辑**：可编辑应用的名称和描述信息。
-   * **详情**：可查看该应用中包含的 API 服务详细信息，例如发布状态等。
-   * **删除**：如果当前应用中包含 API 服务，您需要在弹出的对话框中，将其中的  API 服务转移至其他应用中后即可删除。
+   * **Edit**: You can edit the application's name and description information.
+   * **Details**: You can view detailed information about the API services contained in the application, such as the publication status, etc.
+   * **Delete**: If the current application contains API services, you need to transfer the API services to other applications in the pop-up dialog before you can delete them.

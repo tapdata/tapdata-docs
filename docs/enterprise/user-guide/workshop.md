@@ -1,25 +1,25 @@
-# 控制台介绍
+# Console Introduction
 
-登录 Tapdata 后默认会打开控制台页面，您可以在控制台页面看到当前系统所有任务的数量统计、状态统计和运行数据统计，并可以查看当前系统集群的运行状态。
+Upon logging into Tapdata, the console page is opened by default, where you can view a summary of all tasks within the system, including their quantity, status, and operational data statistics. It also provides an overview of the current status of the system's cluster.
 
 ![](../images/workshop.png)
 
-控制台页面主要包含以下关键指标：
+The console page primarily includes the following key metrics:
 
-**全部任务**：展示当前用户全部任务总数量，包括数据复制任务、数据转换任务和数据校验任务。
+**All Tasks**: Displays the total number of tasks for the current user, including data replication tasks, data transformation tasks, and data verification tasks.
 
-**复制任务**：展示当前用户创建的数据复制任务的总数量
+**Replication Tasks**: Shows the total number of data replication tasks created by the current user.
 
-**转换任务**：展示当前用户创建的数据转换子任务的总数量
+**Transformation Tasks**: Indicates the total number of data transformation sub-tasks created by the current user.
 
-**校验任务**：展示当前用户创建的数据校验任务的总数量
+**Verification Tasks**: Lists the total number of data verification tasks created by the current user.
 
-**复制任务概览**：展示当前用户创建的所有数据复制任务的任务状态分布
+**Replication Task Overview**: Presents the distribution of task statuses for all data replication tasks created by the current user.
 
-**转换任务概览**：展示当前用户创建的数据转换任务的任务状态分布
+**Transformation Task Overview**: Displays the status distribution of data transformation tasks created by the current user.
 
-**数据校验**：展示当前用户创建的所有数据校验任务的校验结果分布
+**Data Verification**: Shows the distribution of verification results for all data verification tasks created by the current user.
 
-**传输总览**：展示当前用户创建的所有数据复制任务和数据转换任务的事件传输统计
+**Transfer Overview**: Provides statistics on event transmission for all data replication and transformation tasks created by the current user.
 
-**集群总览**：展示系统集群下各节点服务的当前状态
+**Cluster Overview**: Offers a current status view of each service node within the system's cluster.

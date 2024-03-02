@@ -1,19 +1,17 @@
-# 服务审计
+# Service Auditing
 
-服务审计主要用来查看 API 的访问记录，可查看每次请求的记录包括访问类型、访问人员、IP 地址、访问时间、访问结果、失败原因等等，也可按不同条件进行筛选。
+Service auditing is primarily used to view the access records of APIs. You can view the records of each request, including access type, personnel, IP address, access time, access result, failure reason, etc. You can also filter according to different conditions.
 
-登录至 Tapdata 平台，单击页面左侧的**数据服务** > **服务审计**即可查看。
+Log in to the Tapdata platform and click **Data Services** > **Service Audit** on the left side of the page to view.
 
 ![](../../images/audit_api_1.png)
 
-
-
-单击**详情**可查看到对应请求的详细信息，具体如下：
+Click **Details** to view detailed information about the corresponding request, as follows:
 
 ![](../../images/audit_api_2.png)
 
-- **日志详情**：包括访问的基本信息和各项指标，例如 API 的 ID、名称、访问人员的 IP 地址等。
-- **访问记录数**：该次访问总的记录条数（条）
-- **API 平均访问速率**：对API单次访问的数据平均传输速率。
-- **访问耗时**：对 API 单次访问的计算耗时统计（单位为秒）。
-- **平均响应时长**：对 API 单次访问每条记录的平均响应时间（单位为毫秒）。
+- **Log Details**: Includes basic information and various metrics of the access, such as API ID, name, IP address of the visitor, etc.
+- **Number of Access Records**: The total number of records for this access (entries).
+- **API Average Access Rate**: The average data transmission speed for a single access to the API.
+- **Access Time**: Statistical computation of the time consumed for a single access to the API.
+- **Average Response Time**: The average response time per record for a single access to the API.

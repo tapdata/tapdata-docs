@@ -1,124 +1,121 @@
-# 创建数据转换任务
+# Creating a Data Transformation Task
 
-Tapdata 的数据转换任务支持在源/目标节点间增加处理节点，可帮助您快速实现多表合并、数据拆分、字段增减等数据处理需求。本文介绍数据转换任务的创建流程。
+Tapdata's data transformation tasks support adding processing nodes between source/target nodes, helping you quickly realize various data processing requirements like merging multiple tables, data splitting, and field addition/reduction. This article introduces the creation process of data transformation tasks.
 
-## 操作步骤
+## Procedure
 
-本案例中，我们将演示如何通过数据转换任务，在不改变源表（**customer** 表）的结构和数据的情况下，将表结构中的 **birthdate** 字段类型从 **STRING** 转换为 **DATE**，同时筛选出生日期晚于 **1991-01-01** 的用户，最后将表结构和筛选后的数据应用至新的表（**customer_new**）中。
+In this case, we will demonstrate how to convert the **birthdate** field type from **STRING** to **DATE** in the source table (**customer** table) without changing its structure and data through a data transformation task, filter users born after **1991-01-01**, and finally apply the table structure and filtered data to a new table (**customer_new**).
 
-1. 登录 Tapdata 平台。
+1. Log in to the Tapdata.
 
-2. 在左侧导航栏，选择**数据管道** > **数据转换**。
+2. In the left navigation bar, select **Data Pipelines** > **Data Transforms**.
 
-3. 单击页面右侧的**创建**，跳转到任务配置页面。
+3. Click **Create** on the right side of the page, navigating to the task configuration page.
 
-4. 在页面左侧的**连接**区域，依次拖拽作为源和目标的数据连接至右侧画布中。
+4. In the **Connection** section on the left side of the page, drag the data connections, which will be the source and target, onto the right canvas sequentially.
 
-5. 在页面左侧的**处理节点**区域，依次拖拽**类型修改**节点和 **Row Filter 节点**。
-
-   :::tip
-
-   更多处理节点的介绍及应用场景，见[处理节点](process-node.md)。
-
-   :::
-
-6. 将上述四个节点按照数据流转顺序连接起来，如下图所示。
-
-   ![连接节点](../../../images/connect_data_dev_nodes.png)
-
-7. 根据下述说明，依次完成各节点配置。
-
-   1. 在画布中，单击最左侧的源节点，根据下述说明完成右侧面板的<span id="full-sql-query">参数配置</span>。
-
-      ![源节点设置](../../../images/data_dev_source_node_setting.png)
-
-      * **基础设置**      
-        * **节点名称**：默认为连接名称，您也可以设置一个具有业务意义的名称。
-        * **表**：选择要操作的源表，下方将展示表的结构信息，包含列名和列类型。 
-      * **高级设置**      
-        * **DDL 同步配置**      
-          选择是否启用 **DDL 事件采集**，打开该开关后，Tapdata 会自动采集所选的源端 DDL 事件（如新增字段），如果目标端支持 DDL 写入即可实现 DDL 语句的同步。 
-        * **增量同步方式** 
-          选择**实时日志解析**或**字段轮询**，选择为**轮询**时，您还需要指定轮询的字段、时间间隔和每次读取行数。**实时日志解析**会使用数据源事务日志进行解析并同步增量事件，**字段轮询**会通过对字段的轮询进行增量事件同步，其中**字段轮询**通常无法同步删除事件。 
-        * **数据过滤配置** 
-          * **全量自定义查询**：打开该开关后，可填写全量数据同步阶段需要执行的 SQL 查询语句（不对增量阶段生效），可实现自定义的数据提取（如数据过滤、Join 等），例如填写 `SELECT id,name,address FROM customer;`。
-            
-            :::tip
-            
-            启用该功能要求目标节点为弱 Scheme 类的数据源（如 MongoDB/Kafka）等。
-            
-            ::: 
-            
-          * **过滤设置**：默认关闭，开启后您需要指定数据过滤条件。 
-        * **批量读取条数**：全量同步时，每批次读取的记录条数，默认为 **100**。
-      * **告警设置**   
-        默认情况下，节点的平均处理耗时连续 1 分钟大于等于 5 秒，则发送系统通知和邮件通知，您也可以根据业务需求调整规则或关闭告警。
-
-   2. 单击**类型修改**节点，然后在右侧面板中，修改 **birthdate** 字段的类型为 **Date**。
-
-      ![修改字段类型](../../../images/data_dev_column_type_setting.png)
-
-   3. 单击 Row Filter 节点，根据下述说明完成右侧面板的参数配置。
-
-      ![Row Filter 节点设置](../../../images/data_dev_row_filter_setting.png)
-
-      * **执行动作**：选择为**保留匹配数据**。
-      * **条件表达式**：填写数据匹配的表达式，本案例填写为 `record.birthdate >= '1990-01-01'`，支持的符号如下：
-        * 比较：大于（`>`）、小于（`<`）、大于等于（`>=`）、小于等于（`<=`）、等于（`==`）
-        * 逻辑判断：与（`&&`）、或（`||`）、非（`!`）
-        * 正则表达式：例如 `/^.*$/.test( )`
-        * 条件分组：如需添加多组条件，请先用英文括号包括每组条件，然后在各组条件间加入逻辑判断符号，例如筛选出 50 岁以上的男性或者收入一万以下的 30岁以上的人，即：`( record.gender == 0&& record.age > 50) || ( record.age >= 30&& record.salary <= 10000)`
-
-   4. 单击最后的目标数据节点，根据下述说明完成右侧面板的参数配置。
-
-      ![节点基础设置](../../../images/data_dev_target_node_basic_setting.png)
-
-      * **基础设置**      
-        * **节点名称**：默认为连接名称，您也可以设置一个具有业务意义的名称。
-        * **表**：选择处理后的数据要写入的表，填写的表不存在时会自动新建该表。
-        * **更新条件字段**：选择更新条件的判断依据字段。
-        * **已有数据处理**：根据业务需求选择，如果目标表没有数据且结构和源表不一致，可选择为**清除目标表原有表结构及数据**。
-        * **每批次写入条数**：全量同步时，每批次写入的条目数。
-        * **每批写入最大等待时间**：根据目标库的性能和网络延迟评估，设置最大等待时间，单位为毫秒。      
-        * **全量多线程写入**：全量数据写入的并发线程数，默认为 **8**，可基于目标端写性能适当调整。      
-        * **增量多线程写入**：增量数据写入的并发线程数，默认未启用，启用后可基于目标端写性能适当调整。      
-        * **模型**：展示源表的表结构信息，包含字段名称和字段类型。         
-      * **高级设置** 
-        根据业务需求选择数据写入模式：
-        * **按事件类型处理**：选择此项后，还需要选择插入、更新、删除事件的数据写入策略。
-        * **统计追加写入**：只处理插入事件，丢弃更新和删除事件。        
-      * **告警设置**   
-        默认情况下，节点的平均处理耗时连续 1 分钟大于等于 5 秒，则发送系统通知和邮件通知，您也可以根据业务需求调整规则或关闭告警。
-
-8. （可选）单击页面右上角的**设置**，配置任务属性。
-
-   * **任务名称**：填写具有业务意义的名称。
-   * **同步类型**：可选择**全量+增量**，也可单独选择**全量**或**增量**。
-     全量表示将源端的存量数据复制到目标端，增量表示将源端实时产生的新数据或数据变更复制到目标端，二者结合可用于实时数据同步场景。
-   * **任务描述**：填写任务的描述信息。
-   * **高级设置**：设置任务开始的时间、[共享挖掘](../../advanced-settings/share-mining.md)、增量数据处理模式、处理器线程数、Agent 等。
-
-9. 单击**保存**或**启动**按钮完成创建，为保障任务的正常运行，Tapdata 会基于节点配置和数据源特征进行预检查，同时打印日志信息。
-
-   ![任务预检查](../../../images/dev_task_pre_check.png.png)
+5. In the **Processing Nodes** section on the left, drag the **Type Modification** node and **Row Filter** node sequentially.
 
    :::tip
 
-   如提未通过预检查，请根据当前页面的日志提示进行调整。更多信息，见[任务预检查说明](../pre-check.md)。
+   For more introductions and application scenarios of processing nodes, see [Processing Nodes](process-node.md).
 
    :::
 
-10. 启动成功后会自动跳转至任务监控页面，您可以查看任务的 QPS、延迟、任务事件等信息。
+6. Connect the aforementioned four nodes in the order of data flow as shown below.
 
-    ![监控任务状态](../../../images/data_dev_monitor_cn.png)
+   ![Connect Nodes](../../../images/connect_data_dev_nodes.png)
 
-   
+7. Follow the instructions below to configure each node in sequence.
 
+    1. On the canvas, click the source node on the far left and complete the parameter configuration in the right panel according to the following instructions.
+       ![Source Node Setting](../../../images/data_dev_source_node_setting.png)
 
+        * **Basic Settings**
+            * **Node Name**: Defaults to the connection name, but you can set a name with business meaning.
+            * **Table**: Select the source table to operate on. The table structure, including column names and column types, will be displayed below.
 
-## 数据验证
+        * **Advanced Settings**
+            * **DDL Sync Configuration**
+              Choose whether to enable **DDL Event Collection**. Once this option is enabled, Tapdata will automatically collect the selected source DDL events (such as adding fields). If the target end supports DDL input, DDL statement synchronization can be achieved.
 
-登录至目标库，查看 **customer_new** 表的结构，**birthdate** 列的类型为 **datetime**，然后查看出生日期早于 **1990-01-01** 的用户数量，数量为零，而该表的总记录数为 **31276**，证明已过滤掉了这部分数据。
+            * **Incremental Synchronization Method**
+              Choose between **Log CDC** and **Polling**. If you select **Polling**, you need to specify the polling field, interval, and number of rows to be read each time.
+
+              **Log CDC** will use the data source transaction logs for parsing and incrementally syncing events, while **Polling** incrementally syncs events by polling fields, typically unable to sync delete events.
+
+            * **Data Filter**
+
+                * **Fully Customizable Query**: Once this option is enabled, you can enter the SQL query statement to be executed during the full data synchronization stage (does not affect the incremental stage). This allows for custom data extraction (such as data filtering, Joins, etc.), for example, entering `SELECT id, name, address FROM customer;`.
+                  :::tip
+                  Enabling this feature requires the target node to be a weak Scheme type data source (such as MongoDB/Kafka), etc.
+                  :::
+                * **Filter Settings**: By default, it is off. When enabled, you need to specify the data filtering conditions.
+
+            * **Batch Read Count**: During full synchronization, the number of records read in each batch. The default is **100**.
+
+        * **Alert Settings**
+          By default, if the node's average processing time is equal to or greater than 5 seconds for a consecutive minute, system and email notifications are sent. You can also adjust the rules or turn off alerts according to business needs.
+
+    2. Click on the **Type Modification** node, and then in the right panel, modify the type of the **birthdate** field to **Date**.
+       ![Modify Field Type](../../../images/data_dev_column_type_setting.png)
+
+    3. Click on the Row Filter node and complete the parameter configuration in the right panel according to the following instructions.
+
+       ![Row Filter Node Setting](../../../images/data_dev_row_filter_setting.png)
+
+        * **Action**: Choose **Retain Matching Data**.
+        * **Conditional Expression**: Enter the data matching expression, in this case `record.birthdate >= '1990-01-01'`, supported symbols are:
+            * Comparison: greater than (`>`), less than (`<`), greater than or equal to (`>=`), less than or equal to (`<=`), equal to (`==`)
+            * Logical Judgments: and (`&&`), or (`||`), not (`!`)
+            * Regular Expression: e.g., `/^.*$/.test( )`
+            * Conditional Grouping: If you need to add multiple condition groups, first enclose each group in parentheses, and then add logical judgment symbols between each group. For example, to filter males over 50 or people over 30 with an income under 10,000: `(record.gender == 0 && record.age > 50) || (record.age >= 30 && record.salary <= 10000)`
+
+    4. Click the final target data node and complete the parameter configuration in the right panel according to the following instructions.
+
+       ![Node Basic Setting](../../../images/data_dev_target_node_basic_setting.png)
+
+        * **Basic Settings**
+            * **Node Name**: Defaults to the connection name, but you can set a name with business meaning.
+            * **Table**: Select the table to write the processed data to. The table will be created automatically if it does not exist.
+            * **Update Condition Field**: Select the field to be the basis for the update condition.
+            * **Existing Data Handling**: Choose according to business needs. If the target table has no data and its structure is inconsistent with the source table, you can choose **Clear the Existing Structure and Data of the Target Table**.
+            * **Batch Write Count**: The number of entries written per batch during full synchronization.
+            * **Maximum Wait Time per Batch Write**: Set the maximum waiting time based on the target database’s performance and network latency, measured in milliseconds.
+            * **Full Multi-Threaded Write**: The number of concurrent threads for writing full data. The default is **8**; adjust based on the target end's write performance.
+            * **Incremental Multi-Threaded  Write**: The number of concurrent threads for writing incremental data. By default, it is not enabled. Enable and adjust based on the target end's write performance.
+            * **Schema**: Displays the source table structure information, including field names and field types.
+        * **Advanced Settings**
+          Choose the data writing mode according to business needs:
+            * **Handle by Event Type**: After selecting this option, you need to also choose the data writing strategy for insert, update, and delete events.
+            * **Statistic Append Write**: Only handles insert events, discarding update and delete events.
+        * **Alert Settings**
+          By default, if the node's average processing time is equal to or greater than 5 seconds for a consecutive minute, system and email notifications are sent. You can also adjust the rules or turn off alerts according to business needs.
+
+8. (Optional) Click **Settings** in the top right corner of the page to configure task properties.
+
+    * **Task Name**: Enter a name with business meaning.
+
+    * **Synchronization Type**: Choose **Full + Incremental**, or select **Full** or **Incremental** only.
+      Full indicates that the stock data from the source end is copied to the target end, Incremental means that new data or data changes generated in real-time from the source end are copied to the target end. Combining the two can be used for real-time data synchronization scenarios.
+
+    * **Task Description**: Enter a description of the task.
+
+    * **Advanced Settings**: Set the task start time, [Shared Mining](../../advanced-settings/share-mining.md), incremental data processing mode, processor thread count, Agent, etc.
+
+9. Click **Save** or **Start** to complete the creation. To ensure the task runs smoothly, Tapdata will perform a pre-check based on node configurations and data source characteristics while printing log information.
+
+   :::tip
+
+   If the pre-check is not passed, please adjust according to the log tips on the current page. For more information, see [Task Pre-check Explanation](../pre-check.md).
+
+   :::
+
+10. After successful start-up, it will automatically redirect to the task monitoring page, where you can view information such as the task's QPS, delay, and task events.
+
+## Data Verification
+
+Log into the target database and check the structure of the **customer_new** table; the type of the **birthdate** column is **datetime**. Next, check the number of users born before **1990-01-01**—the number should be zero. The total number of records in the table is **31276**, proving that this part of the data has been filtered out.
 
 ```sql
 mysql> DESC customer_new;
@@ -156,8 +153,7 @@ mysql> SELECT COUNT(*) FROM customer_new
 1 row in set, 1 warning (0.01 sec)
 ```
 
+## See also
 
+Combining multiple processing nodes and data sources can achieve more complex and personalized data flow transformations. For more information, see [Processing Nodes](process-node.md).
 
-## 扩展阅读
-
-组合多个处理节点和多个数据源，可实现更加复杂和个性化的数据流转，更多介绍，见[处理节点](process-node.md)。

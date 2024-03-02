@@ -1,17 +1,15 @@
-# 服务监控
+# API Status Monitor
 
-通过服务监控可对平台上的API请求进行监控管理，可查看全局的统计和每个API的状态
+Service Monitoring allows for the oversight and management of API requests on the platform, providing a view into global statistics and the status of each API.
 
 ![](../../images/monito_api_1.png)
 
-上方展示总览数据包括API的总数、访问总行数等等。
+The top section displays overview data, which includes the total number of APIs, the total number of rows accessed, etc.
 
-中间展示API的告警情况及失败率及响应时长的排序
+The middle section displays alert situations for APIs, as well as rankings for failure rates and response times.
 
-下方展示API列表可查看每个API的情况
+The bottom section shows an API list where you can view the status of each API.
 
-
-
-可点击左侧展开按钮查看详细信息
+You can click on the left expand button to view detailed information.
 
 ![](../../images/monito_api_2.png)

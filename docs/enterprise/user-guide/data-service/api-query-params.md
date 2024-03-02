@@ -1,17 +1,14 @@
-# API 查询参数说明
+# API Query Parameters
 
-调用已发布的 API 接口时，支持在 URL 查询字符串中添加查询条件，从而查询结果的快速过滤。本文介绍支持的过滤器和相关使用示例。
+When invoking published API interfaces, it's possible to add query conditions in the URL query string to quickly filter the query results. This article introduces supported filters and provides related usage examples.
 
+## Supported Filters
 
+- **[Limit Filter (Return Record Count Filter)](#limit)**: Limits the number of returned records.
+- **[Skip Filter (Skip Specified Record Count Filter)](#skip)**: Skips a specified number of rows in the returned data.
+- **[Where Filter (Query Condition Filter)](#where)**: Queries and returns data based on a set of logically related conditions, similar to SQL's WHERE clause.
 
-## 支持的过滤器
-
-
-- **[Limit Filter（返回记录数过滤器）](#limit)**：限定返回记录行数。
-- **[Skip Filter（跳过指定记录数过滤器）](#skip)**：跳过指定行数返回数据。
-- **[Where Filter（查询条件过滤器）](#where)**：根据一组具有逻辑关系的条件查询匹配数据并返回，类似 SQL 的 WHERE 子句。
-
-本案例中，我们已经将 customer 表[发布为 API 服务](create-api-service)，该表的数据来源于随机生成，其表结构和数据样例如下：
+In this case, we have published the `customer` table [as an API service](create-api-service), and the data comes from a randomly generated source. Its table structure and data sample are as follows:
 
 ```sql
 mysql> SELECT * FROM customer LIMIT 1\G;
@@ -31,44 +28,37 @@ registry_date: 02-04-1978
 1 row in set (0.00 sec)
 ```
 
-您也可以通过 Postman 工具来实现可视化调用，如下图所示：
+You can also use the Postman tool for a visualized invocation as shown in the following figure:
 
-![查询示例](../../images/query_api.png)
+![Query Example](../../images/query_api.png)
 
-
-
-接下来，我们将介绍并各类过滤器的使用方法并提供示例，即上图 **Query Params** 的设置，对应的是请求 URL 中问号后的参数。
-
-
-
+Next, we will introduce how to use various filters and provide examples, i.e., setting **Query Params** in the figure above, which corresponds to parameters after the question mark in the request URL.
 
 ## <span id="limit">Limit Filter</span>
 
-限制返回记录总条数等于或小于一个指定的数值，默认为 **10**，通常与 Skip Filter 配合使用，实现分页查询，语法如下：
+Limit the total number of returned records to be equal to or less than a specified number. The default is **10**. It is often used with the Skip Filter to implement pagination queries. The syntax is as follows:
 
 ```bash
-# 方法一
+# Method one
 filter[limit]=n
 
-# 方法二
+# Method two
 filter={"limit":n}
 ```
 
-### 使用示例
+### Usage Example
 
-假设我们需要只返回 **customer** 表的 1 条查询结果，示例如下：
-
-只返回10条查询结果：
+Assuming we want to return only **1** query result from the **customer** table:
 
 ```bash
-# 方法一
+# Method one
 ?filter[limit]=1
 
-# 方法二
+# Method two
 ?filter={"limit":1}
 ```
 
-### 返回示例
+### Return Example
 
 ```json
 {
@@ -98,49 +88,43 @@ filter={"limit":n}
 }
 ```
 
-
-
 ## <span id="skip">Skip Filter</span>
 
-返回第 1 个开始跳过指定个数记录后的查询结果，通常与 Limit Filter 配合使用，实现分页查询，语法如下：
+Returns the query result after skipping a specified number of records starting from the 1st record. It is often used with the Limit Filter to implement pagination queries. The syntax is as follows:
 
 ```bash
-# 方法一
+# Method one
 filter[skip]=n
 
-# 方法二
+# Method two
 filter={"skip":n}
 ```
 
-### 使用示例
+### Usage Example
 
-**示例一**：查询结果中，从第 10 条记录开始返回：
+**Example one**: Return results starting from the 10th record:
 
 ```bash
-# 方法一
+# Method one
 ?filter[skip]=10
 
-# 方法二
+# Method two
 ?filter{"skip":10}
 ```
 
-
-
-**示例二**：每页数据显示 10 条记录，查询第 5 页的数据：
+**Example two**: Display 10 records per page and query data on the 5th page:
 
 ```bash
-# 方法一
+# Method one
 ?filter[limit]=10&filter[skip]=50
 
-# 方法二
+# Method two
 ?filter={"limit":10,"skip":50} 
 ```
 
+### Return Example
 
-
-### 返回示例
-
-下述示例以案例二为例，展示返回结果
+The following example shows the return result for example two.
 
 ```json
 {
@@ -155,165 +139,53 @@ filter={"skip":n}
             "registry_date": "20-11-2005",
             "birthdate": "2017-01-29",
             "email": "csmith@example.net",
-            "phone_number": "190.036.2878x2721",
-            "locale": "ff_SN"
+            "phone_number
+
+": "928-622-3569x475",
+            "locale": "cy_GB"
         },
-        ......
+        ...
     ],
     "total": {
-        "count": 49998
+        "count": 49988
     },
     "api_monit_info": {
-        "recv_timestmap": 1688869060330,
-        "db_request_exhaust": 150,
-        "resp_timestmap": 1688869060480
+        "recv_timestmap": 1688868479316,
+        "db_request_exhaust": 147,
+        "resp_timestmap": 1688868479463
     }
 }
 ```
-
-
 
 ## <span id="where">Where Filter</span>
 
-在实现业务逻辑过程中，通常需要使用至少一组具有逻辑关系的查询条件来过滤出需要的数据，您可以指定一组或多组条件来查询数据，通常写法如下：
-
-* 等值查询
-
-  ```bash
-  # 方法一
-  ?filter[where][property]=value
-  
-  # 方法二
-  ?filter={"where":{"property":value}}
-  
-  ```
-
-* 逻辑查询
-
-  ```bash
-  # 方法一
-  ?filter[where][property][operator]=value
-  
-  # 方法二
-  ?filter={"where":{"property":{"operator":value}}}
-  ```
-
-
-
-其中，**property** 表示数据模型中的属性名称，即表中的字段名称；**operator** 表示逻辑运算符，支持的运算符如下：
-
-
-
-- **and**：逻辑与操作。
-- **or**：逻辑或操作。
-- **gt**：大于。
-- **gte**：大于等于。
-- **lt**：小于。
-- **lte**：小于等于。
-- **between**：区间查询，大于等于第一个值，小于等于第二个值。
-- **inq**：判断一个字段的值是否包含在一组值中。
-- **nin**：**inq** 的否定操作，即判断一个字段的值是否不包含在一组值中。
-- **like**：模糊查询匹配，查询满足条件的数据。
-- **nlike**：like 的否定操作，即模糊查询与条件相反的数据。
-- **regexp**：正则表达式匹配查询。
-
-
-
-### and / or
-
-通过 and or 操作符号组合两个或多个查询条件调用接口查询数据，语法如下：
+Query and return data according to a set of logically related conditions. It's similar to SQL's WHERE clause. The syntax is as follows:
 
 ```bash
-# 方法一
-filter[where][<and|or>][0]condition1&filter[where][<and|or>][1]condition2...
+# Method one
+filter[where][field][operator]=value
 
-# 方法二
-filter={"where":{"<and|or>":[condition1,condition2,...]}}
+# Method two
+filter={"where":{"field":{"operator":value}}}
 ```
 
+### Usage Example
 
-
-#### 使用示例
-
-在 **customer** 表中，查询出生日期是 **1975-06-06**，且城市为 **New Samanthamouth** 的用户。
+**Example**: Query customers whose names are "Christopher":
 
 ```bash
-# 方法一
-?filter[where][and][0][birthdate]=1975-06-06&filter[where][and][1][city]=New Samanthamouth
+# Method one
+?filter[where][name][eq]=Christopher
 
-# 方法二
-?filter={"where":{"and":[{"birthdate":"1975-06-06","city":"New Samanthamouth"}]}}
+# Method two
+?filter={"where":{"name":{"eq":"Christopher"}}}
 ```
 
+### Return Example
 
-
-#### 返回示例
+The return result is a JSON array containing all records that meet the query condition, i.e., customer names are "Christopher".
 
 ```json
-{
-    "data": [
-        {
-            "id": "000a132c28344988b5daaf2f0c6b9954",
-            "name": "Jacky",
-            "lastname": "Nguyen",
-            "address": "73134 Sarah Ridge\nBondfurt, OH 15941",
-            "country": "San Marino",
-            "city": "New Samanthamouth",
-            "registry_date": "20-01-1972",
-            "birthdate": "1975-06-06",
-            "email": "laurenfowler@example.com",
-            "phone_number": "(936)087-8257x93235",
-            "locale": "ts_ZA"
-        }
-    ],
-    "total": {
-        "count": 1
-    },
-    "api_monit_info": {
-        "recv_timestmap": 1688873722593,
-        "db_request_exhaust": 197,
-        "resp_timestmap": 1688873722790
-    }
-}
-```
-
-
-
-### gt / gte / lt / lte / like / nlike / regexp
-
-语法如下
-
-```bash
-# 方法一
-filter[where][property][operator]=value
-
-# 方法二
-filter={"where":{"property":{"operator":value}}}
-```
-
-
-
-#### 使用示例
-
-在 **customer** 表中，查询出生日期晚于 **1990-01-12** 的用户，示例如下：
-
-```bash
-# 方法一
-?filter[where][birthdate][gte]=1990-01-12T00:00:00.000Z
-
-# 方法二
-?filter={"where":{"birthdate":{"gte":"1990-01-12T00:00:00.000Z"}}}
-```
-
-:::tip
-
-日期格式为有时区的标准时间格式（[ISO 8601](https://www.w3.org/TR/NOTE-datetime)）。
-
-:::
-
-#### 返回示例
-
-```bash
 {
     "data": [
         {
@@ -328,199 +200,57 @@ filter={"where":{"property":{"operator":value}}}
             "email": "robertlopez@example.com",
             "phone_number": "+12(2)0954942591",
             "locale": "se_NO"
-        },
-        ......
-    ],
-    "total": {
-        "count": 31247
-    },
-    "api_monit_info": {
-        "recv_timestmap": 1688875703851,
-        "db_request_exhaust": 161,
-        "resp_timestmap": 1688875704012
-    }
-}
-```
-
-
-
-### between
-
-语法如下
-
-
-
-```bash
-# 方法一
-filter[where][property][between][0]=value1&filter[where][property][between][1]=value2...
-
-# 方法二
-
-filter={"where":{"property":{"between":[value1,value2]}}}
-```
-
-#### 使用示例
-
-在 customer 表中，查询出生日期在 **2000-01-01** 到 **2000-12-31** 之间的用户信息，示例如下：
-
-
-
-```bash
-# 方法一
-?filter[where][birthdate][between][0]=2000-01-01T00:00:00.000Z&filter[where][birthdate]
-[between][1]=2000-12-31T00:00:00.000Z
-
-# 方法二
-filter={"where":{"birthdate":{"between":["2000-01-01T00:00:00.000Z","2000-12-31T00:00:00.000Z"]}}}
-```
-
-
-
-#### 返回示例
-
-```bash
-{
-    "data": [
-        {
-            "id": "00718aab2967437a8023412577eeb517",
-            "name": "Alejandra",
-            "lastname": "Briggs",
-            "address": "804 Taylor Ports\nWest Anthonyville, MA 31944-9522",
-            "country": "Wallis and Futuna",
-            "city": "North Rogershire",
-            "registry_date": "19-08-1981",
-            "birthdate": "2000-02-02",
-            "email": "jordanjames@example.net",
-            "phone_number": "066-496-6956",
-            "locale": "szl_PL"
-        },
-       ......
-    ],
-    "total": {
-        "count": 975
-    },
-    "api_monit_info": {
-        "recv_timestmap": 1688874573597,
-        "db_request_exhaust": 162,
-        "resp_timestmap": 1688874573759
-    }
-}
-```
-
-
-
-### inq / nin
-
-语法如下：
-
-```bash
-# 方法一
-filter[where][property][<inq | nin>][0]=value1&filter[where][property][<inq | nin>][1]=value2...
-
-# 方法二
-filter={"where":{"property":{"<inq|nin>":[value1,value2]}}}
-```
-
-#### 使用示例
-
-在 **customer** 表中，查询城市为 **North Rogershire** 的用户，示例如下：
-
-```bash
-# 方法一
-filter[where][city][inq][0]=North Rogershire
-
-# 方法二
-filter={"where":{"city":{"inq":["North Rogershire"]}}}
-```
-
-
-
-#### 返回示例
-
-```json
-{
-    "data": [
-        {
-            "id": "00718aab2967437a8023412577eeb517",
-            "name": "Alejandra",
-            "lastname": "Briggs",
-            "address": "804 Taylor Ports\nWest Anthonyville, MA 31944-9522",
-            "country": "Wallis and Futuna",
-            "city": "North Rogershire",
-            "registry_date": "19-08-1981",
-            "birthdate": "2000-02-02",
-            "email": "jordanjames@example.net",
-            "phone_number": "066-496-6956",
-            "locale": "szl_PL"
         }
     ],
     "total": {
         "count": 1
     },
     "api_monit_info": {
-        "recv_timestmap": 1688875001651,
-        "db_request_exhaust": 193,
-        "resp_timestmap": 1688875001844
+        "recv_timestmap": 1688868479316,
+        "db_request_exhaust": 147,
+        "resp_timestmap": 1688868479463
     }
 }
 ```
 
-
-
-### regexp
-
-语法如下：
-
-```bash
-# 方法一
-?filter[where][property][regexp]=value
-
-# 方法二
-filter={"where":{"property":{"regexp":"value"}}}
-```
+---
 
 
 
-#### 使用示例
+## More Examples and Complex Filters
 
-在 **customer** 表中，查询电话号码以 **816-426** 开头的用户，示例如下：
+### Example 1: Combined Use of Limit and Where Filters
+
+Return **5** records where the name is "Christopher".
 
 ```bash
-# 方法一
-?filter[where][phone_number][regexp]=^816-426
+# Method one
+?filter[where][name][eq]=Christopher&filter[limit]=5
 
-# 方法二
-filter={"where":{"phone_number":{"regexp":"^816-426"}}}
+# Method two
+?filter={"where":{"name":{"eq":"Christopher"}},"limit":5}
 ```
 
+### Example 2: Multiple Conditions in Where Filter
 
+Return records where the name is "Christopher" and the country is "Israel".
 
-#### 返回示例
+```bash
+# Method one
+?filter[where][name][eq]=Christopher&filter[where][country][eq]=Israel
 
-```json
-{
-    "data": [
-        {
-            "id": "0006fa4712ca4e6c8ce08f453014a9b2",
-            "name": "Jose",
-            "lastname": "Norris",
-            "address": "42227 Davis Ville Suite 114\nLawsonmouth, CT 90874",
-            "country": "Cape Verde",
-            "city": "New Karen",
-            "registry_date": "11-04-1976",
-            "birthdate": "1990-01-12",
-            "email": "scottburke@example.org",
-            "phone_number": "816-426-9514x16320",
-            "locale": "nds_NL"
-        }
-    ],
-    "total": {
-        "count": 1
-    },
-    "api_monit_info": {
-        "recv_timestmap": 1688875584796,
-        "db_request_exhaust": 207,
-        "resp_timestmap": 1688875585003
-    }
-}
+# Method two
+?filter={"where":{"name":{"eq":"Christopher"},"country":{"eq":"Israel"}}}
+```
+
+### Example 3: Using Logical Operators (AND, OR)
+
+Return records where the name is "Christopher" OR "Alex".
+
+```bash
+# Method one (not recommended due to ambiguity)
+?filter[where][name][eq]=Christopher&filter[where][name][eq]=Alex
+
+# Method two
+?filter={"where":{"or":[{"name":{"eq":"Christopher"}},{"name":{"eq":"Alex"}}]}}
 ```
