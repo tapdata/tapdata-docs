@@ -434,12 +434,3 @@ XE=
    If the connection test fails, follow the prompts on the page to fix it.
 
    :::
-
-
-
-## Related Topics
-
-[Oracle to Tablestore Real-Time Sync](../../best-practice/oracle-to-tablestore.md)
-
-
-

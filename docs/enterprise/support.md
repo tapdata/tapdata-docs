@@ -1,42 +1,36 @@
-# 获取支持
+# Support
 
-除查阅 Tapdata 文档外，您还可以通过用户社区和工单系统来获取 Tapdata 产品的原厂技术支持。
+Apart from referring to the Tapdata documentation, you can also obtain original manufacturer technical support for the Tapdata product through our user community and ticketing system.
 
+## Account Instructions
 
+Before seeking support, you need to [register for Tapdata Cloud](https://auth.tapdata.net/) and go to the user center to bind your email. Use this email to log into the user community and ticketing system.
 
-## 账号说明
+![Bind Email](images/bind_email_cn.png)
 
-在获取支持前，您需要[注册 Tapdata Cloud](https://auth.tapdata.net/)并前往用户中心绑定邮箱，使用该邮箱来登录用户社区和工单系统。
+## User Community
 
-![绑定邮箱](images/bind_email_cn.png)
-
-
-
-## 用户社区
-
-您可以访问 Tapdata [用户社区](https://tapdata.zohodesk.com.cn/portal/zh/community/tapdata-support)来获取支持，讨论使用中遇到的问题，提出您宝贵的意见和反馈，Tapdata 技术工程师或社区用户会进行回复。
+You can visit the Tapdata [User Community](https://tapdata.zohodesk.com.cn/portal/zh/community/tapdata-support) for support, discuss issues encountered during use, and share your valuable feedback and suggestions. Tapdata technical engineers or community members will respond.
 
 :::tip
 
-在新开话题讨论前，您也可以搜索是否有类似问题和解决方案，如果您的问题涉及到一些不宜公开的信息，请使用工单系统获取支持。
+Before starting a new topic discussion, you can also search if similar questions and solutions exist. If your question involves information not suitable for public disclosure, please use the ticketing system for support.
 
 :::
 
+## Ticketing System
 
+If you can't find similar questions and solutions in the user community, you can also get technical support by [creating a ticket](https://tapdata.zohodesk.com.cn/portal/zh/newticket).
 
-## 工单系统
+To help us quickly identify and respond to the issue, please follow the instructions below to fill out the ticket details:
 
-如果用户社区中没有找到相似问题及解决方案，您也可以通过[创建工单](https://tapdata.zohodesk.com.cn/portal/zh/newticket)的方式来获取技术支持。
-
-为帮助我们更快识别和响应问题，请参考下述说明填写工单信息。
-
-* **部门**：选择 **Tapdata 技术支持**。
-* **产品名称**：选择 **Tapdata 企业版**。
-* **版本号**：可在 Tapdata 平台右上角查看，具体操作，见[查看系统版本](user-guide/other-settings/check-version.md)。
-* **支持分类**：根据您的问题类型选择，如选择**用户使用问题**。
-* **主题**：一句话描述您所遇到的问题，便于识别定位。
-* **描述**：填写您遇到的问题，推荐包含下述信息：
-  * 任务名称，或链接。
-  * 问题现象描述。
-  * 相关报错日志信息或截图。
-  * 源/目标端数据库的类型和版本。
+* **Department**: Choose **Tapdata Technical Support**.
+* **Product Name**: Select **Tapdata Enterprise Edition**.
+* **Version Number**: This can be viewed in the top right corner of the Tapdata platform. For specific operations, see [Check System Version](user-guide/other-settings/check-version.md).
+* **Support Category**: Select based on the nature of your issue, e.g., **User Usage Issues**.
+* **Subject**: Describe the problem you encountered in one sentence for easy identification and localization.
+* **Description**: Describe the issue you're facing. It's recommended to include the following information:
+  * Task name or link.
+  * Description of the problem.
+  * Relevant error log details or screenshots.
+  * Source/destination database type and version.

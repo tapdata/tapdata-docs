@@ -56,9 +56,3 @@ This article provides instructions on how to add Tablestore data sources to Tapd
    If the connection test fails, follow the prompts on the page to fix it.
 
    :::
-
-
-
-## Related Topics
-
-[Oracle to Tablestore Real-Time Sync](../../best-practice/oracle-to-tablestore.md)

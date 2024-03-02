@@ -39,7 +39,7 @@ Subsystem:
 
 
 
-## How to Perform a Rolling Upgrade?
+## <span id="release330-upgrade">How to Perform a Rolling Upgrade?</span>
 
 Starting with version 3.3.0, Tapdata supports rolling upgrades. Compared to the standard downtime upgrade, it helps shorten the upgrade window and further reduce business impact. The specific steps are as follows:
 

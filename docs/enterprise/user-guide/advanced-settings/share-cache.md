@@ -1,135 +1,112 @@
-# 创建共享缓存
+# Create Shared Cache
 
-共享缓存主要是为解决部分热点数据会被多个任务调用做处理时对源库产生太大压力，所以将这些数据放到缓存里供多个任务使用。
+Shared cache is primarily designed to alleviate the pressure on the source database by multiple tasks processing some hot data. By placing these data in the cache, it can be used by multiple tasks.
 
+## Create Shared Cache
 
-## 创建共享缓存
+1. Log in to the Tapdata platform.
 
-1. 登录 Tapdata 平台。
+2. In the left navigation bar, select **Data Pipeline** > **Shared Cache**.
 
-2. 在左侧导航栏，选择**数据管道** > **共享缓存**。
+3. On the right side of the page, click **Create Cache**.
 
-3. 在页面右侧，单击**新建缓存**。
+4. In the pop-up dialog, complete the configuration according to the instructions below.
 
-4. 在弹出的对话框中，根据下述说明完成配置。
+   ![Shared Cache](../../images/apply_external_storage_shared_cache_cn.png)
 
-   ![共享缓存](../../images/apply_external_storage_shared_cache_cn.png)
+   * **Cache Name**: Required, supports Chinese and English.
+   * **Cache Primary Key**: Required, multi-select, used for unique data identification.
+   * **Belongs to Connection**: Choose a connection you want to cache.
+   * **Belongs to Table**: Choose the table you want to cache.
+   * **Cache Key**: Choose a field as the primary key to identify data for caching.
+   * **Cache Fields**: Select the commonly used fields you need to cache.
+   * **Maximum Cache Memory**: The maximum memory amount the system will save, exceeding it will delete the least frequently used data based on call time.
+   * **External Storage Configuration**: Choose external storage, you can [create external storage](../manage-system/manage-external-storage.md) separately for the cache to store related data.
+   * **Application Code**: Generated based on the information filled in, can be copied and used in the JS node of the task to use this cache.
 
-   * **缓存名称**：必填、支持中英文。
-   * **缓存主键**：必填、可多选，用来对数据进行唯一识别。
-   * **所属连接**：选择一个想要缓存的连接。
-   * **所属表**：选择想要缓存的表。
-   * **缓存键**：选择一个字段作为主键识别数据进行缓存。
-   * **缓存字段**：选择需要进行缓存的常用字段。
-   * **缓存最大内存**：系统会保存的最大内存量，超过则按调用时间，将最不常用的数据删掉
-   * **外存配置**：选择外存，您为缓存单独[创建外存](../manage-system/manage-external-storage.md)来存储相关数据。
-   * **应用代码**：根据填写的信息生成，可复制后在任务的 JS 节点中进行使用该缓存。
+5. Click **Save**.
 
-5. 单击**保存**。
+6. (Optional) For the configured shared cache, you can select it and export a backup or share it with other team members. You can also import shared cache configurations.
+   ![Import/Export Shared Cache Configuration](../../images/import_export_shared_cache.png)
 
-6. （可选）对于配置好的共享缓存，您可以将其选中并导出备份或分享给其他团队成本，您也可以导入共享缓存配置。
-   ![导入/导出共享缓存配置](../../images/import_export_shared_cache.png)
+## Use Shared Cache
 
-   
-
-
-
-## 使用共享缓存
-
-用户可以通过任务中的 JS 节点来使用缓存，首先可以先点击缓存名称，在右侧点击应用代码的复制按钮，复制缓存代码供之后使用
+Users can use the cache in the task's JS node. First, click the cache name, then click the copy button on the right side of the application code to copy the cache code for later use.
 
 ![](../../images/use_shared_cache_1.png)
 
+Create a development task that needs to use the cache.
 
-
-创建一个需要使用缓存的开发任务
-
-选择一个JS节点，点击该节点并输入之前复制的代码，粘贴完成后再写入需要执行的处理逻辑
+Select a JS node, click the node, and enter the previously copied code. After pasting, write the processing logic you need to execute.
 
 ![](../../images/use_shared_cache_2.png)
 
+After all configurations are filled in, click the save button to complete the creation.
 
+## Application Scenario
 
-所有配置都填写后点击保存按钮创建完成。
+When synchronizing some data from source tables to target tables, you might need to interact with data from another third table. If you directly retrieve data from the database in the JS, it could be time-consuming and put a lot of pressure on the database if many tasks are started at the same time. Now, users can write a part of the commonly used data from the third table into the shared cache for various tasks to call and process.
 
+**Operation Idea:**
 
+First, create a shared cache, choose a connection as the cache middleware, copy the application code below, and finally create a development task in the JS node, pasting these codes, connecting the source and the target.
 
+**Specific Process:**
 
+1. Log in to Tapdata, click Data Pipeline > **Shared Cache** in the left navigation bar.
 
-## 应用场景
+2. Create a shared cache.
 
-用户在进行数据同步将一些数据从源表写到目标表时，可能需要与其他第三张表的数据进行交互处理，如果直接在JS里去库中取数据，如果同时开启的任务较多则比较费时且对库的压力较大，现在用户可以将第三张表中的一部分常用数据写到共享缓存中供各个任务去调用处理。
+   1. Click the **Create Cache** button in the upper right corner, configure the information as follows:
 
+      * Cache Name: Can be named arbitrarily, for example, test04.
 
+      * Belongs to Connection: Choose a mongo as the cache data source, that is, store data from this library into the shared cache for other tasks to use.
 
-**操作思路：**
+      * Belongs to Table: Choose a table to transfer data into the cache.
 
-先创建一个共享缓存，选择一个连接作为缓存中间库，再复制下方应用代码，最后在创建一个开发任务在JS节点中粘贴这些代码，连接源和目标。
+      * Cache Key: Choose a field as the cache key, aiming to uniquely identify each piece of data.
 
+      * Cache Fields: Choose the fields you want to cache.
 
+        Other fields are not mandatory.
 
-**具体流程：**
+   2. Copy the **Application Code** below; it will be used when creating a task.
 
-1. 登录 Tapdata，单击左侧导航栏的数据管道 > **共享缓存**。
+   3. Click the save button below, which will redirect you to the shared cache interface.
 
-2. 创建共享缓存。
+3. Open Data Pipeline-Data Conversion, click the **Create Task** button in the upper right corner.
 
-   1. 点击右上角**新建缓存**按钮，配置信息如下：
+4. Choose a connection as the source node.
 
-      * 缓存名：可任意命名，例test04
+5. Drag a JS node and paste the previously copied application code into it.
 
-      * 所属连接：选择一个mongo作为提供缓存数据来源的库，即将该库中数据存到共享缓存中供其他任务使用
+6. Choose a connection as the target node.
 
-      * 所属表：选择一个表传输数据到缓存中
+7. After connecting the source node-JS node-target node, click the **Save** button in the upper right corner.
 
-      * 缓存建：选择一个字段作为缓存建，目的是作为唯一识别每条数据的主键
+8. Click the return button in the upper left corner to redirect to the task list page.
 
-      * 缓存字段：选择你想要进行缓存的字段
-
-        其他为非必填
-
-   2. 复制下方**应用代码**，创建任务时要用。
-
-   3. 点击下方保存按钮，跳转至共享缓存界面。
-
-3. 打开数据管道-数据转换，点击右上角**创建任务**按钮。
-
-4. 选择一个连接作为源节点。
-
-5. 拖拽一个JS节点并将刚才复制的应用代码粘贴进去。
-
-6. 选择一个连接作为目标节点。
-
-7. 连接好源节点-JS节点-目标节点 后，点击右上角**保存**按钮。
-
-8. 点击左上角返回按钮，跳转至任务列页。
-
-9. 点击该任务的启动按钮，即可启动一个使用共享缓存的任务。
+9. Click the start button for the task to initiate a task using the shared cache.
 
 ![](../../images/use_shared_cache_3.png)
 
-
-
-
-
-**JS 代码**：（代码逻辑是打印缓存日志，看看数据是否已经到了缓存中）
+**JS Code**: (The logic is to print cache logs to see if the data has reached the cache)
 
 ```java
 function process(record){
-// Enter you code at here
-       var cachedRow = CacheService.getCache('lyl_共享缓存', [record.id](http://record.id/) );
-       log.info([record.id](http://record.id/)+"--------------------->"+JSONUtil.obj2Json(cachedRow));
+// Enter your code here
+       var cachedRow = CacheService.getCache('lyl_shared_cache', record.id);
+       log.info(record.id+"--------------------->"+JSONUtil.obj2Json(cachedRow));
        if(cachedRow){
-                [record.id](http://record.id/) = [cachedRow.id](http://cachedrow.id/);
+                record.id = cachedRow.id;
        }else{
-          [record.id](http://record.id/) = "0";
+          record.id = "0";
         }
         return record;
 }
 ```
 
-
-
-MongoDB中的数据
+Data in MongoDB
 
 ![](../../images/use_shared_cache_4.png)

@@ -489,38 +489,38 @@ const sidebars = {
              'enterprise/user-guide/manage-connection',
              {
               type: 'category',
-              label: '实时数据中心',
-              link: {type: 'doc', id: 'enterprise/user-guide/data-console/README'},
+              label: 'Real-Time Data Hub',
+              link: {type: 'doc', id: 'enterprise/user-guide/real-time-data-hub/README'},
               items:[
                     {
                      type: 'category',
-                     label: '数据集成模式',
-                     link: {type: 'doc', id: 'enterprise/user-guide/data-console/etl-mode/README'},
+                     label: 'Data Integration Mode',
+                     link: {type: 'doc', id: 'enterprise/user-guide/real-time-data-hub/etl-mode/README'},
                      items:[
-                            'enterprise/user-guide/data-console/etl-mode/etl-mode-dashboard',
-                            'enterprise/user-guide/data-console/etl-mode/create-etl-task',
+                            'enterprise/user-guide/real-time-data-hub/etl-mode/dashboard',
+                            'enterprise/user-guide/real-time-data-hub/etl-mode/create-task',
                            ]
                     },
                     {
                      type: 'category',
-                     label: '数据服务平台模式',
-                     link: {type: 'doc', id: 'enterprise/user-guide/data-console/daas-mode/README'},
+                     label: 'DaaS Mode',
+                     link: {type: 'doc', id: 'enterprise/user-guide/real-time-data-hub/daas-mode/README'},
                      items:[
-                            'enterprise/user-guide/data-console/daas-mode/enable-daas-mode',
-                            'enterprise/user-guide/data-console/daas-mode/daas-mode-dashboard',
-                            'enterprise/user-guide/data-console/daas-mode/create-daas-task',
+                            'enterprise/user-guide/real-time-data-hub/daas-mode/enable-real-time-data-hub',
+                            'enterprise/user-guide/real-time-data-hub/daas-mode/dashboard',
+                            'enterprise/user-guide/real-time-data-hub/daas-mode/create-task',
                            ]
                     },
                     ]
              },
              {
               type: 'category',
-              label: '数据管道',
+              label: 'Data Plipeline',
               link: {type: 'doc', id: 'enterprise/user-guide/data-pipeline/README'},
               items:[
                     {
                      type: 'category',
-                     label: '数据复制',
+                     label: 'Data Replication',
                      link: {type: 'doc', id: 'enterprise/user-guide/data-pipeline/copy-data/README'},
                      items:[
                             'enterprise/user-guide/data-pipeline/copy-data/create-task',
@@ -530,7 +530,7 @@ const sidebars = {
                     },
                     {
                      type: 'category',
-                     label: '数据转换',
+                     label: 'Data Transformation',
                      link: {type: 'doc', id: 'enterprise/user-guide/data-pipeline/data-development/README'},
                      items:[
                             'enterprise/user-guide/data-pipeline/data-development/create-task',

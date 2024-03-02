@@ -278,7 +278,3 @@ To further enhance the security of the data connection, you can choose to enable
    FLUSH PRIVILEGES;
    ```
 
-## Related Topics
-
-[MySQL to BigQuery Real-Time Sync](../../best-practice/mysql-to-bigquery.md)
-

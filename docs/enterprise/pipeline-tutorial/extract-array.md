@@ -49,7 +49,7 @@ Next, we will introduce how to use the built-in **Standard JS** node in Tapdata 
 
 ## Preparation
 
-Before creating a data conversion task, you need to add the data source to which the settlement table belongs to Tapdata. Also, you need to add a data source (such as a MySQL database) as the target database. For specific operations, see [Configure MySQL Connection](../user-guide/connect-database/certified/connect-mysql.md).
+Before creating a data conversion task, you need to add the data source to which the settlement table belongs to Tapdata. Also, you need to add a data source (such as a MySQL database) as the target database. For specific operations, see [Configure MySQL Connection](../prerequisites/on-prem-databases/mysql.md).
 
 ## Procedure
 

@@ -172,14 +172,14 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 ## V3.3
 
 ### New Features
-- [Kafka data source](prerequisites/certified/kafka.md) now supports custom message body formats.
+- [Kafka data source](prerequisites/mq-and-middleware/kafka.md) now supports custom message body formats.
 - Added the [API interface documentation export feature](user-guide/data-service/create-api-service#release330-export-api) to help teams quickly establish and enhance API usage documents.
 - Shared mining functionality supports [configuring task alerts](user-guide/advanced-settings/share-mining#release330-alert), allowing alerts via system notifications or emails for better task monitoring.
 - The [data validation function](user-guide/data-pipeline/verify-data.md) allows setting data filters, enabling validation of specific conditional data only, reducing validation scope and increasing efficiency.
 - In data service platform mode, when dragging a data table to the platform cache layer to generate a task, it supports [setting the synchronization type of the task to be full or incremental](user-guide/real-time-data-hub/daas-mode/create-task/#release330-task).
 
 ### Enhancements
-- Introduced [rolling upgrades](faq/operation#release330-upgrade), which, compared to the downtime upgrade method, further reduces business impacts.
+- Introduced [rolling upgrades](production-admin/operation#release330-upgrade), which, compared to the downtime upgrade method, further reduces business impacts.
 - Post-error in [shared mining tasks](user-guide/advanced-settings/share-mining.md), associated tasks now include alert prompts.
 - In the [row filter processing node](user-guide/data-pipeline/data-development/process-node.md), added usage examples when filtering with the DATE type.
 - [Time operation node](user-guide/data-pipeline/data-development/process-node#date-calculation) now displays adjusted fields.
@@ -202,7 +202,7 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 - In the data platform mode, it supports [deleting tables from the platform processing layer](user-guide/real-time-data-hub/daas-mode/dashboard#release320-daas).
 - When configuring the target node of a task, it supports [adjusting field length by a coefficient](user-guide/data-pipeline/copy-data/create-task#release320-col-length) to avoid data write failures due to different character encodings.
 - [Data verification](user-guide/data-pipeline/verify-data) feature supports SelectDB data source.
-- In scenarios where Redis is the target node, and data is stored in List or Hash format with a single key, it [supports writing the source table schema into a Hash key](best-practice/mysql-to-redis#release320-contain-table-head) (default name is `-schema-key-`). The value is used to store the source table's table name and column name information.
+- In scenarios where Redis is the target node, and data is stored in List or Hash format with a single key, it [supports writing the source table schema into a Hash key](pipeline-tutorial/mysql-to-redis#release320-contain-table-head) (default name is `-schema-key-`). The value is used to store the source table's table name and column name information.
 - Added [**type filter**](user-guide/data-pipeline/data-development/process-node#release320-type-filter) processing node, which can quickly filter columns of the same type. Filtered fields will not be passed to the next node.
 - **Field editing** processing node supports conversion between snake_case and camelCase naming.
 - Data copy tasks, data conversion tasks, data panels, and caching creation support [displaying table description information](user-guide/data-pipeline/copy-data/create-task#310-table-model), defaulting to table comment information.
@@ -213,7 +213,7 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 - Improved interaction for tables without primary keys, e.g., [support for filtering non-primary key tables and adding primary key table identification](user-guide/data-pipeline/copy-data/create-task#310-table-model) when configuring data copy tasks.
 - For external storage configurations of MongoDB data sources, [connection testing capability](user-guide/manage-system/manage-external-storage#320-external-storage) has been added.
 - When creating a new external storage and choosing MongoDB, it supports [using SSL connections](user-guide/manage-system/manage-external-storage#320-external-storage).
-- Creating an HttpReceiver data source now [supports script trial runs](user-guide/connect-database/beta/connetc-http-receiver#320-http-receiver) and [access authentication functionality](user-guide/connect-database/beta/connetc-http-receiver#320-http-receiver).
+- Creating an HttpReceiver data source now [supports script trial runs](prerequisites/others/http-receiver) and [access authentication functionality](prerequisites/others/http-receiver).
 - Standard JS node capabilities adjusted, adding [LinkedHashMap data structure](appendix/standard-js#linkedhashmap) and [context.global object](appendix/standard-js#global).
 - **Field editing** processing node's UI interaction has been improved.
 - Redundant prompts for task startup and schema reload have been optimized.

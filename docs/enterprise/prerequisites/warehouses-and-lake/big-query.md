@@ -6,7 +6,7 @@ This article serves as a comprehensive guide, providing step-by-step instruction
 
 ## Precautions
 
-[Agent](../../quick-start/install-agent.md)'s machine can access to Google Cloud Services.
+Tapdata Agent's machine can access to Google Cloud Services.
 
 
 
@@ -114,7 +114,3 @@ This article serves as a comprehensive guide, providing step-by-step instruction
    If the connection test fails, follow the prompts on the page to fix it.
 
    :::
-
-## Related Topics
-
-[MySQL to BigQuery Real-Time Sync](../../best-practice/mysql-to-bigquery)

@@ -114,7 +114,7 @@ This article describes the steps to prepare for creating a Db2 data source conne
      - **Schema**: Schema name, one connection per Schema. For multiple Schemas, create multiple data connections.
      - **Connection String Parameters**: Extra connection parameters, default is empty.
      - **User**, **Password**: The database username and corresponding password.
-     - **Grpc Server Host**, **Grpc Server Port**: Contact the [Tapdata Team](../../faq/support.md) for raw log collection components to capture Db2 incremental data, default service port is **1031**.
+     - **Grpc Server Host**, **Grpc Server Port**: Contact the [Tapdata Team](../../support.md) for raw log collection components to capture Db2 incremental data, default service port is **1031**.
 
    * **Advanced Settings**
      - **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
