@@ -8,9 +8,7 @@ For example, data can be replicated from a table in an Oracle database to MongoD
 
 ## Data Transformation
 
-This feature allows for various data processing operations.
-
-Examples include JS processing, multi-table merging, data splitting, association mapping, field addition/removal/merging, and content filtering.
+This feature allows for various data processing operations, include JS processing, multi-table merging, data splitting, association mapping, field addition/removal/merging, and content filtering.
 
 ## Data Services
 

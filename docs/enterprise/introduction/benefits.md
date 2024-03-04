@@ -4,7 +4,7 @@ Tapdata offers robust capabilities for data flow between a wide range of data so
 
 ## Comprehensive Data Sources Support
 
-Supports mainstream open-source databases, offline files, cloud applications, and lakehouse data sources. For more details, see [Supported Data Sources](supported-databases.md).
+Supports open-source databases, offline files, cloud applications, and lakehouse data sources. For more details, see [Supported Data Sources](supported-databases.md).
 
 Additionally, Tapdata redefines data source detection items based on the data source registration framework, ensuring stable and reliable operation of data processing tasks.
 
@@ -18,7 +18,7 @@ On top of data replication, Tapdata provides a series of [data processing nodes]
 
 ## Visual Task Monitoring
 
-Tapdata supports visual monitoring of task operation status, allowing you to quickly obtain key monitoring information such as data read statistics, data write statistics, and latency statistics for nodes in the data chain.
+Tapdata supports visual monitoring of task operation status, allowing you to quickly obtain key monitoring information such as data read statistics, data write statistics, and latency statistics for nodes in the data pipeline.
 
 ## Shared Log Mining
 

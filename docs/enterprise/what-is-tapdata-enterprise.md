@@ -1,22 +1,22 @@
 # What is Tapdata On-Prem
 
-[Tapdata](https://tapdata.net) is a platform-centric product designed for data services, aimed at assisting enterprises in breaking down data silos and facilitating rapid data delivery. Leveraging real-time data synchronization, it enhances data transfer efficiency. Moreover, it supports task creation through a low-code approach, where simple drag-and-drop actions suffice, significantly reducing development complexity and shortening project launch timelines.
+[Tapdata](https://tapdata.io) is a platform-centric product designed for data services, aimed at assisting enterprises in breaking down data silos and facilitating rapid data delivery. Leveraging real-time data synchronization, Tapdata enhances data transfer efficiency. Moreover, Tapdata supports task creation through a low-code approach, where simple drag-and-drop actions suffice, significantly reducing development complexity and shortening project launch timelines.
 
 ## Why Choose Tapdata On-Prem
 
-Unlike traditional data migration/synchronization tools, Tapdata offers a rich-feature, easy-to-use, and secure data flow service. It also supports instant API publishing to boost data development efficiency.
+Unlike traditional ETL(Extract, Transform, Load) tools, Tapdata offers a rich-feature, easy-to-use, and secure data flow service. It also supports instant API publishing to boost data development efficiency.
 
 * **Minimal Impact on Source Databases**
 
-  Utilizing proprietary CDC log parsing technology for zero-intrusion real-time data collection, it virtually leaves the source databases unaffected. Additionally, it supports sharing incremental data to avoid redundant reads of the source database's incremental logs.
+  Utilizing proprietary CDC log parsing technology for zero-intrusion real-time data collection, Tapdata virtually leaves the source databases unaffected. Additionally, Tapdata supports sharing incremental data to avoid redundant reads of the source database's incremental logs.
 
 * **High Data Consistency**
 
-  Based on a variety of proprietary technologies, it ensures high consistency between target and source data, supporting multiple verification methods to meet the stringent requirements of production environments.
+  Based on a variety of proprietary technologies, Tapdata ensures high consistency between target and source data, supporting multiple verification methods to meet the stringent requirements of production environments.
 
 * **End-to-End Real-Time**
 
-  Unlike traditional ETL, each new piece of data entering the platform is responded to, computed, processed, and written into the target table within seconds.
+  Each new piece of data entering the platform is responded to, computed, processed, and written into the target table within seconds.
 
 * **Code-Free Operation Interface**
 
