@@ -57,7 +57,7 @@ import Content1 from '../../../reuse-content/_alpha.md';
      * **User**: The tenant account of the database, formatted as `username@tenant_name`, e.g., to connect to the default test tenant with the `tapdata` account, fill in as `tapdata@test`.
      * **Password**: The password corresponding to the tenant account.
      * **Connection Parameter String**: Additional connection parameters, default empty.
-     * **Timezone**: By default, Tapdata Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+     * **Timezone**: By default, Tapdata utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
    * **Advanced Settings**
      * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
      * **Model Load Time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
