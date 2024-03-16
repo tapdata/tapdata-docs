@@ -230,7 +230,12 @@ return record
 
 
 
+## <span id="time_injection">Time Field Injection</span>
+In real-time data integration and synchronization processes, capturing and synchronizing incremental data is key to ensuring data consistency and timeliness. 
 
+When the data source lacks complete CDC support or is restricted by permission controls from accessing incremental logs, we can add a **Time Field Injection** node to the data synchronization pipeline. This node automatically adds timestamp data to the source table data read. Subsequently, in the target table's configuration, this field (of DATETIME type) can be selected for polling to achieve incremental data retrieval, thereby further enhancing the flexibility of real-time data acquisition methods.
+
+![Time Field Injection](../../../images/time_field_injection.png)
 
 ## <span id="js-process">JS Processing</span>
 

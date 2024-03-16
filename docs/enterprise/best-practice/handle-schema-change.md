@@ -10,7 +10,7 @@
 
 1. 在创建或编辑[数据复制](../user-guide/data-pipeline/copy-data/create-task.md)或[数据转换](../user-guide/data-pipeline/data-development/create-task.md)任务时，转到源数据库节点的配置页面。
 
-2. 找到高级设置标签页，检查 **DDL 事件采集**选项是否可用。
+2. 找到高级设置标签页，检查 **Sync DDL Events**选项是否可用。
 
 3. 根据您的具体数据源类型，打开该功能并选择要采集的 DDL 事件。
 

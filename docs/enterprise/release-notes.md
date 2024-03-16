@@ -1,5 +1,22 @@
 # Release Notes
 
+## 3.5.12
+
+### New Features
+
+* Support for sending email reminders one week before the license expires (once a day), which can be combined with [configuring SMTP email services](best-practice/alert-via-qqmail.md) to enhance operational convenience.
+* New options in [DDL synchronization settings](best-practice/handle-schema-change): **Stop Task on DDL Error** and **Automatically Ignore All DDLs**, catering to different business scenario needs.
+* Added a [time field injection](user-guide/data-pipeline/data-development/process-node#time_injection) node, allowing the addition of a custom timestamp field to data during synchronization. This provides a more flexible way to capture incremental changes from the source database.
+* Support for setting the expiration time and size of engine logs, enabling automatic log cleanup.
+
+### Enhancements
+
+* Optimized task retry logic and interface prompt information.
+* Enhanced the setting for incremental collection timing, supporting quick selection of the incremental time point from the last incremental run.
+* Improved the interaction logic for using external storage with the master-slave merge node.
+
+
+
 ## V3.5.11
 
 ### New Features
