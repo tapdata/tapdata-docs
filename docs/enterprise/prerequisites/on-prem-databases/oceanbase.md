@@ -25,7 +25,7 @@ import Content1 from '../../../reuse-content/_alpha.md';
    * **username**: Username.
    * **password**: Password.
    
-4. Execute the command in the following format to grant the newly created user all permissions at the database level. You can also customize more fine-grained [permission contro](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001169862)l based on business needs.
+4. Execute the command in the following format to grant the newly created user all permissions at the database level. You can also customize more fine-grained [permission control](https://en.oceanbase.com/docs/common-oceanbase-database-10000000001169862) based on business needs.
 
    ```sql
    GRANT ALL ON database_name.* TO username;
