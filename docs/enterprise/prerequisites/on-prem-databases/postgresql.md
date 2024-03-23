@@ -55,13 +55,19 @@ import Content from '../../../reuse-content/_preparations.md';
       -- Grant USAGE permission to schema
       GRANT USAGE ON SCHEMA schema_name TO username;
       
-      -- Grant REPLICATION permission
+      -- Grant REPLICATION permission, not needed if only full data of the database is required
       ALTER USER username REPLICATION;
       ```
 
       * **database_name**: Database name.
       * **Schema**: Schema name.
       * **username**: User name.
+      
+      :::tip
+      
+      If you only need to read the full data from PostgreSQL(not including incremental changes), you do not need to proceed with the following steps.
+      
+      :::
 
 3. To ensure that the entire row is used as the identifier for logging during UPDATE/DELETE operations, modify the replication identity to **FULL**. This setting determines the field used for logging when changes occur.
 
