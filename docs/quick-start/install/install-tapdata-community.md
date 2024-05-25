@@ -99,6 +99,12 @@ Tapdata Community includes the following main components:
 
 4. Run `./start.sh` to start the Tapdata service. Key logs after successful startup should indicate:
 
+   :::tip
+
+   If deploying with a non-root user, avoid using `sudo` to elevate privileges to prevent installation failure. Before executing commands, use `sudo chown -R <your-username>:<your-group> <installation-dir>` or `sudo chmod -R 777 <installation-dir>` to grant full permissions to the installation directory for the current user.
+
+   :::
+
    ```bash
    <<< Start Server [SUCCESS]
    All Done, Please Visit http://localhost:3000

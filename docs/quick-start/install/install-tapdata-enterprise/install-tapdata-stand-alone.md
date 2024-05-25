@@ -69,6 +69,12 @@ This guide uses CentOS 7 as an example to demonstrate the deployment process.
 
 6. Execute `./tapdata start` and follow the command-line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc. The example and explanation are as follows:
 
+   :::tip
+
+   If deploying with a non-root user, avoid using `sudo` to elevate privileges to prevent installation failure. Before executing commands, use `sudo chown -R <your-username>:<your-group> <installation-dir>` or `sudo chmod -R 777 <installation-dir>` to grant full permissions to the installation directory for the current user.
+
+   :::
+
    ```bash
     ./tapdata start
     _______       _____  _____       _______
