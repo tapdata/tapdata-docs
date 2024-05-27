@@ -86,6 +86,12 @@ Before deployment, we need to perform the following operations on both servers.
 
 2. In the tapdata directory, execute `./tapdata start`, following command line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc., as shown below:
 
+   :::tip
+
+   If deploying with a non-root user, avoid using `sudo` to elevate privileges to prevent installation failure. Before executing commands, use `sudo chown -R <your-username>:<your-group> <installation-dir>` or `sudo chmod -R 777 <installation-dir>` to grant full permissions to the installation directory for the current user.
+
+   :::
+
    ```bash
     ./tapdata start
     _______       _____  _____       _______
@@ -198,6 +204,12 @@ Before deployment, we need to perform the following operations on both servers.
 
 2. In the tapdata directory, execute `./tapdata start`, following command line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc., as shown below:
 
+   :::tip
+
+   If deploying with a non-root user, avoid using `sudo` to elevate privileges to prevent installation failure. Before executing commands, use `sudo chown -R <your-username>:<your-group> <installation-dir>` or `sudo chmod -R 777 <installation-dir>` to grant full permissions to the installation directory for the current user.
+
+   :::
+
    ```bash
    ./tapdata start
     _______       _____  _____       _______
@@ -230,28 +242,28 @@ Before deployment, we need to perform the following operations on both servers.
    ```
 
    * **Please enter backend url**: Set the Tapdata platform login addresses for both Servers A and B, separated by a comma, e.g., `http://192.168.1.200:3030,http://192.168.1.201:3030`.
-   
+
    * **Please enter tapdata port**: Set the Tapdata platform login port, default is `3030`.
-   
+
    * **Please enter api server port**: Set the API Server service port, default is `3080`.
-   
+
    * **Does MongoDB require username/password?**: If MongoDB database has not enabled security authentication, enter **n**; if enabled, enter **y** and follow prompts to enter username, password, and authentication database (default is `admin`).
 
    * **Does MongoDB require TLS/SSL?(y/n)**: If MongoDB database has not enabled TSL/SSL encryption, enter **n**; if enabled, enter **y** and follow prompts to enter the absolute path of CA certificate and Certificate Key files, as well as the file password for the Certificate Key.
-   
+
    * **Please enter MongoDB host, port, database name**: Set the MongoDB database URI connection information, in this case, `mongodb://192.168.1.200:27017/tapdata`.
-   
+
    * **Does API Server response error code?**: Whether to enable the API Server response error code feature.
-   
+
      After successful deployment, the command line returns an example as follows:
-   
+
      ```bash
      deployed connector.
      Waiting for the flow engine to start \
      FlowEngine is startup at : 2023-04-01 23:10
      API service started
      ```
-   
+
 
 An example of the Server B deployment process:
 
