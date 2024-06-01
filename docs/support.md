@@ -4,23 +4,23 @@ import Content from './reuse-content/_all-features.md';
 
 <Content />
 
-In addition to consulting the Tapdata documentation, you can also access the original technical support of Tapdata products through the online customer service, user community and ticket system.
+In addition to consulting the TapData documentation, you can also access the original technical support of TapData products through the online customer service, user community and ticket system.
 
 ## Description of the account
 
-Before you get support, you need to log in to Tapdata Cloud and go to the user center to bind your email, using the email to log in to the user community and ticket system.
+Before you get support, you need to log in to TapData Cloud and go to the user center to bind your email, using the email to log in to the user community and ticket system.
 
 
 
 ## Live Chat
 
-After logging in to Tapdata Cloud, click **Connect** in the bottom left corner of the page, the system will provide you with common problems and solutions, if your problem cannot be resolved, you can transfer human services or make voice calls through the chat window.
+After logging in to TapData Cloud, click **Connect** in the bottom left corner of the page, the system will provide you with common problems and solutions, if your problem cannot be resolved, you can transfer human services or make voice calls through the chat window.
 
 
 
 ## Open Source Community
 
-In the [Tapdata Open Source Community](https://github.com/tapdata/tapdata), you can ask questions about Tapdata products and get technical support, discuss issues encountered, and provide valuable feedback.
+In the [TapData Open Source Community](https://github.com/tapdata/tapdata), you can ask questions about TapData products and get technical support, discuss issues encountered, and provide valuable feedback.
 
 :::tip
 
@@ -36,8 +36,8 @@ If similar issues and solutions are not found in the user community, you can als
 
 To help us identify and respond to issues faster, please refer to the instructions below to complete the ticket information.
 
-* **Department**: Select **Tapdata Technical Support**.
-* **Product name**: Select **Tapdata Cloud**.
+* **Department**: Select **TapData Technical Support**.
+* **Product name**: Select **TapData Cloud**.
 * **Version**: Available on the Agent page.
 * **Support Type**: Choose according to your question type, such as select **user use question**.
 * **Subject**: Describe the problem you are experiencing, which is easy to identify and locate.

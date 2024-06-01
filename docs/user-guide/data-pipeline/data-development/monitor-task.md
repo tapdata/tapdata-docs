@@ -36,7 +36,7 @@ Displaying basic information and key monitoring indicators of the task, includin
 * **Task Event Statistics**: Statistics of all cumulative events after the operation of the task should be analyzed with the following precautions in mind.
   * **Update**: If the target database already exists when performing an insertion event, it will be treated as an update event. This behavior is determined by the write policy, which is configured to update when the target already exists.
   * **DDL**
-    * Tapdata directly creates a table on the target based on deduction results, so DDL (Data Definition Language) events of the table cannot be tracked or counted at the source.
+    * TapData directly creates a table on the target based on deduction results, so DDL (Data Definition Language) events of the table cannot be tracked or counted at the source.
     * If the target is a database type that does not require explicit table creation, such as MongoDB, the table-building events on the target side are not counted or considered as part of the synchronization process.
     * DDL events for **drop table** and **create table** are counted if the target duplicate processing policy is set to **clear target structure and data**.
 

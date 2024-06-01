@@ -4,11 +4,11 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Dummy is a data source that generates test data. This article describes how to add Dummy data sources to Tapdata Cloud.
+Dummy is a data source that generates test data. This article describes how to add Dummy data sources to TapData Cloud.
 
 ## Connect to Dummy
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 2. In the left navigation panel, click **Connections**.
 3. On the right side of the page, click **Create**.
 4. In the pop-up dialog, select **Dummy**.
@@ -22,7 +22,7 @@ Dummy is a data source that generates test data. This article describes how to a
         * **Write interval**: When serving as the target data source, control the frequency of consumption events in milliseconds.
         * **Write interval upper limit**: The total number of write interval data consumed during the write interval, ranging from 0 to 2147483647.
       * **Advanced settings**
-        * **Print write log**: After turning on the switch, Tapdata will output the received event data.
+        * **Print write log**: After turning on the switch, TapData will output the received event data.
         * **Table name**, **Field definitions**: define the structure of the table as the source, support batch new fields.
         * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
         * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.

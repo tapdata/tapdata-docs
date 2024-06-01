@@ -4,11 +4,11 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-This article describes how to connect to Vika data sources on Tapdata Cloud.
+This article describes how to connect to Vika data sources on TapData Cloud.
 
 ### Vika Table Limitations
 
-When adding and using Vika Table in Tapdata, please follow the following limitations, including rate limits and usage limits.
+When adding and using Vika Table in TapData, please follow the following limitations, including rate limits and usage limits.
 
 #### Rate Limitations
 
@@ -29,4 +29,4 @@ Usage limits consist of two types: API usage limits and Space Station resource u
 - A single WPS Spreadsheet can support creating up to 50,000 rows, 200 columns, and 30 views.
 - The maximum upload attachment capacity for a single Space Station is 1 GB.
 
-Please make sure to adhere to the above limitations to successfully add and use WPS Spreadsheets in Tapdata.
+Please make sure to adhere to the above limitations to successfully add and use WPS Spreadsheets in TapData.

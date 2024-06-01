@@ -6,15 +6,15 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 :::tip
 
-If you are using Tapdata Cloud, notification messages and configuration entry points are located at the top right of the page. You can set notification rules and alert recipients.
+If you are using TapData Cloud, notification messages and configuration entry points are located at the top right of the page. You can set notification rules and alert recipients.
 
 :::
 
-Tapdata supports custom system and alert settings and integrates with third-party platforms via Webhook, helping you quickly grasp the status of task operations.
+TapData supports custom system and alert settings and integrates with third-party platforms via Webhook, helping you quickly grasp the status of task operations.
 
 ## Notification Settings
 
-After [logging into the Tapdata platform](log-in.md), click the ![setting_icon](../images/setting_icon.png) > **Notification Settings** at the top right corner. You can set up custom notification rules to automatically trigger notification processes. The main types are task operation notifications and Agent notifications. The specific notification items include:
+After [logging into the TapData platform](log-in.md), click the ![setting_icon](../images/setting_icon.png) > **Notification Settings** at the top right corner. You can set up custom notification rules to automatically trigger notification processes. The main types are task operation notifications and Agent notifications. The specific notification items include:
 
 ![Notification Settings](../images/system_notification_1.png)
 

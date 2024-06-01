@@ -7,7 +7,7 @@ Through the Cluster Management page, you can view the running status of all comp
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md) as a system administrator.
+1. [Log in to TapData Platform](../log-in.md) as a system administrator.
 
 2. In the left navigation bar, select **System** > **Cluster**. The default view is **Cluster View**, where you can see the operational status and connection information of each component.
 

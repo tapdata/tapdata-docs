@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_enterprise-features.md';
 
 <Content />
 
-To alleviate the pressure on the source database during increments, Tapdata supports shared mining of **change data capture** (CDC) logs. Once the CDC Log Cache is activated, it will not start mining immediately. Instead, it begins when you create a task for the table belonging to that data source. Regardless of whether the mining task is paused or encounters errors, it will not affect the normal operation of the synchronization task.
+To alleviate the pressure on the source database during increments, TapData supports shared mining of **change data capture** (CDC) logs. Once the CDC Log Cache is activated, it will not start mining immediately. Instead, it begins when you create a task for the table belonging to that data source. Regardless of whether the mining task is paused or encounters errors, it will not affect the normal operation of the synchronization task.
 
 ## Enable CDC Log Cache
 
@@ -20,7 +20,7 @@ Create a data transformation or data replication task. When the task contains in
 
 ## Manage CDC Log Cache
 
-Upon successful task creation, a mining task is automatically generated. In Tapdata Platform, navigate to **Advanced** > **CDC Log Cache** from the left menu. Here, mining names are prefixed with the **data source name**, aiding in quick identification:
+Upon successful task creation, a mining task is automatically generated. In TapData Platform, navigate to **Advanced** > **CDC Log Cache** from the left menu. Here, mining names are prefixed with the **data source name**, aiding in quick identification:
 
 ![Task List](../../images/share_mining_list.png)
 

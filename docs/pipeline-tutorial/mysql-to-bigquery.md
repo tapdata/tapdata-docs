@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-[BigQuery](https://cloud.google.com/bigquery/docs?hl=zh-cn) is a fully serverless and cost-effective enterprise data warehouse that operates seamlessly across different cloud platforms and effortlessly scales with your data. It incorporates business intelligence, machine learning, and AI functionalities. Tapdata, on the other hand, enables real-time synchronization of multiple data sources with BigQuery, facilitating smooth data flow and effectively accommodating changes in data architecture or big data analysis requirements.
+[BigQuery](https://cloud.google.com/bigquery/docs?hl=zh-cn) is a fully serverless and cost-effective enterprise data warehouse that operates seamlessly across different cloud platforms and effortlessly scales with your data. It incorporates business intelligence, machine learning, and AI functionalities. TapData, on the other hand, enables real-time synchronization of multiple data sources with BigQuery, facilitating smooth data flow and effectively accommodating changes in data architecture or big data analysis requirements.
 
 To illustrate this synchronization process, let's consider MySQL as the source data. The following article demonstrates how to synchronize MySQL data with BigQuery, while similar configuration can be applied to other data sources.
 
@@ -19,12 +19,12 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
 ## Configure Task
 
-1. [Log in to Tapdata Platform](../user-guide/log-in.md).
+1. [Log in to TapData Platform](../user-guide/log-in.md).
 
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Replications**.
-   * **Tapdata Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Replications**.
+   * **TapData Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
 
 3. On the right side of the page, click **Create** to configure the task.
 
@@ -38,7 +38,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
    - **DDL Event Collection**: BigQuery does not support DDL writing, so you do not need to configure this parameter.
    - **Select Table**: Select the source table to operate. The table structure, including column names and types, will be displayed below.      
      * **Select by table name**: Select the table on the left, and then click the right arrow to complete the setup.
-     * **Match regular expressions**: Enter the regular expression for the table name. Additionally, when a table is added to the source database and it matches the specified expression, Tapdata will automatically synchronize the table to the target database.
+     * **Match regular expressions**: Enter the regular expression for the table name. Additionally, when a table is added to the source database and it matches the specified expression, TapData will automatically synchronize the table to the target database.
      * **Selectable table range**: By default, all tables are displayed, but you can choose to filter only tables with primary keys or only tables without primary keys. Since tables without primary keys use the full primary key method to implement data updates, they might encounter errors due to exceeding the index length limit, and their performance might be limited. Therefore, it is recommended that you create separate data replication tasks for tables without primary keys to avoid task errors and enhance the performance of data updates.
    - **Batch read number**: The number of records read in each batch during full data synchronization, the default is **100**.
 
@@ -69,7 +69,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
                 :::
 
-            - **Data Merge Delay Time**: Tapdata will merge the data from the temporary table into the target table at regular time intervals. The specified time interval determines how frequently these merges occur. With shorter merge times, the target table will have more up-to-date data. It's important to note that the first merge occurs **1 hour** after the full data synchronization is completed.
+            - **Data Merge Delay Time**: TapData will merge the data from the temporary table into the target table at regular time intervals. The specified time interval determines how frequently these merges occur. With shorter merge times, the target table will have more up-to-date data. It's important to note that the first merge occurs **1 hour** after the full data synchronization is completed.
 
    3. (Optional) Click on **Data Schema** tab to view the table structure, or click on **Alert Settings** tab to set the alert policies for the node.
 
@@ -95,7 +95,7 @@ For more information, See [Management Tasks](../user-guide/data-pipeline/copy-da
 
 * Q: How does the temporary table work?
 
-   A: In order to improve the performance of data write and reduce data latency, Tapdata uses the Stream API and Merge API in combination based on BigQuery data characteristics. The process is as follows:
+   A: In order to improve the performance of data write and reduce data latency, TapData uses the Stream API and Merge API in combination based on BigQuery data characteristics. The process is as follows:
 
    1. During the full data synchronization stage, use the Stream API for data import.
 

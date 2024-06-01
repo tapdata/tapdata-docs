@@ -6,15 +6,15 @@ import Content from '../reuse-content/_all-features.md';
 The dashboard provides a convenient platform to swiftly understand the product's functionality and effortlessly perform tasks like creating agents, establishing connections, and setting up tasks. Based on the product series you have chosen, refer to the following documentation.
 
 
-## Tapdata Cloud
+## TapData Cloud
 
 This helps you quickly understand and familiarize yourself with the product and allows you to quickly create Agents, connections, and tasks through the quick creation portal.
 
-![Tapdata Cloud Dashboard](../images/workshop.png)
+![TapData Cloud Dashboard](../images/workshop.png)
 
-* **Product Tutorials**: Shows the best practices of Tapdata Cloud in different scenarios, such as data lake and warehousing.
+* **Product Tutorials**: Shows the best practices of TapData Cloud in different scenarios, such as data lake and warehousing.
 
-* **Overview**: Displays the number and status information of Agents, connections, and tasks in Tapdata Cloud.
+* **Overview**: Displays the number and status information of Agents, connections, and tasks in TapData Cloud.
 
 * **Announcements**: Displays the latest announcement information, including upgrade change reminders, and introductions to new features. Clicking on the title of an announcement allows you to view detailed content.
 
@@ -24,11 +24,11 @@ This helps you quickly understand and familiarize yourself with the product and 
 
 
 
-## Tapdata Enterprise
+## TapData Enterprise
 
 Displays statistics on the total number of all tasks, their status, and operational data in the current system, and allows you to view the operational status of the current system cluster.
 
-![Tapdata Enterprise Dashboard](../images/workshop_enterprise.png)
+![TapData Enterprise Dashboard](../images/workshop_enterprise.png)
 
 The console page mainly includes the following key indicators:
 
@@ -42,11 +42,11 @@ The console page mainly includes the following key indicators:
 - **Transmission Overview**: Displays event transmission statistics for all data replication and data transformation tasks created by the current user.
 - **Cluster Overview**: Displays the current status of each node service under the system cluster.
 
-## Tapdata Community
+## TapData Community
 
 Displays statistics on the total number of all tasks, their status, and operational data in the current system.
 
-![Tapdata Community Dashboard](../images/dashboard_community.png)
+![TapData Community Dashboard](../images/dashboard_community.png)
 
 The console page mainly includes the following key indicators:
 
@@ -61,8 +61,8 @@ The console page mainly includes the following key indicators:
 
 ## Related Documentation
 
-Just 3 simple steps to experience the powerful and convenient data flow capabilities of Tapdata:
+Just 3 simple steps to experience the powerful and convenient data flow capabilities of TapData:
 
-* [Install Tapdata](../quick-start/install/README.md)
+* [Install TapData](../quick-start/install/README.md)
 * [Connect to a Database](../quick-start/connect-database.md)
 * [Create a Data Pipeline](../quick-start/create-task.md)

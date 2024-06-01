@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 ## Procedure
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.io/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.io/).
 
 2. In the left navigation panel, click **Real-Time Data Hub**.
 

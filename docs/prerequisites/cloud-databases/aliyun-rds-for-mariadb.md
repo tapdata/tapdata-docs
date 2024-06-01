@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Please follow the instructions below to successfully add and use Aliyun RDS for MariaDB database in Tapdata Cloud.
+Please follow the instructions below to successfully add and use Aliyun RDS for MariaDB database in TapData Cloud.
 
 ### Supported Versions
 

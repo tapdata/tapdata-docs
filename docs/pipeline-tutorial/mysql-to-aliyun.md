@@ -5,7 +5,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 As cloud computing evolves and becomes more prevalent, an increasing number of enterprises are looking to migrate their business from on-premises data centers to the cloud to leverage benefits such as lower operational costs and flexible scalability. For businesses with an on-premises MySQL database, migrating to the cloud is a critical step.
 
-In this article, we will discuss how to migrate a MySQL database to the cloud using Tapdata, providing businesses with a straightforward and efficient data flow solution.
+In this article, we will discuss how to migrate a MySQL database to the cloud using TapData, providing businesses with a straightforward and efficient data flow solution.
 
 ## Scenario Description
 
@@ -19,7 +19,7 @@ To address these issues and leverage the benefits of cloud computing, the compan
 
 ![Migration to Cloud](../images/migration_to_cloud.png)
 
-To overcome these pain points, Tapdata provides a visual interface that simplifies task configuration through drag-and-drop operations. It also offers task status monitoring, displaying key metrics (such as latency of incremental data); end-to-end encryption for user/task information, ensuring data transmission security; and millisecond-level real-time data synchronization capabilities, helping enterprises smoothly transition to the cloud.
+To overcome these pain points, TapData provides a visual interface that simplifies task configuration through drag-and-drop operations. It also offers task status monitoring, displaying key metrics (such as latency of incremental data); end-to-end encryption for user/task information, ensuring data transmission security; and millisecond-level real-time data synchronization capabilities, helping enterprises smoothly transition to the cloud.
 
 Next, we will introduce the specific operational procedures.
 
@@ -37,12 +37,12 @@ Next, we will introduce the specific operational procedures.
 
 ## Steps
 
-1. [Log in to the Tapdata platform](../user-guide/log-in.md).
+1. [Log in to the TapData platform](../user-guide/log-in.md).
 
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Replications**.
-   * **Tapdata Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Replications**.
+   * **TapData Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
 
 3. Click **Create** on the right side of the page.
 
@@ -57,7 +57,7 @@ Next, we will introduce the specific operational procedures.
       - **By Table Name**: Select tables in the area and click the right arrow to complete the setup.
       - **By Regular Expression**: Enter a regular expression for the table names. Additionally, when new tables in the source match the expression, they will also be synchronized to the destination.
    - **Batch Read Count**: Number of records read per batch during full synchronization, default is **100**.
-   - **Advanced Settings**: Turn on **DDL Event Collection** switch, Tapdata will automatically capture selected DDL events from the source, like adding fields.
+   - **Advanced Settings**: Turn on **DDL Event Collection** switch, TapData will automatically capture selected DDL events from the source, like adding fields.
 
 6. Click the Alibaba Cloud RDS MySQL data source and complete the configuration in the right panel as follows.
 
@@ -66,7 +66,7 @@ Next, we will introduce the specific operational procedures.
       - **Node Name**: Defaults to the connection name, but you can set a name with business significance.
       - **Batch Write Count per Batch**: Number of entries written per batch during full synchronization.
       - **Max Wait Time per Batch Write**: Set the maximum wait time based on the performance and network latency of the destination, in milliseconds.
-      - **Deduction Result**: Shows the table structure information that Tapdata will write to the destination, deduced based on the settings of the source node.
+      - **Deduction Result**: Shows the table structure information that TapData will write to the destination, deduced based on the settings of the source node.
 
 7. Scroll down to the **Advanced Settings** area and complete the advanced settings.
 

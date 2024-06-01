@@ -4,9 +4,9 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-[Alibaba Cloud Tablestore](https://www.alibabacloud.com/help/en/tablestore) is a serverless table storage service designed for handling large volumes of structured data. It also provides a comprehensive solution for IoT scenarios, offering optimized data storage capabilities. Tapdata Cloud supports data synchronization tasks with Tablestore as the target database. 
+[Alibaba Cloud Tablestore](https://www.alibabacloud.com/help/en/tablestore) is a serverless table storage service designed for handling large volumes of structured data. It also provides a comprehensive solution for IoT scenarios, offering optimized data storage capabilities. TapData Cloud supports data synchronization tasks with Tablestore as the target database. 
 
-This article provides instructions on how to add Tablestore data sources to Tapdata Cloud.
+This article provides instructions on how to add Tablestore data sources to TapData Cloud.
 
 
 
@@ -33,7 +33,7 @@ This article provides instructions on how to add Tablestore data sources to Tapd
 
 ## Connect to Tablestore
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

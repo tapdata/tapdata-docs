@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-TiDB is an open-source distributed relational database designed and developed by PingCAP. It is a versatile distributed database product that supports both online transaction processing (OLTP) and online analytical processing (OLAP). Once you have completed the deployment of the Agent, you can follow this tutorial to add a TiDB data source to Tapdata Cloud. This will enable you to use TiDB as either a source or target database to build data pipelines.
+TiDB is an open-source distributed relational database designed and developed by PingCAP. It is a versatile distributed database product that supports both online transaction processing (OLTP) and online analytical processing (OLAP). Once you have completed the deployment of the Agent, you can follow this tutorial to add a TiDB data source to TapData Cloud. This will enable you to use TiDB as either a source or target database to build data pipelines.
 
 ## Supported Versions
 
@@ -76,7 +76,7 @@ GRANT SELECT, SHOW VIEW, CREATE ROUTINE, LOCK TABLES ON database_name.table_name
 
 ## Connect to TiDB
 
-1. Log in to the [Tapdata Cloud platform](https://cloud.tapdata.net/console/v3/).
+1. Log in to the [TapData Cloud platform](https://cloud.tapdata.net/console/v3/).
 
 2. Click on **Connection Management** in the left navigation bar.
 
@@ -101,7 +101,7 @@ GRANT SELECT, SHOW VIEW, CREATE ROUTINE, LOCK TABLES ON database_name.table_name
       * **Contain Tables**: Default to **All**, and you can also customize and list the tables to include, separated by commas (,).
       * **Exclude Tables**: When enabled, you can specify tables to exclude, separated by commas (,).
       * **Agent Setting**: Default to **Platform Auto Allocation**, but you can also specify it manually.
-      * **Model Load Time**: When the number of models in the data source is greater than 10,000, Tapdata will periodically refresh the model according to this parameter setting.
+      * **Model Load Time**: When the number of models in the data source is greater than 10,000, TapData will periodically refresh the model according to this parameter setting.
    * **SSL Settings**: Choose whether to enable SSL connections to the data source to further enhance data security. After turn on this button, you will also need to upload a CA file, client certificate, and key, as well as fill in the client password.
    
 6. Click on **Test Connection**, and after successful testing, click **Save**.

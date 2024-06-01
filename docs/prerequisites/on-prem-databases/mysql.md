@@ -6,7 +6,7 @@ import Content1 from '../../reuse-content/_all-features.md';
 
 MySQL, the highly popular open-source relational database, is widely utilized as a relational data store by numerous websites, applications, and commercial products.
 
-Tapdata Cloud extends support for constructing data pipelines with MySQL as both the source and target database. This article provides comprehensive instructions on incorporating a MySQL database into Tapdata Cloud, enabling seamless integration for your data pipelines.
+TapData Cloud extends support for constructing data pipelines with MySQL as both the source and target database. This article provides comprehensive instructions on incorporating a MySQL database into TapData Cloud, enabling seamless integration for your data pipelines.
 
 ## Supported Versions
 
@@ -166,7 +166,7 @@ To further enhance the security of the data connection, you can choose to enable
    :::tip
 
    * Ensure that **openssl** is installed on your device to run this program. For example, on a CentOS system, you can install it with the command `yum install openssl -y`.
-   * Once the command is executed, files such as `ca-key.pem`, `server-key.pem`, and `client-key.pem` will be automatically generated, usually located in the `/var/lib/mysql/` directory. You can download them to your local machine for later use in configuring connections in Tapdata Cloud.
+   * Once the command is executed, files such as `ca-key.pem`, `server-key.pem`, and `client-key.pem` will be automatically generated, usually located in the `/var/lib/mysql/` directory. You can download them to your local machine for later use in configuring connections in TapData Cloud.
 
    :::
 
@@ -205,7 +205,7 @@ To further enhance the security of the data connection, you can choose to enable
 
 ## Connect to MySQL
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -230,7 +230,7 @@ To further enhance the security of the data connection, you can choose to enable
 
     * **Advanced settings**
 
-        * **Timezone**: By default, Tapdata Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+        * **Timezone**: By default, TapData Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
 
           For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
 

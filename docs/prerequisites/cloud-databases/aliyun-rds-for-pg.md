@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Follow the instructions below to successfully add and use PostgreSQL database in Tapdata Cloud.
+Follow the instructions below to successfully add and use PostgreSQL database in TapData Cloud.
 
 ## Supported Versions
 

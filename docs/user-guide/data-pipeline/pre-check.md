@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-To ensure the normal operation of data replication/development tasks, when you save or start a task, Tapdata will conduct a pre-check based on node configuration and data source characteristics. Simultaneously, it prints the check results through logs, helping you avoid the risk of task execution failure and manage tasks more efficiently.
+To ensure the normal operation of data replication/development tasks, when you save or start a task, TapData will conduct a pre-check based on node configuration and data source characteristics. Simultaneously, it prints the check results through logs, helping you avoid the risk of task execution failure and manage tasks more efficiently.
 
 ## Pre-check Logs Example
 

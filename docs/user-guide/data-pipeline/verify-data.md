@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Leveraging various proprietary technologies, Tapdata ensures maximum data consistency. In addition, Tapdata supports data table validation to further verify and ensure the correctness of data flow, meeting the stringent requirements of production environments. This document introduces the configuration process for data validation tasks.
+Leveraging various proprietary technologies, TapData ensures maximum data consistency. In addition, TapData supports data table validation to further verify and ensure the correctness of data flow, meeting the stringent requirements of production environments. This document introduces the configuration process for data validation tasks.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, select **Data Pipelines** > **Validations**.
 
@@ -38,7 +38,7 @@ import TabItem from '@theme/TabItem';
     - **Validation Task Alert**: Choose the rule configuration and notification method for alarms when the task runs into errors or the validation results are inconsistent.
     - **Validation Frequency**: Default is **Single**. If **Repeated** is chosen, you also need to set the start and end time of the validation and the interval between tasks.
     - **Error**: The maximum number of inconsistent data records to save, default is 100, maximum is 10000. It's recommended to set a larger value to ensure completeness of records.
-    - **Validation Conditions**: By default, Tapdata automatically loads the source/target data tables from the data replication/development tasks. Additionally, you can turn on the **Data Filter** switch to only verify specific condition data to reduce the validation scale (custom query and aggregate query filtering can be implemented via SQL). Moreover, you can add JS validation logic through advanced validation.
+    - **Validation Conditions**: By default, TapData automatically loads the source/target data tables from the data replication/development tasks. Additionally, you can turn on the **Data Filter** switch to only verify specific condition data to reduce the validation scale (custom query and aggregate query filtering can be implemented via SQL). Moreover, you can add JS validation logic through advanced validation.
 
 </TabItem>
 

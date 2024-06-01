@@ -8,7 +8,7 @@ Live Cache is primarily designed to alleviate the pressure on the source databas
 
 ## Create Live Cache
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, select **Advanced** > **Live Cache**.
 
@@ -57,7 +57,7 @@ First, create a live cache, choose a connection as the cache middleware, copy th
 
 **Specific Process:**
 
-1. Log in to Tapdata Platform, select **Advanced** > **Live Cache** in the left navigation bar.
+1. Log in to TapData Platform, select **Advanced** > **Live Cache** in the left navigation bar.
 
 2. Create a live cache.
 

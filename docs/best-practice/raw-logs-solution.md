@@ -3,7 +3,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-To enhance the efficiency of capturing data changes, Tapdata supports not only using the native log parsing tools of databases (LogMiner) but also has developed the capability to directly parse the incremental log files of the database. This allows for more efficient event capture, achieving higher data collection performance (QPS over 20,000), reducing the impact on the source database during incremental data collection, but it requires the deployment of an additional component, which increases operational costs, making it suitable for scenarios with frequent data changes.
+To enhance the efficiency of capturing data changes, TapData supports not only using the native log parsing tools of databases (LogMiner) but also has developed the capability to directly parse the incremental log files of the database. This allows for more efficient event capture, achieving higher data collection performance (QPS over 20,000), reducing the impact on the source database during incremental data collection, but it requires the deployment of an additional component, which increases operational costs, making it suitable for scenarios with frequent data changes.
 
 ![Workflow](../images/raw_logs_workflow.png)
 
@@ -49,7 +49,7 @@ You need to log in database as **SYS** user, and grant the above permissions to 
 
 Next, we'll demonstrate the deployment process for raw log querying using Oracle 12c running on a Linux platform as an example.
 
-1. [Contact Tapdata](mailto:team@tapdata.io) to obtain the installation package and License file for the raw log parsing plugin.
+1. [Contact TapData](mailto:team@tapdata.io) to obtain the installation package and License file for the raw log parsing plugin.
 
 2. Log into the device hosting Oracle, and execute the following commands to prepare for deployment.
 
@@ -120,7 +120,7 @@ When [configuring an Oracle connection](../prerequisites/on-prem-databases/oracl
 
   If the storage medium is **ASM**, redo logs are saved inside the ASM. In this case, DML and DDL data come from querying the ASM instance remotely to get the binary of redo logs, so it will use some ASM performance. Here, the program does not have to be on the same machine as Oracle, so it will use some network bandwidth and ASM performance.
 
-* **Q: What happens if you forcefully terminate the Tapdata engine or raw log plugin?**
+* **Q: What happens if you forcefully terminate the TapData engine or raw log plugin?**
 
   **A:** The system will rescan the directory for accumulated fzs files, which may cause a slow entry into incremental mode. If an anomaly occurs, you can save the related parsing logs to provide to technical support.
 

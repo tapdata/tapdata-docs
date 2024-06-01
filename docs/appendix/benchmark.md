@@ -4,7 +4,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
-This document aims to detail the methods and steps for conducting performance tests on Tapdata. We will explore how to accurately assess Tapdata's data processing capabilities, response times, and system stability under various conditions. This helps you understand Tapdata's performance under different loads, allowing for better resource planning and configuration optimization.
+This document aims to detail the methods and steps for conducting performance tests on TapData. We will explore how to accurately assess TapData's data processing capabilities, response times, and system stability under various conditions. This helps you understand TapData's performance under different loads, allowing for better resource planning and configuration optimization.
 
 ## Testing Environment
 
@@ -14,7 +14,7 @@ This document aims to detail the methods and steps for conducting performance te
 
 ## Testing Methods
 
-To ensure a comprehensive and accurate evaluation of Tapdata's performance, we will use the following testing methods:
+To ensure a comprehensive and accurate evaluation of TapData's performance, we will use the following testing methods:
 
 1. **Synchronization Task Creation**.
 
@@ -32,7 +32,7 @@ To ensure a comprehensive and accurate evaluation of Tapdata's performance, we w
 
    Ensure data consistency between the source and target databases under high load, including verifying data integrity and synchronization accuracy, ensuring no data loss or erroneous synchronizations.
 
-These steps will allow us to comprehensively evaluate Tapdata's data processing capabilities and stability under high load conditions. Additionally, this method will help identify potential performance bottlenecks, providing a basis for subsequent optimizations.
+These steps will allow us to comprehensively evaluate TapData's data processing capabilities and stability under high load conditions. Additionally, this method will help identify potential performance bottlenecks, providing a basis for subsequent optimizations.
 
 ## Test Metrics Explanation
 
@@ -45,7 +45,7 @@ These steps will allow us to comprehensively evaluate Tapdata's data processing 
 
 ## Test Results
 
-To ensure the accuracy and applicability of performance test results, we will conduct tests across various database architectures and in both homogeneous and heterogeneous data environments. This diverse testing approach helps comprehensively assess Tapdata's performance across different scenarios and connections.
+To ensure the accuracy and applicability of performance test results, we will conduct tests across various database architectures and in both homogeneous and heterogeneous data environments. This diverse testing approach helps comprehensively assess TapData's performance across different scenarios and connections.
 
 ## Source Database: MongoDB
 

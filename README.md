@@ -1,18 +1,18 @@
-# Tapdata Cloud Documentation
+# TapData Documentation
 
 <p align="left">
 <a href="https://auth.tapdata.net/" rel="nofollow"><img src="https://20778419.s21i.faiusr.com/4/2/ABUIABAEGAAg39a1kQYoqLyr0gEwyAE4Mw.png" style="zoom: 50%;" /></a> 
 </p>
 
-Welcome to Tapdata Cloud  documentation!
+Welcome to TapData Cloud  documentation!
 
-This repository stores all the source files of Tapdata Cloud  documentation, click to visit: https://docs.tapdata.io
+This repository stores all the source files of TapData Cloud  documentation, click to visit: https://docs.tapdata.io
 
 If you find documentation issues, feel free to [create an Issue](https://github.com/tapdata/docs-en/issues/new) to let us know or directly create a Pull Request to help fix or update it.
 
-## What is Tapdata?
+## What is TapData?
 
-[Tapdata](https://tapdata.io/) is a live data platform designed to connect data silos and provide fresh data to the downstream operational applications & operational analytics.
+[TapData](https://tapdata.io/) is a live data platform designed to connect data silos and provide fresh data to the downstream operational applications & operational analytics.
 
 🎮 [Try it for free](https://cloud.tapdata.io/)
 
@@ -22,7 +22,7 @@ If you find documentation issues, feel free to [create an Issue](https://github.
 
 We welcome contributions to help improve the documentation! Here is the steps:
 
-> The Tapdata docs are written in Markdown. If you have any questions about the steps blow, please [contact us](#Contact).
+> The TapData docs are written in Markdown. If you have any questions about the steps blow, please [contact us](#Contact).
 
 1. Clone repository.
 
@@ -55,7 +55,7 @@ We welcome contributions to help improve the documentation! Here is the steps:
 
 ```shell
 ├── docs		       # Docs for the current version
-│   ├── cloud		       # Tapdata Cloud Docs(Chinese language)
+│   ├── cloud		       # TapData Cloud Docs(Chinese language)
 │   │   ├── images	       # Screen shots, illustrations for docs
 │   │   ├── ………… 
 ├── docusaurus.config.js       # A config file containing the site configuration
@@ -66,7 +66,7 @@ We welcome contributions to help improve the documentation! Here is the steps:
 │   └── pages
 ├── static		       # Static directory that will be copied into the root of the final build directory
 │   └── img
-└── i18n		       # Tapdata Cloud Docs(English language), dir: i18n/docusaurus-plugin-content-docs/current
+└── i18n		       # TapData Cloud Docs(English language), dir: i18n/docusaurus-plugin-content-docs/current
 ```
 
 

@@ -4,13 +4,13 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Zoho CRM acts as a single repository to bring your sales, marketing, and customer support activities together, and streamline your process, policy, and people in one platform. Tapdata Cloud supports Zoho CRM as a data source to build a data pipeline to help you read data in CRM and synchronize it to the specified data source, helps you quickly open the data flow channel. This article explains how to add a Zoho CRM data source to Tapdata Cloud.
+Zoho CRM acts as a single repository to bring your sales, marketing, and customer support activities together, and streamline your process, policy, and people in one platform. TapData Cloud supports Zoho CRM as a data source to build a data pipeline to help you read data in CRM and synchronize it to the specified data source, helps you quickly open the data flow channel. This article explains how to add a Zoho CRM data source to TapData Cloud.
 
 
 
 ## Readable Data
 
-Tapdata Cloud allows you to read data in Zoho CRM as a table and synchronize it to the target database. Here is the data can be easily accessed in Zoho CRM:
+TapData Cloud allows you to read data in Zoho CRM as a table and synchronize it to the target database. Here is the data can be easily accessed in Zoho CRM:
 
 - **Accounts**
 - **Contacts**
@@ -21,7 +21,7 @@ Tapdata Cloud allows you to read data in Zoho CRM as a table and synchronize it 
 
 ## Connect to Zoho CRM
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

@@ -3,7 +3,7 @@ import Content from '../../../reuse-content/_all-features.md';
 
 <Content />
 
-Tapdata supports integrating processing nodes into data replication tasks for requirements like data filtering or field adjustments.
+TapData supports integrating processing nodes into data replication tasks for requirements like data filtering or field adjustments.
 
 ## Table Edit Node
 
@@ -40,7 +40,7 @@ After scripting, use the test button below the node to view inputs and outputs, 
 
 ### JS Node Model Declaration
 
-For JS nodes, Tapdata employs sample data run tests to infer the node's model information. If the inferred model is inaccurate or missing fields, model declaration can be used to explicitly define field information.
+For JS nodes, TapData employs sample data run tests to infer the node's model information. If the inferred model is inaccurate or missing fields, model declaration can be used to explicitly define field information.
 
 ![](../../../images/create_task_5.png)
 
@@ -80,7 +80,7 @@ In this case, the source database is in UTC+8, and the target database is in UTC
 
 **Operational Process**:
 
-1. Log into the Tapdata platform.
+1. Log into the TapData platform.
 2. Navigate to **Data Pipeline** > **Data Replication** and click **Create**.
 3. Drag the source and target data sources to the canvas, followed by a time operation node, and connect them sequentially.
 4. Configure the source node and select the tables.
@@ -89,7 +89,7 @@ In this case, the source database is in UTC+8, and the target database is in UTC
    ![Time Operation](../../../images/time_calculation.png)
 
     - **Node Name**: Defaults to the connection name, but you can set a meaningful name.
-    - **Select the time type to operate on**: Tapdata auto-detects supportable time types. You should choose based on your business requirements. Additionally, you can click the **Model** tab to see the relationship between time types and column names.
+    - **Select the time type to operate on**: TapData auto-detects supportable time types. You should choose based on your business requirements. Additionally, you can click the **Model** tab to see the relationship between time types and column names.
     - **Select the operation method**: Supports adding or subtracting time, in integer hours. In this case, we choose to subtract 8 hours.
 
 6. Complete the configuration for the target node and the task. For specific steps, see [Creating a Data Replication Task](create-task.md).

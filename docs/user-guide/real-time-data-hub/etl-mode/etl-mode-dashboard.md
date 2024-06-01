@@ -4,19 +4,19 @@ import Content from '../../../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-Tapdata's data console is designed with Data Integration Mode as its default setting. This mode is specifically designed for tasks such as data replication, synchronization, migrating data to the cloud, and building ETL pipelines. It offers a user-friendly interface where you can easily drag and drop the source table onto the target, allowing for the automatic creation of data replication tasks.
+TapData's data console is designed with Data Integration Mode as its default setting. This mode is specifically designed for tasks such as data replication, synchronization, migrating data to the cloud, and building ETL pipelines. It offers a user-friendly interface where you can easily drag and drop the source table onto the target, allowing for the automatic creation of data replication tasks.
 
 In this article, we will provide a comprehensive guide on utilizing the Data Integration Mode dashboard. It will walk you through the various functional modules, helping you gain a better understanding of how to effectively leverage this powerful tool.
 
 :::tip
 
-To minimize the impact on source databases and align with the data hierarchical governance concept, you can switch to the [Data Service Platform Model](../daas-mode/enable-daas-mode.md) in Tapdata. This model enables real-time data synchronization to the Data Cache Layer, ensuring up-to-date and consistent data across systems.
+To minimize the impact on source databases and align with the data hierarchical governance concept, you can switch to the [Data Service Platform Model](../daas-mode/enable-daas-mode.md) in TapData. This model enables real-time data synchronization to the Data Cache Layer, ensuring up-to-date and consistent data across systems.
 
 :::
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../../log-in.md).
+1. [Log in to TapData Platform](../../log-in.md).
 
 2. In the left navigation panel, click **Real-Time Data Hub**.
 

@@ -4,12 +4,12 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-Tapdata supports rich data sources as follows:
+TapData supports rich data sources as follows:
 
 :::tip
 
 * If you need to synchronize DDL operations, you need to enable DDL collection and DDL apply. For more information, see [Handle DDL Changes During Data Sync](../best-practice/handle-schema-changes.md).
-* Tapdata Community only supports ClickHouse, Kafka, MongoDB, MySQL, and PostgreSQL data sources.
+* TapData Community only supports ClickHouse, Kafka, MongoDB, MySQL, and PostgreSQL data sources.
 
 :::
 
@@ -110,7 +110,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip
 
-The beta version of the data sources is in public preview and has passed the basic test cases and integration test cases, but has not yet passed the Tapdata certification test process. If you have any questions during use, please [contact us](mailto:team@tapdata.io).
+The beta version of the data sources is in public preview and has passed the basic test cases and integration test cases, but has not yet passed the TapData certification test process. If you have any questions during use, please [contact us](mailto:team@tapdata.io).
 
 :::
 
@@ -452,7 +452,7 @@ The beta version of the data sources is in public preview and has passed the bas
 
 :::tip
 
-The Alpha version of the data sources is in public preview and has passed the basic test cases, but has not yet passed the integration test cases and the Tapdata certification test process. If you have any questions during use, please [contact us](mailto:team@tapdata.io).
+The Alpha version of the data sources is in public preview and has passed the basic test cases, but has not yet passed the integration test cases and the TapData certification test process. If you have any questions during use, please [contact us](mailto:team@tapdata.io).
 
 :::
 

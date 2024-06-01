@@ -6,7 +6,7 @@ import Content from '../reuse-content/_all-features.md';
 
 ## Innovative Real-time Data Synchronization
 
-Tapdata ingeniously integrates database Change Data Capture (CDC) with streaming computing technology. This innovative integration simplifies the data processing workflow, empowering users to explore new and inventive possibilities beyond traditional data synchronization.
+TapData ingeniously integrates database Change Data Capture (CDC) with streaming computing technology. This innovative integration simplifies the data processing workflow, empowering users to explore new and inventive possibilities beyond traditional data synchronization.
 
 ## Unified Data Service Platform
 
@@ -14,15 +14,15 @@ Based on the concept of data hierarchical governance, data scattered in differen
 
 ## Zero Code Visual Drag and Drop
 
-The orchestration and configuration process for Tapdata data synchronization tasks is seamlessly accomplished through intuitive drag-and-drop visual operations, eliminating the need for coding. Additionally, it supports multi-level and multi-node synchronization operations, effectively simplifying the definition of synchronization task flows and enhancing overall efficiency and quality.
+The orchestration and configuration process for TapData data synchronization tasks is seamlessly accomplished through intuitive drag-and-drop visual operations, eliminating the need for coding. Additionally, it supports multi-level and multi-node synchronization operations, effectively simplifying the definition of synchronization task flows and enhancing overall efficiency and quality.
 
 ## Perfect Support for SQL - > NoSQL
 
-Tapdata provides extensive JSON support, enabling effortless real-time synchronization from relational databases to non-relational data using intuitive drag-and-drop operations. It also supports various modeling methods, including one-to-one, many-to-one, and one-to-many, making it simple for users to modernize their databases.
+TapData provides extensive JSON support, enabling effortless real-time synchronization from relational databases to non-relational data using intuitive drag-and-drop operations. It also supports various modeling methods, including one-to-one, many-to-one, and one-to-many, making it simple for users to modernize their databases.
 
 ## Comprehensive Database Support
 
-Tapdata provides comprehensive support for major open source databases, commercial databases, and messaging middleware, including MongoDB, MySQL, Oracle, SQL Server, Db2, ElasticSearch, Kafka, Sybase, PostgreSQL, Redis, GaussDB, and more.
+TapData provides comprehensive support for major open source databases, commercial databases, and messaging middleware, including MongoDB, MySQL, Oracle, SQL Server, Db2, ElasticSearch, Kafka, Sybase, PostgreSQL, Redis, GaussDB, and more.
 
 ## Enhanced Task Monitoring with Visual Monitoring
 
@@ -30,4 +30,4 @@ Through the intuitive visual interface, users can monitor the operational status
 
 ## Fully Designed Security
 
-Ensuring the security of user data and task information is a top priority in the design of Tapdata. The platform employs encryption mechanisms throughout its security measures to provide comprehensive protection for user data and information. For more introduction, see [Architecture and Workflow](architecture.md).
+Ensuring the security of user data and task information is a top priority in the design of TapData. The platform employs encryption mechanisms throughout its security measures to provide comprehensive protection for user data and information. For more introduction, see [Architecture and Workflow](architecture.md).

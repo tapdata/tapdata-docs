@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-Tapdata allows you to synchronize data from various sources and process it during the data flow. Based on your business needs, you can create different tasks such as:
+TapData allows you to synchronize data from various sources and process it during the data flow. Based on your business needs, you can create different tasks such as:
 
 | Task Type | Applicable scenario |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |

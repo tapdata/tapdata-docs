@@ -4,17 +4,17 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
-This document provides a comprehensive emergency handling process and contingency strategies for Tapdata products, aiming to help you respond quickly and effectively in the event of an emergency or product issue, thereby mitigating the impact of failures and enhancing the overall stability and security of the product.
+This document provides a comprehensive emergency handling process and contingency strategies for TapData products, aiming to help you respond quickly and effectively in the event of an emergency or product issue, thereby mitigating the impact of failures and enhancing the overall stability and security of the product.
 
 :::tip
 
-Tapdata supports both standalone and high-availability deployments. For production environments, it is recommended to use a [high-availability deployment](install-tapdata-ha.md) method.
+TapData supports both standalone and high-availability deployments. For production environments, it is recommended to use a [high-availability deployment](install-tapdata-ha.md) method.
 
 :::
 
 ## Component Recovery and Task Restart Strategy
 
-To ensure the high availability of the system and the stability of data synchronization tasks, Tapdata has designed a failure recovery strategy aimed at quickly responding to component anomalies and automatically restoring services and tasks to minimize business impact.
+To ensure the high availability of the system and the stability of data synchronization tasks, TapData has designed a failure recovery strategy aimed at quickly responding to component anomalies and automatically restoring services and tasks to minimize business impact.
 
 | Component | Description |
 | --------- | ----------- |
@@ -24,16 +24,16 @@ To ensure the high availability of the system and the stability of data synchron
 
 ## Resource Monitoring and Management
 
-To effectively manage and maintain the operation of the Tapdata system, ensuring the continuity and efficiency of data processing tasks, it is recommended to regularly check and maintain machine resources to prevent potential issues:
+To effectively manage and maintain the operation of the TapData system, ensuring the continuity and efficiency of data processing tasks, it is recommended to regularly check and maintain machine resources to prevent potential issues:
 
 * **Disk Space**: To maintain system stability, it's advisable to regularly monitor and manage disk space. In case of insufficient disk space, follow these steps for resolution:
-  - Safely clear log files in the `logs` folder under the Tapdata working directory.
-  - For disk space occupied by services other than Tapdata, appropriate investigation and cleanup actions are recommended.
+  - Safely clear log files in the `logs` folder under the TapData working directory.
+  - For disk space occupied by services other than TapData, appropriate investigation and cleanup actions are recommended.
 * **Memory**:
   - For the meta-database (e.g., MongoDB intermediary), it's advisable to manage memory usage effectively by adding the parameter `storage.wiredTiger.engineConfig.cacheSizeGB: X`. This setting helps control database memory usage, recommended to be set to about half of the physical memory.
-  - For the Tapdata engine and management end, memory usage can be controlled through the `tapdataJavaOpts` and `tapdataTMJavaOpts` in the configuration file. For example, setting "-Xmx4G -Xms4G" limits the process memory to within 4GB.
+  - For the TapData engine and management end, memory usage can be controlled through the `tapdataJavaOpts` and `tapdataTMJavaOpts` in the configuration file. For example, setting "-Xmx4G -Xms4G" limits the process memory to within 4GB.
 * **Network**:
-  - Short-term network interruptions usually do not affect the normal operation of Tapdata tasks. However, long-term network interruptions might cause tasks to error or interrupt. In such cases, it's recommended to troubleshoot network issues as soon as possible and restart related processes to recover tasks.
+  - Short-term network interruptions usually do not affect the normal operation of TapData tasks. However, long-term network interruptions might cause tasks to error or interrupt. In such cases, it's recommended to troubleshoot network issues as soon as possible and restart related processes to recover tasks.
 
 ## Service Exception Handling Strategy
 
@@ -47,14 +47,14 @@ In a [high-availability environment](install-tapdata-ha.md), tasks from a single
 
 #### Single Engine Deployment
 
-For single-engine deployments, engine exceptions may cause synchronization tasks to interrupt immediately. If the daemon or operating system processes are running normally and the engine terminates unexpectedly due to OOM (Out of Memory) or other reasons, Tapdata will typically automatically restart the engine within 30 seconds. If the engine does not restart successfully, manual intervention is required, for example:
+For single-engine deployments, engine exceptions may cause synchronization tasks to interrupt immediately. If the daemon or operating system processes are running normally and the engine terminates unexpectedly due to OOM (Out of Memory) or other reasons, TapData will typically automatically restart the engine within 30 seconds. If the engine does not restart successfully, manual intervention is required, for example:
 
 - In case of server hardware failure, power outage, or network failure, check the engine status after the environment is restored.
 - If the engine fails to start automatically, follow these steps to manually restart:
-  1. Enter the Tapdata working directory: `cd working_directory`.
+  1. Enter the TapData working directory: `cd working_directory`.
   2. Check component status: `./tapdata status`.
   3. Start or restart the engine: `./tapdata start backend` or `./tapdata restart backend`.
-  4. Confirm engine status: If `Tapdata Engine PID` is displayed, it indicates successful startup.
+  4. Confirm engine status: If `TapData Engine PID` is displayed, it indicates successful startup.
 
 ### Management End Exception Recovery
 
@@ -66,7 +66,7 @@ In a [high-availability environment](install-tapdata-ha.md), as long as at least
 
 #### Single Management End Deployment
 
-In single management end deployments, management end exceptions usually do not immediately affect synchronization tasks. If the daemon or operating system processes are running normally and the management end terminates unexpectedly due to OOM (Out of Memory) or other reasons, Tapdata will typically automatically restart the management end within 30 seconds. If it does not restart successfully, manual intervention is required, for example:
+In single management end deployments, management end exceptions usually do not immediately affect synchronization tasks. If the daemon or operating system processes are running normally and the management end terminates unexpectedly due to OOM (Out of Memory) or other reasons, TapData will typically automatically restart the management end within 30 seconds. If it does not restart successfully, manual intervention is required, for example:
 
 :::tip
 
@@ -76,14 +76,14 @@ If the management end does not successfully restart after 10 minutes, all engine
 
 - In case of server hardware failure, power outage, or network failure, check the management end status after the environment is restored.
 - If the engine fails to start automatically, follow these steps to manually restart:
-  1. Enter the Tapdata working directory: `cd working_directory`.
+  1. Enter the TapData working directory: `cd working_directory`.
   2. Check component status: `./tapdata status`.
   3. Start or restart the management end: `./tapdata start frontend` or `./tapdata restart frontend`.
-  4. Confirm startup success: Display of `Tapdata Frontend PID` indicates completion.
+  4. Confirm startup success: Display of `TapData Frontend PID` indicates completion.
 
 ### Database Exception
 
-Tapdata stores necessary configurations, shared cache, and other information in a designated MongoDB database. In case of database exceptions, the recovery strategy is as follows.
+TapData stores necessary configurations, shared cache, and other information in a designated MongoDB database. In case of database exceptions, the recovery strategy is as follows.
 
 #### High-Availability (HA) Deployment
 
@@ -112,7 +112,7 @@ The engine may encounter various performance issues or exceptions during operati
 
 - **Unhealthy Working State**: If the engine process is alive but tasks are not running, and CPU utilization is 0%, it may indicate the engine is in an unhealthy state.
 
-  **Solution**: Restart the engine and send the logs from the `logs` directory of the last few days to the Tapdata technical support team for help.
+  **Solution**: Restart the engine and send the logs from the `logs` directory of the last few days to the TapData technical support team for help.
 
 #### Management End Stability and Exception Handling
 
@@ -120,15 +120,15 @@ The management end typically does not run data synchronization tasks, so the pro
 
 #### Database Exception Handling and Recovery Strategy
 
-Tapdata stores essential configuration, shared cache, and other information in a designated MongoDB database. It's recommended that the database itself adopts a [replica set deployment](https://www.mongodb.com/docs/manual/replication/) method to ensure its high availability.
+TapData stores essential configuration, shared cache, and other information in a designated MongoDB database. It's recommended that the database itself adopts a [replica set deployment](https://www.mongodb.com/docs/manual/replication/) method to ensure its high availability.
 
 #### High-Availability (HA) Deployment
 
 In the recommended high-availability environment, below are common database issues and their solutions:
 
-- **Replica Set Node Status Abnormal**: If the status of nodes in the replica set is not PRIMARY, SECONDARY, or ARBITER for an extended period, contact the database administrator or Tapdata support team promptly to avoid potential security risks.
-- **Replica Set Synchronization Delay**: Check the primary-secondary synchronization delay using the `rs.status()` command. The **[optimeDate](https://www.mongodb.com/docs/v7.0/reference/command/replSetGetStatus/#mongodb-data-replSetGetStatus.members-n-.optimeDate)** field values should be close or differ by a few seconds. If the delay is significant, it indicates a low synchronization rate between nodes. Contact the database administrator or Tapdata support team for assistance.
-- **Insufficient Log Window Size**: Check the log window using `rs.printReplicationInfo()`. If the window time is short (e.g., hours or minutes), it may indicate write overload or improper log configuration. Contact the database administrator or Tapdata support team for adjustments.
+- **Replica Set Node Status Abnormal**: If the status of nodes in the replica set is not PRIMARY, SECONDARY, or ARBITER for an extended period, contact the database administrator or TapData support team promptly to avoid potential security risks.
+- **Replica Set Synchronization Delay**: Check the primary-secondary synchronization delay using the `rs.status()` command. The **[optimeDate](https://www.mongodb.com/docs/v7.0/reference/command/replSetGetStatus/#mongodb-data-replSetGetStatus.members-n-.optimeDate)** field values should be close or differ by a few seconds. If the delay is significant, it indicates a low synchronization rate between nodes. Contact the database administrator or TapData support team for assistance.
+- **Insufficient Log Window Size**: Check the log window using `rs.printReplicationInfo()`. If the window time is short (e.g., hours or minutes), it may indicate write overload or improper log configuration. Contact the database administrator or TapData support team for adjustments.
 
 #### Non-HA Deployment
 
@@ -136,11 +136,11 @@ For database deployments with fewer than 3 nodes (e.g., single-node deployment),
 
 - **Disk Exhaustion**:
   - **Manage Disk Exhaustion**: Clear unnecessary files and restart the database.
-  - **Data Disk Exhaustion**: Avoid deleting any data files and contact the database administrator or Tapdata technical support team.
+  - **Data Disk Exhaustion**: Avoid deleting any data files and contact the database administrator or TapData technical support team.
 - **Memory Exhaustion**: Adjust the `storage.wiredTiger.engineConfig.cacheSizeGB` configuration, then restart the database.
-- **Slow Database Response**: If the database CPU is overloaded or `db.currentOp()` shows abnormal operations, contact the database administrator or Tapdata technical support team.
+- **Slow Database Response**: If the database CPU is overloaded or `db.currentOp()` shows abnormal operations, contact the database administrator or TapData technical support team.
 
-In any case of database exceptions, it is advisable to first contact the DBA team or Tapdata technical support team for resolution, ensuring stable operation and data security of the database.
+In any case of database exceptions, it is advisable to first contact the DBA team or TapData technical support team for resolution, ensuring stable operation and data security of the database.
 
 ### Task Exception Handling and Recovery Strategy
 
@@ -150,7 +150,7 @@ When encountering exceptions during task execution, our goal is to diagnose the 
 
 - **Restart Task**: Try manually restarting the task. If the task resumes and the delay drops to an acceptable range, the alarm can be cleared. Subsequently, send the retained error logs to the support team for further analysis to prevent similar issues in the future.
 - **Task Reset**: If the task data volume is small and full synchronization can be completed quickly, choose to retain the target table data and structure, reset the task, and resynchronize; if the task still fails after reset and the temporary unavailability of the data table is acceptable, choose to clear the target table data and structure before resetting the task.
-- **Unable to Restart Task**: If the task cannot be restarted (e.g., remains in "Starting" or "Reset Failed" status for a long time), first check the health of the source/target databases and Tapdata components. If a fault is found, eliminate it before attempting to recover the task; if no apparent fault is found, contact the support team for assistance.
+- **Unable to Restart Task**: If the task cannot be restarted (e.g., remains in "Starting" or "Reset Failed" status for a long time), first check the health of the source/target databases and TapData components. If a fault is found, eliminate it before attempting to recover the task; if no apparent fault is found, contact the support team for assistance.
 
 #### Excessive Task Delay
 
@@ -163,7 +163,7 @@ When encountering exceptions during task execution, our goal is to diagnose the 
 
 If a task cannot be operated (e.g., remains in "Starting", "Stopping", etc., status), try the following steps:
 
-1. Check the status of all Tapdata components to ensure no anomalies.
+1. Check the status of all TapData components to ensure no anomalies.
 2. If components are normal, copy the task to operate in a new task, prioritizing business continuity.
 3. After task recovery, contact the support team for further investigation.
 

@@ -8,11 +8,11 @@ In the Data Integration Mode, you can simply drag the source table to the target
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../../log-in.md).
+1. [Log in to TapData Platform](../../log-in.md).
 
 2. In the left navigation panel, click **Real-Time Data Hub**.
 
-3. On this page, you can conveniently view the data source information you have entered. The page is divided into two columns labeled **Sources** and **Targets & Services** by Tapdata Cloud. This helps you distinguish between the source and target data sources and provides a clear overview of your data connections.
+3. On this page, you can conveniently view the data source information you have entered. The page is divided into two columns labeled **Sources** and **Targets & Services** by TapData Cloud. This helps you distinguish between the source and target data sources and provides a clear overview of your data connections.
 
    ![Data Integration Mode Page](../../../images/view_etl_dashboard.png)
 
@@ -24,7 +24,7 @@ In the Data Integration Mode, you can simply drag the source table to the target
 
    - **Only Save**: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../../data-pipeline/data-development/process-node) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click **Start** in the upper right corner of the page.
 
-   - **Save and Run**: No additional action is required. Tapdata will automatically create a data transformation task and run it to synchronize your source tables in real-time to the selected target data source. In this case, the **customer** table in the source MySQL will be synchronized to MongoDB in real-time.
+   - **Save and Run**: No additional action is required. TapData will automatically create a data transformation task and run it to synchronize your source tables in real-time to the selected target data source. In this case, the **customer** table in the source MySQL will be synchronized to MongoDB in real-time.
 
       You can also click the task name in the target data card to enter the task monitoring page to see the detailed operation status. For more information, see [Monitoring Tasks](../../data-pipeline/data-development/monitor-task.md).
 

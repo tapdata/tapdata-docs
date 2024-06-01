@@ -4,13 +4,13 @@ import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-Tapdata Cloud uses the operation log to record user actions while using the system. You can view the recent activity log and filter the action log by applying the filter.
+TapData Cloud uses the operation log to record user actions while using the system. You can view the recent activity log and filter the action log by applying the filter.
 
 
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](log-in.md) as a system administrator.
+1. [Log in to TapData Platform](log-in.md) as a system administrator.
 
 2. In the left navigation panel, click **Operation log**.
 

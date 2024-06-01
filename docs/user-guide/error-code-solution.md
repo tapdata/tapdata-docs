@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-If you encounter an exception with a task, you can view the relevant log information at the bottom of the task's [monitoring page](data-pipeline/data-development/monitor-task.md). For common issues, Tapdata has codified them into specific error codes for easier lookup, and provides the cause of the error and its solution.
+If you encounter an exception with a task, you can view the relevant log information at the bottom of the task's [monitoring page](data-pipeline/data-development/monitor-task.md). For common issues, TapData has codified them into specific error codes for easier lookup, and provides the cause of the error and its solution.
 
 ## 10001
 
@@ -57,7 +57,7 @@ Before reading, the engine needs to locate the specific position in the logs to 
 
 **Error Code Description**: Data type being written doesn't match the database field's actual type. Reasons:
 
-* Before running the task, if the destination table name already exists in the database, Tapdata won't auto-create the table. This may lead to mismatches in field types between the source and destination tables.
+* Before running the task, if the destination table name already exists in the database, TapData won't auto-create the table. This may lead to mismatches in field types between the source and destination tables.
 * Source is a non-relational database, and destination is a relational database, like syncing from MongoDB to Oracle. A field in the source may have multiple types, while the destination relational database only allows one type per field, causing an error.
 * During syncing, computational nodes like JS processors are added, causing data type changes during processing, triggering this error.
 
@@ -65,7 +65,7 @@ Before reading, the engine needs to locate the specific position in the logs to 
 
 * Refer to the error message below, compare the erroneous fields' types in the source and destination databases. If inconsistent, use database DDL or similar commands to correct it, then run the task again.
 * Use the [JS processing node](data-pipeline/data-development/process-node.md#js-process) to filter out erroneous fields. For instance, if the problematic field is `field1`, the corresponding JS would be `record.remove('field1')`.
-* If the JS processing node changes the data type, the new type should be passed to Tapdata using the syntax provided below the JS editing box. Delete the target table and run the task again.
+* If the JS processing node changes the data type, the new type should be passed to TapData using the syntax provided below the JS editing box. Delete the target table and run the task again.
 
 ## 10007
 
@@ -80,7 +80,7 @@ Before reading, the engine needs to locate the specific position in the logs to 
 **Solutions**:
 
 * Use database DDL or similar commands to modify the primary key or unique index of the target table, then try launching the task again.
-* Delete the destination table, allowing Tapdata's auto-table creation feature to recreate the table, then try launching the task again.
+* Delete the destination table, allowing TapData's auto-table creation feature to recreate the table, then try launching the task again.
 * In the task editing interface, turn off concurrent writing to the target table and try launching the task again.
 
 ## 10009

@@ -1,10 +1,10 @@
-# Tapdata Cloud Release Notes
+# TapData Cloud Release Notes
 
 import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-To enhance the user experience, Tapdata Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for Tapdata Cloud, helping you grasp the new feature specifications more effectively.
+To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
 ### 2024-05-21
 
@@ -89,7 +89,7 @@ To enhance the user experience, Tapdata Cloud continuously enriches and optimize
 
 #### Enhancements
 
-* To further enhance user experience, Beta and Alpha [data sources](../prerequisites/README.md) now require an application for use, allowing Tapdata to provide better technical support based on your business scenarios.
+* To further enhance user experience, Beta and Alpha [data sources](../prerequisites/README.md) now require an application for use, allowing TapData to provide better technical support based on your business scenarios.
 
 #### Bug Fixes
 
@@ -133,7 +133,7 @@ To enhance the user experience, Tapdata Cloud continuously enriches and optimize
 ### New Features
 
 * Added support for [Capped Collections](https://www.mongodb.com/docs/manual/core/capped-collections/) in data synchronization between MongoDB database.
-* Data replication/transformation tasks now have import capabilities. Design your data flow process on [MongoDB Relational Migrator](https://www.mongodb.com/docs/relational-migrator/), export it, and then directly import it into Tapdata data pipelines from the top right corner, enhancing the convenience of data pipeline design.
+* Data replication/transformation tasks now have import capabilities. Design your data flow process on [MongoDB Relational Migrator](https://www.mongodb.com/docs/relational-migrator/), export it, and then directly import it into TapData data pipelines from the top right corner, enhancing the convenience of data pipeline design.
 
 ### Enhancements
 
@@ -210,7 +210,7 @@ To enhance the user experience, Tapdata Cloud continuously enriches and optimize
 
 - Enhanced [Data Source Connection](../prerequisites/README.md) methods, supporting SSL connections for data sources like MySQL, PostgreSQL, Kafka, TiDB, MariaDB, etc., to further enhance data security.
 - Improved user interface interaction logic.
-- To better manage data duplication for updates on non-primary keys, Tapdata Cloud now supports creating unique indexes.
+- To better manage data duplication for updates on non-primary keys, TapData Cloud now supports creating unique indexes.
 
 ### Bug Fixes
 

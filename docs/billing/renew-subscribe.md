@@ -4,13 +4,13 @@ import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-For annual and monthly instances, Tapdata Cloud will send you a reminder one month before the expiration date to ensure timely renewal. To prevent any disruption to your business operations, it is important to renew your instance before it expires. Alternatively, you can choose the continuous annual or monthly billing method during the initial purchase, which will automatically renew your subscription without the need for manual intervention. This helps ensure seamless continuity of your Tapdata Cloud services.
+For annual and monthly instances, TapData Cloud will send you a reminder one month before the expiration date to ensure timely renewal. To prevent any disruption to your business operations, it is important to renew your instance before it expires. Alternatively, you can choose the continuous annual or monthly billing method during the initial purchase, which will automatically renew your subscription without the need for manual intervention. This helps ensure seamless continuity of your TapData Cloud services.
 
 
 
 ## Procedure
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.io/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.io/).
 
 2. In the top-right corner of the page, click your username and select **Subscription Center**.
 

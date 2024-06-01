@@ -3,11 +3,11 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-During data migration and synchronization with Tapdata Cloud, recognizing the impact of table structure modifications, such as DDL (Data Definition Language) operations, is crucial for continuous business operations. The platform seamlessly manages most DDL changes, ensuring a smooth synchronization process.
+During data migration and synchronization with TapData Cloud, recognizing the impact of table structure modifications, such as DDL (Data Definition Language) operations, is crucial for continuous business operations. The platform seamlessly manages most DDL changes, ensuring a smooth synchronization process.
 
 ## Enable DDL Changes Sync
 
-To ensure the high availability and fault tolerance of data replication/transformation tasks, by default, Tapdata does not synchronize the DDL statements from the source database to the target database. If you need to enable this feature, please follow these steps:
+To ensure the high availability and fault tolerance of data replication/transformation tasks, by default, TapData does not synchronize the DDL statements from the source database to the target database. If you need to enable this feature, please follow these steps:
 
 1. When creating or editing a [data replication](../user-guide/data-pipeline/copy-data/create-task.md) or [data transformation](../user-guide/data-pipeline/data-development/create-task.md) task, go to the configuration page of the source database node.
 
@@ -29,8 +29,8 @@ To ensure the high availability and fault tolerance of data replication/transfor
 
 | DDL Collection          | DDL Apply                                                    |
 | ----------------------- | ------------------------------------------------------------ |
-| Add Fields              | Tapdata will automatically adapt the field type when adding fields to the target database, for example, converting from MySQL's **INT** to Oracle's **NUMBER(38,0)**. If there are [unsupported column types](../user-guide/no-supported-data-type.md), this may lead to the failure of adding fields. |
-| Modify Field Names      | Tapdata will automatically complete this operation in the target database, be aware of the target database's field naming restrictions. |
+| Add Fields              | TapData will automatically adapt the field type when adding fields to the target database, for example, converting from MySQL's **INT** to Oracle's **NUMBER(38,0)**. If there are [unsupported column types](../user-guide/no-supported-data-type.md), this may lead to the failure of adding fields. |
+| Modify Field Names      | TapData will automatically complete this operation in the target database, be aware of the target database's field naming restrictions. |
 | Modify Field Attributes | When synchronizing between different types of databases (for example, from MySQL to Oracle), ensure that the target database supports the changed data types and attributes. Otherwise, this may lead to errors or interruptions in the synchronization task. |
 | Delete Fields           | Deleting columns from the source table can have a severe impact on the data pipeline, especially when the column is a key part of the data processing logic, such as a primary key or as a field for update conditions in the synchronization link. Before making such changes, ensure that other components in the data pipeline no longer depend on this column. |
 

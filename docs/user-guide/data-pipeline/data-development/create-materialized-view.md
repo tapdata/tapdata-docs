@@ -4,25 +4,25 @@ import Content from '../../../reuse-content/_all-features.md';
 
 <Content />
 
-Materialized views are specialized database object that cache the results of intricate queries, thereby accelerating data retrieval. With Tapdata, you can craft real-time materialized views across diverse data sources. This not only ensures accuracy and immediacy of data but also streamlines data management and application development.
+Materialized views are specialized database object that cache the results of intricate queries, thereby accelerating data retrieval. With TapData, you can craft real-time materialized views across diverse data sources. This not only ensures accuracy and immediacy of data but also streamlines data management and application development.
 
 ## Background
 
 In the era of exponential data growth, enterprises and developers grapple with complex data management challenges. Conventional data handling, such as manually managing and syncing various related tables, is inefficient and poses risks to data consistency. Thus, effective and real-time data integration tools become paramount.
 
-Tapdata's real-time materialized view feature is designed to address these challenges, seamlessly integrating varied data sources. It ensures that the view is auto-updated whenever there's a change in the source data, preserving its timeliness and accuracy. This real-time and automated nature greatly diminishes data management complexities while boosting query efficiency.
+TapData's real-time materialized view feature is designed to address these challenges, seamlessly integrating varied data sources. It ensures that the view is auto-updated whenever there's a change in the source data, preserving its timeliness and accuracy. This real-time and automated nature greatly diminishes data management complexities while boosting query efficiency.
 
-To demonstrate its practicality, let's consider an e-commerce platform. Order management is central to such platforms, with critical tables like orders, sub-orders, products, user info, and logistics. Assuming the team chooses MongoDB, and aims to merge the data from these tables into a new 'order' table, Tapdata makes this task effortless.
+To demonstrate its practicality, let's consider an e-commerce platform. Order management is central to such platforms, with critical tables like orders, sub-orders, products, user info, and logistics. Assuming the team chooses MongoDB, and aims to merge the data from these tables into a new 'order' table, TapData makes this task effortless.
 
-Next, we'll detail how to employ Tapdata's real-time materialized view feature in an e-commerce context, to grasp its potency.
+Next, we'll detail how to employ TapData's real-time materialized view feature in an e-commerce context, to grasp its potency.
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../../user-guide/log-in.md).
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Transformation**.
-   * **Tapdata Enterprise or Tapdata Community**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Transformation**.
+   * **TapData Enterprise or TapData Community**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
 3. Click **Build Materialized View** on the right, leading you to the task configuration page.
 
    1. Select the database and table for your materialized view. In this case, choose the **order** table.

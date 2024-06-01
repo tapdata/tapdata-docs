@@ -12,7 +12,7 @@ In this article, we will guide you on how to use custom nodes effectively and pr
 
 ## Create Custom Processors
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation bar, select **Advanced** >  **User Defined Processors**.
 
@@ -50,11 +50,11 @@ In the development task, you can use the custom processor that has been created.
 
 ## Example: Custom Decryption Rule
 
-To ensure information security, if you need to desensitize certain mobile phone numbers in a MySQL table, you can create a custom processor in Tapdata. Once the custom node is created, you can create a development task and apply the node to perform the desired data desensitization.
+To ensure information security, if you need to desensitize certain mobile phone numbers in a MySQL table, you can create a custom processor in TapData. Once the custom node is created, you can create a development task and apply the node to perform the desired data desensitization.
 
 **Procedure:**
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, select **Advanced** >  **User Defined Processors**.
 

@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../../log-in.md).
+1. [Log in to TapData Platform](../../log-in.md).
 
 2. In the left navigation panel, click **Real-Time Data Hub**.
 

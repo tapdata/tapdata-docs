@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Azure Cosmos DB is a fully managed NoSQL and relational database for modern app development including. This article explains how to connect Azure Cosmos DB on the Tapdata platform, assisting in the rapid circulation of cloud data.
+Azure Cosmos DB is a fully managed NoSQL and relational database for modern app development including. This article explains how to connect Azure Cosmos DB on the TapData platform, assisting in the rapid circulation of cloud data.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Before connecting the data source, you need to log in to the Azure console to ob
 
 ## Steps
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

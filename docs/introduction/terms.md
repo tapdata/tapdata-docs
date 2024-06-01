@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-This article introduces common terms used in Tapdata to help you quickly understand product and feature concepts.
+This article introduces common terms used in TapData to help you quickly understand product and feature concepts.
 
 ## Full Data Synchronization
 
@@ -16,7 +16,7 @@ In the data flow task, the real-time synchronization of data among multiple data
 
 ## Data Source
 
-The data sources that can be connected to the Tapdata system from external sources include databases, and in the future, there are plans to gradually expand the support for other types such as files, GridFS, RestAPI, Dummy, Custom, UDP, Cache, and more.
+The data sources that can be connected to the TapData system from external sources include databases, and in the future, there are plans to gradually expand the support for other types such as files, GridFS, RestAPI, Dummy, Custom, UDP, Cache, and more.
 
 ## Data Replication
 Also known as database replication/cloning, involves full or real-time incremental migration of data between various levels of data sources in data flow tasks. Applicable for instance data migration, cloud migration, database splitting, and expansion scenarios.
@@ -30,7 +30,7 @@ In data flow tasks, generating a new model from one or more tables' different fi
 
 
 ## Connection
-Also known as a data source, it refers to the database that connects externally to the Tapdata system. Currently supported connections include: MySQL, Oracle, MongoDB, SQL Server, PostgreSQL, Kafka, Redis, etc.
+Also known as a data source, it refers to the database that connects externally to the TapData system. Currently supported connections include: MySQL, Oracle, MongoDB, SQL Server, PostgreSQL, Kafka, Redis, etc.
 
 ## Node
 Refers to the general term for data sources and processing methods selected in the data task arrangement page.
@@ -53,10 +53,10 @@ Refers to storing some commonly used data from tables into the cache for differe
 ## Initialization
 In data migration or synchronization tasks, the mode of migrating or synchronizing existing data in the data source node.
 
-## Tapdata Agent
+## TapData Agent
 
 Refers to the execution program that runs the synchronization task, and is responsible for obtaining the task from the management side, connecting the source data source, performing data conversion, and outputting to the target data source.
 
 ## TCM Management Side
 
-The Tapdata management console enables users to define custom orchestration synchronization tasks and deploy these tasks to synchronization instances for execution.
+The TapData management console enables users to define custom orchestration synchronization tasks and deploy these tasks to synchronization instances for execution.
