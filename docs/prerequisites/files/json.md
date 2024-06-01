@@ -6,13 +6,13 @@ import Content from '../../reuse-content/_all-features.md';
 
 JavaScript Object Notation (JSON) is a standard text-based format for representing structured data based on JavaScript object syntax. It is commonly used for transmitting data in web applications. 
 
-Tapdata supports reading JSON files stored on local, FTP, SFTP, SMB, or S3FS to meet a variety of data flow needs. This article describes how to connect to JSON data sources on Tapdata Cloud.
+TapData supports reading JSON files stored on local, FTP, SFTP, SMB, or S3FS to meet a variety of data flow needs. This article describes how to connect to JSON data sources on TapData Cloud.
 
 ## Precautions
 
 - A connection only refers to a model (table). If there are multiple models, you need to create connections for each one separately.
 - JSON data sources are only available for data transformation tasks.
-- By default, Tapdata checks for changes (such as adding or modifying) to the XML file every minute. Tapdata synchronizes all files to accurately update the condition field when changes are detected. However, synchronous deletion of files or data is not supported.
+- By default, TapData checks for changes (such as adding or modifying) to the XML file every minute. TapData synchronizes all files to accurately update the condition field when changes are detected. However, synchronous deletion of files or data is not supported.
 - Data types that can be used in JSON files include ARRAY, BOOLEAN, DATETIME, INTEGER, NUMBER, OBJECT, STRING, and TEXT.
 
 ## Preparations
@@ -50,7 +50,7 @@ import Content3 from '../../reuse-content/_files_on_oss.md';
 
 ## Connect to JSON
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -69,7 +69,7 @@ import Content3 from '../../reuse-content/_files_on_oss.md';
    * **Connection name**: Fill in a unique name that has business significance.
    * **Connection type**: Currently only supported as a **Source**.
    * **File Protocol**: Select the following protocol based on the location of the JSON files. This article uses **S3FS** (Amazon S3 bucket) as an illustration of the operation process.
-      * **Local**: The file is stored on the device that deployed the Tapdata Agent. After selecting this item, you also need to fill in the file path.
+      * **Local**: The file is stored on the device that deployed the TapData Agent. After selecting this item, you also need to fill in the file path.
       * **FTP** (File Transfer Protocol): The file is stored on the FTP server. After selecting this item, you also need to fill in the address, port, username, password, file path, and other information of the FTP server.
       * **SFTP** (Secure File Transfer Protocol): The file is stored on the SFTP server. After selecting this item, you also need to fill in the address, port, user name, password, file path, and other information of the SFTP server.
       * **SMB** (Server Message Block Protocol): The file is stored on the SMB server and is compatible with 1.x, 2.x, 3.x. After selecting this item, you also need to fill in the address, username, password, file path, and other information of the SMB server.

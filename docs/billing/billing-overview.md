@@ -3,19 +3,19 @@ import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-This article introduces billing information such as billing items, billing methods and price descriptions in Tapdata Cloud.
+This article introduces billing information such as billing items, billing methods and price descriptions in TapData Cloud.
 
 :::tip
 
-If you choose the Tapdata Enterprise, it is paid annually and can be deployed to your local data center, suitable for scenarios with strict requirements on data sensitivity or network isolation. Before making a purchase, you can [apply for a trial](https://tapdata.net/tapdata-on-prem/demo.html).
+If you choose the TapData Enterprise, it is paid annually and can be deployed to your local data center, suitable for scenarios with strict requirements on data sensitivity or network isolation. Before making a purchase, you can [apply for a trial](https://tapdata.net/tapdata-on-prem/demo.html).
 
 :::
 
 ## Billing method
 
-Tapdata Cloud charges based on the **specifications** and **number** of Agent instances you want to subscribe. You will get 1 Agent instance upon completing account registration, and you have the option to purchase additional Agent instances through monthly, annual, consecutive monthly, or consecutive annual subscriptions to meet your business requirements.
+TapData Cloud charges based on the **specifications** and **number** of Agent instances you want to subscribe. You will get 1 Agent instance upon completing account registration, and you have the option to purchase additional Agent instances through monthly, annual, consecutive monthly, or consecutive annual subscriptions to meet your business requirements.
 
-There are several subscription options available for Tapdata Cloud:
+There are several subscription options available for TapData Cloud:
 
 - **One Month Only**: This is a one-time purchase of a one-month service. The subscription will not automatically renew after the expiration and can be manually renewed if desired.
 - **One Year Only**: This option allows for a one-time purchase of a one-year service. The subscription will not automatically renew after the expiration and can be manually renewed when needed.
@@ -24,13 +24,13 @@ There are several subscription options available for Tapdata Cloud:
 
 :::tip
 
-When you select the recurring monthly or annual billing method, Tapdata Cloud will automatically deduct the subscription fee for the next billing cycle on the expiration date of each period. You can conveniently review the charge details in the **user center**, allowing you to stay informed about the payment information and have a clear understanding of the billing process for your Tapdata Cloud subscription.
+When you select the recurring monthly or annual billing method, TapData Cloud will automatically deduct the subscription fee for the next billing cycle on the expiration date of each period. You can conveniently review the charge details in the **user center**, allowing you to stay informed about the payment information and have a clear understanding of the billing process for your TapData Cloud subscription.
 
 :::
 
 ## Payment Methods
 
-You can pay for Tapdata Cloud by credit card.
+You can pay for TapData Cloud by credit card.
 
 
 

@@ -3,7 +3,7 @@ import Content from '../../reuse-content/_enterprise-features.md';
 
 <Content />
 
-To help developers easily dock interfaces and conveniently view API information published through Tapdata, we offer a data services feature.
+To help developers easily dock interfaces and conveniently view API information published through TapData, we offer a data services feature.
 
 ## Supported Data Sources
 
@@ -11,7 +11,7 @@ Currently, it supports Doris, MongoDB, MySQL, Oracle, PostgreSQL, SQL Server, an
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, choose **Data Services** > **API List**.
 
@@ -24,7 +24,7 @@ Currently, it supports Doris, MongoDB, MySQL, Oracle, PostgreSQL, SQL Server, an
    * **Connection Type**, **Connection Name**, **Object Name**: Choose the object to query based on business needs.
    * **Interface Type**: Choose between **Default Query** or **Custom Query**. When selecting **Custom Query**, you can set filters and set filtering/sorting conditions at the bottom of the page.
    * **API Path Settings**: Choose according to business needs.
-      * **Default Path**: Tapdata randomly generates a unique access address.
+      * **Default Path**: TapData randomly generates a unique access address.
       * **Custom Path**: The access path consists of **Version**, **Prefix**, and **Basic Path**, formatted as `/api/version/prefix/basic_path`. It supports letters, numbers, underscores (_), and dollar signs ($), but cannot start with a number.
    * **Input Parameters**: Allows modification of parameter default values.
    * **Output Results**: Supports setting the fields contained in the output results.

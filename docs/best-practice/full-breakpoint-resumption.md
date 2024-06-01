@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-In scenarios involving massive data migration, you can utilize Tapdata's full resumption from breakpoint feature to segment and migrate data, enhancing the reliability of data migration and ensuring successful execution of migration tasks.
+In scenarios involving massive data migration, you can utilize TapData's full resumption from breakpoint feature to segment and migrate data, enhancing the reliability of data migration and ensuring successful execution of migration tasks.
 
 ## Scenario Description
 
@@ -12,7 +12,7 @@ As businesses grow and data volumes continuously increase, data storage and mana
 
 ![Full Resumption from Breakpoint](../images/full_breakpoint_arch.png)
 
-To address this issue, Tapdata introduces the full resumption from breakpoint functionality, which segments massive data from the source database and records the amount and progress of transmitted data. In subsequent data migration processes, each data segment is temporarily stored in Tapdata’s local cache. Then, it merges with the related incremental data changes before being sent to the target database, achieving resumption from breakpoints and ensuring data accuracy. This effectively avoids data loss and task failures due to data transmission interruptions, enhancing the reliability and efficiency of data migration.
+To address this issue, TapData introduces the full resumption from breakpoint functionality, which segments massive data from the source database and records the amount and progress of transmitted data. In subsequent data migration processes, each data segment is temporarily stored in TapData’s local cache. Then, it merges with the related incremental data changes before being sent to the target database, achieving resumption from breakpoints and ensuring data accuracy. This effectively avoids data loss and task failures due to data transmission interruptions, enhancing the reliability and efficiency of data migration.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ To address this issue, Tapdata introduces the full resumption from breakpoint fu
 
 In this case, we will demonstrate the specific configuration process for data migration between MongoDB instances.
 
-1. [Log in to the Tapdata platform](../user-guide/log-in.md).
+1. [Log in to the TapData platform](../user-guide/log-in.md).
 
 2. In the left navigation bar, select **Data Pipeline** > **Data Replication**.
 
@@ -39,11 +39,11 @@ In this case, we will demonstrate the specific configuration process for data mi
         * **Node Name**: Default is the connection name; you can also set a business-meaningful name.
         * **Select Tables**: Choose based on business needs.
             * **Select by table name**: Select the table on the left, and then click the right arrow to complete the setup.
-            * **Match regular expressions**: Enter the regular expression for the table name. Additionally, when a table is added to the source database and it matches the specified expression, Tapdata will automatically synchronize the table to the target database.
+            * **Match regular expressions**: Enter the regular expression for the table name. Additionally, when a table is added to the source database and it matches the specified expression, TapData will automatically synchronize the table to the target database.
             * **Selectable table range**: By default, all tables are displayed, but you can choose to filter only tables with primary keys or only tables without primary keys. Since tables without primary keys use the full primary key method to implement data updates, they might encounter errors due to exceeding the index length limit, and their performance might be limited. Therefore, it is recommended that you create separate data replication tasks for tables without primary keys to avoid task errors and enhance the performance of data updates.
         
     * **Advanced Settings**
-        * **DDL Synchronization**: Enabling this switch allows Tapdata to automatically collect selected source DDL events (such as adding fields), and if the target end supports DDL writing, it can synchronize DDL statements.
+        * **DDL Synchronization**: Enabling this switch allows TapData to automatically collect selected source DDL events (such as adding fields), and if the target end supports DDL writing, it can synchronize DDL statements.
         
         * **Incremental Method**      
             Choose **Log CDC** or **Polling**. If you select **Polling**, you'll also need to specify the polling field, interval, and number of rows read each time.
@@ -64,7 +64,7 @@ In this case, we will demonstrate the specific configuration process for data mi
                 * **Sharding Based on Count**: Based on the number of records, you need to specify the size of the partition.
                 * **Sharding Based on min/max**: Based on maximum/minimum values, you need to specify the number of partitions.
             * **Shard Size**: Choose the record number in each shard.
-            * **Sharding Concurrency Thread Count**: Choose the concurrency based on the source database and Tapdata server load, default is 8.
+            * **Sharding Concurrency Thread Count**: Choose the concurrency based on the source database and TapData server load, default is 8.
             * **Sharding Batch Read Limit**: Choose the upper limit of batch read data per partition based on source database load, default is 3000.
             * **Shard Batches and Incremental Data are Merged Locally Before Sending**: If this task needs to perform both full and incremental migration, keep it enabled. If only full migration is performed and the source database will not change data during migration, you can disable this feature.
             
@@ -103,7 +103,7 @@ In this case, we will demonstrate the specific configuration process for data mi
         
         
         * **Node Name**: Default is the connection name; you can also set a business-meaningful name.
-        * **Table**: Displays the table structure information that Tapdata will write to the target endpoint, deduced based on the settings of the source endpoint node. It automatically sets the update condition to the table's primary key. If there is no primary key, you must manually specify the fields for the update condition.
+        * **Table**: Displays the table structure information that TapData will write to the target endpoint, deduced based on the settings of the source endpoint node. It automatically sets the update condition to the table's primary key. If there is no primary key, you must manually specify the fields for the update condition.
         
     * **Advanced Settings**
       
@@ -113,7 +113,7 @@ In this case, we will demonstrate the specific configuration process for data mi
       * **Data Source**: Select whether to synchronize the index.
       
     * **Alert Settings**
-         If the average processing time of nodes exceeds 5 seconds continuously for 1 minute, Tapdata will send out notifications and email alerts by default. You can further customize these rules or choose to turn off alerts based on your specific business needs.
+         If the average processing time of nodes exceeds 5 seconds continuously for 1 minute, TapData will send out notifications and email alerts by default. You can further customize these rules or choose to turn off alerts based on your specific business needs.
    
 7. (Optional) Click the **Settings** button in the upper right corner of the page to configure the task properties.
 
@@ -123,7 +123,7 @@ In this case, we will demonstrate the specific configuration process for data mi
     * **Task Description**: Enter a description for the task.
     * **Advanced Settings**: Set the start time of the task, shared mining, incremental data processing mode, processor thread count, Agent, etc.
 
-8. Click **Save** or **Start** to complete the creation. To ensure the normal operation of the task, Tapdata will perform a pre-check based on node configurations and data source characteristics, while also logging information.
+8. Click **Save** or **Start** to complete the creation. To ensure the normal operation of the task, TapData will perform a pre-check based on node configurations and data source characteristics, while also logging information.
 
    :::tip
 

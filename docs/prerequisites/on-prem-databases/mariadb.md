@@ -4,9 +4,9 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-MariaDB is a versatile open-source relational database management system used for high-availability transaction data, analytics, as an embedded server, and is widely supported by various tools and applications. Tapdata Cloud provides comprehensive support for building data pipelines utilizing MariaDB as both the source and target database.
+MariaDB is a versatile open-source relational database management system used for high-availability transaction data, analytics, as an embedded server, and is widely supported by various tools and applications. TapData Cloud provides comprehensive support for building data pipelines utilizing MariaDB as both the source and target database.
 
-This article serves as a detailed guide, outlining the steps to seamlessly incorporate a MariaDB database into Tapdata Cloud, enabling efficient data integration and management within your pipelines.
+This article serves as a detailed guide, outlining the steps to seamlessly incorporate a MariaDB database into TapData Cloud, enabling efficient data integration and management within your pipelines.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -245,7 +245,7 @@ To further enhance the security of the data link, you can choose to enable SSL (
 
 ## Connect to MariaDB
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -270,7 +270,7 @@ To further enhance the security of the data link, you can choose to enable SSL (
 
     * **Advanced settings**
 
-      * **Timezone**: By default, Tapdata Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+      * **Timezone**: By default, TapData Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
 
         For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
 

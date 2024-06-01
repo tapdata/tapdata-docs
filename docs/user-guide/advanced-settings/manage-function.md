@@ -3,11 +3,11 @@ import Content from '../../reuse-content/_enterprise-and-community-features.md';
 
 <Content />
 
-Tapdata supports a wide range of functions to facilitate the definition of processing steps, allowing for their use in [JavaScript (JS) nodes](../data-pipeline/data-development/process-node#js-process). Additionally, you can freely define custom functions or import third-party JAR packages to introduce new functions as needed.
+TapData supports a wide range of functions to facilitate the definition of processing steps, allowing for their use in [JavaScript (JS) nodes](../data-pipeline/data-development/process-node#js-process). Additionally, you can freely define custom functions or import third-party JAR packages to introduce new functions as needed.
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, select **Advanced** > **Function List**.
 
@@ -19,7 +19,7 @@ Tapdata supports a wide range of functions to facilitate the definition of proce
 
    :::tip
 
-   Alternatively, you can click **Import** and then import functions from the package (which must comply with Tapdata standards). Subsequently, functions from that JAR package can be used in JS nodes using the general format: function name.method name (specific parameters).
+   Alternatively, you can click **Import** and then import functions from the package (which must comply with TapData standards). Subsequently, functions from that JAR package can be used in JS nodes using the general format: function name.method name (specific parameters).
 
    :::
 

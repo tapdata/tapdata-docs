@@ -4,15 +4,15 @@ import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-After registering with Tapdata Cloud, you will receive the benefit of creating one free Agent instance. If you require additional agents or desire higher transfer performance, you can refer to the instructions in this article to complete the subscription process for the desired instance.
+After registering with TapData Cloud, you will receive the benefit of creating one free Agent instance. If you require additional agents or desire higher transfer performance, you can refer to the instructions in this article to complete the subscription process for the desired instance.
 
 ## Procedure
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.io/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.io/).
 
 2. In the left navigation panel, click **Resource Management**.
 
-   After successfully creating a free Agent instance, if you find that your business requires additional Agent instances to meet performance needs, you can proceed with subscribing to more instances. This will allow you to scale up the capabilities of Tapdata Cloud to accommodate your business requirements effectively.
+   After successfully creating a free Agent instance, if you find that your business requires additional Agent instances to meet performance needs, you can proceed with subscribing to more instances. This will allow you to scale up the capabilities of TapData Cloud to accommodate your business requirements effectively.
 
    ![Agent Example](../images/agent_free.png)
 
@@ -24,7 +24,7 @@ After registering with Tapdata Cloud, you will receive the benefit of creating o
 
    * **Deploy Mode**
      * **Self-Hosted Mode**: You need provide the equipment for [deploying](../quick-start/install/install-tapdata-agent.md) and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
-     * **Fully Managed Mode**: Tapdata Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
+     * **Fully Managed Mode**: TapData Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
        :::tip
        When selecting the **Fully Managed Mode**, you also need to choose the cloud provider and region where the Agent will be deployed.
        :::
@@ -37,7 +37,7 @@ After registering with Tapdata Cloud, you will receive the benefit of creating o
 
 6. You will redirected to payment page. Please follow the instructions on the payment page to complete the payment process. After completing the payment, you will be able to download the payment credentials.
 
-7. After the payment is successful, return to the Tapdata Cloud platform to see that the Agent instance you purchased is **To be deployed**.
+7. After the payment is successful, return to the TapData Cloud platform to see that the Agent instance you purchased is **To be deployed**.
 
    Next, you can deploy the Agent on your server. For more information, see [Install Agent](../quick-start/install/install-tapdata-agent.md).
 

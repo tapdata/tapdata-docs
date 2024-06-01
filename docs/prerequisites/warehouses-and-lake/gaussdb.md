@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-GaussDB is a cloud-based, distributed relational database. Cross-AZ deployment ensures rock solid reliability and zero data loss. Hybrid transactional/analytical processing (HTAP) gives you stellar performance. After you complete the Agent deployment, you can follow this tutorial to add a GaussDB in Tapdata Cloud, which you can then use as a target database to build your data pipeline.
+GaussDB is a cloud-based, distributed relational database. Cross-AZ deployment ensures rock solid reliability and zero data loss. Hybrid transactional/analytical processing (HTAP) gives you stellar performance. After you complete the Agent deployment, you can follow this tutorial to add a GaussDB in TapData Cloud, which you can then use as a target database to build your data pipeline.
 
 ## Supported Versions
 
@@ -17,8 +17,8 @@ GaussDB (DWS) 8.1.3
    * If the table contains a primary key/unique constraint, the hash distribution is selected, and the distribution column is the column corresponding to the primary key/unique constraint.
    * If the table does not contain a primary key/unique constraint, but there are columns with data types that support distribution columns, the hash distribution is selected, and the distribution column is the first column with data types that support distribution columns.
    * If the table does not contain a primary key/unique constraint and there are no columns with data types that support distribution columns, select the ROUNDROBIN distribution.
-* If you need to use a partition table, it is recommended to maintain the table structure during the processing policy for selecting the target table. Otherwise, a normal table will be automatically created by Tapdata Cloud.
-* Tapdata Cloud does not allow conflicting update operations when the partition table does not have a primary key or unique index.
+* If you need to use a partition table, it is recommended to maintain the table structure during the processing policy for selecting the target table. Otherwise, a normal table will be automatically created by TapData Cloud.
+* TapData Cloud does not allow conflicting update operations when the partition table does not have a primary key or unique index.
 
 <details>
 <summary><b>Learn more about Distribution Keys and Partition Tables.</b></summary>
@@ -30,7 +30,7 @@ GaussDB (DWS) 8.1.3
 
 ## Connect to GaussDB
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.net/console/v3/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.net/console/v3/).
 
 2. In the left navigation panel, click **Connections**.
 

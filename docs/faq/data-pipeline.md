@@ -15,7 +15,7 @@ Data transformation is primarily used for data modeling, ETL processes, data cle
 
 ### Does it support cross-region, cross-network data synchronization?
 
-Yes. Tapdata connects sources and targets through Agents by opening limited network services to meet synchronization needs.
+Yes. TapData connects sources and targets through Agents by opening limited network services to meet synchronization needs.
 
 ### Does it support data synchronization where the source and target are the same entity?
 
@@ -27,7 +27,7 @@ Yes.
 
 ### Does it support data synchronization for sharded databases?
 
-Yes. Tapdata can synchronize data from multiple sources to the same target table.
+Yes. TapData can synchronize data from multiple sources to the same target table.
 
 ### Does it support changing the name of the data synchronization object in the target database?
 
@@ -47,7 +47,7 @@ Yes.
 
 Recommended classification principles are as follows:
 
-* Tables that only have primary keys or unique indexes: Tapdata supports these tables well, and they usually do not encounter issues.
+* Tables that only have primary keys or unique indexes: TapData supports these tables well, and they usually do not encounter issues.
 * Tables with both primary keys and unique indexes: These tables may encounter unique index violation errors under extreme conditions.
 * Tables without primary keys and unique indexes: Replication tasks will perform full-field matching for these tables, which can be slow in high-concurrency incremental synchronization scenarios.
 * Extremely large tables: For tables with millions of rows, it is recommended to configure tasks individually for each table to avoid affecting the synchronization performance of other tables.
@@ -58,7 +58,7 @@ You can [contact us for technical support](../support.md).
 
 ### Task reset failed?
 
-You need to check the health status of the corresponding Agent on the Tapdata Cloud's Agent page.
+You need to check the health status of the corresponding Agent on the TapData Cloud's Agent page.
 
 ### What logs can be checked besides the task logs when a task shows an error?
 
@@ -66,7 +66,7 @@ You can also check the logs of the analysis Agent, located in the **logs/tapdata
 
 ### Will data be lost if a task is stopped and then restarted?
 
-No, Tapdata uses a checkpoint mechanism to ensure data integrity.
+No, TapData uses a checkpoint mechanism to ensure data integrity.
 
 ### What if the connection test and error logs show garbled characters?
 
@@ -152,7 +152,7 @@ You can re-edit the task. However, adding tables might affect the original synch
 
 ### If the main table data is real-time replicated, and the secondary table data is also increasing, will there be a conflict?
 
-Tapdata performs upsert operations. If there is already data in the target, it will be identified and updated according to the source. If the data from the secondary table is entirely new, it will not affect it.
+TapData performs upsert operations. If there is already data in the target, it will be identified and updated according to the source. If the data from the secondary table is entirely new, it will not affect it.
 
 ### Why does enabling concurrent increment conflict with synchronization without a primary key?
 
@@ -193,7 +193,7 @@ It's recommended to filter out primary key tables and non-primary key tables dur
 
 ### Can index information be automatically synchronized?
 
-Data replication tasks do not automatically synchronize existing indexes of the source table by default. You can manually create indexes in the target database after the table structure synchronization is completed. Additionally, to improve data synchronization efficiency, Tapdata will create indexes in the target based on the source table's related keys/primary keys during operation.
+Data replication tasks do not automatically synchronize existing indexes of the source table by default. You can manually create indexes in the target database after the table structure synchronization is completed. Additionally, to improve data synchronization efficiency, TapData will create indexes in the target based on the source table's related keys/primary keys during operation.
 
 ### Will resetting the task configuration clear the synchronized tables and data?
 
@@ -201,7 +201,7 @@ No, resetting the task configuration will only clear the task's runtime status i
 
 ### During task configuration, is it possible to adjust field types and lengths?
 
-Yes, for example, when synchronizing between heterogeneous databases, Tapdata automatically
+Yes, for example, when synchronizing between heterogeneous databases, TapData automatically
 
 infers the field types and lengths of the target database based on general compatibility considerations. If the model inference is inaccurate or needs manual adjustment based on business needs, you can click the field type in the target node and adjust it in the pop-up dialog box.
 
@@ -223,7 +223,7 @@ The output is a single table. Data transformation tasks are mainly used for data
 
 ### If the source table does not support real-time log parsing, how can incremental synchronization be performed?
 
-Incremental data can be obtained through field polling. This field is usually an auto-increment value or timestamp. For example, data insertion/change is accompanied by a timestamp, and Tapdata can use regular queries of this field's value to assist in determining incremental data changes, typically capturing INSERT/UPDATE operations but not DELETE operations.
+Incremental data can be obtained through field polling. This field is usually an auto-increment value or timestamp. For example, data insertion/change is accompanied by a timestamp, and TapData can use regular queries of this field's value to assist in determining incremental data changes, typically capturing INSERT/UPDATE operations but not DELETE operations.
 
 ![Select Field Polling Method](../images/select_sync_request_type.png)
 
@@ -265,7 +265,7 @@ Yes, you can select **repetitive validation** as the **validation frequency** wh
 
 ### Why might data validation show inconsistencies?
 
-Tapdata uses a variety of proprietary technologies to ensure data consistency. If data inconsistency is indicated after performing validation, possible reasons include:
+TapData uses a variety of proprietary technologies to ensure data consistency. If data inconsistency is indicated after performing validation, possible reasons include:
 
 * **New business data has been entered into the database**: You can add filtering conditions to the validation task to exclude newly added data.
 * **Full/incremental synchronization is in progress**: If it is a full data synchronization task, wait until the task is completed before validating. If it is an incremental data synchronization task, use filtering conditions to exclude data changes after a certain point.

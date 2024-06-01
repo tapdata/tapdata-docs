@@ -4,7 +4,7 @@ import Content from '../../../reuse-content/_enterprise-features.md';
 
 <Content />
 
-This document explains how to quickly deploy Tapdata service on a Linux platform.
+This document explains how to quickly deploy TapData service on a Linux platform.
 
 :::tip
 
@@ -43,9 +43,9 @@ This guide uses CentOS 7 as an example to demonstrate the deployment process.
        yum -y install java-1.8.0-openjdk
        ```
 
-    2. Install MongoDB (version 4.0 and above), which will serve as the storage system for Tapdata to run related data, such as logs and metadata. For more information, see [Deploy MongoDB Replica Set](../../../production-admin/install-replica-mongodb.md).
+    2. Install MongoDB (version 4.0 and above), which will serve as the storage system for TapData to run related data, such as logs and metadata. For more information, see [Deploy MongoDB Replica Set](../../../production-admin/install-replica-mongodb.md).
 
-3. Download the Tapdata installation package (contact us at [team@tapdata.io](mailto:team@tapdata.io) to obtain it) and upload it to the target device.
+3. Download the TapData installation package (contact us at [team@tapdata.io](mailto:team@tapdata.io) to obtain it) and upload it to the target device.
 
 4. On the target device, execute the command below to unzip the package and enter the unzipped directory.
 
@@ -63,11 +63,11 @@ This guide uses CentOS 7 as an example to demonstrate the deployment process.
        java -cp components/tm.jar -Dloader.main=com.tapdata.tm.license.util.SidGenerator org.springframework.boot.loader.PropertiesLauncher
        ```
 
-    2. Provide the printed SID information to the Tapdata support team to complete the License application process.
+    2. Provide the printed SID information to the TapData support team to complete the License application process.
 
     3. Upload the acquired License file to the unzipped directory (**tapdata**).
 
-6. Execute `./tapdata start` and follow the command-line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc. The example and explanation are as follows:
+6. Execute `./tapdata start` and follow the command-line prompts to set TapData's login address, API service port, MongoDB connection information, etc. The example and explanation are as follows:
 
    :::tip
 
@@ -95,18 +95,18 @@ This guide uses CentOS 7 as an example to demonstrate the deployment process.
    ✔ Does API Server response error code?(y/n):  … yes
    MongoDB uri:  mongodb://127.0.0.1:27017/tapdata
    MongoDB connection command: mongo  mongodb://127.0.0.1:27017/tapdata
-   System initialized. To start Tapdata, run: tapdata start
+   System initialized. To start TapData, run: tapdata start
    WORK DIR:/root/tapdata
    Testing JDK...
    java version:1.8
    Java environment OK.
    Unpack the files...
-   Restart TapdataAgent ...:
-   TapdataAgent starting ...:
+   Restart TapDataAgent ...:
+   TapDataAgent starting ...:
    ```
 
-    * **Please enter backend url**: Set the login address for the Tapdata platform, by default `http://127.0.0.1:3030/`
-    * **Please enter tapdata port**: Set the login port for the Tapdata platform, by default `3030`.
+    * **Please enter backend url**: Set the login address for the TapData platform, by default `http://127.0.0.1:3030/`
+    * **Please enter tapdata port**: Set the login port for the TapData platform, by default `3030`.
     * **Please enter api server port**: Set the service port for the API Server, by default `3080`.
     * **Does MongoDB require username/password?**: If MongoDB database has security authentication enabled, enter **y** then follow the prompts to enter the username, password, and the authentication database (default `admin`).
     * **Does MongoDB require TLS/SSL?(y/n)**: If MongoDB database has TLS/SSL encryption enabled, enter **y** then follow the prompts to enter the absolute path addresses of the CA certificate and Certificate Key files, as well as the file password for the Certificate Key.
@@ -122,13 +122,13 @@ This guide uses CentOS 7 as an example to demonstrate the deployment process.
    API service started
    ```
 
-7. Log in to the Tapdata platform through a browser. The login address for this machine is [http://127.0.0.1:3030](http://127.0.0.1:3030).
+7. Log in to the TapData platform through a browser. The login address for this machine is [http://127.0.0.1:3030](http://127.0.0.1:3030).
 
 Please change your password promptly upon first login to ensure security.
 
 :::tip
 
-If you need to access the Tapdata service from other devices in the same network, ensure network interoperability.
+If you need to access the TapData service from other devices in the same network, ensure network interoperability.
 
 :::
 

@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-If you encounter an issue with a task, you can view related log information at the bottom of the task's [monitoring page](../user-guide/data-pipeline/data-development/monitor-task.md). For common issues, Tapdata has defined specific error codes for easier identification, along with their causes and solutions.
+If you encounter an issue with a task, you can view related log information at the bottom of the task's [monitoring page](../user-guide/data-pipeline/data-development/monitor-task.md). For common issues, TapData has defined specific error codes for easier identification, along with their causes and solutions.
 
 ## 10001
 
@@ -70,7 +70,7 @@ If you encounter an issue with a task, you can view related log information at t
 **Description**: Data write violates unique constraints due to mismatched unique indexes or primary keys.
 
 **Solution**:
-- Adjust the target table's primary keys or unique indexes, delete the target table for Tapdata to recreate, or disable concurrent writing in the task settings.
+- Adjust the target table's primary keys or unique indexes, delete the target table for TapData to recreate, or disable concurrent writing in the task settings.
 
 ## 10009
 

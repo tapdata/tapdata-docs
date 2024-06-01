@@ -6,7 +6,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 Elasticsearch is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.
 
-Tapdata Cloud supports Elasticsearch as a target data source to help you quickly build data pipelines for scenarios such as log data write analytics, content management, and search analytics.  This article provides a comprehensive guide on how to add Elasticsearch to Tapdata Cloud.
+TapData Cloud supports Elasticsearch as a target data source to help you quickly build data pipelines for scenarios such as log data write analytics, content management, and search analytics.  This article provides a comprehensive guide on how to add Elasticsearch to TapData Cloud.
 
 ## Supported Versions
 
@@ -14,7 +14,7 @@ Elasticsearch 7.6
 
 ## Connect to Elasticsearch
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

@@ -4,9 +4,9 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-After installing the Agent, the next step is to establish a connection between the Agent and MongoDB through Tapdata Cloud. This connection is crucial as it allows you to utilize the MongoDB data source for various data replication or development tasks.
+After installing the Agent, the next step is to establish a connection between the Agent and MongoDB through TapData Cloud. This connection is crucial as it allows you to utilize the MongoDB data source for various data replication or development tasks.
 
-Tapdata Cloud supports the integration of MongoDB as both the source and target database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB to Tapdata Cloud, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
+TapData Cloud supports the integration of MongoDB as both the source and target database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB to TapData Cloud, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
 
 ## Supported Versions
 
@@ -91,7 +91,7 @@ import Content1 from '../../reuse-content/_preparations.md';
 
 4. When configuring the MongoDB URI, it is advisable to set the write concern to **majority** (`w=majority`) to mitigate the risk of data loss in the event of a primary node downtime.
 
-5. When the source database is a cluster, in order to improve data synchronization performance, Tapdata Cloud will create a thread for each shard and read the data. Before configuring data synchronization/development tasks, you also need to perform the following operations.
+5. When the source database is a cluster, in order to improve data synchronization performance, TapData Cloud will create a thread for each shard and read the data. Before configuring data synchronization/development tasks, you also need to perform the following operations.
 
    * Turn off the Balancer to avoid the impact of chunk migration on data consistency. For more information, see [Stop the Balancer](https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/).
    * Clears the orphaned documents due to failed chunk migration to avoid _id conflicts. For more information, see [Clean Up Orphaned Documents](https://docs.mongodb.com/manual/reference/command/cleanupOrphaned/).
@@ -134,7 +134,7 @@ Only when using MongoDB version 3.2, it is necessary to grant the read role to t
 
 ## Connect to MongoDB
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -162,8 +162,8 @@ Only when using MongoDB version 3.2, it is necessary to grant the read role to t
     * Advanced settings
 
         * **Connect using TLS/SSL**: Choose how you want to connect:
-          * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, Tapdata Cloud offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
-          * **Direct connection**: Tapdata Cloud will connect directly to the database and you need to set up security rules to allow access.
+          * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, TapData Cloud offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
+          * **Direct connection**: TapData Cloud will connect directly to the database and you need to set up security rules to allow access.
         * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log.
         * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
         * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.

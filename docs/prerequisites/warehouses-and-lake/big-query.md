@@ -4,9 +4,9 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Tapdata Cloud offers seamless support for data synchronization and data transformation tasks using [BigQuery](https://cloud.google.com/bigquery/docs) as the target database. BigQuery is a highly efficient, serverless, and cost-effective enterprise data warehouse that provides extensive capabilities for BI (Business Intelligence), machine learning, and AI (Artificial Intelligence). With Tapdata Cloud, you can easily integrate BigQuery data sources into your workflows. 
+TapData Cloud offers seamless support for data synchronization and data transformation tasks using [BigQuery](https://cloud.google.com/bigquery/docs) as the target database. BigQuery is a highly efficient, serverless, and cost-effective enterprise data warehouse that provides extensive capabilities for BI (Business Intelligence), machine learning, and AI (Artificial Intelligence). With TapData Cloud, you can easily integrate BigQuery data sources into your workflows. 
 
-This article serves as a comprehensive guide, providing step-by-step instructions on adding BigQuery data sources to Tapdata Cloud, enabling efficient data synchronization and development for your projects.
+This article serves as a comprehensive guide, providing step-by-step instructions on adding BigQuery data sources to TapData Cloud, enabling efficient data synchronization and development for your projects.
 
 ## Precautions
 
@@ -16,7 +16,7 @@ This article serves as a comprehensive guide, providing step-by-step instruction
 
 ## Preparations
 
-1. Log in to Google Cloud [Role page](https://console.cloud.google.com/iam-admin/roles) to create a role that will contain the permissions required for Tapdata Cloud to operate BigQuery.
+1. Log in to Google Cloud [Role page](https://console.cloud.google.com/iam-admin/roles) to create a role that will contain the permissions required for TapData Cloud to operate BigQuery.
 
    1. Click **CREATE ROLE**.
    2. On the redirected page, enter the role name and click **ADD PERMISSIONS**.
@@ -82,7 +82,7 @@ This article serves as a comprehensive guide, providing step-by-step instruction
 
          :::tip
 
-         To ensure that Tapdata Cloud properly reads the dataset information, when creating the dataset, select the **Location type** as **Multi-region**.
+         To ensure that TapData Cloud properly reads the dataset information, when creating the dataset, select the **Location type** as **Multi-region**.
 
          :::
 
@@ -92,7 +92,7 @@ This article serves as a comprehensive guide, providing step-by-step instruction
 
 ## Connect to BigQuery
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

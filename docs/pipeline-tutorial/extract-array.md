@@ -5,7 +5,7 @@ import Content from '../reuse-content/_all-features.md';
 
 In modern payment systems, the analysis of payment data is crucial for understanding user behavior, optimizing business processes, and making decisions. For database tables storing payment data, payment data is sometimes written as a JSON string in a field, complicating its structure and making subsequent analysis complex.
 
-This article will discuss how to use the JS node of Tapdata in this scenario to directly extract data from the nested JSON array in the table and use it as a top-level field, thereby helping companies more conveniently interface with BI reports for data analysis.
+This article will discuss how to use the JS node of TapData in this scenario to directly extract data from the nested JSON array in the table and use it as a top-level field, thereby helping companies more conveniently interface with BI reports for data analysis.
 
 ## Scenario Description
 
@@ -48,19 +48,19 @@ Because data in the JSON string format has some limitations for statistical anal
 * **Payment Method Analysis**: Based on the extracted payment method statistics, perform in-depth data analysis, such as calculating the proportion of each payment method, analyzing changes in payment method trends, and comparing differences in amounts between different payment methods. These analysis results will provide insights for companies to optimize payment strategies and decision-making.
 * **Visualization and Reporting**: Present the results of payment method analysis in the form of visual charts or reports to understand data more intuitively. With data visualization tools (such as Tableau), you can create bar charts, pie charts, or trend charts to better display the distribution and changes in payment methods.
 
-Next, we will introduce how to use the built-in **Standard JS** node in Tapdata to decompose the `settle_context` field in the settlement summary table, and then synchronize the extracted payment method information to a specified database, thereby helping companies to interface more conveniently with BI reports and gain deeper insights and analysis based on payment data.
+Next, we will introduce how to use the built-in **Standard JS** node in TapData to decompose the `settle_context` field in the settlement summary table, and then synchronize the extracted payment method information to a specified database, thereby helping companies to interface more conveniently with BI reports and gain deeper insights and analysis based on payment data.
 
 ## Prerequisites
 
-Before creating a data conversion task, you need to add the data source to which the settlement table belongs to Tapdata. Also, you need to add a data source (such as a MySQL database) as the target database. For specific operations, see [Configure MySQL Connection](../prerequisites/on-prem-databases/mysql.md).
+Before creating a data conversion task, you need to add the data source to which the settlement table belongs to TapData. Also, you need to add a data source (such as a MySQL database) as the target database. For specific operations, see [Configure MySQL Connection](../prerequisites/on-prem-databases/mysql.md).
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../user-guide/log-in.md).
+1. [Log in to TapData Platform](../user-guide/log-in.md).
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Transformation**.
-   * **Tapdata Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Transformation**.
+   * **TapData Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
 3. Click **Create** on the right side of the page.
 4. Select and connect nodes.
 
@@ -129,4 +129,4 @@ Before creating a data conversion task, you need to add the data source to which
 
 ## Conclusion
 
-This article introduced how to use the built-in **Standard JS** node in Tapdata to extract data from the JSON array in the database and interface more conveniently with BI reports. Through the detailed operating steps, we aim to help companies analyze payment data more effectively and make better business decisions.
+This article introduced how to use the built-in **Standard JS** node in TapData to extract data from the JSON array in the database and interface more conveniently with BI reports. Through the detailed operating steps, we aim to help companies analyze payment data more effectively and make better business decisions.

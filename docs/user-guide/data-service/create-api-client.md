@@ -7,7 +7,7 @@ To manage and create API calls, an API client is required. Applications that dev
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, select **Data Services** > **API Clients**.
 

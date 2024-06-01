@@ -4,20 +4,20 @@ import Content from '../../../reuse-content/_all-features.md';
 
 <Content />
 
-In Tapdata, data transformation tasks provide the capability to incorporate processing nodes between source and target data nodes. These processing nodes serve as valuable tools for efficiently carrying out data processing tasks, such as merging multiple tables, splitting data, and adding or removing fields. 
+In TapData, data transformation tasks provide the capability to incorporate processing nodes between source and target data nodes. These processing nodes serve as valuable tools for efficiently carrying out data processing tasks, such as merging multiple tables, splitting data, and adding or removing fields. 
 
-The following article outlines the step-by-step process of creating data transformation tasks, enabling users to leverage the advanced data processing functionalities offered by Tapdata.
+The following article outlines the step-by-step process of creating data transformation tasks, enabling users to leverage the advanced data processing functionalities offered by TapData.
 
 ## Procedure
 
 As an example, we will show how to change the **birthdate** field's data type from **STRING** to **DATE** in the table structure without modifying the source table (**customer** table) and simultaneously filter out users born after **1991-01-01**, a data transformation task is created. The resulting table, **customer_new**, will reflect the updated table structure and filtered data.
 
-1. [Log in to Tapdata Platform](../../log-in.md).
+1. [Log in to TapData Platform](../../log-in.md).
 
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Transformation**.
-   * **Tapdata Enterprise or Tapdata Community**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Transformation**.
+   * **TapData Enterprise or TapData Community**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
 
 3. Click **Create** on the right side of the page to go to the task configuration page.
 
@@ -48,7 +48,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
       * **Advanced Settings**
 
         * **DDL Sync Configuration**
-          Choose whether to enable **DDL Event Collection**. Once this option is enabled, Tapdata will automatically collect the selected source DDL events (such as adding fields). If the target end supports DDL input, DDL statement synchronization can be achieved.
+          Choose whether to enable **DDL Event Collection**. Once this option is enabled, TapData will automatically collect the selected source DDL events (such as adding fields). If the target end supports DDL input, DDL statement synchronization can be achieved.
 
         * **Incremental Synchronization Method**
           Choose between **Log CDC** and **Polling**. If you select **Polling**, you need to specify the polling field, interval, and number of rows to be read each time. 
@@ -116,7 +116,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
 
    :::tip
 
-   After clicking on the **Save** or **Start** button, Tapdata will perform a pre-check of the configuration for each node to ensure the smooth operation of the task. If any configuration does not pass the pre-check, please make the necessary adjustments based on the log prompts provided on the current page.
+   After clicking on the **Save** or **Start** button, TapData will perform a pre-check of the configuration for each node to ensure the smooth operation of the task. If any configuration does not pass the pre-check, please make the necessary adjustments based on the log prompts provided on the current page.
 
    :::
 

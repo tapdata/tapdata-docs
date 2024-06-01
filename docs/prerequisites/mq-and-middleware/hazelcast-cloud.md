@@ -4,11 +4,11 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Please follow the instructions below to successfully add and use the Hazelcast Cloud database in Tapdata Cloud.
+Please follow the instructions below to successfully add and use the Hazelcast Cloud database in TapData Cloud.
 
 ## Supported Versions
 
-Hazelcast Cloud 5.20, 5.21. You can check the version support in the Hazelcast Cluster Management Center. Hazelcast Cloud is supported in Tapdata as a target.
+Hazelcast Cloud 5.20, 5.21. You can check the version support in the Hazelcast Cluster Management Center. Hazelcast Cloud is supported in TapData as a target.
 
 ## Configuration Instructions
 

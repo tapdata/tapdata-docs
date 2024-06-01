@@ -3,7 +3,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-Redis is an in-memory key-value database, suitable for scenarios such as data caching, event publishing/subscribing, and high-speed queues. Tapdata allows you to sync data from relational databases (Oracle, MySQL, MongoDB, PostgreSQL, SQL Server) to Redis in real-time, helping you complete data flows quickly.
+Redis is an in-memory key-value database, suitable for scenarios such as data caching, event publishing/subscribing, and high-speed queues. TapData allows you to sync data from relational databases (Oracle, MySQL, MongoDB, PostgreSQL, SQL Server) to Redis in real-time, helping you complete data flows quickly.
 
 This article explains how to sync data from MySQL to Redis using a data transformation task.
 
@@ -22,12 +22,12 @@ Before creating a data transformation task, make sure you have set up the releva
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../user-guide/log-in.md).
+1. [Log in to TapData Platform](../user-guide/log-in.md).
 
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Transformation**.
-   * **Tapdata Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Transformation**.
+   * **TapData Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
    
 3. Click **Create** on the right side of the page.
 
@@ -43,7 +43,7 @@ Before creating a data transformation task, make sure you have set up the releva
      
    * **Advanced Settings**      
      * **DDL Synchronization**      
-       Choose whether to enable **DDL Event Collection**. When this switch is on, Tapdata will automatically collect the DDL events (like adding fields) from the selected source. If the target side supports DDL writing, the DDL statements can be synchronized.      
+       Choose whether to enable **DDL Event Collection**. When this switch is on, TapData will automatically collect the DDL events (like adding fields) from the selected source. If the target side supports DDL writing, the DDL statements can be synchronized.      
        
      * **Incremental Method**      
        Choose **Log CDC** or **Polling**. If you select **Polling**, you'll also need to specify the polling field, interval, and number of rows read each time.
@@ -121,7 +121,7 @@ Before creating a data transformation task, make sure you have set up the releva
 
 ## Result Verification
 
-Based on the task settings, Tapdata will sync data from the **customer** table in source MySQL to Redis in real-time, storing it as a string type.
+Based on the task settings, TapData will sync data from the **customer** table in source MySQL to Redis in real-time, storing it as a string type.
 
 In MySQL, we randomly query a record with id `879f660510764c4ea4127447e7ca44b8`:
 

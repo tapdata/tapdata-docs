@@ -4,13 +4,13 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-This article serves as a comprehensive guide, providing step-by-step instructions on adding Lark Task data sources to Tapdata Cloud, enabling efficient data synchronization and development for your projects.
+This article serves as a comprehensive guide, providing step-by-step instructions on adding Lark Task data sources to TapData Cloud, enabling efficient data synchronization and development for your projects.
 
 ## Preparation
 
 1. Log in to https://open.feishu.cn/app.
 1. Locate the corresponding application and find it in the ***voucher and basic information*** of the application.
-1. Get **App ID** and **App Secret**, we will fill these in Tapdata Cloud.
+1. Get **App ID** and **App Secret**, we will fill these in TapData Cloud.
 
 
 ## Use Lark to Creation Quest

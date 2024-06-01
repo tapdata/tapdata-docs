@@ -4,15 +4,15 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-As we embrace cloud services, the safety of our data has become a top priority. This concern not only relates to the regulatory compliance of enterprise data services, but more crucially, to the protection of vital business data. Recognizing this, Tapdata was designed with security at its core. From architectural design, technical implementation, and operational procedures, strict safeguards have been put in place, ensuring a safe and secure user experience.
+As we embrace cloud services, the safety of our data has become a top priority. This concern not only relates to the regulatory compliance of enterprise data services, but more crucially, to the protection of vital business data. Recognizing this, TapData was designed with security at its core. From architectural design, technical implementation, and operational procedures, strict safeguards have been put in place, ensuring a safe and secure user experience.
 
 ## Reliable Infrastructure
 
-- **Secure Operational Environment**: Tapdata Cloud utilizes Google Cloud as its preferred deployment platform. All core components operate within a Virtual Private Cloud (VPC), isolated from the public internet. Rigorous firewall controls further secure both inbound and outbound traffic, ensuring heightened data security.
-- **Automated Cloud Deployment**: In the Tapdata Cloud technical framework, the Agent plays a pivotal role, primarily handling data synchronization tasks. Users are offered the convenience of one-click deployment of the Agent on platforms like Google Cloud and Alibaba Cloud, reducing external vulnerabilities and guaranteeing robust security.
+- **Secure Operational Environment**: TapData Cloud utilizes Google Cloud as its preferred deployment platform. All core components operate within a Virtual Private Cloud (VPC), isolated from the public internet. Rigorous firewall controls further secure both inbound and outbound traffic, ensuring heightened data security.
+- **Automated Cloud Deployment**: In the TapData Cloud technical framework, the Agent plays a pivotal role, primarily handling data synchronization tasks. Users are offered the convenience of one-click deployment of the Agent on platforms like Google Cloud and Alibaba Cloud, reducing external vulnerabilities and guaranteeing robust security.
 
 <details><summary>What is the role of  Agent?</summary>
-The Tapdata Agent plays a crucial role in data synchronization, handling data heterogeneity, and supporting data transformation scenarios. It is responsible for extracting data from the source system, performing necessary processing, and transmitting it to the target system. The Tapdata Agent is centrally managed by Tapdata Cloud.
+The TapData Agent plays a crucial role in data synchronization, handling data heterogeneity, and supporting data transformation scenarios. It is responsible for extracting data from the source system, performing necessary processing, and transmitting it to the target system. The TapData Agent is centrally managed by TapData Cloud.
 </details>
 
 ---
@@ -23,7 +23,7 @@ The Tapdata Agent plays a crucial role in data synchronization, handling data he
 
 ### Account Access Control
 
-Multiple layers of security checks are employed, including login frequency, geographical location, and device type. Any unconventional login attempts will trigger an alarm. To further strengthen data security, Tapdata Cloud has introduced a two-step verification process for critical operations on data sources and tasks.
+Multiple layers of security checks are employed, including login frequency, geographical location, and device type. Any unconventional login attempts will trigger an alarm. To further strengthen data security, TapData Cloud has introduced a two-step verification process for critical operations on data sources and tasks.
 
 ### Role-Based Access
 
@@ -36,11 +36,11 @@ A robust user activity log and audit system have been implemented. All user oper
 
 ### End-to-End Encryption
 
-At Tapdata Cloud, data protection is paramount. We have implemented end-to-end encryption to comprehensively safeguard your data sources and task configurations. This ensures that only authorized users can access and modify the data, effectively eliminating breach risks.
+At TapData Cloud, data protection is paramount. We have implemented end-to-end encryption to comprehensively safeguard your data sources and task configurations. This ensures that only authorized users can access and modify the data, effectively eliminating breach risks.
 
 ### Data Masking Display
 
-Sensitive details, whether usernames, passwords, authentication data, or database addresses, undergo a masking process in Tapdata Cloud. No matter the interface, whether it's input fields, monitoring pages, dashboards, or logs, sensitive details are never fully displayed, ensuring the utmost protection of privacy.
+Sensitive details, whether usernames, passwords, authentication data, or database addresses, undergo a masking process in TapData Cloud. No matter the interface, whether it's input fields, monitoring pages, dashboards, or logs, sensitive details are never fully displayed, ensuring the utmost protection of privacy.
 
 Moreover, administrators have the prerogative to tag certain fields as sensitive. Once configured, these fields will remain inaccessible across all interfaces. This includes data preview, data exploration, and log displays. To enhance security, any modifications to sensitive fields require administrator rights and a two-step verification process. All related actions are documented in immutable audit logs.
 
@@ -52,7 +52,7 @@ Moreover, administrators have the prerogative to tag certain fields as sensitive
 
 ## Comprehensive Data Protection
 
-To guarantee utmost protection at every step, Tapdata Cloud employs several crucial measures:
+To guarantee utmost protection at every step, TapData Cloud employs several crucial measures:
 
 ### Data Storage and Cleaning
 
@@ -67,16 +67,16 @@ Clear guidelines have been established for the usage and retention of user data.
 - All database and API credentials you provide are encrypted stringently. Apart from the application, no one has access to these details.
 - Support for SSL or SSH tunnel encrypted connections to data sources, safeguarding data connectivity and transmission. HTTPS encrypted connections to SaaS-type data sources are also available.
 - Both fully managed and semi-managed [Agent deployment modes](../billing/purchase.md) are available to meet diverse data transfer requirements:
-    - *Semi-Managed:* All of your data, whether in its raw form or has been processed, is stored and managed within your private environment exclusively. The Agent handles data orchestration and processing tasks in-house, ensuring that no data is ever uploaded to Tapdata Cloud.
-    - *Fully Managed:* During any task execution, your data only travels between the source database, the Agent, and the destination database. At no point will data be uploaded to Tapdata Cloud. The Agent provides a securely managed external service address, allowing you to bolster security measures through database whitelists or specific firewall rules.
+    - *Semi-Managed:* All of your data, whether in its raw form or has been processed, is stored and managed within your private environment exclusively. The Agent handles data orchestration and processing tasks in-house, ensuring that no data is ever uploaded to TapData Cloud.
+    - *Fully Managed:* During any task execution, your data only travels between the source database, the Agent, and the destination database. At no point will data be uploaded to TapData Cloud. The Agent provides a securely managed external service address, allowing you to bolster security measures through database whitelists or specific firewall rules.
 
 ### Account Password Security Policies
 
-Tapdata Cloud employs industry-standard one-way hashing to store user credentials. Each user's data utilizes a unique hash key, which is stored separately, ensuring that all data operations are thoroughly audited to prevent potential breaches.
+TapData Cloud employs industry-standard one-way hashing to store user credentials. Each user's data utilizes a unique hash key, which is stored separately, ensuring that all data operations are thoroughly audited to prevent potential breaches.
 
 ### Data Transfer and Processing Safety
 
-By default, Tapdata Cloud's data processing bypasses third-party components. Except for reading and writing data sources, all operations occur in-memory. When the database log cache feature is activated, some source database events are encrypted and stored locally in the Agent's directory. At no point is this data transferred to any location other than the target database.
+By default, TapData Cloud's data processing bypasses third-party components. Except for reading and writing data sources, all operations occur in-memory. When the database log cache feature is activated, some source database events are encrypted and stored locally in the Agent's directory. At no point is this data transferred to any location other than the target database.
 
 ---
 
@@ -84,18 +84,18 @@ By default, Tapdata Cloud's data processing bypasses third-party components. Exc
 
 ## Rigorous Operational Standards
 
-To ensure every operational facet meets the highest security standards, Tapdata Cloud has adopted the following rigorous measures:
+To ensure every operational facet meets the highest security standards, TapData Cloud has adopted the following rigorous measures:
 
 ### Operational Auditing
 
-To maximize data security, Tapdata Cloud keeps real-time logs and monitors all internal operations related to user data. The development team adheres to strict procedural and permission guidelines, ensuring detailed logging of any interaction with user data. Furthermore, all communications with customers, whether via email or online chat, are secured using robust password policies, two-factor authentication, and undergo stringent security reviews by Tapdata Cloud's internal teams.
+To maximize data security, TapData Cloud keeps real-time logs and monitors all internal operations related to user data. The development team adheres to strict procedural and permission guidelines, ensuring detailed logging of any interaction with user data. Furthermore, all communications with customers, whether via email or online chat, are secured using robust password policies, two-factor authentication, and undergo stringent security reviews by TapData Cloud's internal teams.
 
 ### Compliance with Security Standards
 
-Tapdata Cloud remains steadfast in its commitment to adhere to all relevant laws, regulations, and standards, ensuring the services rendered always uphold the highest security benchmarks.
+TapData Cloud remains steadfast in its commitment to adhere to all relevant laws, regulations, and standards, ensuring the services rendered always uphold the highest security benchmarks.
 
 ### Code Security Review
 
-Every feature of Tapdata Cloud undergoes rigorous vulnerability checks. Automated tools are employed to guarantee a zero-vulnerability standard, forming the cornerstone of product releases and ensuring the utmost code security.
+Every feature of TapData Cloud undergoes rigorous vulnerability checks. Automated tools are employed to guarantee a zero-vulnerability standard, forming the cornerstone of product releases and ensuring the utmost code security.
 
-Facing the evolving threats and challenges of the digital realm, Tapdata Cloud's security team remains ever-vigilant, consistently monitoring, assessing, and enhancing security protocols. We're dedicated to providing a trusted and secure data integration and management platform, ensuring your full confidence in Tapdata Cloud's services.
+Facing the evolving threats and challenges of the digital realm, TapData Cloud's security team remains ever-vigilant, consistently monitoring, assessing, and enhancing security protocols. We're dedicated to providing a trusted and secure data integration and management platform, ensuring your full confidence in TapData Cloud's services.

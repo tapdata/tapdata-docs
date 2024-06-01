@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Please follow the instructions below to ensure successful addition and use of the distributed database TD-SQL  version database in Tapdata.
+Please follow the instructions below to ensure successful addition and use of the distributed database TD-SQL  version database in TapData.
 
 ## Supported Versions
 
@@ -69,7 +69,7 @@ GRANT PROCESS ON *.* TO 'tapdata' IDENTIFIED BY 'password';
 
 "Unknown error 1044"
 
-If permissions are granted correctly but you're still unable to pass the test connection through Tapdata, you can use the following steps to check and fix the issue:
+If permissions are granted correctly but you're still unable to pass the test connection through TapData, you can use the following steps to check and fix the issue:
 
 ```sql
 SELECT host, user, Grant_priv, Super_priv FROM mysql.user WHERE user='username'; 

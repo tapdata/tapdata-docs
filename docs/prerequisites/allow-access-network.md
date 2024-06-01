@@ -14,7 +14,7 @@ Before deploying the Agent, you need to refer to the requirements in this docume
 | ---------------------------------- | ------------------------------------------------------------ |
 | Agent can connect to source database's port. | Ensure that the Agent can read data from the source database.  |
 | Agent can connect to target database's port. | Ensure that the Agent can write data to the target database.  |
-| Agent can connect to extranet. | Ensure the Agent can report task status, retrieve configuration, and execute tasks to/from Tapdata Cloud.  |
+| Agent can connect to extranet. | Ensure the Agent can report task status, retrieve configuration, and execute tasks to/from TapData Cloud.  |
 
 
 

@@ -4,9 +4,9 @@ import Content1 from '../../reuse-content/_all-features.md';
 
 <Content1 />
 
-YashanDB is powered by Bounded Evaluation, which uniquely delivers Just in Time analytic capabilities focusing on conquering some of the challenges surrounding big data characterized by Volume, Velocity and Variety. Tapdata Cloud supports using YashanDB as a target database to build data pipelines, facilitating rapid data transfer.
+YashanDB is powered by Bounded Evaluation, which uniquely delivers Just in Time analytic capabilities focusing on conquering some of the challenges surrounding big data characterized by Volume, Velocity and Variety. TapData Cloud supports using YashanDB as a target database to build data pipelines, facilitating rapid data transfer.
 
-This article will guide you through connecting a YashanDB data source on the Tapdata Cloud.
+This article will guide you through connecting a YashanDB data source on the TapData Cloud.
 
 import Content from '../../reuse-content/_certificate.md';
 
@@ -27,7 +27,7 @@ GRANT SELECT ANY TABLE TO username;
 
 ## Connecting to YashanDB
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.net/console/v3/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.net/console/v3/).
 
 2. In the left navigation panel, click **Connections**.
 

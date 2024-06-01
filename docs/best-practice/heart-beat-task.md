@@ -3,7 +3,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-Tapdata uses heartbeat tables to write timestamp information to the source database every **10 seconds**. By checking the timestamp information in the heartbeat tables, we can quickly determine the activity and health of the data source, thereby better monitoring the data synchronization path and ensuring the stability and reliability of the data synchronization path.
+TapData uses heartbeat tables to write timestamp information to the source database every **10 seconds**. By checking the timestamp information in the heartbeat tables, we can quickly determine the activity and health of the data source, thereby better monitoring the data synchronization path and ensuring the stability and reliability of the data synchronization path.
 
 ## Applicable Scenarios
 
@@ -11,7 +11,7 @@ Tapdata uses heartbeat tables to write timestamp information to the source datab
 
   ![Incremental Checkpoint](../images/incremental_check_point.png)
 
-* If the source database has many DML operations, it is necessary to prevent the incremental logs recorded by Tapdata from being archived and deleted, which would make it impossible to obtain the incremental checkpoint.
+* If the source database has many DML operations, it is necessary to prevent the incremental logs recorded by TapData from being archived and deleted, which would make it impossible to obtain the incremental checkpoint.
 
 ## Considerations
 
@@ -20,7 +20,7 @@ Tapdata uses heartbeat tables to write timestamp information to the source datab
 
 ## Enabling Heartbeat Tables for a Data Source
 
-1. [Log in to the Tapdata platform](../user-guide/log-in.md).
+1. [Log in to the TapData platform](../user-guide/log-in.md).
 
 2. In the left navigation bar, click **Connection Management**.
 
@@ -46,7 +46,7 @@ Once the heartbeat table is enabled for a data source, the heartbeat task will s
 
 ![Heartbeat Table Task](../images/heart_beat_task.png)
 
-As shown above, Tapdata uses a Dummy data source to write a timestamp to the source database every 10 seconds, thus continuously updating the incremental checkpoint and better monitoring the data source and link status.
+As shown above, TapData uses a Dummy data source to write a timestamp to the source database every 10 seconds, thus continuously updating the incremental checkpoint and better monitoring the data source and link status.
 
 ## Common Questions
 

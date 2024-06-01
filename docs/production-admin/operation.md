@@ -4,15 +4,15 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
-This article lists common issues related to Tapdata maintenance.
+This article lists common issues related to TapData maintenance.
 
 ## How to Start or Stop Services?
 
-After logging into the Tapdata platform, you can start or stop the target service under **System Management** > **Cluster Management**.
+After logging into the TapData platform, you can start or stop the target service under **System Management** > **Cluster Management**.
 
 ![Start/Stop Service](../images/start_and_stop_service.png)
 
-Besides this method, you can also use the built-in `tapdata` command tool for starting or stopping operations. This tool is located in the Tapdata installation directory. You can view command help information by executing `./tapdata help`. The output is as follows:
+Besides this method, you can also use the built-in `tapdata` command tool for starting or stopping operations. This tool is located in the TapData installation directory. You can view command help information by executing `./tapdata help`. The output is as follows:
 
 ```bash
 ./tapdata help
@@ -26,17 +26,17 @@ Besides this method, you can also use the built-in `tapdata` command tool for st
 WORK DIR:/root/tapdata
 usage: tapdata [option] [subsystem]
 Option:
-  start            Start Tapdata
-  stop             Stop Tapdata
-  restart          Restart Tapdata
+  start            Start TapData
+  stop             Stop TapData
+  restart          Restart TapData
   status           Check the running status
-  init             Initialize Tapdata Configuration
+  init             Initialize TapData Configuration
   resetpassword    Reset MongoDB password or certificate key file password
-  --version        Tapdata version
+  --version        TapData version
   help             Show this usage information
   
 Subsystem:
-  frontend         Tapdata management portal
+  frontend         TapData management portal
   backend          Data Processing Node
   apiserver        API Server Node
 ```
@@ -45,7 +45,7 @@ Subsystem:
 
 ## <span id="release330-upgrade">How to Perform a Rolling Upgrade?</span>
 
-Starting with version 3.3.0, Tapdata supports rolling upgrades. Compared to the standard downtime upgrade, it helps shorten the upgrade window and further reduce business impact. The specific steps are as follows:
+Starting with version 3.3.0, TapData supports rolling upgrades. Compared to the standard downtime upgrade, it helps shorten the upgrade window and further reduce business impact. The specific steps are as follows:
 
 :::tip
 
@@ -53,7 +53,7 @@ Ensure compatibility between the two versions before and after the upgrade. It i
 
 :::
 
-1. Log into the server hosting Tapdata, keeping the original version of the Tapdata service running.
+1. Log into the server hosting TapData, keeping the original version of the TapData service running.
 
 2. Download and unzip the 3.3.0 version installation package, then enter the package directory.
 
@@ -63,7 +63,7 @@ Ensure compatibility between the two versions before and after the upgrade. It i
    ./tapdata upgrade --source <old_version_path>
    ```
 
-   `old_version_path`: The directory where the old version of Tapdata is installed, for example:
+   `old_version_path`: The directory where the old version of TapData is installed, for example:
 
    ```bash
    ./tapdata upgrade --source /root/320/tapdata/
@@ -75,15 +75,15 @@ Ensure compatibility between the two versions before and after the upgrade. It i
 
    :::
 
-4. After the upgrade, log into the Tapdata platform, click on the username in the upper right corner, and select system version to confirm the upgrade was successful.
+4. After the upgrade, log into the TapData platform, click on the username in the upper right corner, and select system version to confirm the upgrade was successful.
 
-5. In the Tapdata platform's left navigation bar, select **System Management** > **Cluster Management** and confirm all services are running normally.
+5. In the TapData platform's left navigation bar, select **System Management** > **Cluster Management** and confirm all services are running normally.
 
    ![View Service Status](../images/manage_cluster_1.png)
 
 
 
-## How to Scale the Tapdata Cluster?
+## How to Scale the TapData Cluster?
 
 When facing performance bottlenecks, nearing resource limits, or needing to improve system fault tolerance and high availability, you can scale the cluster. The specific operation process is as follows:
 
@@ -123,7 +123,7 @@ When facing performance bottlenecks, nearing resource limits, or needing to impr
        hwclock -w
        ```
 
-2. Download the Tapdata installation package (you can [contact us](mailto:team@tapdata.io) to obtain it) and upload it to the device to be deployed.
+2. Download the TapData installation package (you can [contact us](mailto:team@tapdata.io) to obtain it) and upload it to the device to be deployed.
 
 3. On the device to be deployed, execute the following command to unzip the installation package and enter the unzipped path.
 
@@ -135,28 +135,28 @@ When facing performance bottlenecks, nearing resource limits, or needing to impr
 
 4. Complete the scaling operation on the device to be deployed.
 
-    1. Copy the **application.yml** file from the existing node's Tapdata working directory to the working directory of the device to be deployed, then comment out or delete the line containing **uuid** in that file.
+    1. Copy the **application.yml** file from the existing node's TapData working directory to the working directory of the device to be deployed, then comment out or delete the line containing **uuid** in that file.
 
-    2. Upload the License file to the Tapdata working directory.
+    2. Upload the License file to the TapData working directory.
 
     3. Start and scale the required services.
 
        ```bash
-       # Scale Tapdata management service
+       # Scale TapData management service
        ./tapdata start frontend
        
-       # Scale Tapdata API service
+       # Scale TapData API service
        ./tapdata start apiserver
        
-       # Scale Tapdata engine service
+       # Scale TapData engine service
        ./tapdata start backend
        ```
 
-5. After successful startup, you can log into the Tapdata platform and check the status of various services under **System Management** > **Cluster Management**.
+5. After successful startup, you can log into the TapData platform and check the status of various services under **System Management** > **Cluster Management**.
 
 
 
-## How to Ensure High Availability for MongoDB Dependent by Tapdata?
+## How to Ensure High Availability for MongoDB Dependent by TapData?
 
 Avoid using a single-node architecture. Use a [replica set deployment architecture](install-replica-mongodb.md) to ensure high availability. For instance, in a three-node replica set architecture, one node acts as the Primary node, and the other nodes act as Secondary nodes.
 
@@ -173,17 +173,17 @@ You can log into the MongoDB database and use the `rs.status()` command to check
 
 ## How to View Running Logs?
 
-In versions prior to 2.15, logs were scattered across various folders in the Tapdata installation directory. Starting from version 2.15, log information is centralized in the logs directory within the installation directory.
+In versions prior to 2.15, logs were scattered across various folders in the TapData installation directory. Starting from version 2.15, log information is centralized in the logs directory within the installation directory.
 
 
-## Where Are Tapdata Configuration Files Stored?
+## Where Are TapData Configuration Files Stored?
 
-The Tapdata configuration file: **application.yml** is located in the Tapdata installation directory. It contains key configuration information, such as available memory settings, service ports, MongoDB database connection information, etc.
+The TapData configuration file: **application.yml** is located in the TapData installation directory. It contains key configuration information, such as available memory settings, service ports, MongoDB database connection information, etc.
 
 
 ## How to Adjust the Available Memory Size for Java?
 
-By default, the available memory is set to 4 GB. To adjust it, go to the **application.yml** file in the Tapdata installation directory, edit the file, and adjust the memory configuration information according to the server's available memory and task load. For example, configuring it as `tapdataJavaOpts: "-Xms8G -Xmx16G"` means the initial memory is 8G, and the maximum memory is 16G, as shown below:
+By default, the available memory is set to 4 GB. To adjust it, go to the **application.yml** file in the TapData installation directory, edit the file, and adjust the memory configuration information according to the server's available memory and task load. For example, configuring it as `tapdataJavaOpts: "-Xms8G -Xmx16G"` means the initial memory is 8G, and the maximum memory is 16G, as shown below:
 
 ```yaml
 tapdata:
@@ -215,7 +215,7 @@ If the memory allocation is small but the task load is heavy, the Java program m
 
 ## Management Subprocess Keeps Restarting, How to Troubleshoot?
 
-1. Check whether the MongoDB engine used as Tapdata's storage can be normally connected and that its version is 4.0 or above.
+1. Check whether the MongoDB engine used as TapData's storage can be normally connected and that its version is 4.0 or above.
 2. Execute `./tapdata restart frontend`, then find the frontendDebug.log file in the logs directory and review it. Analyze the specific reason for the problem through the error messages in the log.
 
 
@@ -227,20 +227,20 @@ If the memory allocation is small but the task load is heavy, the Java program m
 - Takeover timeout: After being scheduled to an alive engine, if the task is not taken over by the engine within the timeout period, the task is rescheduled to the alive engine with the smallest number of running tasks.
 
 
-## How Does Tapdata Achieve High Availability?
+## How Does TapData Achieve High Availability?
 
-You can [deploy Tapdata on multiple machines](install-tapdata-ha.md) to achieve high availability. If one node experiences an anomaly, other nodes can continue to provide services. Tasks that have entered the incremental phase will resume from the breakpoint, and tasks can be automatically balanced and distributed.
+You can [deploy TapData on multiple machines](install-tapdata-ha.md) to achieve high availability. If one node experiences an anomaly, other nodes can continue to provide services. Tasks that have entered the incremental phase will resume from the breakpoint, and tasks can be automatically balanced and distributed.
 
 
 ## A Task Encounters an Exception, How to Troubleshoot?
 
 Although the reasons for task exceptions may vary, you can refer to the following general troubleshooting process:
 
-1. Log into the Tapdata platform, find the target task, and review the specific error message. Make adjustments based on the error message (e.g., table does not exist).
+1. Log into the TapData platform, find the target task, and review the specific error message. Make adjustments based on the error message (e.g., table does not exist).
 
-2. Log into the machine hosting Tapdata, go to the Tapdata installation directory, and review more log information.
+2. Log into the machine hosting TapData, go to the TapData installation directory, and review more log information.
 
-3. If you cannot log into the Tapdata platform, execute `./tapdata status` on its hosting machine to check if the services are running normally.
+3. If you cannot log into the TapData platform, execute `./tapdata status` on its hosting machine to check if the services are running normally.
 
    ```bash
    ./tapdata status
@@ -268,13 +268,13 @@ For synchronization performance issues, we need to decompose the execution proce
 
 - **Destination**: Replace logic. For example, replace the destination with DummyDB to observe the task execution. If there is a significant performance improvement, it can be preliminarily determined that the problem lies with the destination side. Start the detailed investigation from there.
 - **Engine**: Trace logic. Sort each processing node of the engine by processing time delay to find the information of the top N longest delay nodes for detailed investigation. Then, create a clone of the problem task and trace each entity data from source to destination, recording the delay of the data passing through the engine processing nodes. Output the most detailed log information to identify the specific problem cause of the problem node.
-- **Source**: Exclusion logic. Since Tapdata's implementation for different sources varies, the method to determine whether a problem is related to the source is to first ensure the problem is not related to the destination and engine. Then, based on the specific situation of the source, determine the investigation strategy.
+- **Source**: Exclusion logic. Since TapData's implementation for different sources varies, the method to determine whether a problem is related to the source is to first ensure the problem is not related to the destination and engine. Then, based on the specific situation of the source, determine the investigation strategy.
 
 Additionally, we also need to consider the processing delays and network transmission delays in different stages.
 
 
 
-## The MongoDB Database Dependent by Tapdata Experiences an Exception, How to Troubleshoot?
+## The MongoDB Database Dependent by TapData Experiences an Exception, How to Troubleshoot?
 
 MongoDB database exceptions can have various causes. The general troubleshooting process is as follows:
 
@@ -289,7 +289,7 @@ MongoDB database exceptions can have various causes. The general troubleshooting
 4. Try using MongoDB's built-in tools for troubleshooting, such as `mongotop` to view the read and write operations of each collection, and `mongostat` to view the server's activity status.
 
 
-## What Is the Database Name in the MongoDB Database Dependent by Tapdata, and What Are the Collections?
+## What Is the Database Name in the MongoDB Database Dependent by TapData, and What Are the Collections?
 
 The adopted database name is tapdata. You can log into the database through the mongo shell to see the specific collections included, as shown below:
 
@@ -349,7 +349,7 @@ Common high-risk operations include:
 * [Data Replication](../user-guide/data-pipeline/copy-data/create-task.md)/[Data Transformation](../user-guide/data-pipeline/data-development/create-task.md) Tasks
     * **Resetting tasks**: This operation will reset the task to its initial state, clearing historical monitoring data. Subsequent task starts will require re-executing full data synchronization.
     * **Data duplication processing strategy**: In the target node settings, setting different data duplication strategies will affect the structure and data of the target table. For example, selecting **Clear existing target table structure and data** will clear the target table's structure and all data upon task start, synchronizing new table structures and data from the source.
-    * **Setting data write strategy**: In the advanced settings of the target node, if append write is selected, Tapdata will only process insert events, discarding update and delete events. Choose carefully based on business needs to avoid the risk of data inconsistency.
+    * **Setting data write strategy**: In the advanced settings of the target node, if append write is selected, TapData will only process insert events, discarding update and delete events. Choose carefully based on business needs to avoid the risk of data inconsistency.
     * **Setting synchronization index**: When
 
 a data replication task is used for scenarios that only synchronize incremental data, i.e., retaining target table data, if the target table's data scale is large, the synchronization index operation may affect the overall performance of the target database.

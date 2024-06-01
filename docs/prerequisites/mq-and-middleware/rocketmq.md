@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Please follow the instructions below to ensure successful addition and usage of RocketMQ in Tapdata Cloud.
+Please follow the instructions below to ensure successful addition and usage of RocketMQ in TapData Cloud.
 
 ## **Configuration Instructions**
 

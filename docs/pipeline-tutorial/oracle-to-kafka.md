@@ -5,7 +5,7 @@ import Content from '../reuse-content/_all-features.md';
 
 In the era of big data, more and more enterprises need to synchronize data from traditional relational databases to big data processing platforms to support real-time data processing, data lake construction, and alternative data warehousing scenarios. Oracle, widely used in enterprise applications, increasingly requires synchronization to big data platforms.
 
-This article explains how to synchronize data from Oracle to Kafka in just a few simple drag-and-drop steps using Tapdata, meeting the needs of big data supply scenarios.
+This article explains how to synchronize data from Oracle to Kafka in just a few simple drag-and-drop steps using TapData, meeting the needs of big data supply scenarios.
 
 ## Scenario Description
 
@@ -20,14 +20,14 @@ Thus, synchronizing data from Oracle databases to big data platforms has become 
 
 ![Real-Time Oracle to Kafka Synchronization](../images/oracl_to_kafka_architecture.png)
 
-Tapdata, as an efficient, reliable, and secure real-time data platform, offers easy-to-use, feature-rich data transformation services that enhance your data development efficiency and allow you to focus on your core business. Additionally, in scenarios involving large-scale data processing, you can achieve horizontal scaling by adding nodes or adjusting configurations.
+TapData, as an efficient, reliable, and secure real-time data platform, offers easy-to-use, feature-rich data transformation services that enhance your data development efficiency and allow you to focus on your core business. Additionally, in scenarios involving large-scale data processing, you can achieve horizontal scaling by adding nodes or adjusting configurations.
 
 In this case, we aim to read real-time data from the car insurance claims table (**AUTO_CLAIM_Demo**) in the source Oracle database. We will process this data to help us capture incremental changes before and after, and then synchronize the data in real-time into a Kafka data source. Downstream business applications can freely subscribe to and consume Kafka data, building a real-time data synchronization pipeline.
 
 ## Considerations
 
 * Ensure that the size of individual Oracle data entries does not exceed Kafka's single message limit (default 1 MB) to avoid write failures. If oversized data occurs, consider filtering large fields between Oracle and Kafka nodes during data transformation task configuration, or modify Kafka's maximum message size limit.
-* Tapdata's Oracle log parsing speed is about 10,000 QPS. If the rate of incremental events exceeds this, it may lead to increased data processing delays.
+* TapData's Oracle log parsing speed is about 10,000 QPS. If the rate of incremental events exceeds this, it may lead to increased data processing delays.
 * The raw log feature is currently not supported on RAC-ASM deployment architectures and does not support obtaining raw logs from non-primary nodes in DG architectures.
 
 ## Prerequisites
@@ -39,12 +39,12 @@ Before creating a data transformation task, ensure you have configured the neces
 
 ## Configure Task
 
-1. [Log in to Tapdata Platform](../user-guide/log-in.md).
+1. [Log in to TapData Platform](../user-guide/log-in.md).
 
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Transformation**.
-   * **Tapdata Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Transformation**.
+   * **TapData Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
    
 3. Click **Create** on the right side of the page.
 
@@ -59,7 +59,7 @@ Before creating a data transformation task, ensure you have configured the neces
         * **Table**: Select the source table to operate on; below, the table's structure information will display, including column names and types. In this case, we are creating a data transformation task suitable for single-table processing. To handle multiple tables simultaneously, you could create a data replication task with a similar configuration process.
         
     * **Advanced Settings**
-        * **DDL Synchronization**: Choose whether to enable **DDL Event Collection**. Turning on this switch allows Tapdata to automatically collect selected source DDL events (such as field additions) if the target supports DDL writing, enabling synchronization of DDL statements.
+        * **DDL Synchronization**: Choose whether to enable **DDL Event Collection**. Turning on this switch allows TapData to automatically collect selected source DDL events (such as field additions) if the target supports DDL writing, enabling synchronization of DDL statements.
         
         * **Incremental Method**: Choose **Real-time Log Parsing** or **Field Polling**. When selecting **Polling**, you will need to specify the polling field, interval, and rows per read. 
         
@@ -86,7 +86,7 @@ Before creating a data transformation task, ensure you have configured the neces
           * **Enable Sync of LOB Types(BLOB,CLOB,NCLOB)**: Turning off this switch can enhance performance, but LOB type parsing will be unreliable.
           * **Association key update**: Turning off this switch can enhance performance, but updates to association keys will be ignored.
           * **Large Transaction Time Boundary**: Transactions exceeding this value will enter the large transaction logic. Setting it too large could impact memory; large transactions will have local disk caching, and disk cleanup needs attention in case of task anomalies.
-          * **Uncommitted Transaction Lifetime (minutes)**: Long uncommitted transactions can cause each task start and stop to mine from this transaction. To avoid impacting the source database and the performance of incremental synchronization, Tapdata will clean up uncommitted transactions exceeding this duration. Please set this duration in line with business needs to avoid data inconsistency.
+          * **Uncommitted Transaction Lifetime (minutes)**: Long uncommitted transactions can cause each task start and stop to mine from this transaction. To avoid impacting the source database and the performance of incremental synchronization, TapData will clean up uncommitted transactions exceeding this duration. Please set this duration in line with business needs to avoid data inconsistency.
         
     * **Alert Settings**
         By default, if the node's average processing time is continuously 1 minute or longer than 5 seconds, system notifications and email alerts are sent. You can adjust the rules or turn off alerts according to business needs.
@@ -137,7 +137,7 @@ Before creating a data transformation task, ensure you have configured the neces
         * **Process by Event Type**: If selected, you will also need to choose the data writing strategies for insert, update, and delete events.
         * **Append Write**: Only processes insert events, discarding update and delete events.
         * Set data source specific settings:
-             * **Number of Replications**: The number of replicas for the Topic automatically created by Tapdata, cannot be greater than the number of Kafka clusters and cannot be changed after creation.
+             * **Number of Replications**: The number of replicas for the Topic automatically created by TapData, cannot be greater than the number of Kafka clusters and cannot be changed after creation.
              * **Number of Partitions**: If the Topic already exists, the number of partitions can only increase, not decrease.
     * **Alert Settings**
         By default, if the node's average processing time is continuously 1 minute or longer than 5 seconds, system notifications and email alerts are sent. You can adjust the rules or turn off alerts according to business needs.
@@ -157,7 +157,7 @@ Before creating a data transformation task, ensure you have configured the neces
 
 ## Result Verification
 
-Based on the task settings described above, Tapdata will synchronize the data from the Oracle table **AUTO_CLAIM_DEMO** to Kafka. If data changes occur in the source table, through the JS node, Tapdata will write the data before and after the changes into the Kafka node.
+Based on the task settings described above, TapData will synchronize the data from the Oracle table **AUTO_CLAIM_DEMO** to Kafka. If data changes occur in the source table, through the JS node, TapData will write the data before and after the changes into the Kafka node.
 
 After waiting for the task to enter the incremental data replication phase, we first count the number of messages in Kafka, knowing that the number of messages in the Topic is exactly consistent with the number of entries in the source table, both being **95,877**.
 
@@ -205,7 +205,7 @@ We then performed a data change operation on the source table, adjusting the val
 
 ![Update source table data](../images/oracle_update_data.png)
 
-After waiting for a while, on the Tapdata task monitoring page, we could see that Tapdata had synchronized this data update to Kafka.
+After waiting for a while, on the TapData task monitoring page, we could see that TapData had synchronized this data update to Kafka.
 
 Returning to our Kafka command line monitor, we also saw the latest data change message. Here, you can see the detailed data before and after the change, making it easy to integrate into downstream applications (like Flink, etc.).
 

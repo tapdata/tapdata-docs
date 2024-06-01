@@ -7,7 +7,7 @@ A role is a collection of one or more permissions. You can grant multiple operat
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md) as a system administrator.
+1. [Log in to TapData Platform](../log-in.md) as a system administrator.
 
 2. In the left navigation bar, select **System** > **Roles**.
 
@@ -19,7 +19,7 @@ A role is a collection of one or more permissions. You can grant multiple operat
 
       :::tip
 
-        * As shown below, we only grant **Connections** permission. After this user logs into Tapdata, they can only see the connection management menu, and creating and copying connections are not allowed for this role.
+        * As shown below, we only grant **Connections** permission. After this user logs into TapData, they can only see the connection management menu, and creating and copying connections are not allowed for this role.
         * The functionality modules that currently support fine-grained permission control are Connection Management and Data Pipeline.
 
       :::

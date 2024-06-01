@@ -3,13 +3,13 @@ import Content from '../../reuse-content/_enterprise-features.md';
 
 <Content />
 
-GraphQL provides a query language that allows you to request data from the server in a declarative way, such as specific data in a schema. Tapdata has integrated GraphQL, allowing you to execute requests through the API service address.
+GraphQL provides a query language that allows you to request data from the server in a declarative way, such as specific data in a schema. TapData has integrated GraphQL, allowing you to execute requests through the API service address.
 
 In this article, we will introduce how to use the Postman to view API data services through GraphQL.
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. Retrieve the GraphQL query request address.
 
@@ -49,7 +49,7 @@ In this article, we will introduce how to use the Postman to view API data servi
 
    :::tip
 
-   You can confirm the correspondence between API name and service name in the **Service Access** section by clicking on the target service and scrolling down in the **Service Management** page on Tapdata.
+   You can confirm the correspondence between API name and service name in the **Service Access** section by clicking on the target service and scrolling down in the **Service Management** page on TapData.
 
    :::
 

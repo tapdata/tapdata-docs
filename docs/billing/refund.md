@@ -8,7 +8,7 @@ If you no longer need to use the Agent instance, you can follow the process to u
 
 ## Procedure
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.io/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.io/).
 
 2. In the left navigation panel, click **Resource Management**.
 
@@ -37,7 +37,7 @@ If you no longer need to use the Agent instance, you can follow the process to u
 
 ## Refund Policy
 
-When you initiate the unsubscribe operation, Tapdata Cloud will execute the refund according to the use of time. For example, if you order for 1 month of the instance, after 10 days of use to initiate the unsubscription, the default refund on the original payment amount of the remaining 20 days, the calculation formula is as follows:
+When you initiate the unsubscribe operation, TapData Cloud will execute the refund according to the use of time. For example, if you order for 1 month of the instance, after 10 days of use to initiate the unsubscription, the default refund on the original payment amount of the remaining 20 days, the calculation formula is as follows:
 
 (Subscribed cycle end date **－**Unsubscribe date) **/** (Subscribed cycle end date **－** Subscribed cycle start date) **x** Actual payment amount (excluding coupon amount)
 

@@ -14,11 +14,11 @@ import TabItem from '@theme/TabItem';
 
 ## Procedure
 
-1. Log in to [Tapdata Cloud](https://cloud.tapdata.io/).
+1. Log in to [TapData Cloud](https://cloud.tapdata.io/).
 
 2. In the left navigation panel, click **Real-Time Data Hub**.
 
-3. On this page, you can conveniently access the data source information you have entered. Tapdata organizes the data governance and flow order into four distinct levels, providing a clear view of the data hierarchy.
+3. On this page, you can conveniently access the data source information you have entered. TapData organizes the data governance and flow order into four distinct levels, providing a clear view of the data hierarchy.
 
    ![Data Service Platform Page](../../images/view_dashboard.png)
 
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
    ![Create Task1](../../images/create_cache_task.gif)
 
    * **Only Save**: Save the task without running it. You can now click on the task name in the Foundation Data Model to customize the task further.
-   * **Save and Run**: No additional action is required. Tapdata will automatically create a data replication task to synchronize your selected tables in real-time to the Master Data Model and automatically verify. You can click the <img src='/img/detail_icon.png'></img> icon on the right side of the table name in the Foundation Data Model and jump to the task monitoring page to see the task operation details.
+   * **Save and Run**: No additional action is required. TapData will automatically create a data replication task to synchronize your selected tables in real-time to the Master Data Model and automatically verify. You can click the <img src='/img/detail_icon.png'></img> icon on the right side of the table name in the Foundation Data Model and jump to the task monitoring page to see the task operation details.
 
    
 
@@ -62,7 +62,7 @@ import TabItem from '@theme/TabItem';
    ![Create MDM Task](../../images/create_mdm_task.gif)
 
    * <b>Only Save</b>: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can <a href="../data-development/process-node">processing nodes</a> to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click <b>Start</b> in the upper right corner of the page. 
-   * **Save and Run**: No further action is necessary as Tapdata automatically generates a data transformation task and initiates it to synchronize the table in real-time with the Data Processing Layer.
+   * **Save and Run**: No further action is necessary as TapData automatically generates a data transformation task and initiates it to synchronize the table in real-time with the Data Processing Layer.
 
 3. At the <b>Data Processing Layer</b>, find the target table and clicking on the icon as below show will allows you to explore the lineage of the table, revealing the chain of relationships that led to the creation of this data table. This feature assists you in effectively managing your tables.
 
@@ -80,9 +80,9 @@ import TabItem from '@theme/TabItem';
 2. In the pop-up dialog, enter the task name and choose whether to run the task.
 
    * <b>Only Save</b>: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../data-pipeline/data-development/process-node.md) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click the <b>Start</b> in the upper right corner of the page.
-   * <b>Save and Run</b>: No further action is necessary as Tapdata automatically generates a data transformation task and initiates it to synchronize the table in real-time with the Data Processing Layer.
+   * <b>Save and Run</b>: No further action is necessary as TapData automatically generates a data transformation task and initiates it to synchronize the table in real-time with the Data Processing Layer.
 
-   Once setup is complete, Tapdata will automatically create a data transformation task to synchronize your source tables in real-time to the selected target data source and provide them to the final business. You can also click the task name in the target data card to enter the task monitoring page to see the detailed operation status. For more information, see <a href="../data-development/monitor-task">Monitor Task</a>. 
+   Once setup is complete, TapData will automatically create a data transformation task to synchronize your source tables in real-time to the selected target data source and provide them to the final business. You can also click the task name in the target data card to enter the task monitoring page to see the detailed operation status. For more information, see <a href="../data-development/monitor-task">Monitor Task</a>. 
 
 </TabItem>
 

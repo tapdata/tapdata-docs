@@ -6,11 +6,11 @@ import Content from '../../reuse-content/_all-features.md';
 
 Informix is a product family within IBM's Information Management division that is centered on several relational database management system and Multi-model database offerings.
 
-This article describes how to connect to Informix data sources on Tapdata Cloud.
+This article describes how to connect to Informix data sources on TapData Cloud.
 
 ## Connect to Informix
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -28,7 +28,7 @@ This article describes how to connect to Informix data sources on Tapdata Cloud.
     * **Database**: Fill in the database name.
     * **Password**: The database password.
     * **Connection Parameter String**: Additional connection parameters, default empty.
-    * **Timezone**: By default, Tapdata Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+    * **Timezone**: By default, TapData Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
     * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
     * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
 

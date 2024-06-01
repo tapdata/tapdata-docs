@@ -4,9 +4,9 @@ import Content1 from '../../reuse-content/_all-features.md';
 
 <Content1 />
 
-Tapdata Cloud provides comprehensive support for building data pipelines utilizing Microsoft SQL Server as both the source and target database. Microsoft SQL Server is a highly regarded relational database management system developed by Microsoft.
+TapData Cloud provides comprehensive support for building data pipelines utilizing Microsoft SQL Server as both the source and target database. Microsoft SQL Server is a highly regarded relational database management system developed by Microsoft.
 
-This article serves as a detailed guide, outlining the steps to seamlessly incorporate a SQL Server database into Tapdata Cloud, enabling efficient data integration and management within your pipelines.
+This article serves as a detailed guide, outlining the steps to seamlessly incorporate a SQL Server database into TapData Cloud, enabling efficient data integration and management within your pipelines.
 
 ## Supported Versions
 
@@ -70,7 +70,7 @@ import Content from '../../reuse-content/_preparations.md';
       - **database_name**: The name of the database.
       - **schema_name**: The schema name, e.g., **dbo**.
       - **table_name**: The name of the table.
-      - **role_name**: The role that can access the change data. Set this to **NULL** if you do not wish to use a role. If a role was specified when enabling incremental replication, ensure the database user has the appropriate role so that Tapdata Cloud can access the incremental replication tables.
+      - **role_name**: The role that can access the change data. Set this to **NULL** if you do not wish to use a role. If a role was specified when enabling incremental replication, ensure the database user has the appropriate role so that TapData Cloud can access the incremental replication tables.
 
 4. Execute the following format of the command to create a user for the data copy or development task.
 
@@ -191,7 +191,7 @@ After completing the configuration, be sure to securely store the certificate-re
 
 ## Connect to SQL Server
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

@@ -1,10 +1,10 @@
-# Tapdata Cloud
+# TapData Cloud
 
 import Content from '../../reuse-content/_cloud-features.md';
 
 <Content />
 
-The Tapdata Agent is an essential component for data synchronization, data heterogeneity, and data pipeline scenarios. While it is recommended to install the Tapdata Agent within the local network where the database is located for real-time processing, an alternative option is available. You can also install the Tapdata Agent on the Tapdata Cloud server, eliminating the need for setting up a machine locally. This provides flexibility and convenience for managing your data flow.
+The TapData Agent is an essential component for data synchronization, data heterogeneity, and data pipeline scenarios. While it is recommended to install the TapData Agent within the local network where the database is located for real-time processing, an alternative option is available. You can also install the TapData Agent on the TapData Cloud server, eliminating the need for setting up a machine locally. This provides flexibility and convenience for managing your data flow.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -13,17 +13,17 @@ import TabItem from '@theme/TabItem';
 
 <details>
   <summary>Agent Introduction</summary>
-  Tapdata Agent plays a critical role in the data flow process. It retrieves data from the source, performs necessary processing and transformations, and subsequently transfers it to the designated target. It is important to note that the data being handled by the Tapdata Agent is not uploaded or stored in Tapdata Cloud. The agent acts as a facilitator, ensuring efficient and secure data transfer without retaining any data in the cloud environment.
+  TapData Agent plays a critical role in the data flow process. It retrieves data from the source, performs necessary processing and transformations, and subsequently transfers it to the designated target. It is important to note that the data being handled by the TapData Agent is not uploaded or stored in TapData Cloud. The agent acts as a facilitator, ensuring efficient and secure data transfer without retaining any data in the cloud environment.
 </details>
 
 
 ## Procedure
 
-Tapdata Cloud offers pricing based on the specifications and quantity of subscribed Agent instances. You have the option to create one free instance of the **SMALL** specification Agent, and if required, you can [purchase additional Agent instances](../../billing/billing-overview.md) to align with your specific business requirements.
+TapData Cloud offers pricing based on the specifications and quantity of subscribed Agent instances. You have the option to create one free instance of the **SMALL** specification Agent, and if required, you can [purchase additional Agent instances](../../billing/billing-overview.md) to align with your specific business requirements.
 
 Next, let's create a free Agent instance.
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Resource Management**.
 
@@ -35,7 +35,7 @@ Next, let's create a free Agent instance.
 
    * **Deploy Mode**
      * **Self-Hosted Mode**: You need provide the equipment for [deploying](#deploy-agent) and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
-     * **Fully Managed Mode**: Tapdata Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
+     * **Fully Managed Mode**: TapData Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
        :::tip
        When selecting the **Fully Managed Mode**, you also need to choose the cloud provider and region where the Agent will be deployed.
        :::
@@ -91,7 +91,7 @@ Next, let's create a free Agent instance.
 
 1. According to the prompts on the page, download the Agent installer and configuration file (**application.yml**).
 
-2. For easier management of the Tapdata Agent, we recommend moving the downloaded Agent installer to the installation directory of your choice. For example, you can move it to **C:\tapdata** on a Windows system. By doing so, you can conveniently access and manage the Tapdata Agent from the designated installation directory.
+2. For easier management of the TapData Agent, we recommend moving the downloaded Agent installer to the installation directory of your choice. For example, you can move it to **C:\tapdata** on a Windows system. By doing so, you can conveniently access and manage the TapData Agent from the designated installation directory.
 
 3. Double-click on **tapdata.exe** in the Agent installation directory to complete the installation. After a successful launch, the command window will automatically close.
 
@@ -142,7 +142,7 @@ Next, let's create a free Agent instance.
    wget 'https://resource.tapdata.net/doc-source/tapdata.zip' && unzip tapdata.zip
    ```
 
-5. Back to the Deployment page on Tapdata Cloud, select **Linux(64 bit)** as the target operating system and click **copy**.
+5. Back to the Deployment page on TapData Cloud, select **Linux(64 bit)** as the target operating system and click **copy**.
 
       ![Copy the installation command](../../images/select_deploy_platform.png)
 

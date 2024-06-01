@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Tapdata Cloud Documentation',
-  tagline: 'Tapdata Cloud, a Live Data Platform',
+  title: 'TapData Documentation',
+  tagline: 'TapData Cloud, a Live Data Platform',
   url: 'https://docs.tapdata.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -76,15 +76,15 @@ const config = {
     // Website announcement
     announcementBar: {
             id: 'announcementBar-1',
-            content: `🎉️ More stable and user-friendly, build your real-time data platform with one click. Free trial with <a target="_blank" rel="noopener noreferrer" href="https://cloud.tapdata.io/">Tapdata Cloud</a> ! `,
+            content: `🎉️ More stable and user-friendly, build your real-time data platform with one click. Free trial with <a target="_blank" rel="noopener noreferrer" href="https://cloud.tapdata.io/">TapData Cloud</a> ! `,
             backgroundColor: '#1d4378',
             textColor: '#ffffff',
             },
     // SEO Configuration, this would become <meta name="keywords" content="cooking, blog"> in the generated HTML
-      metadata: [{name: 'keywords', content: 'DaaS platform, data replication, data development,Tapdata'}],
+      metadata: [{name: 'keywords', content: 'DaaS platform, data replication, data development,TapData'}],
       navbar: {
         logo: {
-          alt: 'Tapdata',
+          alt: 'TapData',
           src: 'img/logo.png',
           href: 'https://tapdata.io/',
         },
@@ -93,16 +93,16 @@ const config = {
             type: 'doc',
             docId: 'what-is-tapdata',
             position: 'left',
-            label: 'Tapdata Documentation',
+            label: 'TapData Documentation',
           },
           {
             href: 'https://cloud.tapdata.net/console/v3/',
             position: 'right',
-            label: 'Log in Tapdata Cloud',
+            label: 'Log in TapData Cloud',
           },
           {
-            href: 'https://github.com/tapdata/docs-en',
-            label: 'GitHub',
+            href: 'https://github.com/tapdata/tapdata',
+            label: 'GitHub⭐',
             position: 'right',
           },
         ],
@@ -142,7 +142,7 @@ const config = {
             ],
           },
         ], 
-        copyright: `Copyright © ${new Date().getFullYear()} Tapdata, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} TapData, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

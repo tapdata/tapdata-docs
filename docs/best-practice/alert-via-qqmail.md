@@ -3,17 +3,17 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
-Tapdata supports sending alert emails through SMTP protocol, enabling users to receive timely notifications in their commonly used email accounts, thus helping you promptly perceive operational anomalies and ensure the stability and reliability of task operations.
+TapData supports sending alert emails through SMTP protocol, enabling users to receive timely notifications in their commonly used email accounts, thus helping you promptly perceive operational anomalies and ensure the stability and reliability of task operations.
 
 ## Scenario Introduction
 
-QQ Mail, as a widely used communication tool, facilitates the receipt and review of alert messages, providing users with a convenient way to handle exceptions. In this example, we will demonstrate how to integrate QQ Mail in Tapdata to send alert messages, helping to improve the efficiency of operations personnel in quickly locating and resolving issues.
+QQ Mail, as a widely used communication tool, facilitates the receipt and review of alert messages, providing users with a convenient way to handle exceptions. In this example, we will demonstrate how to integrate QQ Mail in TapData to send alert messages, helping to improve the efficiency of operations personnel in quickly locating and resolving issues.
 
-You can also integrate other email services (such as 163 Mail) in Tapdata platform, with a similar configuration process as described in this document.
+You can also integrate other email services (such as 163 Mail) in TapData platform, with a similar configuration process as described in this document.
 
 ## Step One: Obtain Email Authorization Code
 
-The email authorization code is a special password used by QQ Mail to log into third-party clients/services and is applicable for logging into the following SMTP services. Before setting up alert email configurations in Tapdata platform, you need to obtain this authorization code.
+The email authorization code is a special password used by QQ Mail to log into third-party clients/services and is applicable for logging into the following SMTP services. Before setting up alert email configurations in TapData platform, you need to obtain this authorization code.
 
 1. Log in to [QQ Mail](https://mail.qq.com/).
 
@@ -35,13 +35,13 @@ The email authorization code is a special password used by QQ Mail to log into t
 
 6. Follow the prompts on the page to complete the verification through WeChat scanning or SMS verification.
 
-7. Once verified, the page will display the email authorization code. Please keep it safe for later use in the Tapdata configuration.
+7. Once verified, the page will display the email authorization code. Please keep it safe for later use in the TapData configuration.
 
    ![Email Authorization Code](../images/qqmail_code.png)
 
    :::tip
 
-   Changing your QQ account password will expire the authorization code. You will need to obtain a new code and update it in the Tapdata platform.
+   Changing your QQ account password will expire the authorization code. You will need to obtain a new code and update it in the TapData platform.
 
    :::
 
@@ -49,7 +49,7 @@ The email authorization code is a special password used by QQ Mail to log into t
 
 ## Step Two: Configure SMTP Service
 
-1. [Log in to Tapdata platform](../user-guide/log-in.md).
+1. [Log in to TapData platform](../user-guide/log-in.md).
 
 2. In the top right corner of the page, click the ![](../images/setting.png) icon, then select **System Settings**.
 
@@ -82,4 +82,4 @@ The email authorization code is a special password used by QQ Mail to log into t
 
 ## Result Verification
 
-After the above setup, we deleted a test task on the Tapdata platform and subsequently received an email.
+After the above setup, we deleted a test task on the TapData platform and subsequently received an email.

@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-This article describes how to connect to Lark Approval data sources on Tapdata Cloud.
+This article describes how to connect to Lark Approval data sources on TapData Cloud.
 
 You need to go to https://open.feishu.cn/app Find the corresponding application and find it in the ***voucher and basic information*** of the application.
 

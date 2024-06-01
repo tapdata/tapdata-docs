@@ -4,9 +4,9 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-MongoDB Atlas is a multi-cloud application data platform provided by MongoDB. Tapdata Cloud supports building data pipelines with MongoDB Atlas as the source or target database.
+MongoDB Atlas is a multi-cloud application data platform provided by MongoDB. TapData Cloud supports building data pipelines with MongoDB Atlas as the source or target database.
 
-This article describes how to add MongoDB Atlas to Tapdata Cloud.
+This article describes how to add MongoDB Atlas to TapData Cloud.
 
 
 ## Supported Versions
@@ -31,7 +31,7 @@ Before establishing the connection, it is essential to complete the necessary pr
 
    2. On the right, click **ADD IP ADDRESS**.
 
-   3. In the pop-up dialog, fill in the public address of the Tapdata Agent (CIDR format) and click **Confirm**.
+   3. In the pop-up dialog, fill in the public address of the TapData Agent (CIDR format) and click **Confirm**.
 
       ![Set Network Whitelist](../../images/atlas_add_ip_address.png)
 
@@ -65,7 +65,7 @@ Before establishing the connection, it is essential to complete the necessary pr
 
 ## Connect to MongoDB Atlas
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -94,15 +94,15 @@ Before establishing the connection, it is essential to complete the necessary pr
 
       * **Connect using TLS/SSL**: Choose how you want to connect:
 
-         * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, Tapdata Cloud offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
-         * **Direct connection**: Tapdata Cloud will connect directly to the database and you need to set up security rules to allow access.
+         * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, TapData Cloud offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
+         * **Direct connection**: TapData Cloud will connect directly to the database and you need to set up security rules to allow access.
 
    * Advanced settings
       * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
       * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
       * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
       * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Tapdata Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+      * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
         :::tip
         After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
         :::

@@ -7,7 +7,7 @@ API servers can be configured to expose API server addresses externally, and mul
 
 ## Procedure
 
-1. [Log in to Tapdata Platform](../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. In the left navigation bar, select **Data Services** > **API Servers**.
 
@@ -19,6 +19,6 @@ API servers can be configured to expose API server addresses externally, and mul
 
    :::tip
 
-   Tapdata includes an API server by default. Its address and port information can be obtained from the `application.yml` file in the Tapdata installation directory. Ensure the connection information is consistent to avoid the inability to use this feature.
+   TapData includes an API server by default. Its address and port information can be obtained from the `application.yml` file in the TapData installation directory. Ensure the connection information is consistent to avoid the inability to use this feature.
 
    :::

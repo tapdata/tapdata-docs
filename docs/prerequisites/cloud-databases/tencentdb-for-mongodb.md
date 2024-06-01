@@ -8,7 +8,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 MongoDB 3.2、3.4、3.6、4.0、4.2
 
-> Since Tapdata data synchronization is currently based on MongoDB's Change Stream, which supports multi-table merging, and MongoDB officially supports Change Stream from version 4.0, please try to ensure that the source and target databases are both version 4.0 and above.
+> Since TapData data synchronization is currently based on MongoDB's Change Stream, which supports multi-table merging, and MongoDB officially supports Change Stream from version 4.0, please try to ensure that the source and target databases are both version 4.0 and above.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ MongoDB 3.2、3.4、3.6、4.0、4.2
 
 **2. Account permissions**
 
-If security authentication is enabled for the source MongoDB, the user account that Tapdata uses to connect to the source MongoDB must have the following built-in roles:
+If security authentication is enabled for the source MongoDB, the user account that TapData uses to connect to the source MongoDB must have the following built-in roles:
 
 ```
 ClusterMonitor (read oplog)
@@ -89,7 +89,7 @@ Please note that only MongoDB version 3.2 requires read access to the local data
  [MongoDB Documentation: How to convert a single node into a replica set]（ https://docs.mongodb.com/manual/tutorial/convert-standalone-to-replica-set/ )<br>
 ```
 
-> If MongoDB URI is not set to w=major, Tapdata will use the default configuration of w=1, which means that the data is returned after being written to the primary node. If the primary node goes down abnormally before the data is synchronized from the primary node to the secondary node, data loss will occur. Therefore, it is recommended to use w=major configuration. W=majority means that the client can only write the data correctly after it is written to most nodes.
+> If MongoDB URI is not set to w=major, TapData will use the default configuration of w=1, which means that the data is returned after being written to the primary node. If the primary node goes down abnormally before the data is synchronized from the primary node to the secondary node, data loss will occur. Therefore, it is recommended to use w=major configuration. W=majority means that the client can only write the data correctly after it is written to most nodes.
 
 ### As a Target Database
 
@@ -101,7 +101,7 @@ Please note that only MongoDB version 3.2 requires read access to the local data
 
 **2. Account permissions**
 
-If the target MongoDB has security authentication enabled, the user account used by Tapdata must have the following roles/permissions:
+If the target MongoDB has security authentication enabled, the user account used by TapData must have the following roles/permissions:
 
 - 'clusterMonitor' (data validation function needs to be used)
 - 'readWrite '(as the role of the target database) To create a user with the above permissions, you can refer to the following example:
@@ -132,7 +132,7 @@ If the target MongoDB has security authentication enabled, the user account used
 
 ## Synchronize MongoDB cluster
 
-When using the MongoDB cluster as the source library, Tapdata will create a thread for each shard to read data directly from the primary node (or secondary node) of the shard< br> In order to improve the load performance, we think it is necessary to use this multi-thread parallel design scheme. However, it should be noted that the side effect of this method is that isolated documents may be generated in the source cluster library. Orphaned documents are caused by MongoDB's automatic data migration< br> To solve this problem, it is recommended to complete the following tasks before using MongoDB cluster as source database synchronization:
+When using the MongoDB cluster as the source library, TapData will create a thread for each shard to read data directly from the primary node (or secondary node) of the shard< br> In order to improve the load performance, we think it is necessary to use this multi-thread parallel design scheme. However, it should be noted that the side effect of this method is that isolated documents may be generated in the source cluster library. Orphaned documents are caused by MongoDB's automatic data migration< br> To solve this problem, it is recommended to complete the following tasks before using MongoDB cluster as source database synchronization:
 
 - **Stop balancer**
   For detailed instructions on stopping the balancer, see:

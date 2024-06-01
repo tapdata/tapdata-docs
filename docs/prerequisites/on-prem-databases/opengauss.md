@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Please follow the instructions below to successfully add and use openGauss databases in Tapdata Cloud.
+Please follow the instructions below to successfully add and use openGauss databases in TapData Cloud.
 
 ## Supported Versions
 
@@ -86,7 +86,7 @@ openGauss 3.0.0 and above
       * **schemaname**: The schema name that the target table belongs to.
       * **username**: The username.
 ## Add Data Source
-1. Log in to the [Tapdata Cloud](https://cloud.tapdata.net/console/v3/).
+1. Log in to the [TapData Cloud](https://cloud.tapdata.net/console/v3/).
 
 2. In the left navigation pane, click on **Connection Management**.
 
@@ -113,7 +113,7 @@ openGauss 3.0.0 and above
       * **Included Tables**: By default, it's set to **All**, but you can customize and enter the tables you want to include, separated by commas.
       * **Excluded Tables**: You can choose to exclude certain tables by turning on this switch and entering the table names, separated by commas.
       * **Agent Settings**: By default, it's set to **Platform Auto-Allocation**, but you can also specify it manually.
-      * **Model Loading Frequency**: When the number of models in the data source is greater than 10,000, Tapdata will periodically refresh the models based on this parameter.
+      * **Model Loading Frequency**: When the number of models in the data source is greater than 10,000, TapData will periodically refresh the models based on this parameter.
    
 6. Click on **Test Connection**. If the test is successful, click on **Save**.
 

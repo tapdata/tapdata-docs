@@ -6,7 +6,7 @@ import Content1 from '../../reuse-content/_all-features.md';
 
 Databend is an open-source, elastic, and workload-aware modern cloud data warehouse. Utilizing the latest vectorized query processing technology, Databend helps users perform rapid data analysis on object storage.
 
-This article guides you through connecting a self-hosted Databend on the Tapdata Cloud.
+This article guides you through connecting a self-hosted Databend on the TapData Cloud.
 
 ## Supported Versions
 
@@ -33,7 +33,7 @@ import Content from '../../reuse-content/_beta.md';
    CREATE USER 'tapdata' IDENTIFIED BY 'Tap@123456';
    ```
 
-2. Grant the newly created account all privileges on a specified database, so that Tapdata Cloud can automatically create the target tables for synchronization. You can also set more granular permissions based on business needs. For more, see [GRANT Syntax](https://databend.rs/doc/sql-commands/ddl/user/grant-privileges).
+2. Grant the newly created account all privileges on a specified database, so that TapData Cloud can automatically create the target tables for synchronization. You can also set more granular permissions based on business needs. For more, see [GRANT Syntax](https://databend.rs/doc/sql-commands/ddl/user/grant-privileges).
 
    ```sql
    -- Replace database_name and username as per the instructions below
@@ -45,7 +45,7 @@ import Content from '../../reuse-content/_beta.md';
 
 ## Connecting to Databend
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

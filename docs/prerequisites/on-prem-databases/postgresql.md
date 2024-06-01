@@ -4,9 +4,9 @@ import Content1 from '../../reuse-content/_all-features.md';
 
 <Content1 />
 
-Tapdata Cloud offers extensive support for building data pipelines using PostgreSQL as both the source and target database. PostgreSQL is a robust open-source object-relational database management system (ORDBMS) known for its powerful capabilities.
+TapData Cloud offers extensive support for building data pipelines using PostgreSQL as both the source and target database. PostgreSQL is a robust open-source object-relational database management system (ORDBMS) known for its powerful capabilities.
 
-This article provides detailed instructions on adding a PostgreSQL database to Tapdata Cloud, facilitating seamless integration and data flow in your pipelines.
+This article provides detailed instructions on adding a PostgreSQL database to TapData Cloud, facilitating seamless integration and data flow in your pipelines.
 
 
 ## Supported Versions
@@ -17,7 +17,7 @@ PostgreSQL versions 9.4, 9.5, 9.6, 10.x, 11.x, 12
 
 ## Incremental Data Synchronization Principle
 
-By PostgreSQL's logical decoding function, Tapdata Cloud can extract the changes made to the transaction log and handle the changes in a user-friendly manner. Supported Change Data Capture (CDC) is as follows:
+By PostgreSQL's logical decoding function, TapData Cloud can extract the changes made to the transaction log and handle the changes in a user-friendly manner. Supported Change Data Capture (CDC) is as follows:
 
 - Logical Decoding: Used to parse logical change events from Wal logs.
 - Replication Protocol: Provides a mechanism for consumers to subscribe the database changes in real time.
@@ -267,7 +267,7 @@ import Content from '../../reuse-content/_preparations.md';
 
 ## Connect to PostgreSQL
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

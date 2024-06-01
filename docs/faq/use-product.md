@@ -4,24 +4,24 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-This article lists common questions encountered while using Tapdata.
+This article lists common questions encountered while using TapData.
 
-## What data sources does Tapdata support?
+## What data sources does TapData support?
 
-Tapdata supports a wide range of databases, including common relational, non-relational, and queue-based data sources. For details, see [Supported Databases](../introduction/supported-databases.md).
+TapData supports a wide range of databases, including common relational, non-relational, and queue-based data sources. For details, see [Supported Databases](../introduction/supported-databases.md).
 
-## Does Tapdata offer a trial?
+## Does TapData offer a trial?
 
-Yes. You can click on “[Apply for a Trial](https://tapdata.net/tapdata-on-prem/demo.html),” and a Tapdata engineer will contact you to assist with the trial.
+Yes. You can click on “[Apply for a Trial](https://tapdata.net/tapdata-on-prem/demo.html),” and a TapData engineer will contact you to assist with the trial.
 
-## How does Tapdata charge?
+## How does TapData charge?
 
-Tapdata offers two deployment options, **Cloud** and **Enterprise**, to meet your diverse needs:
+TapData offers two deployment options, **Cloud** and **Enterprise**, to meet your diverse needs:
 
 | Product            | Applicable Scenarios                                                | Pricing Information                                                                                                    |
 | ------------------ | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Tapdata Cloud      | Register an account on [Tapdata Cloud](https://cloud.tapdata.net/console/v3/) to use, suitable for scenarios requiring quick deployment and low initial investment. Helps you focus more on business development rather than infrastructure management. | Provides one SMALL specification Agent instance for free (semi-managed mode). You can also subscribe to higher specifications or more Agent instances based on business needs. See more at [Product Billing](billing/billing-overview.md). |
-| Tapdata Enterprise | Supports deployment to local data centers, suitable for scenarios requiring sensitive data handling or strict network isolation, such as financial institutions, government departments, or large enterprises wanting full control over their data. | Based on the number of server nodes deployed, pay the corresponding subscription fees annually. Before making a purchase, you can click “[Apply for a Trial](https://tapdata.net/tapdata-on-prem/demo.html)” and a Tapdata engineer will assist you with the trial. See more at [Product Pricing](https://tapdata.net/pricing.html). |
+| TapData Cloud      | Register an account on [TapData Cloud](https://cloud.tapdata.net/console/v3/) to use, suitable for scenarios requiring quick deployment and low initial investment. Helps you focus more on business development rather than infrastructure management. | Provides one SMALL specification Agent instance for free (semi-managed mode). You can also subscribe to higher specifications or more Agent instances based on business needs. See more at [Product Billing](billing/billing-overview.md). |
+| TapData Enterprise | Supports deployment to local data centers, suitable for scenarios requiring sensitive data handling or strict network isolation, such as financial institutions, government departments, or large enterprises wanting full control over their data. | Based on the number of server nodes deployed, pay the corresponding subscription fees annually. Before making a purchase, you can click “[Apply for a Trial](https://tapdata.net/tapdata-on-prem/demo.html)” and a TapData engineer will assist you with the trial. See more at [Product Pricing](https://tapdata.net/pricing.html). |
 
 ## What to do if the connection test fails?
 
@@ -29,24 +29,24 @@ When creating a data connection, refer to the connection configuration help on t
 
 ## When configuring a replication task, why is the target node inference result abnormal?
 
-Tapdata automatically infers the target table structure and other information based on the selected source table. Here are some common issues you might encounter:
+TapData automatically infers the target table structure and other information based on the selected source table. Here are some common issues you might encounter:
 
-* **Update Condition Anomalies**: Tapdata automatically sets the update condition to the table's primary key. If there is no primary key, it uses a unique index field. If there is no primary key or unique index, you will need to manually specify the field for the update condition.
+* **Update Condition Anomalies**: TapData automatically sets the update condition to the table's primary key. If there is no primary key, it uses a unique index field. If there is no primary key or unique index, you will need to manually specify the field for the update condition.
 * **Inference Anomalies**: Usually caused by abnormal field types, you can adjust the types of the relevant fields as suggested on the page.
 
 ![Inference Result Anomalies](../images/faq_deduction_error.png)
 
-## What is Tapdata's logic for handling transactions?
+## What is TapData's logic for handling transactions?
 
-Usually, a transaction includes starts, processes, commits, and rollbacks. Therefore, after a transaction starts, multiple SQLs might be initiated, and Tapdata captures these changes and stores them temporarily.
+Usually, a transaction includes starts, processes, commits, and rollbacks. Therefore, after a transaction starts, multiple SQLs might be initiated, and TapData captures these changes and stores them temporarily.
 
-Transactions that remain uncommitted for a long time will cause the task to mine from this transaction's start upon each stop and start, affecting the source database and incremental sync performance. To avoid this, Tapdata cleans up uncommitted transactions that exceed a certain duration. If the source database commits such a transaction after it has been cleaned, it might lead to data inconsistencies.
+Transactions that remain uncommitted for a long time will cause the task to mine from this transaction's start upon each stop and start, affecting the source database and incremental sync performance. To avoid this, TapData cleans up uncommitted transactions that exceed a certain duration. If the source database commits such a transaction after it has been cleaned, it might lead to data inconsistencies.
 
 To avoid such issues, set the lifespan of uncommitted transactions in the source node (such as Oracle databases) during task configuration to meet business needs.
 
 ![Uncommitted Transaction Lifespan](../images/transaction_timeout.png)
 
-## Does Tapdata support publishing tables as API services?
+## Does TapData support publishing tables as API services?
 
 import Content1 from '../reuse-content/_enterprise-features.md';
 
@@ -65,7 +65,7 @@ For complex multi-table query scenarios, common solutions include materialized v
 * **Materialized Views**: A materialized view is a pre-calculated and stored virtual table that provides high-performance data access when queried. By pre-executing multi-table join operations and storing the results as a materialized view, you can significantly improve query performance and response times. This approach is suitable for scenarios where data change frequency is low because the materialized view needs to be updated with each data change.
 * **Ad-hoc Queries**: Ad-hoc queries are executed on demand without any pre-calculation and storage process. This approach is suitable for scenarios with high data change frequency because it can retrieve the latest data in real-time, though it may lead to higher query costs and longer response times during multi-table join operations.
 
-In Tapdata, you can solidify complex multi-table queries into a materialized view and provide API services based on that view. You can choose the following strategies based on the complexity of the query and real-time data requirements:
+In TapData, you can solidify complex multi-table queries into a materialized view and provide API services based on that view. You can choose the following strategies based on the complexity of the query and real-time data requirements:
 
 **Real-Time View Strategy**
 

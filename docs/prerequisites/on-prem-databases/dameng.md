@@ -6,7 +6,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 Dameng Database Management System (DM) is a new generation of large-scale general-purpose relational databases, providing comprehensive support for SQL standards and mainstream programming language interfaces/development frameworks. It adopts row-column hybrid storage technology, achieving a balance between OLAP and OLTP, and satisfying the needs of HTAP hybrid application scenarios.
 
-After completing the Agent deployment, you can follow this tutorial to add a Dameng data source in Tapdata Cloud, and subsequently use it as either a source or a target database to build data pipelines.
+After completing the Agent deployment, you can follow this tutorial to add a Dameng data source in TapData Cloud, and subsequently use it as either a source or a target database to build data pipelines.
 
 ## Supported Versions
 
@@ -98,7 +98,7 @@ Before connecting to the Dameng database, you need to complete some preparatory 
 
 ## Adding a Data Source
 
-1. [Log in to Tapdata Platform](../../user-guide/log-in.md).
+1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
 2. In the left navigation bar, click **Connections**.
 
@@ -124,7 +124,7 @@ Before connecting to the Dameng database, you need to complete some preparatory 
      * **Exclude Tables**: Turn on this switch to set tables to exclude, separated by commas (,).
      * **Agent settings**: Defaults to **Platform Automatic Allocation**, you can also manually specify an agent.
      * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-     * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Tapdata Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+     * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
        :::tip
        After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
        :::

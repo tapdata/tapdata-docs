@@ -5,7 +5,7 @@ import Content from '../reuse-content/_all-features.md';
 
 In today's age of rapidly expanding data, companies are increasingly turning to [BigQuery](https://cloud.google.com/bigquery/docs)  in order to extract valuable insights and further modernize their data analysis strategies. Through BigQuery, they aim to run large-scale critical business applications, optimizing operations, enhancing customer experience, and reducing overall costs.
 
-Tapdata Cloud, an integrated real-time data platform with ETL capabilities, has observed a growing trend and demand for migration from traditional internal data warehouses to BigQuery. Responding to this need, Tapdata launched a solution for BigQuery data synchronization, which significantly improves data write performance into BigQuery using temporary tables, thus reducing data synchronization latency. In this article, we'll use SQL Server as a case study to delve into how to seamlessly sync data in real-time to BigQuery, making the transition to a cloud-based data warehouse effortless.
+TapData Cloud, an integrated real-time data platform with ETL capabilities, has observed a growing trend and demand for migration from traditional internal data warehouses to BigQuery. Responding to this need, TapData launched a solution for BigQuery data synchronization, which significantly improves data write performance into BigQuery using temporary tables, thus reducing data synchronization latency. In this article, we'll use SQL Server as a case study to delve into how to seamlessly sync data in real-time to BigQuery, making the transition to a cloud-based data warehouse effortless.
 
 # Background
 
@@ -40,12 +40,12 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
 ## Configure Task
 
-1. [Log in to Tapdata Platform](../user-guide/log-in.md).
+1. [Log in to TapData Platform](../user-guide/log-in.md).
 
 2. Based on the product type, select the operation entry:
 
-   * **Tapdata Cloud**: In the left navigation panel, click **Data Replications**.
-   * **Tapdata Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
+   * **TapData Cloud**: In the left navigation panel, click **Data Replications**.
+   * **TapData Enterprise**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
 
 3. On the right side of the page, click **Create** to configure the task.
 
@@ -79,7 +79,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
          - **Cursor Schema Name Prefix**: When an INSERT operation is performed on the source table, it will be directly synchronized to the target table. On the other hand, when an UPDATE or DELETE operation is performed on the source table, it will be synchronized to a temporary table within the target dataset. The temporary table will have a specified name prefix to distinguish it from the target table.
             :::tip
             For more information about temporary tables, see [FAQ](#faq).
-         - **Data Merge Delay Time**: Tapdata will merge the data from the temporary table into the target table at regular time intervals. The specified time interval determines how frequently these merges occur. With shorter merge times, the target table will have more up-to-date data. It's important to note that the first merge occurs **1 hour** after the full data synchronization is completed.
+         - **Data Merge Delay Time**: TapData will merge the data from the temporary table into the target table at regular time intervals. The specified time interval determines how frequently these merges occur. With shorter merge times, the target table will have more up-to-date data. It's important to note that the first merge occurs **1 hour** after the full data synchronization is completed.
 
    3. (Optional) Click on **Data Schema** tab to view the table structure, or click on **Alert Settings** tab to set the alert policies for the node.
 
@@ -95,7 +95,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
 * Q: How does the temporary table work?
 
-   A: In order to improve the performance of data write and reduce data latency, Tapdata uses the Stream API and Merge API in combination based on BigQuery data characteristics. The process is as follows:
+   A: In order to improve the performance of data write and reduce data latency, TapData uses the Stream API and Merge API in combination based on BigQuery data characteristics. The process is as follows:
 
    1. During the full data synchronization stage, use the Stream API for data import.
 

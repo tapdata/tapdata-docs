@@ -3,13 +3,13 @@ import Content from '../../../reuse-content/_all-features.md';
 
 <Content />
 
-Tapdata supports the addition of processing nodes to data replication or pipeline tasks, providing the flexibility to incorporate data filtering, field adjustments, and other processing operations as needed. This allows users to customize and enhance their data replication workflows based on specific requirements.
+TapData supports the addition of processing nodes to data replication or pipeline tasks, providing the flexibility to incorporate data filtering, field adjustments, and other processing operations as needed. This allows users to customize and enhance their data replication workflows based on specific requirements.
 
 ## Row Filter
 
-The main usage of processing nodes in Tapdata is to filter table data, where users can set filtering conditions and execution actions.
+The main usage of processing nodes in TapData is to filter table data, where users can set filtering conditions and execution actions.
 
-* **Execute action**: Users have the option to either retain or discard the matching data when using processing nodes in Tapdata.
+* **Execute action**: Users have the option to either retain or discard the matching data when using processing nodes in TapData.
 
 * **Conditional expression**: An expression that sets a filter condition
 * **Example expression**: Filter out individuals who are either men over 50 years old or people under 30 years old with incomes of 10,000 or less. The filtering condition can be expressed as `( record.gender == 0&& record.age > 50) || ( record.age >= 30&& record.salary <= 10000)`.
@@ -52,7 +52,7 @@ The Type modification node can be used to adjust the data type of the field.
 
 ## <span id="pri-sec-merged">Master Slave Merge</span>
 
-In big data processing and analysis, merging and transforming data is a pivotal task. In this case study, using the `lineorder` and `date` tables from the [SSB Dataset](https://www.cs.umb.edu/~poneil/StarSchemaB.PDF) as examples, we'll demonstrate how to use Tapdata to fulfill the need to merge multiple tables into one MongoDB collection.
+In big data processing and analysis, merging and transforming data is a pivotal task. In this case study, using the `lineorder` and `date` tables from the [SSB Dataset](https://www.cs.umb.edu/~poneil/StarSchemaB.PDF) as examples, we'll demonstrate how to use TapData to fulfill the need to merge multiple tables into one MongoDB collection.
 
 :::tip
 
@@ -62,7 +62,7 @@ When using the Master Slave Merge, it's essential to [upgrade the Agent instance
 
 **Procedure**:
 
-1. [Log in to Tapdata Platform](../../log-in.md).
+1. [Log in to TapData Platform](../../log-in.md).
 
 2. On the left navigation bar, click **Data Transformation**.
 
@@ -80,7 +80,7 @@ When using the Master Slave Merge, it's essential to [upgrade the Agent instance
 
 7. Drag a MongoDB or MongoDB Atlas data source from the left side of the page to store the merged table and then connect the **Master Slave Merge** node to this data source.
 
-8. Click the data source you intend to store the merged table in, then select a target table or input a table name for Tapdata to automatically create in the right panel. After setting up, choose to update conditions.
+8. Click the data source you intend to store the merged table in, then select a target table or input a table name for TapData to automatically create in the right panel. After setting up, choose to update conditions.
 
    ![Append Merge Example](../../../images/primary_secondary_merge_node_conn2.png)
 
@@ -90,7 +90,7 @@ When using the Master Slave Merge, it's essential to [upgrade the Agent instance
 
 ## <span id="union-node">Union</span>
 
-The **Union** node in Tapdata merges multiple tables with the same or similar structure into a single table, combining the data based on matching field names. The detail rules are as follows:
+The **Union** node in TapData merges multiple tables with the same or similar structure into a single table, combining the data based on matching field names. The detail rules are as follows:
 
 - When the type length and precision of the deduction are different, you need to select the maximum length precision.
 - If the column type of the deduction is different, it can be converted to a generic type.
@@ -110,7 +110,7 @@ Assume that we want to merge(Union) **student1** and **student2** tables with th
 
 **Operation**:
 
-1. [Log in to Tapdata Platform](../../log-in.md).
+1. [Log in to TapData Platform](../../log-in.md).
 
 2. In the left navigation bar, click **Data Pipelines**.
 
@@ -130,7 +130,7 @@ Assume that we want to merge(Union) **student1** and **student2** tables with th
 
    :::tip
 
-   If you want Tapdata to automatically create a table structure, you can create an empty table named **student_merge** in the target database in advance (the table structure is unlimited). Then, in the **advanced settings**, select **Existing data processing** as **Clear the original table structure and data on the target side**.
+   If you want TapData to automatically create a table structure, you can create an empty table named **student_merge** in the target database in advance (the table structure is unlimited). Then, in the **advanced settings**, select **Existing data processing** as **Clear the original table structure and data on the target side**.
 
    :::
 
@@ -277,7 +277,7 @@ Support is provided for data processing through JavaScript or Java code. When wr
 
 ### Model Declarations
 
-For JS nodes, Tapdata deduces the model information of the node by sampling data trial run. If the deduced model is found to be inaccurate or the number of fields changes, the field information in the model can be defined explicitly by the model declaration.
+For JS nodes, TapData deduces the model information of the node by sampling data trial run. If the deduced model is found to be inaccurate or the number of fields changes, the field information in the model can be defined explicitly by the model declaration.
 
 ![](../../../images/model_declarations_en.png)
 
@@ -329,6 +329,6 @@ Parameter Description
 
 ### JS Built-in Function Description
 
-* [Standard JS](../../../appendix/standard-js.md): Tapdata supports processing and operating on data records, providing various functions and operations to manipulate and transform data. For example, you can use JavaScript or Java code to convert date strings to Date types. This allows you to perform date-related operations, comparisons, and formatting on the data records as needed. With this capability, you have flexibility in manipulating and transforming your data to meet your specific requirements.
-* [Enhanced JS (Beta)](../../../appendix/enhanced-js.md): Tapdata supports making external calls in JavaScript code using standard built-in functions. This allows you to perform network requests, interact with databases, and perform other operations by utilizing the capabilities of JavaScript and its built-in functions.
+* [Standard JS](../../../appendix/standard-js.md): TapData supports processing and operating on data records, providing various functions and operations to manipulate and transform data. For example, you can use JavaScript or Java code to convert date strings to Date types. This allows you to perform date-related operations, comparisons, and formatting on the data records as needed. With this capability, you have flexibility in manipulating and transforming your data to meet your specific requirements.
+* [Enhanced JS (Beta)](../../../appendix/enhanced-js.md): TapData supports making external calls in JavaScript code using standard built-in functions. This allows you to perform network requests, interact with databases, and perform other operations by utilizing the capabilities of JavaScript and its built-in functions.
 

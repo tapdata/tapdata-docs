@@ -6,7 +6,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 ApsaraDB RDS MySQL is a relational database service with high availability, scalability, security and reliability provided by Alibaba Cloud. 
 
-Tapdata extends support for constructing data pipelines with Aliyun RDS MySQL as both the source and target database. This article introduces how to connect to Aliyun RDS MySQL, helping you quickly achieve data migration to the cloud or data flow across different cloud platforms.
+TapData extends support for constructing data pipelines with Aliyun RDS MySQL as both the source and target database. This article introduces how to connect to Aliyun RDS MySQL, helping you quickly achieve data migration to the cloud or data flow across different cloud platforms.
 
 ## Supported Versions
 
@@ -47,7 +47,7 @@ Tapdata extends support for constructing data pipelines with Aliyun RDS MySQL as
       :::
 
 ## Connect to Aliyun RDS MySQL
-1. Log in to the [Tapdata Cloud platform](https://cloud.tapdata.net/console/v3/).
+1. Log in to the [TapData Cloud platform](https://cloud.tapdata.net/console/v3/).
 
 2. In the left navigation, click on **Connection Management**.
 
@@ -70,13 +70,13 @@ Tapdata extends support for constructing data pipelines with Aliyun RDS MySQL as
       * **Connection parameter string**: Additional connection parameters, default empty.
       
    * **Advanced Settings**
-      * **Time Zone**: By default, Tapdata Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+      * **Time Zone**: By default, TapData Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
         For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
       * **Contain Tables**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
       * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
       * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
       * **Model Loading Frequency**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable Heartbeat Table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Tapdata Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+      * **Enable Heartbeat Table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
         :::tip
         After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
         :::

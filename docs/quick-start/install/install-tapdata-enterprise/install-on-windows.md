@@ -4,7 +4,7 @@ import Content from '../../../reuse-content/_enterprise-features.md';
 
 <Content />
 
-This guide explains how to quickly deploy Tapdata services on a Windows platform.
+This guide explains how to quickly deploy TapData services on a Windows platform.
 
 :::tip
 
@@ -21,7 +21,7 @@ Stand-alone deployment is suitable for functional testing scenarios. For product
 
 ## Preparation
 
-1. Install MongoDB (version 4.0 and above), which will serve as the storage system for Tapdata to run related data, such as logs and metadata. For more information, see [Deploy MongoDB Replica Set](../../../production-admin/install-replica-mongodb.md).
+1. Install MongoDB (version 4.0 and above), which will serve as the storage system for TapData to run related data, such as logs and metadata. For more information, see [Deploy MongoDB Replica Set](../../../production-admin/install-replica-mongodb.md).
 
 2. Log in to the target device, install Java 1.8 and set environment variables.
 
@@ -70,7 +70,7 @@ This example uses Windows Server 2019 to demonstrate the deployment process.
 
 :::
 
-1. Download the Tapdata installation package (you can [contact us](mailto:team@tapdata.io) to obtain it) and unzip the package to the desired directory.
+1. Download the TapData installation package (you can [contact us](mailto:team@tapdata.io) to obtain it) and unzip the package to the desired directory.
 
 2. Open the command line, navigate to the unzipped directory by executing the following command, in this example, `D:\tapdata`.
 
@@ -86,11 +86,11 @@ This example uses Windows Server 2019 to demonstrate the deployment process.
       java -cp components/tm.jar -Dloader.main=com.tapdata.tm.license.util.SidGenerator org.springframework.boot.loader.PropertiesLauncher
       ```
 
-   2. Provide the printed SID information to the Tapdata support team to complete the License application process.
+   2. Provide the printed SID information to the TapData support team to complete the License application process.
 
    3. Upload the obtained License file to the unzipped directory.
 
-2. Execute `./tapdata.exe start` and follow the command line prompts to set Tapdata's login address, API service port, MongoDB connection information, etc. Example and explanations are as follows:
+2. Execute `./tapdata.exe start` and follow the command line prompts to set TapData's login address, API service port, MongoDB connection information, etc. Example and explanations are as follows:
 
    ```bash
     ./tapdata.exe start
@@ -112,18 +112,18 @@ This example uses Windows Server 2019 to demonstrate the deployment process.
    ✔ Does API Server response error code?(y/n):  … yes
    MongoDB URI:  mongodb://127.0.0.1:27017/tapdata
    MongoDB connection command: mongo  mongodb://127.0.0.1:27017/tapdata
-   System initialized. To start Tapdata, run: tapdata start
+   System initialized. To start TapData, run: tapdata start
    WORK DIR:/root/tapdata
    Testing JDK...
    Java version:1.8
    Java environment OK.
    Unpack the files...
-   Restart TapdataAgent ...:
-   TapdataAgent starting ...:
+   Restart TapDataAgent ...:
+   TapDataAgent starting ...:
    ```
 
-   * **Please enter backend url**: Set the login address for the Tapdata platform, default is `http://127.0.0.1:3030/`.
-   * **Please enter tapdata port**: Set the login port for the Tapdata platform, default is `3030`.
+   * **Please enter backend url**: Set the login address for the TapData platform, default is `http://127.0.0.1:3030/`.
+   * **Please enter tapdata port**: Set the login port for the TapData platform, default is `3030`.
    * **Please enter API server port**: Set the service port for the API Server, default is `3080`.
    * **Does MongoDB require username/password?**: If MongoDB database has enabled security authentication, enter **y** then follow prompts to enter username, password, and the authentication database (default is `admin`).
    * **Does MongoDB require TLS/SSL?(y/n)**: If MongoDB database has enabled TSL/SSL encryption, enter **y** then follow prompts to enter the absolute path of the CA certificate and Certificate Key file, and the file password of the Certificate Key.
@@ -139,11 +139,11 @@ This example uses Windows Server 2019 to demonstrate the deployment process.
    API service started
    ```
 
-3. Log in to the Tapdata platform through a browser. The local login address is [http://127.0.0.1:3030](http://127.0.0.1:3030). Please change the password promptly after the first login to ensure security.
+3. Log in to the TapData platform through a browser. The local login address is [http://127.0.0.1:3030](http://127.0.0.1:3030). Please change the password promptly after the first login to ensure security.
 
    :::tip
 
-   To access the Tapdata service from other devices on the same internal network, ensure the network is intercommunicable, for example, [setting Windows Firewall](https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/configure-the-windows-firewall-to-allow-sql-server-access) to allow access to ports 3030 and 3080 on the local machine.
+   To access the TapData service from other devices on the same internal network, ensure the network is intercommunicable, for example, [setting Windows Firewall](https://learn.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/configure-the-windows-firewall-to-allow-sql-server-access) to allow access to ports 3030 and 3080 on the local machine.
 
    :::
 

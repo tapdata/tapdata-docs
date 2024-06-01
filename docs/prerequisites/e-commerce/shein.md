@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-This article describes how to connect to Shein data sources on Tapdata Cloud.
+This article describes how to connect to Shein data sources on TapData Cloud.
 
 ### Instructions for use
 

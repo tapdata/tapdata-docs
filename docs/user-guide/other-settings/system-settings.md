@@ -69,7 +69,7 @@ Operation display settings include:
 
 - **O&M Operation Control URL**
 - **Flow Engine Version**
-- **Tapdata Agent Version**
+- **TapData Agent Version**
 
 ## Global System Settings
 
