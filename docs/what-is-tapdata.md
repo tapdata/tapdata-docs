@@ -44,6 +44,12 @@ TapData offers two deployment modes, **Cloud**, **Enterprise** and **Community**
 | TapData Enterprise | Supports deployment to local data centers. Suitable for scenarios with strict requirements on data sensitivity or network isolation, such as financial institutions, government departments, or large enterprises that want full control over their data.                                                                                             | Pay the subscription fee annually based on the number of deployed server nodes. Before purchasing, you can click “[Apply for a Trial](https://tapdata.net/tapdata-on-prem/demo.html)” and a TapData engineer will contact you and assist with the trial. For more information, see [Product Pricing](https://tapdata.net/pricing.html). |
 | TapData Community | An open-source data integration platform that provides basic data synchronization and transformation capabilities. This helps you quickly explore and implement data integration projects. As your project or business grows, you can seamlessly upgrade to TapData Cloud or TapData Enterprise to access more advanced features and service support. | [Open Source](https://github.com/tapdata/tapdata) |
 
+:::tip
+
+For more information, see [Edition Comparison](introduction/compare-editions).
+
+:::
+
 ## New to TapData?
 
 No worries, with TapData's graphical operation platform, follow our [Quick Start](quick-start/README.md) tutorial, and you can easily get started in just a few minutes. Moreover, we have prepared a wealth of tutorials to help you quickly meet your data flow requirements.
