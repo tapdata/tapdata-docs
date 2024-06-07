@@ -13,9 +13,9 @@ import TabItem from '@theme/TabItem';
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="Log-Based CDC">
+<TabItem value="Database Log API">
 ```
-Log-based CDC is a commonly used data change capture technique that captures incremental data changes by reading and parsing the database's transaction logs. These logs are a key component used by the database management system to ensure data integrity and recoverability, recording every detailed operation of the database.
+Database Log API-Based CDC is a commonly used data change capture technique that captures incremental data changes by reading and parsing the database's transaction logs. These logs are a key component used by the database management system to ensure data integrity and recoverability, recording every detailed operation of the database.
 
 For example, in MySQL, administrators can enable Binlog by modifying the database configuration file (`mysql.cnf`) to record all data modification operations and capture data change details.
 
@@ -33,10 +33,10 @@ After completing [permission granting and data source connection](../prerequisit
 
 </TabItem>
 
-<TabItem value="Raw Log-Based CDC">
-For Oracle data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (QPS over 20,000), and reduces the impact on the source database.
+<TabItem value="Database Log File">
+For Oracle and Db2 data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (QPS over 20,000), and reduces the impact on the source database.
 
-This method requires additional installation of the raw log parsing plugin. For detailed instructions, see [Deploy Oracle Raw Log Parsing Service](../best-practice/raw-logs-solution.md). After completing the setup, you can select the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md) and enter the IP address of the raw log service with the default service port **8190**.
+This solution requires the additional installation of a log parsing plugin. For example, with Oracle, after [contacting Tapdata technical support](../support.md) to complete the plugin deployment, you can choose the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md). Then, fill in the IP address of the raw log service, with the default service port being **8190**.
 
 ![Set Raw Log Plugin](..//images/raw_log_configuration.png)
 
@@ -58,7 +58,7 @@ After completing [permission granting and data source connection](../prerequisit
 
 </TabItem>
 
-<TabItem value="Trigger-Based CDC">
+<TabItem value="Database Trigger">
 Trigger-based CDC captures data changes by creating triggers on database tables. A trigger is a special type of stored procedure that automatically executes predefined operations when specific database events (such as INSERT, UPDATE, or DELETE) occur, recording the changed data to another table or sending it to an external system.
 
 For example, in MySQL, we first need to manually create a trigger to record changes in the `orders` table:
@@ -112,26 +112,25 @@ This method is not optimal and increases maintenance costs, so Tapdata does not 
 <Tabs className="unique-tabs">
 <TabItem value="Feature Comparison">
 ```
-| Category             | Log-Based CDC | Raw Log-Based CDC | Field Polling | Trigger-Based CDC |
-| -------------------- | ------------- | ----------------- | ------------- | ----------------- |
-| Distinguishes Insert/Update Operations | ✅ | ✅ | ➖ | ✅ |
-| Monitors Delete Operations | ✅ | ✅ | ➖ | ✅ |
-| No Business Intrusion | ✅ | ✅ | ➖ | ➖ |
-| No Additional Components Required | ✅ | ➖ | ✅ | ✅ |
-| Real-Time Collection | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐ | ⭐⭐ |
-| DBA Maintenance Cost | ⭐⭐ | ⭐⭐⭐ | ⭐ | ⭐⭐⭐ |
-| System Overhead Cost | ⭐ | ⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
+| Category                               | Database Log API | Database Log File                       | Field Polling | Database Trigger                       |
+| -------------------------------------- | ---------------- | --------------------------------------- | ------------- | -------------------------------------- |
+| Distinguishes Insert/Update Operations | ✅                | ✅                                       | ➖             | ✅                                      |
+| Monitors Delete Operations             | ✅                | ✅                                       | ➖             | ✅                                      |
+| Real-time Collection                   | ✅                | ✅ (Ultra-high performance)              | ➖             | ✅                                      |
+| Business Intrusion                     | 🟢 Low            | 🟢 Low                                   | 🔴 High        | 🟡 Medium                               |
+| DBA Maintenance Cost                   | 🟡 Medium         | 🔴 High (Requires additional components) | 🟢 Low         | 🔴 High (Trigger management is complex) |
+| System Overhead Cost                   | 🟢 Low            | 🟢 Low                                   | 🔴 High        | 🔴 High                                 |
 
 </TabItem>
 
 <TabItem value="Pros and Cons Comparison">
 
-| CDC Method           | Advantages                                                 | Disadvantages                                          |
-| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
-| Log-Based CDC        | ● Utilizes existing logs with minimal impact on performance<br />● Easily tracks schema changes | ● Requires sufficient storage space and expiration time for logs |
-| Raw Log-Based CDC    | ● Directly parses native binary logs, reducing intermediates<br/>● Higher collection performance, QPS over 20,000 | ● Requires additional component deployment and maintenance<br />● Requires broader account permissions |
-| Field Polling        | ● Simple implementation, not dependent on logs or triggers<br />● Highly versatile, applicable to various databases | ● Lower real-time performance, dependent on polling frequency<br />● Business intrusion, involves table structure changes<br />● Cannot track deletions or schema changes |
-| Trigger-Based CDC    | ● Operates at SQL level, simple implementation<br />● Reliable and detailed, accurately captures data changes | ● Data changes require multiple writes<br />● Multiple triggers can severely impact performance<br />● Requires creating triggers on each table, high maintenance cost<br />● Triggers may be disabled under certain circumstances |
+| CDC Method        | Advantages                                                   | Disadvantages                                                |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Database Log API  | ● Utilizes existing logs with minimal impact on performance<br />● Easily tracks schema changes | ● Requires sufficient storage space and expiration time for logs |
+| Database Log File | ● Directly parses native binary logs, reducing intermediates<br/>● Higher collection performance, QPS over 20,000 | ● Requires additional component deployment and maintenance<br />● Requires broader account permissions |
+| Field Polling     | ● Simple implementation, not dependent on logs or triggers<br />● Highly versatile, applicable to various databases | ● Lower real-time performance, dependent on polling frequency<br />● Business intrusion, involves table structure changes<br />● Cannot track deletions or schema changes |
+| Database Trigger  | ● Operates at SQL level, simple implementation<br />● Reliable and detailed, accurately captures data changes | ● Data changes require multiple writes<br />● Multiple triggers can severely impact performance<br />● Requires creating triggers on each table, high maintenance cost<br />● Triggers may be disabled under certain circumstances |
 
 </TabItem>
 </Tabs>
@@ -145,6 +144,6 @@ This method is not optimal and increases maintenance costs, so Tapdata does not 
 * Q: If my data source supports CDC, how do I choose the CDC collection method?
 
   A: To maximize compatibility and collection performance, Tapdata supports the following CDC collection methods:
-  * **Log-Based CDC**: The default collection method, supported by most databases. If permission restrictions prevent log access or for certain SaaS data sources, choose the **Field Polling** method.
-  * **Raw Log-Based CDC**: Currently supported only for Oracle data sources.
+  * **Database Log API**: The default collection method, supported by most databases. If permission restrictions prevent log access or for certain SaaS data sources, choose the **Field Polling** method.
+  * **Database Log File**: Currently supported only for Oracle and Db2 data sources.
   * **Field Polling**: Set the incremental synchronization method for the source node in Tapdata when [configuring the data transformation task](../user-guide/data-pipeline/data-development/create-task.md).
