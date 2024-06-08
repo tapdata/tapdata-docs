@@ -1,4 +1,7 @@
 # Change Data Capture (CDC)
+import Content from '../reuse-content/_all-features.md';
+
+<Content />
 
 Change Data Capture (CDC) is a method for capturing and tracking data changes in a database. It plays a crucial role in data synchronization and integration, enabling incremental data synchronization. This document provides a detailed overview of the various CDC methods, helping you understand their working principles, advantages, and disadvantages, and offering specific usage instructions.
 
