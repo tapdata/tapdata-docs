@@ -476,3 +476,8 @@ Sevice
 linkedhashmap
 failover
 Relmig
+rdatetime
+rlongbinary
+rlongstring
+rnumber
+rstring
