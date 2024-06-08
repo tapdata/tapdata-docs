@@ -4,6 +4,25 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.7.0
+
+### New Features
+
+* Added support for [granting data verification permissions](../user-guide/manage-system/manage-role.md) to users, enhancing permission management granularity.
+* Introduced Mock Source and Mock Target data sources for data migration testing scenarios.
+
+### Enhancements
+
+* Improved the interaction logic for skipping errors when starting tasks.
+* Improved the loading speed of the connection list.
+
+### Bug Fixes
+
+* Fixed inconsistencies between the task runtime model and configuration model.
+* Fixed inaccurate task event statistics after filtering source data.
+* Fixed timezone handling issues in Oracle and PostgreSQL synchronization scenarios.
+* Fixed an issue where heartbeat task reset failures could prevent related tasks from starting.
+
 ## 3.6.0
 
 ### New Features
