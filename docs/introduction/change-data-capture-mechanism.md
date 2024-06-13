@@ -37,9 +37,9 @@ After completing [permission granting and data source connection](../prerequisit
 </TabItem>
 
 <TabItem value="Database Log File">
-For Oracle and Db2 data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (QPS over 20,000), and reduces the impact on the source database.
+For Oracle and Db2 data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (Queries Per Second, QPS, over 20,000), and reduces the impact on the source database.
 
-This solution requires the additional installation of a log parsing plugin. For example, with Oracle, after [contacting Tapdata technical support](../support.md) to complete the plugin deployment, you can choose the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md). Then, fill in the IP address of the raw log service, with the default service port being **8190**.
+This solution requires the additional installation of a log parsing plugin. For example, with Oracle, after [contacting Tapdata technical support](../support.md) to complete the plugin deployment, you can choose the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md). Then, fill in the IP address of the raw log service, with the default service port of **8190**.
 
 ![Set Raw Log Plugin](..//images/raw_log_configuration.png)
 
@@ -140,7 +140,7 @@ This method is not optimal and increases maintenance costs, so Tapdata does not 
 
 ## FAQs
 
-* Q: Which data sources supported by Tapdata can obtain CDC?
+* Q: Which data sources does Tapdata support CDC capture for?
 
   A: Please refer to the tables in [Supported Data Sources](../introduction/supported-databases.md). If incremental data is supported as a data source, CDC information can be obtained.
 
