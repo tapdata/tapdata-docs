@@ -40,8 +40,17 @@ import TabItem from '@theme/TabItem';
 </thead>
 <tbody>
   <tr>
-    <td>ClickHouse</td>
+    <td>AWS Clickhouse</td>
+    <td>✅</td>
     <td>➖</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>23 and above</td>
+  </tr>
+  <tr>
+    <td>ClickHouse</td>
+    <td>✅</td>
     <td>➖</td>
     <td>➖</td>
     <td>✅</td>
@@ -64,7 +73,7 @@ import TabItem from '@theme/TabItem';
     <td>➖</td>
     <td>✅</td>
     <td>➖</td>
-    <td>3.2, 3.4, 3.6, 4.0+</td>
+    <td>3.4, 3.6, 4.0+</td>
   </tr>
   <tr>
     <td>MySQL</td>
@@ -101,6 +110,15 @@ import TabItem from '@theme/TabItem';
     <td>✅</td>
     <td>✅</td>
     <td>2005, 2008, 2012, 2014, 2016, 2017</td>
+  </tr>
+   <tr>
+    <td>TiDB</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>5.x</td>
   </tr>
 </tbody>
 </table>
@@ -172,7 +190,7 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>➖</td>
     <td>✅</td>
     <td>➖</td>
-    <td>-</td>
+    <td>N/A</td>
   </tr>
   <tr>
     <td>Informix</td>
@@ -182,6 +200,24 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>➖</td>
     <td>10 and above</td>
+  </tr>
+  <tr>
+    <td>Mock Source</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>➖</td>
+    <td>➖</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+   <td>Mock Target</td>
+   <td>➖</td>
+   <td>➖</td>
+   <td>➖</td>
+   <td>✅</td>
+   <td>➖</td>
+   <td>N/A</td>
   </tr>
   <tr>
     <td>KingBaseES-R6</td>
@@ -200,6 +236,15 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>✅</td>
     <td>10.x</td>
+  </tr>
+  <tr>
+    <td>MongoDB Below 3.4</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>3.4 or earlier</td>
   </tr>
   <tr>
     <td>Redis</td>
@@ -227,15 +272,6 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>✅</td>
     <td>3.x</td>
-  </tr>
-  <tr>
-    <td>TiDB</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>➖</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>5.x</td>
   </tr>
 </tbody>
 </table>
@@ -287,6 +323,15 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>➖</td>
     <td>0.15.0</td>
+  </tr>
+  <tr>
+    <td>Hudi</td>
+    <td>➖</td>
+    <td>➖</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>0.11.0</td>
   </tr>
   <tr>
     <td>GaussDB（DWS）</td>
@@ -376,6 +421,15 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>XLS/XLSX, file locations supported include local, FTP, SFTP, SMB, S3FS, OSS</td>
   </tr>
   <tr>
+  <tr>
+    <td>Huawei's Cloud GaussDB</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>Enterprise version 2.8 (primary-standby), supports Standby version 8.1 for on-prem deployment</td>
+  </tr>
     <td>HubSpot</td>
     <td>✅</td>
     <td>➖</td>
@@ -516,13 +570,22 @@ The Alpha version of the data sources is in public preview and has passed the ba
     <td>V8R3</td>
   </tr>
   <tr>
-    <td>OceanBase（MySQL模式）</td>
-    <td>➖</td>
-    <td>➖</td>
-    <td>➖</td>
+    <td>OceanBase（MySQL Mode）</td>
     <td>✅</td>
-    <td>➖</td>
-    <td>3.x</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>3.x, 4.x</td>
+  </tr>
+  <tr>
+    <td>OceanBase（Oracle Mode）</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>4.x</td>
   </tr>
   <tr>
     <td>OpenGauss</td>

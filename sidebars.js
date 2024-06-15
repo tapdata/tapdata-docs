@@ -28,7 +28,6 @@ const sidebars = {
              'introduction/features',
              'introduction/benefits',
              'introduction/use-cases',
-             'introduction/supported-databases',
              'introduction/security',
              'introduction/terms',
        ]
@@ -77,6 +76,7 @@ const sidebars = {
          label: 'Connect Data Sources',
          link: {type: 'doc', id: 'prerequisites/README'},
          items: [
+                 'prerequisites/supported-databases',
                  {
                   type: 'category',
                   label: 'Warehouses and Lakes',
