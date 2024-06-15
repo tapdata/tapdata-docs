@@ -481,3 +481,4 @@ rlongbinary
 rlongstring
 rnumber
 rstring
+pingcap
