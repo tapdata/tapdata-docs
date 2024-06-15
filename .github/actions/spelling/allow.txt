@@ -481,3 +481,5 @@ rlongbinary
 rlongstring
 rnumber
 rstring
+Huawei
+Hudi
