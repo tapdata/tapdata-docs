@@ -6,6 +6,24 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.8.0
+
+### New Features
+
+* [Task Monitoring Page](../user-guide/data-pipeline/copy-data/monitor-task.md) now supports performance analysis, allowing you to download performance metrics for analysis.
+
+### Enhancements
+
+* Improved the display of primary keys and indexes in the task's table model.
+* Enhanced the model deduction logic, supporting model deduction directly in the engine.
+
+### Bug Fixes
+
+* Fixed an issue where some exceptions were ignored during data source error handling.
+* Fixed an issue where aggregation tasks using time fields as join keys could not backtrack data.
+* Fixed an issue with delayed times in mining tasks.
+* Fixed an issue where MySQL as a source would consume a large amount of database memory during initial synchronization of large tables.
+
 ## 3.7.0
 
 ### New Features
