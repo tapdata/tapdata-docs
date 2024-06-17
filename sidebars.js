@@ -29,6 +29,7 @@ const sidebars = {
              'introduction/benefits',
              'introduction/use-cases',
              'introduction/supported-databases',
+             'introduction/change-data-capture-mechanism',
              'introduction/security',
              'introduction/terms',
        ]
