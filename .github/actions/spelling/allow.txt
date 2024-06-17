@@ -481,3 +481,11 @@ rlongbinary
 rlongstring
 rnumber
 rstring
+BIGSERIAL
+devg
+GUC
+hba
+huawei
+mppdb
+SMALLSERIAL
+usermanual
