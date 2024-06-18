@@ -100,7 +100,7 @@ import TabItem from '@theme/TabItem';
     <td>➖</td>
     <td>✅</td>
     <td>✅</td>
-    <td>9.4+</td>
+    <td>9.4 and above</td>
   </tr>
   <tr>
     <td>SQL Server</td>
@@ -115,13 +115,14 @@ import TabItem from '@theme/TabItem';
     <td>TiDB</td>
     <td>✅</td>
     <td>✅</td>
-    <td>➖</td>
     <td>✅</td>
     <td>✅</td>
-    <td>5.x</td>
+    <td>✅</td>
+    <td>5.4 and above</td>
   </tr>
 </tbody>
 </table>
+
 
 
 ## Beta Data Sources
