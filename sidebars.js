@@ -28,6 +28,7 @@ const sidebars = {
              'introduction/features',
              'introduction/benefits',
              'introduction/use-cases',
+             'introduction/change-data-capture-mechanism',
              'introduction/security',
              'introduction/terms',
        ]
@@ -138,6 +139,7 @@ const sidebars = {
                            'prerequisites/cloud-databases/aliyun-rds-for-pg',
                            'prerequisites/cloud-databases/aliyun-rds-for-sql-server',
                            'prerequisites/cloud-databases/amazon-rds-mysql',
+                           'prerequisites/cloud-databases/huawei-cloud-gaussdb',
                            'prerequisites/cloud-databases/polardb-mysql',
                            'prerequisites/cloud-databases/polardb-postgresql',
                            'prerequisites/cloud-databases/tencentdb-for-mariadb',

@@ -483,3 +483,12 @@ rnumber
 rstring
 Huawei
 Hudi
+BIGSERIAL
+devg
+GUC
+hba
+huawei
+mppdb
+SMALLSERIAL
+usermanual
+
