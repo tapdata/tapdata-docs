@@ -1,6 +1,6 @@
 # SaaS and APIs
 
-import Content from '../../reuse-content/_all-features.md';
+import Content from '../../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 

@@ -481,6 +481,8 @@ rlongbinary
 rlongstring
 rnumber
 rstring
+Huawei
+Hudi
 BIGSERIAL
 devg
 GUC
@@ -489,3 +491,4 @@ huawei
 mppdb
 SMALLSERIAL
 usermanual
+

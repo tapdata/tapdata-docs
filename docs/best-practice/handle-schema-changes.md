@@ -21,7 +21,7 @@ To ensure the high availability and fault tolerance of data replication/transfor
 
    :::tip
 
-   Besides enabling this switch, the target database must also support **DDL** **application**. You can check the support status of various data sources for DDL event collection and DDL apply through the [supported data sources](../introduction/supported-databases.md) document, or in the **Advanced Settings** of the target node, see the hint for **DDL Event Apply**.
+   Besides enabling this switch, the target database must also support **DDL** **application**. You can check the support status of various data sources for DDL event collection and DDL apply through the [supported data sources](../prerequisites/supported-databases.md) document, or in the **Advanced Settings** of the target node, see the hint for **DDL Event Apply**.
 
    :::
 

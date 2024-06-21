@@ -34,7 +34,7 @@ TapData uses heartbeat tables to write timestamp information to the source datab
 
    :::tip
 
-   If you do not see this switch, check the **Connection Type** setting on the page to ensure it is set to **Source and Target**. Additionally, some data sources do not support being used as both source and target. For more information, see [Supported Data Sources](../introduction/supported-databases.md).
+   If you do not see this switch, check the **Connection Type** setting on the page to ensure it is set to **Source and Target**. Additionally, some data sources do not support being used as both source and target. For more information, see [Supported Data Sources](../prerequisites/supported-databases.md).
 
    :::
 

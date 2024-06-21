@@ -32,5 +32,5 @@ With TapData's [Real-Time Data Hub](../user-guide/real-time-data-hub/daas-mode/e
 
 ## Supported sources and targets
 
-TapData supports mainstream databases, including commercial databases, open-source databases, cloud databases, SaaS platform data sources, file data sources, and allows for custom data sources. For more information, see [Supported Data Sources](supported-databases.md).
+TapData supports mainstream databases, including commercial databases, open-source databases, cloud databases, SaaS platform data sources, file data sources, and allows for custom data sources. For more information, see [Supported Data Sources](../prerequisites/supported-databases.md).
 

@@ -142,7 +142,7 @@ This method is not optimal and increases maintenance costs, so Tapdata does not 
 
 * Q: Which data sources does Tapdata support CDC capture for?
 
-  A: Please refer to the tables in [Supported Data Sources](../introduction/supported-databases.md). If incremental data is supported as a data source, CDC information can be obtained.
+  A: Please refer to the tables in [Supported Data Sources](../prerequisites/supported-databases.md). If incremental data is supported as a data source, CDC information can be obtained.
 
 * Q: If my data source supports CDC, how do I choose the CDC collection method?
 

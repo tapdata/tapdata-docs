@@ -12,7 +12,7 @@ Traditional master data management retrieves source data from business systems i
 
 TapData offers a one-stop real-time data synchronization experience, enabling you to build complete data collection and flow pipelines in just a few steps, with the following advantages:
 
-* Supports a rich array of [data sources](supported-databases.md) for data synchronization between homogeneous/heterogeneous data sources.
+* Supports a rich array of [data sources](../prerequisites/supported-databases.md) for data synchronization between homogeneous/heterogeneous data sources.
 * Supports event-triggered data processing logic and multiple data verification methods to ensure high reliability and low latency.
 * Enables deduplication, rule judgment, and other master data governance functions through powerful UDF capabilities.
 * Supports low-code [API services](../user-guide/data-service/README.md) deployment for end-to-end data consumption.
