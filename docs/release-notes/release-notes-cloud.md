@@ -11,7 +11,6 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 #### New Features
 
 * [TiDB](../prerequisites/on-prem-databases/tidb.md) has completed TapData integration and certification testing, upgraded to a GA-level data source.
-* [Task Monitoring Page](../user-guide/data-pipeline/copy-data/monitor-task.md) now supports performance analysis, allowing you to download performance metrics for analysis.
 
 #### Enhancements
 

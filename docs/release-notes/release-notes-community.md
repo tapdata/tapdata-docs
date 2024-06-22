@@ -8,10 +8,6 @@ This document introduces the recent release notes for TapData Community. For mor
 
 ## 3.8.0
 
-### New Features
-
-* [Task Monitoring Page](../user-guide/data-pipeline/copy-data/monitor-task.md) now supports performance analysis, allowing you to download performance metrics for analysis.
-
 ### Enhancements
 
 * Improved the display of primary keys and indexes in the task's table model.

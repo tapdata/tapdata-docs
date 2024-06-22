@@ -10,7 +10,6 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 * [TiDB](../prerequisites/on-prem-databases/tidb.md) has completed TapData integration and certification testing, upgraded to a GA-level data source.
 * [Data Validation](../user-guide/data-pipeline/verify-data.md) now supports automatic difference checking, allowing real-time tasks to automatically perform difference checks based on incremental delay.
-* [Task Monitoring Page](../user-guide/data-pipeline/copy-data/monitor-task.md) now supports performance analysis, allowing you to download performance metrics for analysis.
 
 ### Enhancements
 
