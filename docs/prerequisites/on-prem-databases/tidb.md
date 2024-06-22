@@ -4,62 +4,106 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-TiDB is an open-source distributed relational database designed and developed by PingCAP. It is a versatile distributed database product that supports both online transaction processing (OLTP) and online analytical processing (OLAP). Once you have completed the deployment of the Agent, you can follow this tutorial to add a TiDB data source to TapData Cloud. This will enable you to use TiDB as either a source or target database to build data pipelines.
+TiDB is an open-source distributed relational database designed and developed by PingCAP. It is a distributed database product that supports both online transaction processing and online analytical processing. After completing the Agent deployment, you can follow this tutorial to add a TiDB data source in TapData and use it as a source or target database to build data pipelines.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
+:::tip
+
+To further simplify the usage process, TapData's TiDB connector integrates TiCDC, which parses data change logs into ordered row-level change data. For more principles and concept introductions, see [TiCDC Overview](https://docs.pingcap.com/zh/tidb/stable/ticdc-overview).
+
+:::
+
 ## Supported Versions
 
-TiDB 5.4 and above.
+TiDB 5.4 and above
 
-## <span id="prerequisite">Prerequisites</span>
+## Precautions
 
-1. Log in to your TiDB database and execute the following command to create an account for data synchronization/development tasks.
+* To ensure proper data synchronization, the TiDB cluster and TapData engine (Agent) must be able to communicate properly.
+
+* When using TiDB as a source for incremental data synchronization, you need to check the following:
+
+  * The tables to be synchronized must have a primary key or unique index, where the columns in the unique index cannot be NULL and cannot be virtual columns.
+
+  * To avoid TiCDC garbage collection affecting transaction or incremental data extraction, it is recommended to set `SET GLOBAL tidb_gc_life_time= '24h'` to 24 hours.
+
+  * For TiDB versions 8.0 and above, if you use Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent) and must be deployed on a Linux platform. For more information, see [update TiCDC](#ticdc) below.
+
+## <span id="prerequisite">Preparation</span>
+
+1. Log in to the TiDB database and execute the following command to create an account for data synchronization/development tasks.
 
    ```sql
    CREATE USER 'username'@'host' IDENTIFIED BY 'password';
    ```
 
-   * **username**: Enter user name.
-   * **host**: The host allowed for this account to log in. The percent sign (%) indicates allowing any host.
-   * **password**：Enter user's password.
+   * **username**: The username.
+   * **host**: The host that the account is allowed to log in from, a percentage sign (%) indicates any host.
+   * **password**: The password.
 
-   Example: Create an account named 'tapdata' that allows logins from any host.
+   Example: Create an account named tapdata, allowing login from any host.
 
    ```sql
-   CREATE USER 'tapdata'@'%' IDENTIFIED BY 'Tap@123456';
+   CREATE USER 'tapdata'@'%' IDENTIFIED BY 'your_passwd';
    ```
 
-2. Grant privileges to the newly created account.
+2. Grant permissions to the newly created account.
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="As a Source Database">
+<TabItem value="As Source Database">
 ```
+
 ```sql
--- Permissions required for full + incremental sync
+-- Permissions required for full + incremental synchronization
 GRANT SELECT ON *.* TO 'username' IDENTIFIED BY 'password';
 ```
 </TabItem>
 
-<TabItem value="As a Target Database">
+<TabItem value="As Target Database">
 
 ```sql
--- Grant permissions to a specific database
+-- Grant permissions for a specific database
 GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, DROP ON database_name.* TO 'username';
 
--- Grant permissions to all databases
+-- Grant permissions for all databases
 GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, DROP ON *.* TO 'username';
 ```
 </TabItem>
 </Tabs>
 
-* **database_name**：Enter database name.
-* **username**: Enter user name.
-* **password**：Enter user's password.
+* **database_name**: The name of the <span id="ticdc">database</span>.
+* **username**: The username.
+
+3. If incremental data synchronization is required and the TiDB version is above 8.0, you need to follow the steps below to update TiCDC.
+
+   1. Download the TiCDC tool from the URL format `https://tiup-mirrors.pingcap.com/cdc-v${ti-db-version}-linux-${system-architecture}.tar.gz`.
+
+      * `${ti-db-version}`: TiDB version, for example: `8.0.1`
+      * `${system-architecture}`: Operating system architecture, for example: `amd64` (i.e., x86_64) or `arm64`
+
+      For example, the download URL for TiCDC version 8.1.0 on Linux (x86_64 architecture) is: https://tiup-mirrors.pingcap.com/cdc-v8.1.0-linux-AMD64.tar.gz
+
+   2. Execute the following command to extract the file and name it `cdc`.
+
+      ```bash
+      # Please replace the archive filename with your actual filename
+      tar -zxvf cdc-v8.1.0-linux-AMD64.tar.gz cdc
+      ```
+
+   3. Copy and replace the `cdc` file to the `{tapData_dir}/run-resources/ti-db/tool` directory.
+
+      :::tip
+
+      `{tapData_dir}` is the TapData installation directory. If prompted with `Text file busy`, you need to stop the data synchronization task associated with this data source before copying the file.
+
+      :::
+
+   4. Grant read, write, and execute permissions to the current user for the `{tapData_dir}/run-resources/ti-db/tool` directory.
 
 ## Connect to TiDB
 
