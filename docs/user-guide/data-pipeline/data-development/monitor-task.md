@@ -31,7 +31,7 @@ You can rename the task, view its start time, and check the Agent status, which 
 Displaying basic information and key monitoring indicators of the task, including synchronization information, task verification information, performance indicators, and task time statistics.
 
 * **Task Checksumming**: Will only be displayed if the task has checksum enabled. You can click to view checksum details if any anomalies are found.
-* **QPS**: The average number of input and output events processed by the task per second. It supports viewing based on the dimensions of event count or size.
+* **RPS**: The average number of input and output records processed by the task per second. It supports viewing based on the dimensions of event count or size.
 * **Incremental Delay**: The delay is calculated as the time it takes for an event generated in the source database to be processed and written to the target by the task. When there are multiple targets, only the maximum incremental delay time is considered, measured in milliseconds.
 * **Task Event Statistics**: Statistics of all cumulative events after the operation of the task should be analyzed with the following precautions in mind.
   * **Update**: If the target database already exists when performing an insertion event, it will be treated as an update event. This behavior is determined by the write policy, which is configured to update when the target already exists.
@@ -49,7 +49,7 @@ Hover your mouse pointer over a node to display key metrics for that node, and c
 - **Full Sync Progress**: The progress report on the full data synchronization.
 - **Incremental Data Synchronization**: The incremental log collection time point is represented as the relative time of (engine time - incremental time point of the node) in the floating window when hovering the mouse.
 - **Writing time**: The time it takes for data to be written to the target.
-- **QPS**: The QPS of the node.
+- **RPS**: RPS (Records Per Second) measures the speed and performance of data transfer by indicating the number of records processed each second.
 - **Cumulative Input Events**: The number of events received by the node from the previous node or source database.
 - **Cumulative Output Events**: The number of events sent by the node to the next node or target database.
 - **Processing time**: The processing time for the node to process data.

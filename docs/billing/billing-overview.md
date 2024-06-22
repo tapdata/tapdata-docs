@@ -44,7 +44,7 @@ Please note that the performance of the following tables is provided for referen
     <th rowspan="2">Specifications</th>
     <th rowspan="2">Running Tasks</th>
     <th colspan="2">Host hardware recommendation ①</th>
-    <th rowspan="2">Performance Reference (QPS) </th>
+    <th rowspan="2">Performance Reference (RPS) </th>
   </tr>
   <tr>
     <th>CPU cores</th>

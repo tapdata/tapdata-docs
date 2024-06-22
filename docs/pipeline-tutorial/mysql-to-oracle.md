@@ -60,7 +60,7 @@ Before building the data sync pipeline, we first need to establish a connection 
 
 7. Click on the **Save** or **Start** to finalize the creation. To ensure the task runs smoothly, TapData conducts a pre-check based on the node configuration and characteristics of the data source, simultaneously logging relevant information.
 
-   Upon successful start, you'll be automatically redirected to the **Task Monitoring** page. Here, you can view details like the task's QPS (Queries Per Second), latency, and various task-related events.
+   Upon successful start, you'll be automatically redirected to the **Task Monitoring** page. Here, you can view details like the task's RPS (Records Per Second), latency, and various task-related events.
 
    ![Monitor Task](../images/monitor_mysql_to_oracle.png)
 

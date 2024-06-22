@@ -36,12 +36,12 @@ These steps will allow us to comprehensively evaluate TapData's data processing 
 
 ## Test Metrics Explanation
 
-| Metric      | Description                                                         |
-| ----------- | ------------------------------------------------------------------- |
-| Sync QPS    | Number of data rows synchronized per second, measured in rows/sec.  |
-| 99th Latency| 99% of operations have a maximum delay of this value, measured in milliseconds. Assumes a value of 100 milliseconds means 99% of requests are processed within this time. |
-| 95th Latency| 95% of operations have a maximum delay of this value, measured in milliseconds. |
-| Average Latency | Average latency distribution, measured in milliseconds.           |
+| Metric          | Description                                                                                                                                                              |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Sync RPS        | Records Per Second measures the speed and performance of data transfer by indicating the number of records processed each second.                                        |
+| 99th Latency    | 99% of operations have a maximum delay of this value, measured in milliseconds. Assumes a value of 100 milliseconds means 99% of requests are processed within this time. |
+| 95th Latency    | 95% of operations have a maximum delay of this value, measured in milliseconds.                                                                                          |
+| Average Latency | Average latency distribution, measured in milliseconds.                                                                                                                  |
 
 ## Test Results
 
@@ -63,8 +63,8 @@ To ensure the accuracy and applicability of performance test results, we will co
 
 Results of real-time synchronization from a MongoDB source to different target databases are as follows:
 
-| Target Database      | Incremental Rows Written | Total Increment Time | Average Sync QPS | 99th Latency  | 95th Latency  | Average Latency  |
-| -------------------- | ------------------------ | -------------------- | ---------------- | ------------- | ------------- | ---------------- |
+| Target Database      | Incremental Rows Written | Total Increment Time | Average Sync RPS | 99th Latency  | 95th Latency  | Average Latency  |
+| -------------------- | ------------------------ | -------------------- |------------------| ------------- | ------------- | ---------------- |
 | **MongoDB**          | 5.1 million              | 438 seconds          | 11,664           | 2,000 ms      | 1,900 ms      | 1,163 ms         |
 | **ElasticSearch**    | 3.1 million              | 261 seconds          | 11,608           | 1,700 ms      | 1,500 ms      | 980 ms           |
 | **Redis**            | 6.7 million              | 577 seconds          | 11,592           | 1,600 ms      | 1,300 ms      | 781 ms           |
@@ -120,8 +120,8 @@ Results of real-time synchronization from a MongoDB source to different target d
 
 **Test Results**:
 
-| Target Database | Incremental Rows Written | Total Increment Time | Average Sync QPS | 99th Latency  | 95th Latency  | Average Latency |
-| --------------- | ------------------------ | -------------------- | ---------------- | ------------- | ------------- | ---------------- |
+| Target Database | Incremental Rows Written | Total Increment Time | Average Sync RPS | 99th Latency  | 95th Latency  | Average Latency |
+| --------------- | ------------------------ | -------------------- |------------------| ------------- | ------------- | ---------------- |
 | **MySQL**       | 5 million                | 281 seconds          | 17,795           | 1,400 ms      | 1,200 ms      | 712 ms           |
 | **Kafka**       | 2 million                | 184 seconds          | 10,892           | 1,100 ms      | 1,100 ms      | 690 ms           |
 
@@ -169,8 +169,8 @@ $$ LANGUAGE plpgsql;
 
 ### Test Results
 
-| Target Database | Incremental Rows Written | Total Increment Time | Average Sync QPS | 99th Latency  | 95th Latency  | Average Latency   |
-| --------------- | ------------------------ | -------------------- | ---------------- | ------------- | ------------- | ------------------ |
+| Target Database | Incremental Rows Written | Total Increment Time | Average Sync RPS | 99th Latency  | 95th Latency  | Average Latency   |
+| --------------- | ------------------------ | -------------------- |------------------| ------------- | ------------- | ------------------ |
 | **PostgreSQL**  | 1.45 million             | 121 seconds          | 11,946           | 1,600 ms      | 1,500 ms      | 1,060 ms           |
 
 ## Source Database: Redis
@@ -187,6 +187,6 @@ In this test, the Redis instance is deployed as a 3-node cluster, each node havi
 
 ### Test Results
 
-| Target Database | Incremental Rows Written | Total Increment Time | Average Sync QPS | 99th Latency | 95th Latency | Average Latency |
-| --------------- | ------------------------ | -------------------- | ---------------- | ------------ | ------------ | --------------- |
+| Target Database | Incremental Rows Written | Total Increment Time | Average Sync RPS | 99th Latency | 95th Latency | Average Latency |
+| --------------- | ------------------------ | -------------------- |------------------| ------------ | ------------ | --------------- |
 | **Redis**       | 29.4 million             | 1806 seconds         | 16,287           | 800 ms       | 200 ms       | 140 ms          |

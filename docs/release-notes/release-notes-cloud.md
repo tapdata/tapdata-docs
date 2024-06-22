@@ -138,7 +138,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 ### Enhancements
 
 - Improved the onboarding process for users from the [Google Cloud Marketplace](https://console.cloud.google.com/marketplace/product/tapdata-public/detail).
-- Added a time filter option for the incremental phase in the [Task Monitoring Page](../user-guide/data-pipeline/copy-data/monitor-task.md) to quickly observe QPS during the incremental phase.
+- Added a time filter option for the incremental phase in the [Task Monitoring Page](../user-guide/data-pipeline/copy-data/monitor-task.md) to quickly observe RPS (Records Per Second) during the incremental phase.
 - Added warning messages for critical operations that might impact the database (e.g., filtering source table data).
 - Refined the logic for unsubscribing after instance subscription expiration.
 
@@ -206,7 +206,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 ### New Features
 
 * Support for loading table comments on [Oracle data sources](prerequisites/on-prem-databases/oracle#advanced), which can be enabled in the **Advanced Settings** when configuring the data source. This makes it easier to quickly identify the business meaning of tables through their comments.
-* In the task [monitoring page](../user-guide/data-pipeline/copy-data/monitor-task.md), support viewing QPS (Queries Per Second) information based on the size of events.
+* In the task [monitoring page](../user-guide/data-pipeline/copy-data/monitor-task.md), support viewing RPS (Records Per Second) information based on the size of events.
 
 ### Enhancements
 

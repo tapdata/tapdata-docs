@@ -32,7 +32,7 @@ The manageable actions are as follows:
   
   ![Edit Shared Mining](../../images/edit_share_mining.png)
 
-* **Monitor**: Click **Monitor** corresponding to the mining task to view detailed mining information, such as QPS, incremental delay, and other key indicators.
+* **Monitor**: Click **Monitor** corresponding to the mining task to view detailed mining information, such as RPS (Records Per Second), incremental delay, and other key indicators.
   
   ![](../../images/shared_mining_detail.png)
 

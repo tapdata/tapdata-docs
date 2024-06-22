@@ -85,7 +85,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
 7. After confirming the configuration is correct, click **Start**.
 
-   After the operation is completed, you can observe the performance of the task on the current page, such as QPS, delay, task time statistics, etc.
+   After the operation is completed, you can observe the performance of the task on the current page, such as RPS (Records Per Second), delay, task time statistics, etc.
 
    ![View Task Run Details](../images/sql_server_to_bigquery_monitor.png)
 

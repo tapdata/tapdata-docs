@@ -37,7 +37,7 @@ After completing [permission granting and data source connection](../prerequisit
 </TabItem>
 
 <TabItem value="Database Log File">
-For Oracle and Db2 data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (Queries Per Second, QPS, over 20,000), and reduces the impact on the source database.
+For Oracle and Db2 data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (Records Per Second, RPS, over 20,000), and reduces the impact on the source database.
 
 This solution requires the additional installation of a log parsing plugin. For example, with Oracle, after [contacting Tapdata technical support](../support.md) to complete the plugin deployment, you can choose the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md). Then, fill in the IP address of the raw log service, with the default service port of **8190**.
 
@@ -128,12 +128,12 @@ This method is not optimal and increases maintenance costs, so Tapdata does not 
 
 <TabItem value="Pros and Cons Comparison">
 
-| CDC Method        | Advantages                                                   | Disadvantages                                                |
-| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Database Log API  | ● Utilizes existing logs with minimal impact on performance<br />● Easily tracks schema changes | ● Requires sufficient storage space and expiration time for logs |
-| Database Log File | ● Directly parses native binary logs, reducing intermediates<br/>● Higher collection performance, QPS over 20,000 | ● Requires additional component deployment and maintenance<br />● Requires broader account permissions |
+| CDC Method        | Advantages                                                                                                          | Disadvantages                                                |
+| ----------------- |---------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------------ |
+| Database Log API  | ● Utilizes existing logs with minimal impact on performance<br />● Easily tracks schema changes                     | ● Requires sufficient storage space and expiration time for logs |
+| Database Log File | ● Directly parses native binary logs, reducing intermediates<br/>● Higher collection performance, RPS over 20,000   | ● Requires additional component deployment and maintenance<br />● Requires broader account permissions |
 | Field Polling     | ● Simple implementation, not dependent on logs or triggers<br />● Highly versatile, applicable to various databases | ● Lower real-time performance, dependent on polling frequency<br />● Business intrusion, involves table structure changes<br />● Cannot track deletions or schema changes |
-| Database Trigger  | ● Operates at SQL level, simple implementation<br />● Reliable and detailed, accurately captures data changes | ● Data changes require multiple writes<br />● Multiple triggers can severely impact performance<br />● Requires creating triggers on each table, high maintenance cost<br />● Triggers may be disabled under certain circumstances |
+| Database Trigger  | ● Operates at SQL level, simple implementation<br />● Reliable and detailed, accurately captures data changes       | ● Data changes require multiple writes<br />● Multiple triggers can severely impact performance<br />● Requires creating triggers on each table, high maintenance cost<br />● Triggers may be disabled under certain circumstances |
 
 </TabItem>
 </Tabs>

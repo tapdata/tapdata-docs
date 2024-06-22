@@ -86,7 +86,7 @@ When using the Master Slave Merge, it's essential to [upgrade the Agent instance
 
 9. After confirming the configurations are correct, click **Start**.
 
-   Once the process is completed, you can monitor the task's performance on the current page, such as QPS, latency, task time statistics, etc.
+   Once the process is completed, you can monitor the task's performance on the current page, such as RPS (Records Per Second), latency, task time statistics, etc.
 
 ## <span id="union-node">Union</span>
 
@@ -138,7 +138,7 @@ Assume that we want to merge(Union) **student1** and **student2** tables with th
 
 9. After confirming that the configuration is correct, simply click on the **Start** to initiate the task. 
 
-   After the operation is completed, you can observe the performance of the task on the current page. This includes metrics such as QPS (Queries Per Second), delay, task time statistics, and more.
+   After the operation is completed, you can observe the performance of the task on the current page. This includes metrics such as RPS (Records Per Second), delay, task time statistics, and more.
 
    ![union_table_result](../../../images/union_table_result_en.png)
 
