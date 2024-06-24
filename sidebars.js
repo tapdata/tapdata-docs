@@ -28,6 +28,7 @@ const sidebars = {
              'introduction/features',
              'introduction/benefits',
              'introduction/use-cases',
+             'introduction/compare-editions',
              'introduction/change-data-capture-mechanism',
              'introduction/security',
              'introduction/terms',
