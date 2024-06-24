@@ -1,10 +1,34 @@
 # Dummy
 
-import Content from '../../reuse-content/_all-features.md';
+import Content from '../../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
 Dummy is a data source that generates test data. This article describes how to add Dummy data sources to TapData Cloud.
+
+<details><summary>Supported Generated Field Types</summary>
+
+| Type                      | Description            | Parameters                                                    |
+| ------------------------- | ---------------------- | ------------------------------------------------------------ |
+| array                     | Array                  | None                                                          |
+| binary                    | Binary                 | None                                                          |
+| boolean                   | Boolean                | None                                                          |
+| date                      | Date                   | None                                                          |
+| datetime                  | Date + Time            | None                                                          |
+| map                       | Key-Value Pair         | None                                                          |
+| now                       | Current Time           | None                                                          |
+| number[(precision,scale)] | Number                 | ● precision: Length (range 1-40, default 4)<br />● scale: Precision (range 0-10, default 1) |
+| rdatetime[(fraction)]     | Date with Specific Precision | fraction: Time precision (default: 0, range 0-9 integers)     |
+| rlongbinary[(byte)]       | Random Binary with Specified Length | byte: Byte length (default: 1000)                             |
+| rlongstring[(byte)]       | Random Long String with Specified Length | byte: Byte length (default: 1000)                             |
+| rnumber[(precision)]      | Random Number          | precision: Length (default: 4)                                |
+| rstring[(byte)]           | Random String with Specified Length | byte: Byte length (default: 64)                               |
+| serial[(begin,step)]      | Serial Sequence        | ● begin: Starting position (default: 1) <br />● step: Step size (default: 1) |
+| string(byte)              | String                 | ● byte: Byte length (default: 64) <br />● fixed: Add this flag for fixed-length strings (default: variable length) |
+| time                      | Time                   | None                                                          |
+| uuid                      | UUID                   | None                                                          |
+
+</details>
 
 ## Connect to Dummy
 

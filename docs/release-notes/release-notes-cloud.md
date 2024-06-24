@@ -6,6 +6,24 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-06-07
+
+#### New Features
+
+* Introduced Mock Source and Mock Target data sources for data migration testing scenarios.
+
+#### Enhancements
+
+* Improved the interaction logic for skipping errors when starting tasks.
+* Improved the loading speed of the connection list.
+
+#### Bug Fixes
+
+* Fixed inconsistencies between the task runtime model and configuration model.
+* Fixed inaccurate task event statistics after filtering source data.
+* Fixed timezone handling issues in Oracle and PostgreSQL synchronization scenarios.
+* Fixed an issue where heartbeat task reset failures could prevent related tasks from starting.
+
 ### 2024-05-21
 
 #### New Features

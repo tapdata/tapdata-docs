@@ -8,7 +8,7 @@ This article lists common questions encountered while using TapData.
 
 ## What data sources does TapData support?
 
-TapData supports a wide range of databases, including common relational, non-relational, and queue-based data sources. For details, see [Supported Databases](../introduction/supported-databases.md).
+TapData supports a wide range of databases, including common relational, non-relational, and queue-based data sources. For details, see [Supported Databases](../prerequisites/supported-databases.md).
 
 ## Does TapData offer a trial?
 

@@ -14,7 +14,7 @@ TapData is a real-time data platform provide by TapData that integrates data rep
 
 Compared to traditional data migration/synchronization tools, TapData offers a feature-rich, easy-to-use, secure, and reliable data flow service. It also supports instant API publishing to enhance data development efficiency.
 
-* **[Rich Database Support](introduction/supported-databases.md)**
+* **[Rich Database Support](prerequisites/supported-databases.md)**
 
   Supports mainstream databases, including commercial databases, open-source databases, cloud databases, SaaS platform data sources, file data sources, and allows for custom data sources.
 
@@ -66,5 +66,5 @@ While browsing the documentation, please pay attention to the "**Applicable to**
 - [Product Architecture and Workflow](introduction/architecture.md)
 - [Features](introduction/features.md)
 - [Use Cases](introduction/use-cases.md)
-- [Supported Databases](introduction/supported-databases.md)
+- [Supported Databases](prerequisites/supported-databases.md)
 - [FAQ](faq/README.md)
