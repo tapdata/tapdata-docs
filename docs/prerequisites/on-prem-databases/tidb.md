@@ -19,7 +19,7 @@ To further simplify the usage process, TapData's TiDB connector integrates TiCDC
 
 ## Supported Versions
 
-TiDB 5.4 and above
+TiDB 6.0.0 and above
 
 ## Precautions
 
@@ -31,7 +31,7 @@ TiDB 5.4 and above
 
   * To avoid TiCDC garbage collection affecting transaction or incremental data extraction, it is recommended to set `SET GLOBAL tidb_gc_life_time= '24h'` to 24 hours.
 
-  * For TiDB versions 8.0 and above, if you use Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent) and must be deployed on a Linux platform. For more information, see [update TiCDC](#ticdc) below.
+  * If you use Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent).
 
 ## <span id="prerequisite">Preparation</span>
 
@@ -78,32 +78,6 @@ GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMP
 
 * **database_name**: The name of the <span id="ticdc">database</span>.
 * **username**: The username.
-
-3. If incremental data synchronization is required and the TiDB version is above 8.0, you need to follow the steps below to update TiCDC.
-
-   1. Download the TiCDC tool from the URL format `https://tiup-mirrors.pingcap.com/cdc-v${ti-db-version}-linux-${system-architecture}.tar.gz`.
-
-      * `${ti-db-version}`: TiDB version, for example: `8.0.1`
-      * `${system-architecture}`: Operating system architecture, for example: `amd64` (i.e., x86_64) or `arm64`
-
-      For example, the download URL for TiCDC version 8.1.0 on Linux (x86_64 architecture) is: https://tiup-mirrors.pingcap.com/cdc-v8.1.0-linux-AMD64.tar.gz
-
-   2. Execute the following command to extract the file and name it `cdc`.
-
-      ```bash
-      # Please replace the archive filename with your actual filename
-      tar -zxvf cdc-v8.1.0-linux-AMD64.tar.gz cdc
-      ```
-
-   3. Copy and replace the `cdc` file to the `{tapData_dir}/run-resources/ti-db/tool` directory.
-
-      :::tip
-
-      `{tapData_dir}` is the TapData installation directory. If prompted with `Text file busy`, you need to stop the data synchronization task associated with this data source before copying the file.
-
-      :::
-
-   4. Grant read, write, and execute permissions to the current user for the `{tapData_dir}/run-resources/ti-db/tool` directory.
 
 ## Connect to TiDB
 
