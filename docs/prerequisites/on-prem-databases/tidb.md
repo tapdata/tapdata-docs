@@ -23,7 +23,7 @@ TiDB 6.0.0 and above
 
 ## Precautions
 
-* To ensure proper data synchronization, the TiDB cluster and TapData engine (Agent) must be able to communicate properly.
+* To ensure proper data synchronization, the TiDB cluster and the TapData engine (Agent) must be on the same intranet and able to communicate properly.
 
 * When using TiDB as a source for incremental data synchronization, you need to check the following:
 
@@ -31,7 +31,7 @@ TiDB 6.0.0 and above
 
   * To avoid TiCDC garbage collection affecting transaction or incremental data extraction, it is recommended to set `SET GLOBAL tidb_gc_life_time= '24h'` to 24 hours.
 
-  * If you use Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent).
+  * Due to communication restrictions between TiDB components, when using Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent). 
 
 ## <span id="prerequisite">Preparation</span>
 
