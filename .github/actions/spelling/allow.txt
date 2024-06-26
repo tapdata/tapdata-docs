@@ -484,6 +484,10 @@ rlongbinary
 rlongstring
 rnumber
 rstring
+pingcap
+amd
+ticdc
+tiup
 Huawei
 Hudi
 BIGSERIAL
