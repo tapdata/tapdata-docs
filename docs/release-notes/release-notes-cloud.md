@@ -6,6 +6,24 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-06-21
+
+#### New Features
+
+* [TiDB](../prerequisites/on-prem-databases/tidb.md) has completed TapData integration and certification testing, upgraded to a GA-level data source.
+
+#### Enhancements
+
+* Improved the display of primary keys and indexes in the task's table model.
+* Enhanced the model deduction logic, supporting model deduction directly in the engine.
+
+#### Bug Fixes
+
+* Fixed an issue where some exceptions were ignored during data source error handling.
+* Fixed an issue where aggregation tasks using time fields as join keys could not backtrack data.
+* Fixed an issue with delayed times in mining tasks.
+* Fixed an issue where MySQL as a source would consume a large amount of database memory during initial synchronization of large tables.
+
 ### 2024-06-07
 
 #### New Features
