@@ -476,6 +476,9 @@ Sevice
 linkedhashmap
 failover
 Relmig
+JPfhw
+Mrzlw
+ZDhk
 rdatetime
 rlongbinary
 rlongstring
@@ -485,3 +488,13 @@ pingcap
 amd
 ticdc
 tiup
+Huawei
+Hudi
+BIGSERIAL
+devg
+GUC
+hba
+huawei
+mppdb
+SMALLSERIAL
+usermanual

@@ -4,6 +4,25 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.8.0
+
+### New Features
+
+* [TiDB](../prerequisites/on-prem-databases/tidb.md) has completed TapData integration and certification testing, upgraded to a GA-level data source.
+* [Data Validation](../user-guide/data-pipeline/verify-data.md) now supports automatic difference checking, allowing real-time tasks to automatically perform difference checks based on incremental delay.
+
+### Enhancements
+
+* Improved the display of primary keys and indexes in the task's table model.
+* Enhanced the model deduction logic, supporting model deduction directly in the engine.
+
+### Bug Fixes
+
+* Fixed an issue where some exceptions were ignored during data source error handling.
+* Fixed an issue where aggregation tasks using time fields as join keys could not backtrack data.
+* Fixed an issue with delayed times in mining tasks.
+* Fixed an issue where MySQL as a source would consume a large amount of database memory during initial synchronization of large tables.
+
 ## 3.7.0
 
 ### New Features

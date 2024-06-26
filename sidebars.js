@@ -28,7 +28,8 @@ const sidebars = {
              'introduction/features',
              'introduction/benefits',
              'introduction/use-cases',
-             'introduction/supported-databases',
+             'introduction/compare-editions',
+             'introduction/change-data-capture-mechanism',
              'introduction/security',
              'introduction/terms',
        ]
@@ -77,6 +78,7 @@ const sidebars = {
          label: 'Connect Data Sources',
          link: {type: 'doc', id: 'prerequisites/README'},
          items: [
+                 'prerequisites/supported-databases',
                  {
                   type: 'category',
                   label: 'Warehouses and Lakes',
@@ -138,6 +140,7 @@ const sidebars = {
                            'prerequisites/cloud-databases/aliyun-rds-for-pg',
                            'prerequisites/cloud-databases/aliyun-rds-for-sql-server',
                            'prerequisites/cloud-databases/amazon-rds-mysql',
+                           'prerequisites/cloud-databases/huawei-cloud-gaussdb',
                            'prerequisites/cloud-databases/polardb-mysql',
                            'prerequisites/cloud-databases/polardb-postgresql',
                            'prerequisites/cloud-databases/tencentdb-for-mariadb',
