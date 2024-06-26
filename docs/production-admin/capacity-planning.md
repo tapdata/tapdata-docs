@@ -1,6 +1,16 @@
 # Capacity Planning
 
+import Content from '../reuse-content/_enterprise-features.md';
+
+<Content />
+
 This document provides a comprehensive capacity planning reference to help users effectively allocate resources based on specific requirements in their environment. The actual system requirements may vary due to workload characteristics, network conditions, server specifications, and other factors. Therefore, we recommend conducting performance tests in the specific environment to obtain more accurate configuration data.
+
+:::tip
+
+If you are using the Tapdata Cloud, please refer to the [Instance Specifications](../billing/billing-overview#spec).
+
+:::
 
 ## Terminology
 
