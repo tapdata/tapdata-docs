@@ -118,10 +118,11 @@ import TabItem from '@theme/TabItem';
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
-    <td>5.4 and above</td>
+    <td>6.0.0 and above</td>
   </tr>
 </tbody>
 </table>
+
 
 
 
