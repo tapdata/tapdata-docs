@@ -10,7 +10,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-* [TiDB](../prerequisites/on-prem-databases/tidb.md) has completed TapData integration and certification testing, upgraded to a GA-level data source.
+* Enhanced [TiDB](../prerequisites/on-prem-databases/tidb.md) data source capabilities with support for real-time incremental synchronization.
 
 #### Enhancements
 

@@ -8,7 +8,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-* [TiDB](../prerequisites/on-prem-databases/tidb.md) has completed TapData integration and certification testing, upgraded to a GA-level data source.
+* Enhanced [TiDB](../prerequisites/on-prem-databases/tidb.md) data source capabilities with support for real-time incremental synchronization.
 * [Data Validation](../user-guide/data-pipeline/verify-data.md) now supports automatic difference checking, allowing real-time tasks to automatically perform difference checks based on incremental delay.
 
 ### Enhancements
