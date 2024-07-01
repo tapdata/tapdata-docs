@@ -16,16 +16,18 @@ Live Cache is primarily designed to alleviate the pressure on the source databas
 
 4. In the pop-up dialog, complete the configuration according to the instructions below.
 
-   ![Live Cache](../../images/apply_external_storage_shared_cache_cn.png)
+   ![Live Cache](../../images/apply_external_storage_shared_cache.png)
 
    * **Cache Name**: Required, supports Chinese and English.
    * **Form Connection**: Choose a connection you want to cache.
    * **From Table**: Choose the table you want to cache.
-   * **Cache Keys**: Choose one or more fields as the primary key to identify data for caching.
    * **Automatic Index Creation**: Turn on this feature will automatically create indexes for cache keys in the source table, which may impact the source database's performance.
+   * **Cache Keys**: Choose one or more fields as the primary key to identify data for caching.
    * **Cache Fields**: Select the commonly used fields you need to cache.
-   * **Maximum Memory**: The maximum memory amount the system will save, exceeding it will delete the least frequently used data based on call time.
    * **External Storage Configuration**: Choose external storage, you can [create external storage](../manage-system/manage-external-storage.md) separately for the cache to store related data.
+   * **Maximum Memory**: The maximum memory amount the system will save, exceeding it will delete the least frequently used data based on call time.
+   * **Use CDC log Caching**: CDC log Caching digs into incremental logs, eliminating the need to start multiple log collection processes for multiple incremental tasks. This significantly reduces the resource usage and waste of the source database.
+   * **Maximum Cache Memory**: The default is 500 MB. TapData will save up to the maximum memory amount, and if exceeded, it will delete the least frequently used data based on the call time.
    * **Application Code**: Generated based on the information filled in, can be copied and used in the JS node of the task to use this cache.
 
 5. Click **Save**.

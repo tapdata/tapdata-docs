@@ -6,6 +6,26 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.9.0
+
+### New Features
+
+* Added a new button for using shared mining when creating [Shared Caches](../user-guide/advanced-settings/share-cache.md), simplifying cache task configuration and improving the efficiency and flexibility of cache sharing.
+
+### Enhancements
+
+* Added field restriction configuration parameters for the ElasticSearch data source.
+* Optimized exception handling logic when enabling the preimage capability for the MongoDB data source.
+
+### Bug Fixes
+
+- Fixed an issue where some task event statistics might occasionally be missing when reported.
+- Fixed an issue where shared cache tasks without shared mining might encounter errors due to exceeding the log time window if data does not change upon restarting or upgrading the engine.
+- Fixed an issue where the unset operation on the source table could cause task errors in scenarios where the write mode is updating sub-documents.
+- Fixed an issue where joining collections with time types in MongoDB and MySQL caused errors.
+- Fixed an issue where incremental update events unexpectedly performed lookups in master-slave merge scenarios.
+- Fixed conflict errors when modifying columns in master-slave merge nodes.
+
 ## 3.8.0
 
 ### Enhancements
