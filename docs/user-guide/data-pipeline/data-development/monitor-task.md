@@ -4,7 +4,7 @@ import Content from '../../../reuse-content/_all-features.md';
 
 <Content />
 
-Once the data transformation task is started, the page will automatically redirect to the task monitoring page. From there, you can monitor the task's operation details, such as the status of the Agent, data synchronization progress, task progress, alarm settings, and other relevant information.
+Once the data transformation task is started, the page will automatically redirect to the task monitoring page. From there, you can monitor the task's operation details, such as the status of the Agent, data synchronization progress, task progress, alert settings, and other relevant information.
 
 :::tip
 
@@ -16,7 +16,7 @@ By clicking the **monitor** button on the task list page, you can access the mon
 
 
 
-## ① Top control bar
+## ① Top Control Bar
 
 You can rename the task, view its start time, and check the Agent status, which includes the following information:
 
@@ -42,7 +42,7 @@ Displaying basic information and key monitoring indicators of the task, includin
 
 
 
-## ③ Node information display area
+## ③ Node Information Display Area
 
 Hover your mouse pointer over a node to display key metrics for that node, and click the ![](../../../images/node_more_icon.png) icon in the bottom right corner of the node to see more details.
 
@@ -56,19 +56,19 @@ Hover your mouse pointer over a node to display key metrics for that node, and c
 
 
 
-## ④ Task log display area
+## ④ Task Log Display Area
 
-Click the ![](../../../images/view_log_icon.png) icon at the top of the page, then you can view the progress, logs, alarm list, and associated task information for a task run. You can filter the logs using keywords, periods, and levels, or download them for local analysis on the **Log** tab.
+Click the ![](../../../images/view_log_icon.png) icon at the top of the page, then you can view the progress, logs, alert list, and associated task information for a task run. You can filter the logs using keywords, periods, and levels, or download them for local analysis on the **Log** tab.
 
 
 
-## ⑤ Task/alarm setting area
+## ⑤ Task/Alert Setting Area
 
-Click the ![](../../../images/task_setting_icon.png) icon at the top of the page, which displays the task settings (not modifiable) and alarm settings, you can set the alarm rules:
+Click the ![](../../../images/task_setting_icon.png) icon at the top of the page, which displays the task settings (not modifiable) and alert settings, you can set the alert rules:
 
-* Task running error alarm
+* Task running error alert
 * Notice of full completion of tasks
 * Task increment start notification
-* Task stop alarm
-* Task increment delay alarm
+* Task stop alert
+* Task increment delay alert
 
