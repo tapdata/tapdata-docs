@@ -4,6 +4,36 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.9.0
+
+### New Features
+
+* [Data Verification](../user-guide/data-pipeline/verify-data.md) now includes differential data repair capabilities, enhancing data consistency and accuracy.
+* Added a new button for using CDC log Caching when creating [Live Cache](../user-guide/advanced-settings/share-cache.md), simplifying cache task configuration and improving the efficiency and flexibility of cache sharing.
+
+### Enhancements
+
+* Optimized features in the [Real-Time Data Hub](../user-guide/real-time-data-hub/README.md):
+  * The data processing layer now displays all models in the database.
+  * The platform cache layer and platform processing layer can be configured with different connections, which cannot be adjusted after setting.
+  * Added an API publishing entry.
+  * Improved the display of model details.
+* Added field restriction configuration parameters for the ElasticSearch data source.
+* Optimized exception handling logic when enabling the preimage capability for the MongoDB data source.
+
+### Bug Fixes
+
+- Fixed an issue where some task event statistics might occasionally be missing when reported.
+- Fixed an issue where shared cache tasks without shared mining might encounter errors due to exceeding the log time window if data does not change upon restarting or upgrading the engine.
+- Fixed an issue where disabling the slave node under the MDM_model led to task startup failures.
+- Fixed an issue where the lineage graph in the real-time data hub occasionally failed to display.
+- Fixed an issue where the unset operation on the source table could cause task errors in scenarios where the write mode is updating sub-documents.
+- Fixed an issue where the verification task search function was unavailable.
+- Fixed an issue where joining collections with time types in MongoDB and MySQL caused errors.
+- Fixed an issue where tasks created in the real-time data hub could not add master-slave merge nodes.
+- Fixed an issue where incremental update events unexpectedly performed lookups in master-slave merge scenarios.
+- Fixed conflict errors when modifying columns in master-slave merge nodes.
+
 ## 3.8.0
 
 ### New Features

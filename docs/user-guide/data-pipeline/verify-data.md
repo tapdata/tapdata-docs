@@ -68,7 +68,7 @@ import TabItem from '@theme/TabItem';
 
 4. Click **Save**. After returning to the task list, click **Execute** for the target validation task.
 
-5. (Optional) Click **Result** for the validation task to view detailed validation results.
+5. (Optional) Click **Result** for the validation task to view detailed validation results. For discrepancies, you can click **Data Correction** to align the data.
 
    ![View validation Results](../../images/check_data_result_en.png)
 
