@@ -117,7 +117,7 @@ Before creating a data transformation task, make sure you have set up the releva
 
 8. Once everything is confirmed to be correct, click **Start**.
 
-   After the operation is completed, you can observe the task's execution on the current page, such as QPS, latency, task time statistics, and other information.
+   After the operation is completed, you can observe the task's execution on the current page, such as RPS (Records Per Second), latency, task time statistics, and other information.
 
 ## Result Verification
 

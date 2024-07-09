@@ -190,7 +190,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### Enhancements
 
-- [Task Monitoring Page](user-guide/data-pipeline/copy-data/monitor-task.md) adds a time filter option for the incremental phase to quickly observe the QPS of the incremental phase.
+- [Task Monitoring Page](user-guide/data-pipeline/copy-data/monitor-task.md) adds a time filter option for the incremental phase to quickly observe the RPS (Records Per Second) of the incremental phase.
 - Added related prompt information for key operations that may affect the database (such as filtering source table data).
 
 ### Bug Fixes
@@ -247,7 +247,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 - Supports loading table comments for [Oracle data sources](prerequisites/on-prem-databases/oracle#advanced), which can be enabled in the advanced options during data source configuration, allowing quick identification of tables' business meanings through comments.
 - Supports deployment of TapData on [Windows platform](../quick-start/install/install-tapdata-enterprise/install-on-windows.md), further expanding the range of supported deployment platforms.
-- In the task operation [monitoring page](user-guide/data-pipeline/copy-data/monitor-task.md), supports viewing QPS information based on the dimension of event size.
+- In the task operation [monitoring page](user-guide/data-pipeline/copy-data/monitor-task.md), supports viewing RPS (Records Per Second) information based on the dimension of event size.
 
 ### Bug Fixes
 

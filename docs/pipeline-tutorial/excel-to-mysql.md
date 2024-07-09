@@ -99,7 +99,7 @@ Before you create a replication task, make sure you have configured the relevant
 
 8. After confirming the configuration is correct, click **Start**.
 
-   After the operation is completed, you will be able to view the task's performance on the current page, including metrics such as QPS (Queries Per Second), delay, and task event statistics:
+   After the operation is completed, you will be able to view the task's performance on the current page, including metrics such as RPS (Records Per Second), delay, and task event statistics:
 
    :::tip
 

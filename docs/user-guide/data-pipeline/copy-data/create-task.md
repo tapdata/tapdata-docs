@@ -111,7 +111,7 @@ As an example of creating a data replication task, the article demonstrates the 
    * **Task description**: Provide a description for the task by filling in the relevant information.
    * **Advanced settings**: Set the start time of the task, select the incremental data processing mode, scheduled tasks, dynamic adjustment memory usage, specify the number of processor threads, and choose the appropriate agent.
 
-8. Click **Start**, and you will be able to view the performance of the task on the current page, including metrics such as QPS (Queries Per Second), delay, and task event statistics.
+8. Click **Start**, and you will be able to view the performance of the task on the current page, including metrics such as RPS (Records Per Second), delay, and task event statistics.
 
    ![Task implementation](../../../images/copy_data_monitor_en.png)
 

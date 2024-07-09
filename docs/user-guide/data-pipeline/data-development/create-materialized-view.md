@@ -51,6 +51,6 @@ Next, we'll detail how to employ TapData's real-time materialized view feature i
    
 5. Click the **X** icon at the top left to return to the task configuration page. Click **Start** at the top right to finalize the real-time materialized view setup.
 
-   Once initiated, we'll be redirected to the task monitor page, where you can observe the task's QPS, latency, events, and more.
+   Once initiated, we'll be redirected to the task monitor page, where you can observe the task's RPS (Records Per Second), latency, events, and more.
 
    ![View task](../../../images/monitor_view_task.png)

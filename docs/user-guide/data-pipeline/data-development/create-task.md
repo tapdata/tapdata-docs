@@ -110,7 +110,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
    * **Task description**: Provide the description information for the task based on your specific context and requirements.
    * **Advanced settings**: Set the start time of the task, select the incremental data processing mode, scheduled tasks, dynamic adjustment memory usage, specify the number of processor threads, and choose the appropriate agent.
 
-9. Click **Save** or **Start**, the following figure shows that after the task starts successfully, you can view its QPS, delay, task event, and other information.
+9. Click **Save** or **Start**, the following figure shows that after the task starts successfully, you can view its RPS (Records Per Second), delay, task event, and other information.
 
    ![Monitor Task Status](../../../images/data_dev_monitor_en.png)
 

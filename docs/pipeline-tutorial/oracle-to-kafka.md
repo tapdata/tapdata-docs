@@ -27,7 +27,7 @@ In this case, we aim to read real-time data from the car insurance claims table 
 ## Considerations
 
 * Ensure that the size of individual Oracle data entries does not exceed Kafka's single message limit (default 1 MB) to avoid write failures. If oversized data occurs, consider filtering large fields between Oracle and Kafka nodes during data transformation task configuration, or modify Kafka's maximum message size limit.
-* TapData's Oracle log parsing speed is about 10,000 QPS. If the rate of incremental events exceeds this, it may lead to increased data processing delays.
+* TapData's Oracle log parsing speed is about 10,000 RPS. If the rate of incremental events exceeds this, it may lead to increased data processing delays.
 * The raw log feature is currently not supported on RAC-ASM deployment architectures and does not support obtaining raw logs from non-primary nodes in DG architectures.
 
 ## Prerequisites
@@ -82,7 +82,7 @@ Before creating a data transformation task, ensure you have configured the neces
         * **Data Source**
         
           * **Continuous Miner**: To reduce the latency of acquiring incremental data, it is recommended to turn on this switch when the Oracle version is below 19c. When the version is 19c or above, this switch should be turned off.
-          * **Fetch Size**: Only effective for continuous mining. When the source's update frequency is low, you may choose a lower value to reduce latency; when the update frequency is high, selecting a higher value can enhance throughput. The general formula is `source database data change QPS divided by 10`, recommended values are 1 ~ 1000.
+          * **Fetch Size**: Only effective for continuous mining. When the source's update frequency is low, you may choose a lower value to reduce latency; when the update frequency is high, selecting a higher value can enhance throughput. The general formula is `source database data change RPS divided by 10`, recommended values are 1 ~ 1000.
           * **Enable Sync of LOB Types(BLOB,CLOB,NCLOB)**: Turning off this switch can enhance performance, but LOB type parsing will be unreliable.
           * **Association key update**: Turning off this switch can enhance performance, but updates to association keys will be ignored.
           * **Large Transaction Time Boundary**: Transactions exceeding this value will enter the large transaction logic. Setting it too large could impact memory; large transactions will have local disk caching, and disk cleanup needs attention in case of task anomalies.
@@ -151,7 +151,7 @@ Before creating a data transformation task, ensure you have configured the neces
 
 9. After confirming correctness, click **Start**.
 
-   After completion, you can observe the task's execution on the current page, such as QPS, latency, task time statistics, etc., as shown below:
+   After completion, you can observe the task's execution on the current page, such as RPS (Records Per Second), latency, task time statistics, etc., as shown below:
 
    ![Monitor Task Execution](../images/oracle_to_kafka_monitor.png)
 

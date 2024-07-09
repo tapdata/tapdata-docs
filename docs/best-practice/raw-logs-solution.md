@@ -3,7 +3,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-To enhance the efficiency of capturing data changes, TapData supports not only using the native log parsing tools of databases (LogMiner) but also has developed the capability to directly parse the incremental log files of the database. This allows for more efficient event capture, achieving higher data collection performance (QPS over 20,000), reducing the impact on the source database during incremental data collection, but it requires the deployment of an additional component, which increases operational costs, making it suitable for scenarios with frequent data changes.
+To enhance the efficiency of capturing data changes, TapData supports not only using the native log parsing tools of databases (LogMiner) but also has developed the capability to directly parse the incremental log files of the database. This allows for more efficient event capture, achieving higher data collection performance (RPS over 20,000), reducing the impact on the source database during incremental data collection, but it requires the deployment of an additional component, which increases operational costs, making it suitable for scenarios with frequent data changes.
 
 ![Workflow](../images/raw_logs_workflow.png)
 

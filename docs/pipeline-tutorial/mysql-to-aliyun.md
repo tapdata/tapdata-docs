@@ -81,7 +81,7 @@ Next, we will introduce the specific operational procedures.
 
 8. Once everything is confirmed correct, click **Start**.
 
-   Once the operation is completed, you can observe the execution of the task on the current page, such as QPS, delay, task timing statistics, etc., as shown below:
+   Once the operation is completed, you can observe the execution of the task on the current page, such as RPS (Records Per Second), delay, task timing statistics, etc., as shown below:
 
    ![Monitoring Task Details](../images/local_to_aliyun_rds_mysql_monitor_task.png)
 

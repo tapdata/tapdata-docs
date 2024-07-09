@@ -131,7 +131,8 @@ In this case, we will demonstrate the specific configuration process for data mi
 
    :::
 
-9. After successful startup, you will automatically be redirected to the task monitoring page, where you can view the task's QPS, delay, task events, and more.
+9. After successful startup, you will automatically be redirected to the task monitoring page, where you can view the task's
+   RPS (Records Per Second), delay, task events, and more.
 
 
 
