@@ -122,7 +122,7 @@ Follow the instructions in the document to complete the Binlog configuration and
 
    :::tip
 
-   For Tapdata Enterprise products, you can also use the [Data Verification](../user-guide/data-pipeline/verify-data.md) feature to periodically verify the data tables on both ends of the synchronization to better meet business needs.
+   For Tapdata Enterprise, you can use the [data verification](../user-guide/data-pipeline/verify-data.md) to continuously verify the data of the two bi-directional sync tasks, better meeting your business needs.
 
    :::
 
