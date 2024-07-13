@@ -6,6 +6,29 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.10
+
+### New Features
+
+- Added a [Union Node](../user-guide/data-pipeline/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
+- MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
+- Added support for VastBase data source, with a maturity level of Beta, further enriching the variety of data sources.
+
+### Enhancements
+
+- Improved synchronization logic for time zone fields.
+
+### Bug Fixes
+
+- Addressed the unclear error messages and lack of detailed information in the error codes when the source MySQL does not support incremental.
+- Corrected the format of task warning alerts.
+- Resolved an issue where imported tasks showed running records and the current running record status appeared as "deleting."
+- Addressed an issue where editing tasks incorrectly modified the association key when the target table association key was set.
+- Fixed a potential failure when removing fields in Python nodes.
+- Resolved an issue where deleting the primary node in master-slave merge operations caused configuration errors in the master-slave merge node, leading to task errors.
+- Fixed garbled text issue with Chinese node names in tasks when a source-side DDL occurs and the engine server is not set to UTF character encoding.
+
 ## 3.9.0
 
 ### New Features
