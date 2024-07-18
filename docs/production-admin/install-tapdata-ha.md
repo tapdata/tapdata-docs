@@ -139,16 +139,6 @@ Before deployment, we need to perform the following operations on both servers.
    API service started
    ```
 
-   An example of the Server A deployment process:
-   <AsciinemaPlayer
-   src="/asciinema_playbook/install_tapdata.cast"
-   poster="npt:0:20"
-   rows={25}
-   speed={1.8}
-   preload={true}
-   terminalFontSize="14px"
-   fit={false}
-   />
 
 3. Log into the TapData platform through a browser; the local login address is [http://127.0.0.1:3030](http://127.0.0.1:3030). Change the password promptly after the first login for security.
 
@@ -263,19 +253,6 @@ Before deployment, we need to perform the following operations on both servers.
      FlowEngine is startup at : 2023-04-01 23:10
      API service started
      ```
-
-
-An example of the Server B deployment process:
-
-<AsciinemaPlayer
-src="/asciinema_playbook/install-tapdata-ha.cast"
-poster="npt:0:10"
-rows={25}
-speed={1.8}
-preload={true}
-terminalFontSize="13px"
-fit={false}
-/>
 
 3. With TapData services deployed on both servers, devices on the same internal network can access the management page via http://192.168.1.200:3030 or http://192.168.1.201:3030.
 
