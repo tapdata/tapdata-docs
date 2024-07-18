@@ -275,6 +275,15 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>3.x</td>
   </tr>
+  <tr>
+    <td>Vastbase</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>G100 2.2</td>
+  </tr>
 </tbody>
 </table>
 

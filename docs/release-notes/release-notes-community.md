@@ -13,7 +13,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Added a [Union Node](../user-guide/data-pipeline/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
 - [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
 - MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
-- Added support for VastBase data source, with a maturity level of Beta, further enriching the variety of data sources.
+- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.
 
 ### Enhancements
 
