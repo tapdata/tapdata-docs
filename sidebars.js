@@ -361,6 +361,7 @@ const sidebars = {
      label: 'Data Pipeline Tutorial',
      link: {type: 'doc', id: 'pipeline-tutorial/README'},
      items: [
+            'pipeline-tutorial/mysql-bi-directional-sync',
             'pipeline-tutorial/excel-to-mysql',
             'pipeline-tutorial/mysql-to-aliyun',
             'pipeline-tutorial/mysql-to-bigquery',
