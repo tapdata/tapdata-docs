@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-Vastbase is an enterprise-level relational database developed by Vastdata based on the open-source openGauss kernel. It adds numerous Oracle-compatible features and security enhancements to the original functionality, along with enterprise-level capabilities in specialized application areas such as GIS and stream computing. TapData supports using Vastbase as either a source or target database to build data pipelines. This document explains how to add a Vastbase data source in TapData.
+Vastbase is an enterprise-level relational database based on the open-source openGauss kernel. It adds numerous Oracle-compatible features and security enhancements to the original functionality, along with enterprise-level capabilities in specialized application areas such as GIS and stream computing. TapData supports using Vastbase as either a source or target database to build data pipelines. This document explains how to add a Vastbase data source in TapData.
 
 ## Supported Versions
 Vastbase G100 version 2.2
@@ -157,7 +157,7 @@ In this example, we will use Vastbase's built-in [wal2json](https://docs.vastdat
 
       ```sql
       // Create the last_update field
-      ALTER TABLE schema_name.mytable ADD COLUMN last_udpate timestamp DEFAULT now();
+      ALTER TABLE schema_name.mytable ADD COLUMN last_update timestamp DEFAULT now();
       
       // Create the trigger
       CREATE TRIGGER trg_uptime BEFORE UPDATE ON schema_name.mytable FOR EACH ROW EXECUTE PROCEDURE
