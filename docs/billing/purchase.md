@@ -18,7 +18,7 @@ After registering with TapData Cloud, you will receive the benefit of creating o
 
 3. On the right side of the page, click **Create Agent**.
 
-4. In the pop-up dialog, select deploy mode, spec and subscription period.
+4. In the pop-up dialog, select <span id="hosted-mode">deploy mode</span>, spec and subscription period.
 
    ![Select Agent Specification](../images/select_agent_spec.png)
 
@@ -42,3 +42,16 @@ After registering with TapData Cloud, you will receive the benefit of creating o
    Next, you can deploy the Agent on your server. For more information, see [Install Agent](../quick-start/install/install-tapdata-agent.md).
 
    ![Subscription is successful](../images/purchase_success.png)
+
+
+
+## Next Steps
+
+To ensure the proper use of subsequent data replication/transformation functions, you need to adjust the relevant firewalls to ensure that the Agent can communicate normally with TapData Cloud and the source/target databases. The Agent workflow is shown below:
+
+![Agent Communication](../images/architecture.png)
+
+If you have subscribed to the [Fully Managed Agent](#hosted-mode) and the connected data sources only accept connections from specific IP addresses, you need to add the Agent's server address to the security settings of the corresponding data source. For example, add it to the firewall whitelist rules of a self-hosted database to allow the Agent to establish communication and transfer data with your data sources. The Agent server addresses for each region are as follows:
+
+- Alibaba Cloud Beijing: **47.93.190.224**
+- Alibaba Cloud Hong Kong: **47.242.251.110**
