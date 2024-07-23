@@ -91,17 +91,22 @@ Please replace the username, password, and host in the command above.
 
    ![Connect Doris](../../images/connect_doris.png)
 
-   - **Name**: Fill in a unique name that has business significance.
-   - **Type**: Doris is supported as a source or target database.
-   - **DB Address**: The connection address of Doris.
-   - **Port**: The query service port for Doris, the default port is **9030**.
-   - **HTTP Address**: The HTTP protocol address of the FE service, including address and port(e.g. http://192.168.1.18:8040), the default port is **8030**.
-   - **Doris Catalog**: The catalog of Doris, whose hierarchy is above the database. If you use the default catalog, you can leave it empty. For more information, see [Multi-Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
-   - **DB Name**: database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
-   - **User**, **Password**: The database username and password.
-   - **Other Connection String Parameters**: Additionally connection parameters, empty by default.
-   - **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
-   - **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an Agent.
+   - Basic Settings
+     - **Name**: Fill in a unique name that has business significance.
+     - **Type**: Doris is supported as a source or target database.
+     - **DB Address**: The connection address of Doris.
+     - **Port**: The query service port for Doris, the default port is **9030**.
+     - **Enable HTTPS**: Select whether to enable the certificate-free HTTPS connection feature.
+     - **HTTP/HTTPS Address**: The HTTP protocol address of the FE service, including address and port(e.g. http://192.168.1.18:8040), the default port is **8030**.
+     - **DB Name**: database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
+     - **User**, **Password**: The database username and password.
+   - Advanced Setting
+     - **Doris Catalog**: The catalog of Doris, whose hierarchy is above the database. If you use the default catalog, you can leave it empty. For more information, see [Multi-Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
+     - **Other Connection String Parameters**: Additionally connection parameters, empty by default.
+     - **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
+     - **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an Agent.
+     - **Model Load Time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+     - **Enable Heartbeat Table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
 
 6. Click **Test Connection**, and when passed, click **Save**.
 

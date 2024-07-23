@@ -5,6 +5,67 @@ import Content from '../../../reuse-content/_all-features.md';
 
 TapData supports integrating processing nodes into data replication tasks for requirements like data filtering or field adjustments.
 
+## <span id="union-node">Union Node</span>
+
+With the **Union** node, you can merge multiple tables with similar or identical structures into one table. TapData will combine data with consistent field names, following the rules below:
+
+- If the inferred type length and precision differ, the maximum length and precision are selected.
+- If the inferred types are different, they are converted to a common type.
+- When all source tables have consistent primary key fields, the primary key is retained; otherwise, it is removed.
+- When all source tables have the same field with non-null constraints, the non-null constraint is retained; otherwise, it is removed.
+- Unique indexes from the source tables are not transferred to the target table.
+
+**Scenario Example:**
+
+Suppose you want to perform a union operation on two tables, **student1** and **student2**, with the same structure and then store the results in the **student_merge** table. The structure and data of the tables are as follows:
+
+![Example of Union Data](../../../images/table_union_demo.png)
+
+**Operation Steps:**
+
+1. [Log in to the TapData platform](../../log-in.md).
+
+2. In the left navigation bar, select **Data Pipelines** > **Data Replication**.
+
+3. Click **Create** on the right side of the page. Drag in the source node, union node, table editor, and target node in sequence from the left side of the page, and then connect them.
+
+   ![Connect Union Node](../../../images/add_union_node_in_data_copy.png)
+
+   :::tip
+
+   In this scenario, we use the table editor node to specify a new name for the merged table to avoid overwriting the original table data.
+
+   :::
+
+4. Click the first node (source node) and select the tables to be merged (**student1** / **student2**) in the right-side panel.
+
+5. Click the **Union** node and choose the name of the merged table.
+
+   ![Union Node Settings](../../../images/union_node_settings.png)
+
+6. Click the **Table Editor** node and specify a unique new name for the table in the database, such as **student_merge**.
+
+7. Click the target node, preview the table structure, and confirm it is correct. Click **Start** in the upper right corner.
+
+**Result Verification:**
+
+Query the **student_merge** table, and the result is as follows:
+
+```sql
+mysql> select * from student_merge;
++---------+------+--------+------+-------+--------+
+| stu_id  | name | gender | age  | class | scores |
++---------+------+--------+------+-------+--------+
+| 2201101 | Lily | F      |   18 |  NULL |   NULL |
+| 2201102 | Lucy | F      |   18 |  NULL |   NULL |
+| 2201103 | Tom  | M      |   18 |  NULL |   NULL |
+| 2202101 | Lily | F      |   18 |     2 |    632 |
+| 2202102 | Lucy | F      |   18 |     2 |    636 |
+| 2202103 | Tom  | M      |   18 |     2 |    532 |
++---------+------+--------+------+-------+--------+
+6 rows in set (0.00 sec)
+```
+
 ## Table Edit Node
 
 The table edit node primarily adjusts table names. Add a **Table Edit** node to the canvas and connect it with the data source. Click on the node to select operations (apply to all tables):

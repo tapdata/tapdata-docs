@@ -4,6 +4,35 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.10
+
+### New Features
+
+- [Data Verification](../user-guide/data-pipeline/verify-data.md) feature now allows downloading detailed discrepancy data from the verification task details page for in-depth analysis.
+- Added a [Union Node](../user-guide/data-pipeline/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
+- MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
+- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.
+
+### Enhancements
+
+- Improved synchronization logic for time zone fields.
+- In data sync/development task settings, users can now choose the scheduling method as random scheduling or priority scheduling of Agents, in addition to tag-based Agent scheduling.
+- Optimized the display logic of continuous log mining settings, automatically hiding related buttons if the database version does not support this feature.
+
+### Bug Fixes
+
+- Fixed an issue with incremental sync delay display in MongoDB sync tasks that used shared mining.
+- Addressed the unclear error messages and lack of detailed information in the error codes when the source MySQL does not support incremental.
+- Corrected the format of task warning alerts.
+- Resolved an issue where imported tasks showed running records and the current running record status appeared as "deleting."
+- Fixed an issue with incorrect display when renaming tables in FDM replication tasks.
+- Addressed an issue where editing tasks incorrectly modified the association key when the target table association key was set.
+- Fixed a potential failure when removing fields in Python nodes.
+- Resolved an issue where deleting the primary node in master-slave merge operations caused configuration errors in the master-slave merge node, leading to task errors.
+- Corrected an issue where creating an application in application management incorrectly prompted that the tag name already existed.
+- Fixed garbled text issue with Chinese node names in tasks when a source-side DDL occurs and the engine server is not set to UTF character encoding.
+
 ## 3.9.0
 
 ### New Features

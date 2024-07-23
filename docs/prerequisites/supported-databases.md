@@ -9,7 +9,7 @@ TapData supports rich data sources as follows:
 :::tip
 
 * If you need to synchronize DDL operations, you need to enable DDL collection and DDL apply. For more information, see [Handle DDL Changes During Data Sync](../best-practice/handle-schema-changes.md).
-* TapData Community only supports ClickHouse, Kafka, MongoDB, MySQL, and PostgreSQL data sources.
+* The TapData Community only supports the following data sources: AWS ClickHouse, BigQuery, ClickHouse, Doris, Dummy, ElasticSearch, Kafka, MariaDB, Mock Source, Mock Target, MongoDB, MongoDB Atlas, MySQL, PostgreSQL, Redis, and TDengine.
 
 :::
 
@@ -274,6 +274,15 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>✅</td>
     <td>3.x</td>
+  </tr>
+  <tr>
+    <td>Vastbase</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>➖</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>G100 2.2</td>
   </tr>
 </tbody>
 </table>

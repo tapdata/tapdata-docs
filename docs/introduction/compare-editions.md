@@ -109,7 +109,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
   <td><a href="../prerequisites/supported-databases">Supported Databases</a></td>
   <td><span style={{ color: 'blue' }}>100+</span></td>
   <td><span style={{ color: 'blue' }}>100+</span></td>
-  <td><span style={{ color: 'grey' }}>13</span></td>
+  <td><span style={{ color: 'grey' }}>16</span></td>
 </tr>
   <tr>
     <td rowspan="5">Data Pipeline</td>
