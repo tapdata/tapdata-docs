@@ -18,10 +18,10 @@
 }
 
 /* Modify the font size of the title*/
- h1 { font-size: 2.2rem !important; }
- h2 { font-size: 1.7rem !important; }
- h3 { font-size: 1.4rem !important; }
- h4 { font-size: 1.1rem !important; }
+ h1 { font-size: 1.8rem !important; }
+ h2 { font-size: 1.5rem !important; }
+ h3 { font-size: 1.2rem !important; }
+ h4 { font-size: 0.9rem !important; }
 
 /* Custom announcement style */
 div[class^='announcementBar_'] {
@@ -139,6 +139,10 @@ pre {
 html[data-theme='dark'] .theme-admonition.theme-admonition-tip.alert.alert--success {
   background-color: #1e3a5f;
   border-color: #878fef;
+}
+
+html {
+  font-size: 16px;
 }
 
 /* Href in TIP */
