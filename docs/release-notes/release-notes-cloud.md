@@ -11,7 +11,6 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 #### New Features
 
 - Enhanced [Data Transformation Task Configuration](../user-guide/data-pipeline/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
-- Launched traffic statistics and billing payment features for the cloud version.
 - Introduced time detection functionality that automatically detects the time difference between the engine deployment server and the database server and displays it on the task monitoring page.
 
 #### Optimizations
