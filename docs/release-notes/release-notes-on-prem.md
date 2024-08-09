@@ -4,6 +4,27 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.11
+
+### New Features
+
+- Added table name and API address display functionality in the [Service Management List Page](../user-guide/data-service/create-api-service.md), supporting quick search and filtering by keywords.
+- Enhanced [Data Transformation Task Configuration](../user-guide/data-pipeline/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
+- Introduced time detection functionality that automatically detects the time difference between the engine deployment server and the database server and displays it on the task monitoring page.
+
+### Enhancements
+
+* User-defined field business descriptions can now be directly displayed in the column name position of the table sample data.
+
+### Bug Fixes
+
+- Fixed an "System error: null" issue that occurred after importing APIs.
+- Fixed an issue where deleted APIs were still shown in the lineage graph.
+- Fixed an issue where some table data counts in the real-time data platform were empty.
+- Fixed an issue where the host was not displayed in the path when publishing APIs in the real-time data platform.
+- Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
+- Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
+
 ## 3.10
 
 ### New Features

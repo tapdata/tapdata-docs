@@ -43,7 +43,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
       * **Basic Settings**
 
         * **Node Name**: Defaults to the connection name, but you can set a name with business meaning.
-        * **Table**: Select the source table to operate on. The table structure, including column names and column types, will be displayed below.
+        * **Table**: Select the source table to operate on. The table structure, including column names and column types, will be displayed below. You can click the refresh button next to **Schema** to reload the table model.
 
       * **Advanced Settings**
 

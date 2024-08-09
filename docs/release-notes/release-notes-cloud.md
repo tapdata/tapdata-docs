@@ -6,6 +6,25 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-08-06
+
+#### New Features
+
+- Enhanced [Data Transformation Task Configuration](../user-guide/data-pipeline/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
+- Introduced time detection functionality that automatically detects the time difference between the engine deployment server and the database server and displays it on the task monitoring page.
+
+#### Optimizations
+
+* User-defined field business descriptions can now be directly displayed in the column name position of the table sample data.
+
+#### Bug Fixes
+
+- Fixed an issue where some table data counts in the real-time data platform were empty.
+- Fixed an issue where the host was not displayed in the path when publishing APIs in the real-time data platform.
+- Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
+- Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
+- Fixed an formatting error in email alerts for the fully managed Agent.
+
 ### 2024-07-20
 
 #### New Features

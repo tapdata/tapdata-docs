@@ -6,6 +6,22 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.11
+
+### New Features
+
+- Enhanced [Data Transformation Task Configuration](../user-guide/data-pipeline/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
+- Introduced time detection functionality that automatically detects the time difference between the engine deployment server and the database server and displays it on the task monitoring page.
+
+### Optimizations
+
+* User-defined field business descriptions can now be directly displayed in the column name position of the table sample data.
+
+### Bug Fixes
+
+- Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
+- Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
+
 ## 3.10
 
 ### New Features
