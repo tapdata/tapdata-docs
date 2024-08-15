@@ -6,6 +6,27 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-08-21
+
+#### New Features
+
+- Oracle, Kafka, and Db2 have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases), offering enhanced capabilities and production stability.
+- Added traffic billing view and payment features in the cloud version.
+
+#### Enhancements
+
+- Optimized the layout structure of the menu entries.
+- Improved error messages and risk warnings for high-risk operations.
+- Significantly improved data synchronization performance.
+- Optimized memory allocation logic during Agent startup.
+
+#### Bug Fixes
+
+- Fixed the issue where some monitoring metrics were lost after task completion.
+- Fixed potential runtime issues in PostgreSQL data source mining tasks.
+- Fixed the issue where large-scale Agents on low-configuration servers might fail to start due to insufficient memory.
+- Fixed the issue where full data synchronization tasks remained in a running state for an extended period.
+
 ### 2024-08-06
 
 #### New Features

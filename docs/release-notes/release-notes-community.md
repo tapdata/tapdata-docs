@@ -6,6 +6,23 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.12
+
+### New Features
+
+- Kafka have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases), offering enhanced capabilities and production stability.
+
+### Enhancements
+
+- Optimized the layout structure of the menu entries.
+- Improved error messages and risk warnings for high-risk operations.
+- Significantly improved data synchronization performance.
+
+### Bug Fixes
+
+- Fixed the issue where some monitoring metrics were lost after task completion.
+- Fixed potential runtime issues in PostgreSQL data source mining tasks.
+
 ## 3.11
 
 ### New Features

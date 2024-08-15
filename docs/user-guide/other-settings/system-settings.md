@@ -31,8 +31,10 @@ Configure SMTP service settings, including:
 - **SMTP Service Host**: Set the host address of the SMTP service.
 - **SMTP Service Port**: Set the port number of the SMTP service.
 - **Email Sending Address**: Set the email address from which emails will be sent.
-- **Email Receiving Address**: Set the email address where emails will be received.
-- **Send Email Title Prefix**  (optional): Set the prefix for email subjects.
+- **Email Receiving Addresses**: Enter the email addresses where alert notifications will be sent, separated by commas (,).
+- **Email Subject Prefix (Optional)**: You can set a prefix for the email subject to help you quickly identify the source of the emails.
+- **SMTP Proxy Service Host (Optional)**: If the email requires access through a proxy, enter the hostname or IP address of the proxy server.
+- **SMTP Proxy Service Port (Optional)**: If the email requires access through a proxy, enter the proxy service port.
 
 After configuring the settings, you can view the email templates. You can test the configuration by conducting a connection test.
 

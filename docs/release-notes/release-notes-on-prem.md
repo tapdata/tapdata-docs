@@ -4,6 +4,25 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.12
+
+### New Features
+
+- Oracle, Kafka, and Db2 have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases), offering enhanced capabilities and production stability.
+- Support for using proxy services when configuring [alert receiving emails](../best-practice/alert-via-qqmail.md).
+
+### Enhancements
+
+- Optimized the layout structure of the menu entries.
+- Improved error messages and risk warnings for high-risk operations.
+- Significantly improved data synchronization performance.
+
+### Bug Fixes
+
+- Fixed the issue where some monitoring metrics were lost after task completion.
+- Fixed potential runtime issues in PostgreSQL data source mining tasks.
+- Fixed the issue where duplicate name errors were incorrectly reported when editing an API.
+
 ## 3.11
 
 ### New Features
