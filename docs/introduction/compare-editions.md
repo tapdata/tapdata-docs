@@ -113,31 +113,31 @@ Building on the free offerings of TapData Community for developers, TapData Ente
 </tr>
   <tr>
     <td rowspan="5">Data Pipeline</td>
-    <td><a href="../user-guide/data-pipeline/copy-data">Data Replication</a></td>
+    <td><a href="../user-guide/copy-data">Data Replication</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
   </tr>
   <tr>
-    <td><a href="../user-guide/data-pipeline/data-development">Data Transformation</a></td>
+    <td><a href="../user-guide/data-development">Data Transformation</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
   </tr>
   <tr>
-    <td><a href="user-guide/data-pipeline/data-development/create-materialized-view">Real-time Materialized Views</a></td>
+    <td><a href="user-guide/data-development/create-materialized-view">Real-time Materialized Views</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
   </tr>
   <tr>
-    <td><a href="../user-guide/data-pipeline/data-development/process-node">Table Processing Nodes</a></td>
+    <td><a href="../user-guide/data-development/process-node">Table Processing Nodes</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
   </tr>
   <tr>
-    <td><a href="../user-guide/data-pipeline/copy-data/create-task#310-table-model">Node Alerts</a></td>
+    <td><a href="../user-guide/copy-data/create-task#310-table-model">Node Alerts</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>➖</td>
@@ -169,7 +169,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
   </tr>
   <tr>
     <td rowspan="6">Advanced Features</td>
-    <td><a href="../user-guide/data-pipeline/verify-data">Data Verification</a></td>
+    <td><a href="../user-guide/verify-data">Data Verification</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>➖</td>

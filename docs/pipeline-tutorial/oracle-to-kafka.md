@@ -110,7 +110,7 @@ Before creating a data transformation task, ensure you have configured the neces
 
        :::tip
 
-       For more information on how to use the JS node and supported functions, see [Process Node](../user-guide/data-pipeline/data-development/process-node.md).
+       For more information on how to use the JS node and supported functions, see [Process Node](../user-guide/data-development/process-node.md).
 
        :::
 
@@ -261,4 +261,4 @@ Processed a total of 1 messages
 
 On the task list page, you can also start/stop, monitor, edit, copy, reset, delete, and perform other operations on the task.
 
-For more information, see [Managing Tasks](../user-guide/data-pipeline/data-development/monitor-task.md).
+For more information, see [Managing Tasks](../user-guide/data-development/monitor-task.md).

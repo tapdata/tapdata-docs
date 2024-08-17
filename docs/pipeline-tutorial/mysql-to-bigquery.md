@@ -83,7 +83,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
 On the Task List page, you can also start, stop, monitor, edit, copy, reset, and delete tasks.
 
-For more information, See [Management Tasks](../user-guide/data-pipeline/copy-data/manage-task.md).
+For more information, See [Management Tasks](../user-guide/copy-data/manage-task.md).
 
 
 

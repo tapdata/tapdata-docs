@@ -27,7 +27,7 @@ This document introduces the recent release notes for TapData Community. For mor
 
 ### New Features
 
-- Enhanced [Data Transformation Task Configuration](../user-guide/data-pipeline/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
+- Enhanced [Data Transformation Task Configuration](../user-guide/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
 - Introduced time detection functionality that automatically detects the time difference between the engine deployment server and the database server and displays it on the task monitoring page.
 
 ### Optimizations
@@ -43,7 +43,7 @@ This document introduces the recent release notes for TapData Community. For mor
 
 ### New Features
 
-- Added a [Union Node](../user-guide/data-pipeline/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- Added a [Union Node](../user-guide/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
 - [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
 - MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
 - Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.
