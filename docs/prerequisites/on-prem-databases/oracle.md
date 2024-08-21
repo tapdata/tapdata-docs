@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
 
 :::
 
-## Supported Operations for Synchronization
+## SQL Operations for Sync
 
 - **DML**: INSERT, UPDATE, DELETE
 
@@ -139,7 +139,7 @@ CREATE USER username IDENTIFIED BY password CONTAINER=all;
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="Read Full Data Only">
+<TabItem value="Full Data Synchronization">
 ```
 
 ```sql
@@ -159,7 +159,7 @@ TO username;
 
 </TabItem>
 
-<TabItem value="Read Full and Incremental Data">
+<TabItem value="Incremental Data Synchronization">
 
 ```sql
 -- Replace 'username' with the actual username
@@ -498,18 +498,18 @@ XE=
    ![Oracle Connection Example](../../images/oracle_connection.png)
 
    * **Connection Information Settings**
-      * **Connection name**: Fill in a unique name that has business significance.
-      * **Connection type**: Supports Oracle as a source or target database.
-      * **Connection mode**: Choose to connect through SID or Service Name.
+      * **Name**: Fill in a unique name that has business significance.
+      * **Type**: Supports Oracle as a source or target database.
+      * **Connection Mode**: Choose to connect through SID or Service Name.
       * **DB Address**: The database connection address.
       * **Port**: The service port of database.
       * **SID**/**Service name**: Fill in the SID or Service Name information.
       * **Schema**: The name of the Schema. One connection corresponds to one Schema. To connect to multiple Schemas, create separate data connections.
-      * **Connection Parameter String**: additional connection parameters, default empty.
       * **User**: The database account.
       * **Password**: The database password.
       * **Log plugin name**: Choose based on your business needs, with the default being **logMiner**. For more information, see [Incremental Log Retrieval Methods](#log-miner).
    * **Advanced <span id="advanced">Settings</span>**
+      * **Connection Parameter String**: additional connection parameters, default empty.
       * **Load Table Comment**:  Choose whether to load table comment information (default is off) to help quickly identify the business significance of tables. Note that loading a large number of comments may affect model loading efficiency.
       * **Multi-tenant**: If Oracle is in multitenant mode, enable this option and enter the PDB information.
       * **Use SSL**: Select whether to enable SSL connection for the data source to enhance data security. After enabling this feature, you will need to upload SSL certificate files and enter the certificate password. The relevant files can be obtained from [Enabling SSL Connection](#ssl).
