@@ -163,7 +163,7 @@ Before connecting to a Db2 database, you need to complete account authorization 
      
    * **Advanced Settings**
       * **Time Zone**: Default is UTC (0). You can manually specify a time zone according to your business needs. This will affect fields without time zones such as DATE and TIMESTAMP.
-      * **CDC Log Cachin**: [Extract the incremental logs](../../user-guide/advanced-settings/share-mining) from the source database. This allows multiple tasks to share the incremental log extraction process from the same source, reducing the load on the source database. When enabled, you also need to select a storage location for the incremental log information.
+      * **CDC Log Caching**: [Extract the incremental logs](../../user-guide/advanced-settings/share-mining) from the source database. This allows multiple tasks to share the incremental log extraction process from the same source, reducing the load on the source database. When enabled, you also need to select a storage location for the incremental log information.
       * **Include Tables**: By default, all tables are included. You can choose to customize and specify the tables to include, separated by commas.
       * **Exclude Tables**: When enabled, you can specify tables to exclude, separated by commas.
       * **Agent Settings**: The default is automatic assignment by the platform. You can also manually specify an Agent.
