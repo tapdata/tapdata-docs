@@ -22,9 +22,9 @@ import TabItem from '@theme/TabItem';
 
 | **Category**        | **Data Types**                                   |
 | ------------------- | ------------------------------------------------ |
-| String and Text     | CHARACTER, CLOB, LONG VARCHAR, VARCHAR           |
-| Numeric             | BIGINT, DECIMAL, DOUBLE, INTEGER, REAL, SMALLINT |
-| Date and Time       | DATE, TIME, TIMESTAMP                            |
+| String and Text     | VARCHAR, CHARACTER, CLOB, LONG VARCHAR           |
+| Numeric             | INTEGER, DECIMAL, BIGINT, SMALLINT, DOUBLE, REAL |
+| Date and Time       | TIMESTAMP, DATE, TIME                            |
 | Boolean             | BOOLEAN                                          |
 | Binary Large Object | BLOB                                             |
 | XML                 | XML                                              |
