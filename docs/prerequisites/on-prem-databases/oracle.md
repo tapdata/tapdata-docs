@@ -23,9 +23,9 @@ import TabItem from '@theme/TabItem';
 
 | Category    | Data Types                                                   |
 | ----------- | ------------------------------------------------------------ |
-| Strings     | CHAR, NCHAR, VARCHAR2, NVARCHAR2, CLOB, NCLOB                |
-| Numbers     | NUMBER, BINARY_FLOAT, BINARY_DOUBLE, FLOAT, INTEGER          |
-| Date & Time | DATE, TIMESTAMP, TIMESTAMP WITH LOCAL TIME ZONE, TIMESTAMP WITH TIME ZONE, INTERVAL |
+| Strings     | VARCHAR2, CHAR, NVARCHAR2, NCHAR, CLOB, NCLOB                |
+| Numbers     | NUMBER, INTEGER, FLOAT, BINARY_FLOAT, BINARY_DOUBLE          |
+| Date & Time | DATE, TIMESTAMP, TIMESTAMP WITH TIME ZONE, TIMESTAMP WITH LOCAL TIME ZONE, INTERVAL |
 | Others      | BLOB, XMLTYPE                                                |
 
 :::tip
