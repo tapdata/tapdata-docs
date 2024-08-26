@@ -501,6 +501,10 @@ SMALLSERIAL
 usermanual
 vastbase
 vastdata
+codepage
+DBADM
+LRI
+readlog
 ebmhfc
 ecs
 ESSD
