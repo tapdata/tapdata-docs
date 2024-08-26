@@ -14,12 +14,14 @@ In this example, we have three servers (as illustrated in the architecture below
 
 In this example, each server is equipped with a **16-core CPU and 32 GB of RAM**. The recommended minimum hardware configuration is an **8-core CPU with 16 GB of RAM**, and the operating system should be CentOS 7+ or Ubuntu 16.04+.
 
-| Service                 | Service Port | Role Description                                             | Resource Planning Recommendations                            |
-| ----------------------- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Management Service      | 3030         | Responsible for providing task management services; does not require continuous memory usage while tasks are running, so it has low load requirements | Recommended to use 18% of total memory: `32*0.18` = `5.76` rounded up to 6 GB |
-| Sync Governance Service | N/A          | Responsible for executing data sync/transform tasks and associated processing nodes, requiring substantial computational and memory resources | Recommended to use 35% of total memory: `32*0.35` = `11.2` rounded up to 12 GB |
-| API Service             | 3080         | Responsible for publishing table data as APIs and providing call and management services. System resources are automatically allocated, with each process using approximately 100 MB of memory | The default number of Worker processes equals the number of CPU cores; it is recommended to adjust based on API service load |
-| MongoDB Service         | 27017        | Responsible for storing essential configurations, shared caches, and other information generated during TapData operations | Recommended to use 30% of total memory: `32*0.3` = `9.6` rounded up to 10 GB |
+| Service                            | Service Port   | Role Description                                             | Resource Planning                                            |
+| ---------------------------------- | -------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Management Service                 | 3030           | Provides task management services; low memory usage during task execution and low load requirements | Recommended 18% of total memory: `32*0.18` = `5.76`, rounded up to 6 GB |
+| Synchronization Governance Service | Not applicable | Executes data synchronization/transformation tasks and related processing nodes, requires significant computing and memory resources | Recommended 35% of total memory: `32*0.35` = `11.2`, rounded up to 12 GB |
+| API Service                        | 3080           | Publishes table data as APIs, provides calling and management services. Automatically allocates system resources, typically using around 100 MB per process | Default number of worker processes is the number of CPU cores; adjust based on API service load |
+| MongoDB Service                    | 27017          | Stores essential configurations for TapData tasks, shared cache, and other information | Recommended 30% of total memory: `32*0.3` = `9.6`, rounded up to 10 GB |
+
+
 
 ## Preparation
 
@@ -140,7 +142,7 @@ The following operations need to be **performed separately on each of the three 
 
 5. Adjust TapData memory resource settings. In this example, each server has 32 GB of memory, and MongoDB is allocated 8 GB, leaving 24 GB of available memory. The settings and descriptions are as follows:
 
-      - `tapdataTMJavaOpts`: Controls the memory usage limit for the **Management Service**, typically set to around 18% of total memory. In this example, set it to `"-Xms4G -Xmx6G"`.
+      - `tapdataTMJavaOpts`: Controls the memory usage limit for the **Management Service**, typically set to around 18% of total memory. In this example, set it to `"-Xms6G -Xmx6G"`.
       - `tapdataJavaOpts`: Controls the memory usage limit for the **Sync Governance Service**, typically set to 35% of total memory. In this example, set it to `"-Xms12G -Xmx12G"`.
       - `apiWorkerCount`: Controls the number of workers in the API service. The default is the number of CPU cores. It can be adjusted based on the API service load; in this example, it is set to `4`.
 
