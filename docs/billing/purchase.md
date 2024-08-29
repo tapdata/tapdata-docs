@@ -22,14 +22,16 @@ After registering with TapData Cloud, you will receive the benefit of creating o
 
    ![Select Agent Specification](../images/select_agent_spec.png)
 
-   * **Deploy Mode**
+   * **Deploy Mode**: Choose the deploy mode based on your business needs:
      * **Self-Hosted Mode**: You need provide the equipment for [deploying](../quick-start/install/install-tapdata-agent.md) and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
      * **Fully Managed Mode**: TapData Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
        :::tip
        When selecting the **Fully Managed Mode**, you also need to choose the cloud provider and region where the Agent will be deployed.
        :::
+   * **Cloud Provider** and **Region**: Required when choosing the **Fully Managed Mode**.
    * **Agent Spec**: Select product specifications based on the number of tasks and performance requirements required for evaluation. You can create an example of **SMALL** specifications for free. For detailed descriptions of product pricing and specifications, see [Billing Overview](billing-overview.md).
-   * **Subscription Period**: Select the required subscription period, in order to avoid the expiration of the instance affecting the execution of the task, it is recommended to choose the Annually (**10% off**) or Monthly (**5% off**).
+   * **Traffic Billing**: When choosing **Fully Managed Mode**, you will also need to pay for traffic based on the amount of synchronized data (billed monthly). The first 100 GB is free.
+   * **Subscription Method**: Select the required subscription period, in order to avoid the expiration of the instance affecting the execution of the task, it is recommended to choose the Annually (**10% off**) or Monthly (**5% off**).
 
 5. Click **Next**, on the following page, carefully review and confirm the specifications you wish to purchase. Ensure that the selected billing method aligns with your preferences. Additionally, verify that the email address provided is accurate and where you would like to receive the bill. 
 

@@ -10,18 +10,32 @@ This document introduces the recent release notes for TapData Community. For mor
 
 ### New Features
 
-- Kafka have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases), offering enhanced capabilities and production stability.
+- Dameng have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
+- For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
+- Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
 
-### Enhancements
+### Feature Enhancements
 
-- Optimized the layout structure of the menu entries.
-- Improved error messages and risk warnings for high-risk operations.
-- Significantly improved data synchronization performance.
+- Significantly enhanced data synchronization performance.
+- Optimized the layout and structure of menu entries.
+- Improved error messages and high-risk operation warnings.
+- For data sources that do not support hash validation, hash validation is now disabled by default.
+- After full sync tasks are completed, restarting the task will trigger a full resynchronization to ensure data consistency.
 
 ### Bug Fixes
 
-- Fixed the issue where some monitoring metrics were lost after task completion.
-- Fixed potential runtime issues in PostgreSQL data source mining tasks.
+- Fixed an issue where some task monitoring metrics were lost after task completion.
+- Fixed a query efficiency issue caused by missing necessary indexes in the intermediate database, reducing data scan volume.
+- Fixed an issue where selecting "Show only different fields" when downloading data validation discrepancies resulted in downloading all fields.
+- Fixed a problem where task editing could get stuck during model generation, improving the task editing experience.
+- Fixed an issue where, after stopping a data replication task in the incremental phase and restarting it, the full completion time displayed incorrectly.
+- Fixed an issue with TDengine where SQL statement length exceeded limits when writing to super tables with many fields.
+- Fixed an error occurring in data transformation tasks using TDengine as a source when the table name contained Chinese characters.
+- Fixed potential exceptions when running mining tasks on PostgreSQL data sources.
+- Fixed an issue in Oracle to Doris shared mining tasks where source table DDL events could not be parsed.
+- Fixed specific exception issues during the incremental phase of MongoDB to Kafka data transformation tasks.
+- Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
+- Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
 
 ## 3.11
 

@@ -8,20 +8,40 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-- Oracle, Kafka, and Db2 have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases), offering enhanced capabilities and production stability.
-- Support for using proxy services when configuring [alert receiving emails](../best-practice/alert-via-qqmail.md).
+- Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
+- When configuring [alert recipient email](../best-practice/alert-via-qqmail.md), support for using proxy services has been added, allowing for timely alert notifications even in restricted network environments.
+- For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
+- Support for partition table synchronization when syncing PostgreSQL to SQL Server, enhancing data synchronization flexibility and efficiency.
+- Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
+- Added support for batch API publishing, simplifying multi-interface management and enhancing publishing efficiency.
 
-### Enhancements
+### Feature Enhancements
 
-- Optimized the layout structure of the menu entries.
-- Improved error messages and risk warnings for high-risk operations.
-- Significantly improved data synchronization performance.
+- Significantly enhanced data synchronization performance.
+- Optimized the layout and structure of menu entries.
+- Improved error messages and high-risk operation warnings.
+- For data sources that do not support hash validation, hash validation is now disabled by default.
+- After full sync tasks are completed, restarting the task will trigger a full resynchronization to ensure data consistency.
 
 ### Bug Fixes
 
-- Fixed the issue where some monitoring metrics were lost after task completion.
-- Fixed potential runtime issues in PostgreSQL data source mining tasks.
-- Fixed the issue where duplicate name errors were incorrectly reported when editing an API.
+- Fixed an issue where some task monitoring metrics were lost after task completion.
+- Fixed a query efficiency issue caused by missing necessary indexes in the intermediate database, reducing data scan volume.
+- Fixed an issue where selecting "Show only different fields" when downloading data validation discrepancies resulted in downloading all fields.
+- Fixed an issue where the old engine name still appeared in task settings after changing the engine name in cluster management.
+- Fixed a problem where task editing could get stuck during model generation, improving the task editing experience.
+- Fixed possible OOM error problems with Agents, enhancing memory management and stability.
+- Fixed an issue where full sync tasks in the cloud version sometimes got stuck in a running state, improving task execution smoothness.
+- Fixed an issue where editing an API showed a duplicate name warning.
+- Fixed an issue where, after stopping a data replication task in the incremental phase and restarting it, the full completion time displayed incorrectly.
+- Fixed an issue with TDengine where SQL statement length exceeded limits when writing to super tables with many fields.
+- Fixed an error occurring in data transformation tasks using TDengine as a source when the table name contained Chinese characters.
+- Fixed potential exceptions when running mining tasks on PostgreSQL data sources.
+- Fixed an issue in Oracle to Doris shared mining tasks where source table DDL events could not be parsed.
+- Fixed issues with inserting and deleting operations when syncing Oracle to PostgreSQL for tables without primary keys, enhancing synchronization reliability.
+- Fixed specific exception issues during the incremental phase of MongoDB to Kafka data transformation tasks.
+- Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
+- Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
 
 ## 3.11
 
