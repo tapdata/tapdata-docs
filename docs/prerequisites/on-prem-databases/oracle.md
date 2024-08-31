@@ -343,7 +343,7 @@ TO  username CONTAINER=all;
 
 
 
-### <span id="ssl">Enabling SSL Connection (Optional)</span>
+### <span id="ssl">Enable SSL Connection (Optional)</span>
 
 To further enhance the security of your data connection, you can opt to enable SSL (Secure Sockets Layer) encryption for Oracle databases. This process encrypts network connections at the transport layer, thereby improving the security of communication data and ensuring data integrity.
 
@@ -513,7 +513,7 @@ XE=
       * **Load Table Comment**:  Choose whether to load table comment information (default is off) to help quickly identify the business significance of tables. Note that loading a large number of comments may affect model loading efficiency.
       * **Multi-tenant**: If Oracle is in multitenant mode, enable this option and enter the PDB information.
       * **Use SSL**: Select whether to enable SSL connection for the data source to enhance data security. After enabling this feature, you will need to upload SSL certificate files and enter the certificate password. The relevant files can be obtained from [Enabling SSL Connection](#ssl).
-      * **Timezone for datetime**: Default is set to UTC (0 timezone). You can manually specify another timezone based on your business needs. Changing this setting will affect fields without a timezone, such as DATE and TIMESTAMP.
+      * **Timezone for datetime**: Defaults to timezone 0. You can also specify it manually according to business needs. Configuring a different timezone will affect timezone-related fields, such as DATE, TIMESTAMP, TIMESTAMP WITH TIME ZONE, etc.
       * **Socket Read Timeout**: Set this parameter to avoid zombie connections that may occur due to unexpected situations (e.g., socket interaction timeout) when LogMiner automatically mines incremental changes. The default value of 0 means no timeout is set.
       * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.
       * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
