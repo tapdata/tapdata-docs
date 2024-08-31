@@ -1,85 +1,141 @@
 # Dameng
-
 import Content from '../../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-Dameng Database Management System (DM) is a new generation of large-scale general-purpose relational databases, providing comprehensive support for SQL standards and mainstream programming language interfaces/development frameworks. It adopts row-column hybrid storage technology, achieving a balance between OLAP and OLTP, and satisfying the needs of HTAP hybrid application scenarios.
+[Dameng Database Management System](https://en.dameng.com/) is a new generation of large-scale general-purpose relational database developed by Dameng. It fully supports SQL standards and mainstream programming language interfaces/development frameworks. With its hybrid row-column storage technology, it caters to both OLAP and OLTP, meeting the needs of HTAP (Hybrid Transactional and Analytical Processing) applications. This document will guide you on how to add Dameng as a data source in TapData, which can subsequently be used as a source or target database to build data pipelines.
 
-After completing the Agent deployment, you can follow this tutorial to add a Dameng data source in TapData Cloud, and subsequently use it as either a source or a target database to build data pipelines.
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
-## Supported Versions
+## Supported Versions and Architectures
 
-DM 7.x, 8.x
+DM versions 7.x and 8.x (standalone architecture)
 
-import Content1 from '../../reuse-content/_beta.md';
+## Supported Data Types
 
-<Content1 />
+| Category    | Data Types                                                   |
+| ----------- | ------------------------------------------------------------ |
+| String      | VARCHAR, VARCHAR2, CHAR, CHARACTER, LONGVARCHAR, TEXT, CLOB  |
+| Numeric     | NUMBER, NUMERIC, DECIMAL, DEC, INTEGER, INT, SMALLINT, BIGINT, TINYINT, DOUBLE, DOUBLE PRECISION, REAL |
+| Date & Time | DATE, TIME, TIMESTAMP, TIMESTAMP WITH TIME ZONE, TIMESTAMP WITH LOCAL TIME ZONE, TIME WITH TIME ZONE |
+| Binary      | BINARY, VARBINARY, LONGVARBINARY, BLOB, BYTE                 |
+| Other       | BIT, IMAGE                                                   |
 
-## Prerequisites
+## SQL Operations for Sync
 
-Before connecting to the Dameng database, you need to complete some preparatory work regarding database account authorization:
+- **DML**: INSERT, UPDATE, DELETE
 
-* [As a source database](#source)
-* [As a target database](#target)
+  :::tip
+
+  When Dameng is used as a target, you can select the write strategy through the advanced settings of the task node: in case of insert conflicts, you can choose to convert to an update or discard the record; in case of update failures, you can choose to convert to an insert or just log the issue.
+
+  :::
+
+- **DDL**: ADD COLUMN, CHANGE COLUMN, DROP COLUMN, RENAME COLUMN
+
+## Considerations
+
+* Incremental log mining uses official features to load log files into temporary views and filter the DML and DDL logs of the tracked tables. This is similar to Oracle's LogMiner and may consume some database performance. If there are multiple synchronization tasks with scattered data tables, it is recommended to use [Shared Mining](../../user-guide/advanced-settings/share-mining.md) to reduce database load.
+* When the database log space is insufficient, you can use the command `SF_ARCHIVELOG_DELETE_BEFORE_TIME(SYSDATE-1);` to clean up archive logs from the day before, retaining only the logs from the last day. You can also specify the number of days to retain based on your needs.
+
+## Preparation
+
+Before connecting to the Dameng database, you need to complete some preparatory steps such as database user authorization:
+
+* [As a Source Database](#source)
+* [As a Target Database](#target)
 
 ### <span id="source">As a Source Database</span>
 
-1. Log in to the Dameng database with an account that has DBA privileges.
+1. Log in to the Dameng database with DBA privileges.
 
-2. Execute the following commands in sequence to create a user for data replication/transformation tasks.
+2. Execute the following commands to create a user for data replication/transformation tasks.
 
    ```sql
    CREATE USER username IDENTIFIED BY "password" DEFAULT TABLESPACE table_space_name;
    ```
-   
+
    * **username**: The username.
    * **password**: The password.
    * **table_space_name**: The tablespace name.
-   
-3. Grant permissions to the newly created account. You can also customize permission control based on your business needs.
+
+3. Grant the newly created user the necessary permissions. You can customize the permissions according to business needs.
+
+   ```mdx-code-block
+   <Tabs className="unique-tabs">
+   <TabItem value="Full Data Synchronization">
+   ```
+   ```sql
+   -- Replace "username" with the actual username. Authorization is not required within the same Schema.
+   GRANT SELECT ANY TABLE TO username;
+   ```
+   </TabItem>
+
+   <TabItem value="Full and Incremental Data Synchronization">
 
    ```sql
-   -- Replace the username in the following command with the actual username
-   GRANT dba TO username;
-   
-   -- Or use the following more fine-grained authorization
-   GRANT SELECT TABLE, SELECT VIEW TO username;
-   GRANT SELECT ON "SYS"."V$RLOG" TO username;
-   GRANT SELECT ON "SYS"."V$ARCHIVED_LOG" TO username;
+   -- Replace "username" with the actual username.
+   -- To query tables
+   GRANT SELECT ANY TABLE TO username;
+   -- To query the table that records database initialization loading information
+   GRANT SELECT ON V$DM_INI TO username;
+   -- To query archive log information
+   GRANT SELECT ON V$ARCHIVED_LOG TO username;
+   -- To query general archive log information
+   GRANT SELECT ON V$RLOG TO username;
+   -- To query archive log analysis view
+   GRANT SELECT ON V$LOGMNR_CONTENTS TO username;
+   -- To query session view
+   GRANT SELECT ON V$SESSIONS TO username;
+   -- To query transaction view
+   GRANT SELECT ON V$TRX TO username;
    ```
-   
-4. To capture data changes in the source database for incremental synchronization, you need to enable the database archiving function and archived logs by following these steps:
+   </TabItem>
+   </Tabs>
 
-   :::tip
+4. If you need to capture incremental data changes from the source database, follow these steps to enable archiving and archive logging.
 
-   You can also execute the `SELECT para_name, para_value FROM v$dm_ini WHERE para_name IN ('ARCH_INI','RLOG_APPEND_LOGIC');` command to check if this function is already enabled. If the value in the **PARA_VALUE** column is **1**, it means the function is enabled, and you can skip this step.
+   1. Enable archive logging. For detailed parameter descriptions, refer to the [Dameng Official Documentation](https://eco.dameng.com/document/dm/zh-cn/pm/backup-restore-combat#3.1.2%20%E5%BD%92%E6%A1%A3%E9%85%8D%E7%BD%AE).
 
-   :::
+      :::tip
 
-   ```sql
-   -- Change the database status to MOUNT
-   ALTER DATABASE MOUNT;
-   
-   -- Configure local archiving; the specified directory will be created automatically if it does not exist
-   -- FILE_SIZE represents the archive file size, space_limit represents the space size limit
-   ALTER DATABASE ADD ARCHIVELOG 'DEST = /bak/dmdata/dameng, TYPE = local, FILE_SIZE = 1024, SPACE_LIMIT = 0';
-   
-   -- Enable archiving mode
-   ALTER DATABASE ARCHIVELOG;
-   
-   -- Enable supplemental logging; if there are primary key columns, only the primary key column information will be recorded when UPDATE/DELETE is performed
-   ALTER SYSTEM SET 'RLOG_APPEND_LOGIC'=1 MEMORY;
-   
-   -- Change the database status to OPEN
-   ALTER DATABASE OPEN;
-   ```
+      You can also run the command `SELECT para_name, para_value FROM v$dm_ini WHERE para_name IN ('ARCH_INI','RLOG_APPEND_LOGIC');` to check if this feature is already enabled. If the **PARA_VALUE** column shows a value of **1**, it is already enabled, and you can skip this step.
+
+      :::
+
+      ```sql
+      -- Change the database to MOUNT state
+      ALTER DATABASE MOUNT;
+      
+      -- Configure local archiving. If the directory specified by DEST does not exist, it will be created automatically.
+      -- FILE_SIZE specifies the size of a single archive file in MB; SPACE_LIMIT specifies the space size limit, with 0 indicating no limit. You can clean up periodically using commands.
+      ALTER DATABASE ADD ARCHIVELOG 'DEST = /bak/dmdata/dameng, TYPE = local, FILE_SIZE = 1024, SPACE_LIMIT = 0';
+      
+      -- Enable archive mode
+      ALTER DATABASE ARCHIVELOG;
+      
+      -- Change the database to OPEN state
+      ALTER DATABASE OPEN;
+      ```
+
+   2. Enable supplemental logging.
+
+      ```sql
+      -- Enable supplemental logging. It is recommended to set the value to 2
+      -- It meaning all columns' information is recorded when logging UPDATE and DELETE operations, regardless of primary key columns.
+      ALTER SYSTEM SET 'RLOG_APPEND_LOGIC'=2 MEMORY;
+      ```
+
+
 
 ### <span id="target">As a Target Database</span>
 
-1. Log in to the Dameng database with an account that has DBA privileges.
+1. Log in to the Dameng database with DBA privileges.
 
-2. Execute the following commands in sequence to create a user for data replication/transformation tasks.
+2. Execute the following commands to create a user for data replication/transformation tasks.
 
    ```sql
    CREATE USER username IDENTIFIED BY "password" DEFAULT TABLESPACE table_space_name;
@@ -89,50 +145,61 @@ Before connecting to the Dameng database, you need to complete some preparatory 
    * **password**: The password.
    * **table_space_name**: The tablespace name.
 
-3. Grant permissions to the newly created account. You can also customize permission control based on your business needs.
+3. Grant the newly created user the necessary permissions. You can customize the permissions according to business needs.
 
    ```sql
-   -- Replace the username in the following command with the actual username
-   GRANT CREATE TABLE, DELETE TABLE, INSERT TABLE, SELECT TABLE, UPDATE TABLE, CREATE INDEX TO username;
+   -- Replace "username" with the actual username.
+   GRANT CREATE TABLE, CREATE INDEX TO username;
    ```
 
-## Adding a Data Source
+## Connect to Oracle
 
 1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
-2. In the left navigation bar, click **Connections**.
+2. In the left navigation panel, click **Connections**.
 
 3. Click **Create** on the right side of the page.
 
-4. In the pop-up dialog box, search and select **Dameng**.
+4. In the dialog box that appears, search for and select **Dameng**.
 
-5. On the redirected page, fill in the connection information for the Dameng database according to the following instructions:
+5. On the page that appears, fill in the connection information for the Dameng database as described below.
 
-   * **Connection Basic Settings**
-     * **Connection Name**: Fill in a unique name that has business significance.
-     * **Connection Type**: Supports Dameng as a source or target database.
-     * **Host**: The database connection address.
-     * **Port**: The service port of the database.
-     * **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
-     * **Schema**: The schema name. When creating a database user, Dameng database will automatically create a schema with the same name as the username (in uppercase). If you need to connect to multiple schemas, you need to create multiple data connections.
-     * **username**: The database username.
-     * **Password**: The database password.
-     * **Connection Parameters**: Additional connection parameters, default is empty.
-     * **Time Zone**: Defaults to the time zone used by the database, but you can also manually specify it based on business needs.
+   ![Dameng Connection Settings](../../images/dameng_connection_settings.png)
+
+   * **Connection Settings**
+     
+     * **Name**: Enter a unique name that is meaningful to your business.
+     * **Type**: Supports using Dameng as a source or target database.
+     * **Host**: Database connection IP address or hostname.
+     * **Port**: Database service port, default is 5236.
+     * **Schema**: Schema name. When creating a database user, Dameng will automatically create a Schema with the same name as the username (in all uppercase). If you need to connect to multiple Schemas, you must create multiple data connections.
+     * **User**: Database account username.
+     * **Password**: Password for the database account.
+     * **Connection Parameters String**: Additional connection parameters, default is empty.
+     * **Timezone**: Default is set to UTC (0 timezone). You can manually specify another timezone based on your business needs. Changing this setting will affect fields without a timezone, such as DATE and TIMESTAMP.
+     
    * **Advanced Settings**
-     * **Include Tables**: Defaults to **All**. You can also choose to customize and enter the tables to include, separated by commas (,).
-     * **Exclude Tables**: Turn on this switch to set tables to exclude, separated by commas (,).
-     * **Agent settings**: Defaults to **Platform Automatic Allocation**, you can also manually specify an agent.
-     * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-     * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+     * **Shared Mining**: [Mines the source database](https://docs.tapdata.net/user-guide/advanced-settings/share-mining) for incremental logs. This allows multiple tasks to share the same source database's incremental log collection process, avoiding redundant reads and minimizing the load on the source database. Once enabled, you will need to select an external storage to store incremental log information.
+     * **Include Tables**: Default is **All**. You can also choose to customize and specify tables to include, separated by commas (,).
+     * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+     * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+     * **Model load time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+     * **Enable Heartbeat Table**: When the connection type is selected as **Source and Target** or **Source**, you can enable this option. TapData will create a heartbeat table named **_tapdata_heartbeat_table** in the source database and update it every 10 seconds (database account needs relevant permissions) to monitor the health of the data source connection and tasks.
        :::tip
-       After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
+       The heartbeat task will start only after the data source is referenced and the data replication/development task is initiated. At this point, you can re-enter the edit page for this data source and click **View Heartbeat Task**.
        :::
 
-6. Click **Test**. After the test passes, click **Save**.
 
-   :::tip
+6. Click **Test Connection**. If the test is successful, click **Save**.
 
-   If the connection test fails, follow the prompts on the page to fix it.
+   If the connection test fails, follow the prompts on the page to resolve the issue.
 
-   :::
+
+## Advanced Node Features
+
+![Dameng Advanced Features](../../images/dameng_advanced_settings.png)
+
+When configuring data synchronization/transformation tasks, using Dameng as a **source node** provides additional advanced features built into TapData to better meet complex business needs and maximize performance. You can configure these features based on business requirements:
+
+* **Large Transaction Event Boundary**: When using LogMiner to obtain incremental data, this setting determines the threshold for entering large transaction logic, defaulting to 10,000 DML events. Setting this too high may increase memory pressure and risk OOM, while setting it too low may frequently rely on disk caching, affecting performance. It is recommended to avoid bulk data operations involving tens of millions of records in the business, such as `insert into select` or bulk `update`.
+* **Uncommitted Transaction Lifetime**: To avoid data loss when restarting tasks, TapData retains long-uncommitted transactions in the task cache and starts mining from the earliest uncommitted transaction upon restart. To ensure collection performance, you can control the retention time of uncommitted transactions with this parameter (default is 702 minutes). Transactions exceeding this duration will be automatically cleared.
