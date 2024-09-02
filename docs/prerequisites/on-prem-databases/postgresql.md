@@ -37,7 +37,7 @@ import TabItem from '@theme/TabItem';
 
 :::tip
 
-When using the Wal2json plugin for incremental data, the following types are not supported: `tsvector`, `tsquery`, `regproc`, `regprocedure`, `regoper`, `regoperator`, `regclass`, `regtype`, `regconfig`, and `regdictionary`. With the Walminer plugin, the unsupported types include the above and also `array` and `oid`.
+When using PostgreSQL as the target database or obtaining incremental data via the Wal2json plugin, the following data types are not supported: `tsvector`, `tsquery`, `regproc`, `regprocedure`, `regoper`, `regoperator`, `regclass`, `regtype`, `regconfig`, and `regdictionary`. If the Walminer plugin is used, these types are also not supported, along with `array` and `oid` types.
 
 :::
 
@@ -91,6 +91,9 @@ When PostgreSQL is used as a target, you can choose write strategies through the
       
       -- Grant table read permission for the target schema
       GRANT SELECT ON ALL TABLES IN SCHEMA schema_name TO username;
+      
+      -- Grant USAGE permission to schema
+      GRANT USAGE ON SCHEMA schema_name TO username;
       ```
       </TabItem>
       
@@ -103,12 +106,15 @@ When PostgreSQL is used as a target, you can choose write strategies through the
       -- Grant table read permission for the target schema
       GRANT SELECT ON ALL TABLES IN SCHEMA schema_name TO username;
       
+      -- Grant USAGE permission to schema
+      GRANT USAGE ON SCHEMA schema_name TO username;
+      
       -- Grant replication permission
       ALTER USER username REPLICATION;
       ```
       </TabItem>
       </Tabs>
-
+      
       * **database_name**: Database name.
       * **schema_name**: Schema name.
       * **username**: Username.
@@ -308,10 +314,13 @@ When PostgreSQL is used as a target, you can choose write strategies through the
    -- Grant read and write permissions for tables in the target schema
    GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON ALL TABLES IN SCHEMA schemaname TO username;
    
-	-- Due to PostgreSQL's own limitations, for tables without primary keys, the following command must be executed to use update and delete (TapData will automatically execute it)
-   ALTER TABLE schema_name.table_name REPLICA IDENTITY FULL; 
-   ```
+	-- Grant USAGE permission to schema
+   GRANT USAGE ON SCHEMA schema_name TO username;
    
+   -- Due to PostgreSQL's own limitations, for tables without primary keys, the following command must be executed to use update and delete (TapData will automatically execute it)
+	ALTER TABLE schema_name.table_name REPLICA IDENTITY FULL; 
+	```
+	
 	* **database_name**: Database name.
 	* **schema_name**: Schema name.
 	* **username**: Username.
