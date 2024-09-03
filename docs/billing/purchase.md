@@ -30,7 +30,7 @@ After registering with TapData Cloud, you will receive the benefit of creating o
        :::
    * **Cloud Provider** and **Region**: Required when choosing the **Fully Managed Mode**.
    * **Agent Spec**: Select product specifications based on the number of tasks and performance requirements required for evaluation. You can create an example of **SMALL** specifications for free. For detailed descriptions of product pricing and specifications, see [Billing Overview](billing-overview.md).
-   * **Traffic Billing**: When choosing **Fully Managed Mode**, you will also need to pay for traffic based on the amount of synchronized data (billed monthly). The first 100 GB is free.
+   * **Traffic Billing**: When choosing **Fully Managed Mode**, you will also need to pay for traffic based on the amount of synchronized data (billed monthly).
    * **Subscription Method**: Select the required subscription period, in order to avoid the expiration of the instance affecting the execution of the task, it is recommended to choose the Annually (**10% off**) or Monthly (**5% off**).
 
 5. Click **Next**, on the following page, carefully review and confirm the specifications you wish to purchase. Ensure that the selected billing method aligns with your preferences. Additionally, verify that the email address provided is accurate and where you would like to receive the bill. 
