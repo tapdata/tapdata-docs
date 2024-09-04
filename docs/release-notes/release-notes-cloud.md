@@ -13,7 +13,6 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 - Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
 - Added [traffic billing](../billing/billing-overview.md) feature for fully managed instances, supporting [traffic bill viewing and payment](../billing/renew-subscribe.md), enabling users to easily monitor traffic usage and manage bills conveniently.
 - For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
-- Support for partition table synchronization when syncing PostgreSQL to SQL Server, enhancing data synchronization flexibility and efficiency.
 - Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
 
 #### Enhancements

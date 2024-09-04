@@ -11,7 +11,6 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
 - When configuring [alert recipient email](../best-practice/alert-via-qqmail.md), support for using proxy services has been added, allowing for timely alert notifications even in restricted network environments.
 - For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
-- Support for partition table synchronization when syncing PostgreSQL to SQL Server, enhancing data synchronization flexibility and efficiency.
 - Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
 - Added support for batch API publishing, simplifying multi-interface management and enhancing publishing efficiency.
 
