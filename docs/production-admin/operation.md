@@ -346,7 +346,7 @@ Common high-risk operations include:
 * [Connection Management](../prerequisites/README.md)
     * **Deleting data source connections**: To avoid accidental deletion, when performing a deletion operation, a prompt will appear if the connection is referenced by a task.
     * **Editing data source connections**: If the parameters of the data source are set incorrectly, it may cause the connection to fail. Tasks referencing this data source will use the previous parameters and will not be affected, but new tasks or tasks reset afterwards may trigger errors.
-* [Data Replication](../user-guide/data-pipeline/copy-data/create-task.md)/[Data Transformation](../user-guide/data-pipeline/data-development/create-task.md) Tasks
+* [Data Replication](../user-guide/copy-data/create-task.md)/[Data Transformation](../user-guide/data-development/create-task.md) Tasks
     * **Resetting tasks**: This operation will reset the task to its initial state, clearing historical monitoring data. Subsequent task starts will require re-executing full data synchronization.
     * **Data duplication processing strategy**: In the target node settings, setting different data duplication strategies will affect the structure and data of the target table. For example, selecting **Clear existing target table structure and data** will clear the target table's structure and all data upon task start, synchronizing new table structures and data from the source.
     * **Setting data write strategy**: In the advanced settings of the target node, if append write is selected, TapData will only process insert events, discarding update and delete events. Choose carefully based on business needs to avoid the risk of data inconsistency.

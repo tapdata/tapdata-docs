@@ -1,5 +1,5 @@
 # Adding Processing Nodes to Replication Tasks
-import Content from '../../../reuse-content/_all-features.md';
+import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
@@ -19,17 +19,17 @@ With the **Union** node, you can merge multiple tables with similar or identical
 
 Suppose you want to perform a union operation on two tables, **student1** and **student2**, with the same structure and then store the results in the **student_merge** table. The structure and data of the tables are as follows:
 
-![Example of Union Data](../../../images/table_union_demo.png)
+![Example of Union Data](../../images/table_union_demo.png)
 
 **Operation Steps:**
 
-1. [Log in to the TapData platform](../../log-in.md).
+1. [Log in to the TapData platform](../log-in.md).
 
-2. In the left navigation bar, select **Data Pipelines** > **Data Replication**.
+2. In the left navigation bar, click **Data Replication**.
 
 3. Click **Create** on the right side of the page. Drag in the source node, union node, table editor, and target node in sequence from the left side of the page, and then connect them.
 
-   ![Connect Union Node](../../../images/add_union_node_in_data_copy.png)
+   ![Connect Union Node](../../images/add_union_node_in_data_copy.png)
 
    :::tip
 
@@ -41,7 +41,7 @@ Suppose you want to perform a union operation on two tables, **student1** and **
 
 5. Click the **Union** node and choose the name of the merged table.
 
-   ![Union Node Settings](../../../images/union_node_settings.png)
+   ![Union Node Settings](../../images/union_node_settings.png)
 
 6. Click the **Table Editor** node and specify a unique new name for the table in the database, such as **student_merge**.
 
@@ -76,7 +76,7 @@ The table edit node primarily adjusts table names. Add a **Table Edit** node to 
 
 Additionally, you can directly specify a new name for individual target tables.
 
-![](../../../images/copy_data_1.png)
+![](../../images/copy_data_1.png)
 
 ## <span id="column-modification">Column Edit Node</span>
 
@@ -89,13 +89,13 @@ The column edit node mainly renames or changes the case of table fields. Add a *
 
 Additionally, you can select a target field and click **Mask** to exclude it from being passed to the next node.
 
-![](../../../images/data_copy_column_modification.png)
+![](../../images/data_copy_column_modification.png)
 
 ## JS Node
 
 Supports data manipulation using JavaScript scripts or Java code. Ensure the node is connected to both the source and target nodes before editing the code. If not connected, code editing is not possible.
 
-![](../../../images/copy_data_4.png)
+![](../../images/copy_data_4.png)
 
 After scripting, use the test button below the node to view inputs and outputs, aiding in debugging.
 
@@ -103,7 +103,7 @@ After scripting, use the test button below the node to view inputs and outputs, 
 
 For JS nodes, TapData employs sample data run tests to infer the node's model information. If the inferred model is inaccurate or missing fields, model declaration can be used to explicitly define field information.
 
-![](../../../images/create_task_5.png)
+![](../../images/create_task_5.png)
 
 The model declaration in replication tasks supports the following methods:
 
@@ -128,8 +128,8 @@ TapModelDeclare.removeIndex(schemaApplyResultList, 'indexName')
 
 ### JS Built-in Function Explanation
 
-- [Standard JS Built-in Functions](../../../appendix/standard-js.md): Useful for data record manipulation and calculation, such as converting date strings into Date objects.
-- [Enhanced JS Built-in Functions (Beta)](../../../appendix/enhanced-js.md): On top of standard JS functions, supports external calls (e.g., network, database).
+- [Standard JS Built-in Functions](../../appendix/standard-js.md): Useful for data record manipulation and calculation, such as converting date strings into Date objects.
+- [Enhanced JS Built-in Functions (Beta)](../../appendix/enhanced-js.md): On top of standard JS functions, supports external calls (e.g., network, database).
 
 ## <span id="time-calculation">Time Operations</span>
 
@@ -147,7 +147,7 @@ In this case, the source database is in UTC+8, and the target database is in UTC
 4. Configure the source node and select the tables.
 5. Click on the **Time Operation** node and in the right panel, select the time type and operation method.
 
-   ![Time Operation](../../../images/time_calculation.png)
+   ![Time Operation](../../images/time_calculation.png)
 
     - **Node Name**: Defaults to the connection name, but you can set a meaningful name.
     - **Select the time type to operate on**: TapData auto-detects supportable time types. You should choose based on your business requirements. Additionally, you can click the **Model** tab to see the relationship between time types and column names.
@@ -184,7 +184,7 @@ In scenarios involving data synchronization between heterogeneous data sources, 
 
 Operation: Add the **Type Filtering** node to the canvas and connect it to the data source. Click on the node and select the field types to filter (precision specification is not supported yet).
 
-![Type Filtering](../../../images/data_type_filter.png)
+![Type Filtering](../../images/data_type_filter.png)
 
 :::tip
 
@@ -200,6 +200,6 @@ In real-time data integration and synchronization processes, capturing and synch
 
 When the data source lacks complete CDC support or is restricted by permission controls from accessing incremental logs, we can add a time field injection node to the data synchronization chain. This node automatically adds timestamp information to the source table data read. Subsequently, in the target table's configuration, this field (of DATETIME type) can be selected for polling to achieve incremental data retrieval, thereby further enhancing the flexibility of real-time data acquisition methods.
 
-![Time Field Injection](../../../images/time_field_injection.png)
+![Time Field Injection](../../images/time_field_injection.png)
 
 ## 

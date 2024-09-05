@@ -8,7 +8,7 @@ This document aims to provide you with a detailed guide for identifying and reso
 
 ## Viewing Task Logs
 
-Task runtime logs can be viewed at the bottom of the [task monitoring page](../user-guide/data-pipeline/copy-data/monitor-task#error-code). For common issues, TapData has solidified them into specific [error codes](error-code.md) for your convenience, along with their causes and solutions. If the relevant error code is not found, you can also troubleshoot based on the log keywords provided in this document or contact technical support.
+Task runtime logs can be viewed at the bottom of the [task monitoring page](../user-guide/copy-data/monitor-task#error-code). For common issues, TapData has solidified them into specific [error codes](error-code.md) for your convenience, along with their causes and solutions. If the relevant error code is not found, you can also troubleshoot based on the log keywords provided in this document or contact technical support.
 
 ## Oracle
 
@@ -143,4 +143,4 @@ Host:9200/_all/_settings -d '{"index.mapping.total_fields.limit": 5000}'
 
 **Scenario**: When syncing from MongoDB to ElasticSearch, after running for a while, the task stops with the above error message in the logs.
 
-**Solution**: In MongoDB, the same field has NaN and float types, and ElasticSearch cannot complete the data write causing the error. Add a [JS Processing Node](../user-guide/data-pipeline/data-development/process-node#js-process) to the task's pipeline with content `MapUtils.removeNullValue(record);`, then restart the task.
+**Solution**: In MongoDB, the same field has NaN and float types, and ElasticSearch cannot complete the data write causing the error. Add a [JS Processing Node](../user-guide/data-development/process-node#js-process) to the task's pipeline with content `MapUtils.removeNullValue(record);`, then restart the task.

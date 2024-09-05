@@ -1,6 +1,6 @@
 # Generate Data Pipeline with One Click
 
-import Content from '../../../reuse-content/_all-features.md';
+import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
@@ -8,23 +8,21 @@ In the **Board** view mode, you can simply drag the source table to the target d
 
 ## Procedure
 
-1. [Log in to TapData Platform](../../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
-2. Based on the product type, select the operation entry:
+2. In the left navigation panel, click **Data Replications**.
 
-    * **TapData Cloud**: In the left navigation panel, click **Data Replications**.
-    * **TapData Enterprise or TapData Community**: In the left navigation panel, choose **Data Pipelines** > **Replications**.
 3. In the upper right corner of the page, click on **Board** to switch to the Data Board view.
 
 4. On this page, you can conveniently view the data source information you have entered. The page is divided into two columns labeled **Sources** and **Targets & Services** by TapData. This helps you distinguish between the source and target data sources and provides a clear overview of your data connections.
 
-   ![Data Integration Mode Page](../../../images/view_etl_dashboard.png)
+   ![Data Integration Mode Page](../../images/view_etl_dashboard.png)
 
 5. (Optional) Click the 🔍 icon to find the source table you want to synchronize and drag it to the right target data source.
 
 6. In the pop-up dialog box, fill in a task name that is meaningful for your business, select the synchronization type, and choose whether to run the task.
 
-   ![Create Task](../../../images/create_etl_task.gif)
+   ![Create Task](../../images/create_etl_task.gif)
 
    - **Only Save**: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../data-development/process-node) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click **Start** in the upper right corner of the page.
 

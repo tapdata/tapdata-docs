@@ -86,7 +86,7 @@ To ensure information security, if you need to desensitize certain mobile phone 
 
 6. Click the **Save** in the top right corner.
 
-7. [Create a data transformation task](../data-pipeline/data-development/create-task.md). Add the phone number desensitization node between the source and target nodes in the data development task, and specify the field **mobile** as the input for the desensitization process.
+7. [Create a data transformation task](../data-development/create-task.md). Add the phone number desensitization node between the source and target nodes in the data development task, and specify the field **mobile** as the input for the desensitization process.
 
    ![Phone number desensitization](../../images/masking_mobile_en.png)
 

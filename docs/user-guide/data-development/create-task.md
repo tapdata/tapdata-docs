@@ -1,6 +1,6 @@
 # Create a Data Transformation Task
 
-import Content from '../../../reuse-content/_all-features.md';
+import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
@@ -12,12 +12,9 @@ The following article outlines the step-by-step process of creating data transfo
 
 As an example, we will show how to change the **birthdate** field's data type from **STRING** to **DATE** in the table structure without modifying the source table (**customer** table) and simultaneously filter out users born after **1991-01-01**, a data transformation task is created. The resulting table, **customer_new**, will reflect the updated table structure and filtered data.
 
-1. [Log in to TapData Platform](../../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
-2. Based on the product type, select the operation entry:
-
-   * **TapData Cloud**: In the left navigation panel, click **Data Transformation**.
-   * **TapData Enterprise or TapData Community**: In the left navigation panel, choose **Data Pipelines** > **Transforms**.
+2. In the left navigation panel, click **Data Transformation**.
 
 3. Click **Create** on the right side of the page to go to the task configuration page.
 
@@ -33,12 +30,12 @@ As an example, we will show how to change the **birthdate** field's data type fr
 
 6. Connect the aforementioned four nodes in the order of data flow as shown below.
 
-   ![Connect Nodes](../../../images/connect_data_dev_nodes.png)
+   ![Connect Nodes](../../images/connect_data_dev_nodes.png)
 
 7. Follow the instructions below to configure each node in sequence.
 
    1. On the canvas, click the source node on the far left and complete the parameter configuration in the right panel according to the following instructions.
-      ![Source Node Setting](../../../images/data_dev_source_node_setting.png)
+      ![Source Node Setting](../../images/data_dev_source_node_setting.png)
 
       * **Basic Settings**
 
@@ -69,11 +66,11 @@ As an example, we will show how to change the **birthdate** field's data type fr
         By default, if the node's average processing time is equal to or greater than 5 seconds for a consecutive minute, system and email notifications are sent. You can also adjust the rules or turn off alerts according to business needs.
 
    2. Click on the **Type Modification** node, and then in the right panel, modify the type of the **birthdate** field to **Date**.
-      ![Modify Field Type](../../../images/data_dev_column_type_setting.png)
+      ![Modify Field Type](../../images/data_dev_column_type_setting.png)
 
    3. Click on the Row Filter node and complete the parameter configuration in the right panel according to the following instructions.
 
-      ![Row Filter Node Setting](../../../images/data_dev_row_filter_setting.png)
+      ![Row Filter Node Setting](../../images/data_dev_row_filter_setting.png)
 
       * **Action**: Choose **Retain Matching Data**.
       * **Conditional Expression**: Enter the data matching expression, in this case `record.birthdate >= '1990-01-01'`, supported symbols are:
@@ -84,7 +81,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
 
    4. Click the final <span id="target-node-set">target data node</span> and complete the parameter configuration in the right panel according to the following instructions.
 
-      ![Node Basic Setting](../../../images/data_dev_target_node_basic_setting.png)
+      ![Node Basic Setting](../../images/data_dev_target_node_basic_setting.png)
 
       * **Basic Settings**
         * **Node Name**: Defaults to the connection name, but you can set a name with business meaning.
@@ -103,7 +100,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
       * **Alert Settings**
         By default, if the node's average processing time is equal to or greater than 5 seconds for a consecutive minute, system and email notifications are sent. You can also adjust the rules or turn off alerts according to business needs.
 
-8. (Optional) Click the ![setting](../../../images/setting.png) icon above to configure the task properties.
+8. (Optional) Click the ![setting](../../images/setting.png) icon above to configure the task properties.
 
    * **Task name**: Fill in a name that has business significance.
    * **Sync type**: You have the option to select **full + incremental synchronization**, or you can choose to perform an **initial sync** and use Change Data Capture (**CDC**) separately. In real-time data synchronization scenarios, the combination of full and incremental data copying is often used to transfer existing data from the source database to the target database.
@@ -112,7 +109,7 @@ As an example, we will show how to change the **birthdate** field's data type fr
 
 9. Click **Save** or **Start**, the following figure shows that after the task starts successfully, you can view its RPS (Records Per Second), delay, task event, and other information.
 
-   ![Monitor Task Status](../../../images/data_dev_monitor_en.png)
+   ![Monitor Task Status](../../images/data_dev_monitor_en.png)
 
    :::tip
 

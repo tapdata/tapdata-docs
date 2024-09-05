@@ -6,11 +6,42 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.12
+
+### New Features
+
+- Dameng have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
+- For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
+- Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
+
+### Feature Enhancements
+
+- Significantly enhanced data synchronization performance.
+- Optimized the layout and structure of menu entries.
+- Improved error messages and high-risk operation warnings.
+- For data sources that do not support hash validation, hash validation is now disabled by default.
+- After full sync tasks are completed, restarting the task will trigger a full resynchronization to ensure data consistency.
+
+### Bug Fixes
+
+- Fixed an issue where some task monitoring metrics were lost after task completion.
+- Fixed a query efficiency issue caused by missing necessary indexes in the intermediate database, reducing data scan volume.
+- Fixed an issue where selecting "Show only different fields" when downloading data validation discrepancies resulted in downloading all fields.
+- Fixed a problem where task editing could get stuck during model generation, improving the task editing experience.
+- Fixed an issue where, after stopping a data replication task in the incremental phase and restarting it, the full completion time displayed incorrectly.
+- Fixed an issue with TDengine where SQL statement length exceeded limits when writing to super tables with many fields.
+- Fixed an error occurring in data transformation tasks using TDengine as a source when the table name contained Chinese characters.
+- Fixed potential exceptions when running mining tasks on PostgreSQL data sources.
+- Fixed an issue in Oracle to Doris shared mining tasks where source table DDL events could not be parsed.
+- Fixed specific exception issues during the incremental phase of MongoDB to Kafka data transformation tasks.
+- Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
+- Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
+
 ## 3.11
 
 ### New Features
 
-- Enhanced [Data Transformation Task Configuration](../user-guide/data-pipeline/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
+- Enhanced [Data Transformation Task Configuration](../user-guide/data-development/create-task.md) to support reloading of single table models in the source node model preview area, improving loading efficiency.
 - Introduced time detection functionality that automatically detects the time difference between the engine deployment server and the database server and displays it on the task monitoring page.
 
 ### Optimizations
@@ -26,7 +57,7 @@ This document introduces the recent release notes for TapData Community. For mor
 
 ### New Features
 
-- Added a [Union Node](../user-guide/data-pipeline/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- Added a [Union Node](../user-guide/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
 - [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
 - MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
 - Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.

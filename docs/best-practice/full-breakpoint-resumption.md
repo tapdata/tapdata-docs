@@ -127,7 +127,7 @@ In this case, we will demonstrate the specific configuration process for data mi
 
    :::tip
 
-   If the pre-check fails, adjust according to the log prompts on the current page. For more information, see [Task Pre-Check Explanation](../user-guide/data-pipeline/pre-check.md).
+   If the pre-check fails, adjust according to the log prompts on the current page. For more information, see [Task Pre-Check Explanation](../user-guide/pre-check.md).
 
    :::
 

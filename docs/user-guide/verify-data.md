@@ -1,6 +1,6 @@
 # Data Validation
 
-import Content from '../../reuse-content/_all-features.md';
+import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
@@ -13,9 +13,9 @@ import TabItem from '@theme/TabItem';
 
 ## Procedure
 
-1. [Log in to TapData Platform](../log-in.md).
+1. [Log in to TapData Platform](log-in.md).
 
-2. In the left navigation bar, select **Data Pipelines** > **Validations**.
+2. In the left navigation bar, click **Data Validation**.
 
 3. In the upper right corner of the page, click **Task Consistency Validation** or **Any Table Data Validation** based on your validation target, then fill in the parameters as described below:
 
@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
 <Tabs className="unique-tabs">
 <TabItem value="Task Consistency Validation">
 ```
-![Setting validation Task](../../images/check_data_settings.png)
+![Setting validation Task](../images/check_data_settings.png)
 
 - **Choose Job**: Choose the data replication/data transformation task to verify.
 - **Verify Task Name**: Enter a meaningful name for the task.
@@ -44,7 +44,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="Any Table Data validation">
 
-![Setting validation Task](../../images/check_data_settings_2.png)
+![Setting validation Task](../images/check_data_settings_2.png)
 
 
 
@@ -70,7 +70,7 @@ import TabItem from '@theme/TabItem';
 
 5. (Optional) Click on **Result** for the verification task to view detailed verification results. For discrepancies, you can click **Data Correction** to align the data or **Download** for in-depth analysis.
 
-   ![View validation Results](../../images/check_data_result_en.png)
+   ![View validation Results](../images/check_data_result_en.png)
 
    :::tip
 

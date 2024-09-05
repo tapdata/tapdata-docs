@@ -33,7 +33,7 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
    :::tip
 
-   Since the number of columns in a single table in Tablestore cannot exceed 32, if the number of columns in the Oracle tables to be synchronized exceeds 32, you can address this limitation by adding a **Field Edit** node between the Oracle and Tablestore data sources. This node allows you to handle the situation and selectively exclude business-independent columns from the synchronization process. For more information, see [Processing Node](../user-guide/data-pipeline/data-development/process-node.md).
+   Since the number of columns in a single table in Tablestore cannot exceed 32, if the number of columns in the Oracle tables to be synchronized exceeds 32, you can address this limitation by adding a **Field Edit** node between the Oracle and Tablestore data sources. This node allows you to handle the situation and selectively exclude business-independent columns from the synchronization process. For more information, see [Processing Node](../user-guide/data-development/process-node.md).
 
    :::
 
@@ -47,4 +47,4 @@ Also note the reference [data type support](../user-guide/no-supported-data-type
 
 On the Task List page, you can also start, stop, monitor, edit, copy, reset, and delete tasks.
 
-For more information, See [Management Tasks](../user-guide/data-pipeline/copy-data/manage-task.md).
+For more information, See [Management Tasks](../user-guide/copy-data/manage-task.md).

@@ -501,6 +501,7 @@ SMALLSERIAL
 usermanual
 vastbase
 vastdata
+walminer
 codepage
 DBADM
 LRI

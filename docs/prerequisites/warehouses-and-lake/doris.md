@@ -1,6 +1,6 @@
 # Doris
 
-import Content1 from '../../reuse-content/_enterprise-and-cloud-features.md';
+import Content1 from '../../reuse-content/_all-features.md';
 
 <Content1 />
 
@@ -25,7 +25,7 @@ import Content from '../../reuse-content/_beta.md';
 
 ## Precautions
 
-If you want to use Doris as the source database to synchronize incremental data changes, you need to [create a data transformation task](../../user-guide/data-pipeline/data-development/create-task.md) and select **Incremental Synchronization Method** as the **Polling**.
+If you want to use Doris as the source database to synchronize incremental data changes, you need to [create a data transformation task](../../user-guide/data-development/create-task.md) and select **Incremental Synchronization Method** as the **Polling**.
 
 ## Preparations
 

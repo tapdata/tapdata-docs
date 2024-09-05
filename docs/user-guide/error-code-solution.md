@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-If you encounter an exception with a task, you can view the relevant log information at the bottom of the task's [monitoring page](data-pipeline/data-development/monitor-task.md). For common issues, TapData has codified them into specific error codes for easier lookup, and provides the cause of the error and its solution.
+If you encounter an exception with a task, you can view the relevant log information at the bottom of the task's [monitoring page](data-development/monitor-task.md). For common issues, TapData has codified them into specific error codes for easier lookup, and provides the cause of the error and its solution.
 
 ## 10001
 
@@ -64,7 +64,7 @@ Before reading, the engine needs to locate the specific position in the logs to 
 **Solutions**:
 
 * Refer to the error message below, compare the erroneous fields' types in the source and destination databases. If inconsistent, use database DDL or similar commands to correct it, then run the task again.
-* Use the [JS processing node](data-pipeline/data-development/process-node.md#js-process) to filter out erroneous fields. For instance, if the problematic field is `field1`, the corresponding JS would be `record.remove('field1')`.
+* Use the [JS processing node](data-development/process-node.md#js-process) to filter out erroneous fields. For instance, if the problematic field is `field1`, the corresponding JS would be `record.remove('field1')`.
 * If the JS processing node changes the data type, the new type should be passed to TapData using the syntax provided below the JS editing box. Delete the target table and run the task again.
 
 ## 10007
