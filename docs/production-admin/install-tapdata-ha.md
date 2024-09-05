@@ -1,4 +1,4 @@
-# Deploy High-Availability TapData
+# Deploy HA TapData Enterprise (2 Nodes)
 
 import Content from '../reuse-content/_enterprise-features.md';
 

@@ -502,3 +502,17 @@ usermanual
 vastbase
 vastdata
 walminer
+codepage
+DBADM
+LRI
+readlog
+ebmhfc
+ecs
+ESSD
+logminer
+multitenant
+NVARCHAR
+SCN
+sutil
+userenv
+xlarge
