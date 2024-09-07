@@ -11,7 +11,7 @@ QQ Mail, as a widely used communication tool, facilitates the receipt and review
 
 You can also integrate other email services (such as 163 Mail) in TapData platform, with a similar configuration process as described in this document.
 
-## Step One: Obtain Email Authorization Code
+## <span id="mail-code">Step One</span>: Obtain Email Authorization Code
 
 The email authorization code is a special password used by QQ Mail to log into third-party clients/services and is applicable for logging into the following SMTP services. Before setting up alert email configurations in TapData platform, you need to obtain this authorization code.
 

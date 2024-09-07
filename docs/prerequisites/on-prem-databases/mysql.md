@@ -18,7 +18,7 @@ import Content from '../../reuse-content/_preparations.md';
 
 <Content />
 
-* [Enabling SSL Connection (Optional)](#ssl)
+* [Enabling SSL Connection (Optional)](#Enabling SSL Connection (Optional))
 
 ### As a Source Database
 
@@ -244,7 +244,7 @@ To further enhance the security of the data connection, you can choose to enable
         
         * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
         
-    * **SSL Settings**: Choose whether to enable SSL connections for the data source, which can further enhance data security. After turn on the switch, you will need to upload CA files, client certificates, client key files, etc. The related files can be obtained as outlined in the [Enabling SSL Connection](#ssl) section.
+    * **SSL Settings**: Choose whether to enable SSL connections for the data source, which can further enhance data security. After turn on the switch, you will need to upload CA files, client certificates, client key files, etc. The related files can be obtained as outlined in the [Enabling SSL Connection](#Enabling SSL Connection (Optional)) section.
 
 6. Click **Connection Test**, and when passed, click **Save**.
 

@@ -31,7 +31,7 @@ TiDB 6.0.0 and above
 
   * To avoid TiCDC garbage collection affecting transaction or incremental data extraction, it is recommended to set `SET GLOBAL tidb_gc_life_time= '24h'` to 24 hours.
 
-  * Due to communication restrictions between TiDB components, when using Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent). 
+  * Due to communication restrictions between TiDB components, when using Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../billing/purchase.md). 
 
 ## <span id="prerequisite">Preparation</span>
 
@@ -100,7 +100,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMP
       * **DB Address**: Enter the database connection address.
       * **Port**: The service port of the database.
       * **DB Name**: The name of the database, where each connection corresponds to one database. If you have multiple databases, you need to create multiple data connections.
-      * **Username** and **Password**: The account and password for the database. For account creation and authorization methods, refer to the [Prerequisites](#prerequisite).
+      * **Username** and **Password**: The account and password for the database. For account creation and authorization methods, refer to the [Prerequisites](#Preparation).
    * **Advanced Settings**:
       * **Other Connection String Parameters**: Additional connection parameters, which are empty by default.
       * **Timezone for Time Types**: Default to the timezone used by the database. You can also manually specify it based on your business requirements.

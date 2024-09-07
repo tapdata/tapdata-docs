@@ -105,7 +105,7 @@ openGauss 3.0.0 and above
       * **Database**: The database name, each connection corresponds to one database. If you have multiple databases, you need to create multiple data connections.
       * **Schema**: The schema name of the database.
       * **Additional Parameters**: Additional connection parameters, leave it empty by default.
-      * **Username** and **Password**: The account and password of the database. Account creation and authorization method can be found in the [Prerequisites](#prerequisite) section.
+      * **Username** and **Password**: The account and password of the database. Account creation and authorization method can be found in the [Prerequisites](#Prerequisites) section.
    
    * Advanced Settings
       * **Log Plugin**: Keep the default value as **PGOUTPUT**.
