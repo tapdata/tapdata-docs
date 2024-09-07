@@ -1,6 +1,6 @@
 # Ignore files
 \.json$
-(?:^|/)README$
+(?:^|/)README(\..+)?$
 (?:^|/)docusaurus\.config\.(js|ts)$
 (?:^|/).*\.config\.(js|ts)$
 # Ignore directories
