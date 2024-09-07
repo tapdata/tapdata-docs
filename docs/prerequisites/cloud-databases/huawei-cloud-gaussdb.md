@@ -32,7 +32,7 @@ To achieve incremental data reading, TapData requires Huawei Cloud GaussDB's [lo
 - Interval partition tables are not supported for replication.
 - Global temporary tables are not supported.
 
-## Preparations
+## <span id="preparations">Preparations</span>
 
 1. Visit Huawei Cloud GaussDB and [create a database user and grant permissions](https://support.huaweicloud.com/intl/en-us/distributed-devg-v8-gaussdb/gaussdb-12-0022.html).
 
@@ -95,7 +95,7 @@ To achieve incremental data reading, TapData requires Huawei Cloud GaussDB's [lo
      * **Database**: The database name, one connection corresponds to one database. If there are multiple databases, multiple data connections need to be created.
      * **Schema**: The schema name. A database contains one or more schemas, and each schema contains tables and other types of objects.
      * **JDBC Connection Params**: Additional connection parameters, default empty.
-     * **User** and **Password**: Enter the username and password to log in to GaussDB, for specific permission requirements, see [Preparations](#Preparations).
+     * **User** and **Password**: Enter the username and password to log in to GaussDB, for specific permission requirements, see [Preparations](#preparations).
      * **Logical Replicate IP** and **Logical Replicate Port**: Enter the IP address of the main DN, the default port is **8001**.
      * **Log Plugin**: Keep the default **mppdb_decoding**.
      * **Time Zone**: The default is the time zone used by the database, you can also manually specify it according to business needs.

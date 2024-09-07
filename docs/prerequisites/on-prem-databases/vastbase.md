@@ -222,7 +222,7 @@ In this example, we will use Vastbase's built-in [wal2json](https://docs.vastdat
       * **Schema**: Schema name.
       * **Username**: Database username.
       * **Password**: The password corresponding to the database username.
-      * **Log Plugin**: If you need to read incremental data changes from Vastbase, you must complete the plugin installation according to the [prerequisites](#Prerequisites).
+      * **Log Plugin**: If you need to read incremental data changes from Vastbase, you must complete the plugin installation according to the [prerequisites](#prerequisites).
    * **Advanced Settings**
       * **Additional Parameters**: Additional connection parameters, default is empty.
       * **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.

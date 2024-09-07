@@ -34,7 +34,7 @@ Next, let's create a free Agent instance.
    ![Select Agent Specification](../../images/create_free_agent.png)
 
    * **Deploy Mode**
-     * **Self-Hosted Mode**: You need provide the equipment for [deploying](#deploy-agent) and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
+     * **Self-Hosted Mode**: You need provide the equipment for deploying and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
      * **Fully Managed Mode**: TapData Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
        :::tip
        When selecting the **Fully Managed Mode**, you also need to choose the cloud provider and region where the Agent will be deployed.

@@ -125,7 +125,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
     <td>✅</td>
   </tr>
   <tr>
-    <td><a href="user-guide/data-development/create-materialized-view">Real-time Materialized Views</a></td>
+    <td><a href="../user-guide/data-development/create-materialized-view">Real-time Materialized Views</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>✅</td>
@@ -137,7 +137,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
     <td>✅</td>
   </tr>
   <tr>
-    <td><a href="../user-guide/copy-data/create-task#310-table-model">Node Alerts</a></td>
+    <td><a href="../user-guide/copy-data/create-task">Node Alerts</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>➖</td>

@@ -100,7 +100,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMP
       * **DB Address**: Enter the database connection address.
       * **Port**: The service port of the database.
       * **DB Name**: The name of the database, where each connection corresponds to one database. If you have multiple databases, you need to create multiple data connections.
-      * **Username** and **Password**: The account and password for the database. For account creation and authorization methods, refer to the [Prerequisites](#Preparation).
+      * **Username** and **Password**: The account and password for the database. For account creation and authorization methods, refer to the [Prerequisites](#preparation).
    * **Advanced Settings**:
       * **Other Connection String Parameters**: Additional connection parameters, which are empty by default.
       * **Timezone for Time Types**: Default to the timezone used by the database. You can also manually specify it based on your business requirements.
