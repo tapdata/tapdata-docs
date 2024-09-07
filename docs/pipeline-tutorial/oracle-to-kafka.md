@@ -58,7 +58,7 @@ Before creating a data transformation task, ensure you have configured the neces
         * **Node Name**: By default, it is the connection name, but you can set a name with business significance.
         * **Table**: Select the source table to operate on; below, the table's structure information will display, including column names and types. In this case, we are creating a data transformation task suitable for single-table processing. To handle multiple tables simultaneously, you could create a data replication task with a similar configuration process.
         
-    * **Advanced Settings**
+    * **<span id="advanced_settings">Advanced Settings</span>**
         * **DDL Synchronization**: Choose whether to enable **DDL Event Collection**. Turning on this switch allows TapData to automatically collect selected source DDL events (such as field additions) if the target supports DDL writing, enabling synchronization of DDL statements.
         
         * **Incremental Method**: Choose **Real-time Log Parsing** or **Field Polling**. When selecting **Polling**, you will need to specify the polling field, interval, and rows per read. 

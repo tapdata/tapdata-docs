@@ -18,7 +18,7 @@ Analyzing the data sources is fundamental to data synchronization. It helps asse
 
 :::tip
 
-When subscribe an instance, you can choose the specifications based on the estimated scale of table data and data change volume. For more details, see [Specification Description](../billing/billing-overview#spec).
+When subscribe an instance, you can choose the specifications based on the estimated scale of table data and data change volume. For more details, see [Specification Description](../billing/billing-overview.md#spec).
 
 :::
 

@@ -66,7 +66,7 @@ To improve data change capture efficiency, TapData supports both the native data
 ## Limitations
 
 * When Oracle is used as a source database:
-  * Log parsing speed is approximately 10,000 records per second. If incremental events exceed this rate, it may cause delays in data processing. For higher rates, consider using TapData’s [Raw Log method](#log-miner).
+  * Log parsing speed is approximately 10,000 records per second. If incremental events exceed this rate, it may cause delays in data processing. For higher rates, consider using TapData’s Raw Log method.
   * When using the LogMiner method:
     - Due to [LogMiner limitations](https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-logminer-utility.html), the length of table and column names must not exceed 30 characters; otherwise, incremental data changes may not be captured.
     - To avoid issues with virtual columns during the incremental synchronization phase, consider adding a JS node or manually creating the target table structure.
@@ -507,12 +507,12 @@ XE=
       * **Schema**: The name of the Schema. One connection corresponds to one Schema. To connect to multiple Schemas, create separate data connections.
       * **User**: The database account.
       * **Password**: The database password.
-      * **Log plugin name**: Choose based on your business needs, with the default being **logMiner**. For more information, see [Incremental Log Retrieval Methods](#log-miner).
+      * **Log plugin name**: Choose based on your business needs, with the default being **logMiner**. For more information, see [Incremental Log Retrieval Methods](#Incremental Data Capture Methods).
    * **Advanced <span id="advanced">Settings</span>**
       * **Connection Parameter String**: additional connection parameters, default empty.
       * **Load Table Comment**:  Choose whether to load table comment information (default is off) to help quickly identify the business significance of tables. Note that loading a large number of comments may affect model loading efficiency.
       * **Multi-tenant**: If Oracle is in multitenant mode, enable this option and enter the PDB information.
-      * **Use SSL**: Select whether to enable SSL connection for the data source to enhance data security. After enabling this feature, you will need to upload SSL certificate files and enter the certificate password. The relevant files can be obtained from [Enabling SSL Connection](#ssl).
+      * **Use SSL**: Select whether to enable SSL connection for the data source to enhance data security. After enabling this feature, you will need to upload SSL certificate files and enter the certificate password. The relevant files can be obtained from [Enabling SSL Connection](#Enabling SSL Connection (Optional)).
       * **Timezone for datetime**: Default is set to UTC (0 timezone). If changed to another timezone, fields without timezone (such as TIMESTAMP) will be affected, while fields with timezone (such as TIMESTAMP WITH TIME ZONE) and DATE types will remain unaffected.
       * **Socket Read Timeout**: Set this parameter to avoid zombie connections that may occur due to unexpected situations (e.g., socket interaction timeout) when LogMiner automatically mines incremental changes. The default value of 0 means no timeout is set.
       * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.

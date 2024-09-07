@@ -49,7 +49,16 @@ We welcome contributions to help improve the documentation! Here is the steps:
    npm run start
    ```
 
-5. Create a pull request.
+5. Check broken links.
+
+   ```bash
+   # build site
+   npm run build
+   # check broken links and fix it follow the logs
+   npx @untitaker/hyperlink ./build --check-anchors
+   ```
+
+6. Create a pull request.
 
 ## Project structure
 

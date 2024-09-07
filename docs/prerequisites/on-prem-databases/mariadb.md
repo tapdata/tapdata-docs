@@ -24,9 +24,9 @@ import Content1 from '../../reuse-content/_beta.md';
 
 Before establishing the connection, it is essential to complete the necessary preparations outlined in the provided article. These preparations may include authorizing an account and performing other relevant steps to ensure a smooth and secure connection.
 
-* [As a Source Database](#source)
-* [As a Target Database](#target)
-* [Enabling SSL Connection (Optional)](#ssl)
+* [As a Source Database](#As Source Database)
+* [As a Target Database](#As Target Database)
+* [Enabling SSL Connection (Optional)](#Enabling SSL Connection (Optional))
 
 
 
@@ -282,7 +282,7 @@ To further enhance the security of the data link, you can choose to enable SSL (
 
       * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
 
-    * **SSL Settings**: Choose whether to enable SSL connections for the data source, which can further enhance data security. After turn on the switch, you will need to upload CA files, client certificates, client key files, etc. The related files can be obtained as outlined in the [Enabling SSL Connection](#ssl) section.
+    * **SSL Settings**: Choose whether to enable SSL connections for the data source, which can further enhance data security. After turn on the switch, you will need to upload CA files, client certificates, client key files, etc. The related files can be obtained as outlined in the [Enabling SSL Connection](#Enabling SSL Connection (Optional)) section.
 
 6. Click **Connection Test**, and when passed, click **Save**.
 

@@ -113,7 +113,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, TRUNCATE ON ALL TABLES IN SCHEMA schema_na
      * **ExtParams**: Additional connection parameters, default empty.
      * **User**: The database username.
      * **Password**: The database password.
-     * **Log Plugin Name**: To read the data changes of KingbaseES-R6 and achieve incremental data synchronization, you need to complete the installation of the plugin according to the guidance of the [preparations](#preparations).
+     * **Log Plugin Name**: To read the data changes of KingbaseES-R6 and achieve incremental data synchronization, you need to complete the installation of the plugin according to the guidance of the [preparations](#prerequisites).
    * **Advanced Settings**
      * **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
      * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log.
