@@ -303,7 +303,7 @@ After completing the configuration, be sure to securely store the certificate-re
      * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
      * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
      * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-     * **Enable Heartbeat Table**: When the connection type is set to source or target, this option can be enabled. TapData will create a heartbeat table in the source database (_tapdata_heartbeat_table) and update it every 10 seconds (the database user must have the required permissions). Once the data replication/development task starts, the heartbeat task will automatically start. You can view the heartbeat task in the data source edit page.
+     * **Enable Heartbeat Table**: When the connection type is set to **Source and Target** or **Source**,, this option can be enabled. TapData will create a heartbeat table in the source database (_tapdata_heartbeat_table) and update it every 10 seconds (the database user must have the required permissions). Once the data replication/development task starts, the heartbeat task will automatically start. You can view the heartbeat task in the data source edit page.
 
 6. Click **Test**, and if the test passes, click **Save**.
 
