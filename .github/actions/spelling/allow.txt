@@ -516,3 +516,10 @@ SCN
 sutil
 userenv
 xlarge
+datetimeoffset
+nchar
+ntext
+nvarchar
+smalldatetime
+sqlcmd
+uniqueidentifier
