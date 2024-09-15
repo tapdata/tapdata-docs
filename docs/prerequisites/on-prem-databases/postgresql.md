@@ -398,7 +398,7 @@ To further enhance the security of the data pipeline, you can enable SSL (Secure
    </TabItem>
    </Tabs>
 
-## Connect to Oracle
+## Connect to PostgreSQL
 
 1. [Log in to TapData Platform](../../user-guide/log-in.md).
 
@@ -412,9 +412,9 @@ To further enhance the security of the data pipeline, you can enable SSL (Secure
 
    ![PostgreSQl Connection Example](../../images/postgresql_connection.png)
 
-   * **Connection Information Settings**
-      * **Connection Name**: Enter a unique name that has business significance.
-      * **Connection Type**: Supports using PostgreSQL as a source or target database.
+   * **Connection Settings**
+      * **Name**: Enter a unique name that has business significance.
+      * **Type**: Supports using PostgreSQL as a source or target database.
       * **Host**: Database connection IP address or hostname.
       * **Port**: Database service port.
       * **Database**: The name of the database, i.e., one connection corresponds to one database. If there are multiple databases, multiple data connections need to be created.
