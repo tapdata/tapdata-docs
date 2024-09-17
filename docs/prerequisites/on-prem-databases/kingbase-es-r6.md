@@ -144,7 +144,29 @@ When KingbaseES-R6 is used as a target, you can choose write strategies through 
 
    4. Install the log plugin:
 
-      * **wal2json**: Contact [technical support](../../support.md) to obtain the plugin and install it on the KingbaseES-R6 server.
+      * **wal2json**: Log in to the server where KingbaseES-R6 is hosted and follow the steps below to compile the plugin. After compilation, copy the generated `wal2json.so` file to the corresponding KingbaseES-R6 directory. In this example, the directory is `/home/kingbase5b/ES/V8/KESRealPro/V008R006C005B0054/Server/lib/`.
+      
+        ```
+        # Download wal2json plugin
+        git clone https://github.com/eulerto/wal2json.git && cd wal2json
+        
+        # Modify the Makefile content:
+        PG_CONFIG = pg_config
+        PGXS := $(shell $(PG_CONFIG) --pgxs)
+        
+        # Replace with:
+        PG_CONFIG = sys_config
+        PGXS := $(shell $(PG_CONFIG) --sysxs)
+        
+        # Switch user
+        su kingbase
+        
+        # Copy resource files
+        cp -a /home/kingbase/ES/V8/KESRealPro/V008R006C005B0054/Server/lib/plc/.server /home/kingbase/ES/V8/KESRealPro/V008R006C005B0054/Server/include/server
+        
+        # Run make to generate wal2json.so in the directory
+        make
+        ```
       * **walminer**: Available in versions V87B and above. For usage details, see the [WalMiner Example](https://help.kingbase.com.cn/v8/admin/reference/walminer/walminer-4.html). This method does not rely on logical replication, does not require setting `wal_level` to `logical`, nor adjusting replication slots, but requires superuser privileges.
 
 ### As a Target Database
@@ -203,14 +225,13 @@ When KingbaseES-R6 is used as a target, you can choose write strategies through 
      * **Password**: The password for the database user.
      * **logPluginName**: To capture incremental data from KingbaseES-R6, follow the [Prerequisites](#prerequisites) to install the required plugin.
    * **Advanced Settings**:
-     * **Timezone**: Default is UTC (0 timezone). Changing to another timezone may affect data synchronization timing. Affected fields include those without timezone information, such as `timestamp (without time zone)` and `time (without time zone)`. Fields with timezone information (e.g., `timestamp with time zone`, `time with time zone`) and `date` types are not affected.
      * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log.
      * **Contain Table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
      * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
      * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
      * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
      * **Enable Heartbeat Table**: When the connection type is set to source or target, this option can be enabled. TapData will create a heartbeat table in the source database (_tapdata_heartbeat_table) and update it every 10 seconds (the database user must have the required permissions). Once the data replication/development task starts, the heartbeat task will automatically start. You can view the heartbeat task in the data source edit page.
-
+   
 6. Click **Test**, and after it passes, click **Save**.
 
    :::tip
