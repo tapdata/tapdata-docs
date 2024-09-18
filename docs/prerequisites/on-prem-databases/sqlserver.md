@@ -54,6 +54,8 @@ When using SQL Server as a target database, `timestamp` is not supported.
                              @retention = 24;
   ```
 
+* SQL Server's CDC solution has limited support for DDL capture. Implicitly committed DDLs are not recorded in the `cdc.ddl_history` table, which may affect synchronization. Additionally, after executing DDL operations, the CT table does not update automatically, and TapData relies on polling to detect and rebuild the CT table. Therefore, if DDL and DML occur simultaneously or within a short period, it may lead to DML data loss.
+
 * When SQL Server is used as the source database and a DDL operation (such as adding a column) is performed on the fields of a table under incremental sync, you will need to restart change data capture for the table to avoid data synchronization errors or failures.
 
 <details>
