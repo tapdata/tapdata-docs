@@ -34,13 +34,13 @@ ClickHouse 20.x, 21.x, 22.x, 23.x, 24.x
 :::tip
 
 * When ClickHouse is used as the source database for incremental synchronization, the implementation is based on column polling. This involves regularly querying a specific column (such as a timestamp or incrementing identifier) in the table to detect data changes. DDL operations are not supported for synchronization. For more details, see [Change Data Capture (CDC)](../../introduction/change-data-capture-mechanism).
-* When used as a target database, you can configure advanced write strategies in the task node, such as updating or discarding in case of insert conflicts, or inserting or logging in case of update failures.
+* When ClickHouse is used as a target database, you can select the write strategy through the advanced settings of the task node: in case of insert conflicts, you can choose to convert to an update or discard the record; in case of update failures, you can choose to convert to an insert or just log the issue.
 
 :::
 
 ## Consideration
 
-* **Binary Fields**: Binary-related field types are not supported. If present in the synchronization/development task configuration, they can be removed through field mapping; otherwise, they will be automatically converted to Base64 strings before being written.
+* Binary-related field types are not supported. If present in the synchronization/development task configuration, they can be removed through field mapping; otherwise, they will be automatically converted to Base64 strings before being written.
 * When using ClickHouse as a target database and enabling automatic table creation by TapData, the `ReplacingMergeTree` engine is used if the source table has a primary key, with the primary key field as the sorting key. If there is no primary key, the `MergeTree` engine is used with no sorting key.
 
 ## Preparations
