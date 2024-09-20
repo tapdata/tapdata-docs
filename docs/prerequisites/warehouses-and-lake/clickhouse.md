@@ -29,12 +29,13 @@ ClickHouse 20.x, 21.x, 22.x, 23.x, 24.x
 
 ## SQL Operations for Sync
 
-**DML**: INSERT, UPDATE, DELETE
+* **DML**: INSERT, UPDATE, DELETE
+* **DDL** (supported only as a target): ADD COLUMN, CHANGE COLUMN, DROP COLUMN, RENAME COLUMN
 
 :::tip
 
-* When ClickHouse is used as the source database for incremental synchronization, the implementation is based on column polling. This involves regularly querying a specific column (such as a timestamp or incrementing identifier) in the table to detect data changes. DDL operations are not supported for synchronization. For more details, see [Change Data Capture (CDC)](../../introduction/change-data-capture-mechanism).
-* When ClickHouse is used as a target database, you can select the write strategy through the advanced settings of the task node: in case of insert conflicts, you can choose to convert to an update or discard the record; in case of update failures, you can choose to convert to an insert or just log the issue.
+* When using ClickHouse as a source for incremental synchronization, data changes are detected through field polling, and DDL operations collection are not supported. For more information, see [Change Data Capture (CDC)](../../introduction/change-data-capture-mechanism.md).
+* When using ClickHouse as a target, you can select the write strategy through the advanced settings of the task node: in case of insert conflicts, you can choose to convert to an update or discard the record; in case of update failures, you can choose to convert to an insert or just log the issue.
 
 :::
 
