@@ -112,6 +112,7 @@ const sidebars = {
                           'prerequisites/on-prem-databases/kingbase-es-r6',
                           'prerequisites/on-prem-databases/mariadb',
                           'prerequisites/on-prem-databases/mongodb',
+                          'prerequisites/on-prem-databases/mongodb-below34',
                           'prerequisites/on-prem-databases/mrs-hive3',
                           'prerequisites/on-prem-databases/mysql',
                           'prerequisites/on-prem-databases/mysql-pxc',
