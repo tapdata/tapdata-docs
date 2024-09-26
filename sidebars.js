@@ -265,6 +265,7 @@ const sidebars = {
               link: {type: 'doc', id: 'user-guide/copy-data/README'},
               items:[
                      'user-guide/copy-data/create-task',
+                     'user-guide/copy-data/quick-create-task',
                      'user-guide/copy-data/manage-task',
                      'user-guide/copy-data/process-node',
                      'user-guide/copy-data/monitor-task',

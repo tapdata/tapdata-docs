@@ -4,6 +4,23 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.13
+
+### New Features
+
+* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases), providing more comprehensive features and enhanced production stability.
+
+### Enhancements
+
+- Optimized the performance of the API monitoring page, significantly increasing access speed.
+- Added a new sorting feature for mining tasks based on today's mined volume, making task management and filtering more convenient.
+
+### Bug Fixes
+
+- Fixed an issue where regular indexes were not properly synchronized after enabling the **Sync Indexes on Table Creation** option, ensuring data synchronization integrity.
+- Fixed an issue where the `admin` user lost permissions after changing the username, ensuring proper permission management.
+- Fixed an issue where a success message was returned despite the failure of sending test emails, improving operational feedback accuracy.
+
 ## 3.12
 
 ### New Features
