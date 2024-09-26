@@ -4,7 +4,7 @@ import Content from '../../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-[TiDB](https://docs.pingcap.com/zh/tidb/stable) is an open-source, distributed relational database developed by PingCAP. It is a hybrid database product that supports both Online Transaction Processing (OLTP) and Online Analytical Processing (OLAP). After deploying the Agent, you can follow this tutorial to add TiDB as a data source in TapData, where it can be used as a **source** or **target database** to build data pipelines.
+[TiDB](https://docs.pingcap.com/tidb/stable) is an open-source, distributed relational database developed by PingCAP. It is a hybrid database product that supports both Online Transaction Processing (OLTP) and Online Analytical Processing (OLAP). After deploying the Agent, you can follow this tutorial to add TiDB as a data source in TapData, where it can be used as a **source** or **target database** to build data pipelines.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -28,7 +28,7 @@ import TabItem from '@theme/TabItem';
 | Date/Time    | DATE, TIME, DATETIME, TIMESTAMP, YEAR                        |
 | JSON         | JSON                                                         |
 
-## Supported Operations
+## SQL Operations for Sync
 
 - **DML**: INSERT, UPDATE, DELETE
 
@@ -40,27 +40,27 @@ import TabItem from '@theme/TabItem';
 
 - **DDL**: ADD COLUMN, CHANGE COLUMN, DROP COLUMN, RENAME COLUMN
 
-## Incremental Synchronization Principle
+## Incremental Sync Principle
 
-To simplify the usage process, the TapData TiDB connector integrates with the [TiFlow component](https://github.com/pingcap/tiflow) (version 8.1.0), which parses change logs into ordered row-level changes. For more details, see the [TiCDC Overview](https://docs.pingcap.com/zh/tidb/stable/ticdc-overview).
+To simplify the usage process, the TapData TiDB connector integrates with the [TiFlow component](https://github.com/pingcap/tiflow) (version 8.1.0), which parses change logs into ordered row-level changes. For more details, see the [TiCDC Overview](https://docs.pingcap.com/tidb/stable/ticdc-overview).
 
-## Notes
+## Considerations
 
 * To ensure proper data synchronization, the TiDB cluster and the TapData engine (Agent) must be within the same network and able to communicate properly.
 
 * When using TiDB as a source for incremental data synchronization, please check the following information:
 
-  * Tables to be synchronized must have a primary key or unique index, where the values in the unique index column cannot be NULL and cannot be a virtual column.
+  * Tables to be synchronized must have a primary key or unique index, where the values in the unique index column cannot be **NULL** and cannot be a virtual column.
 
   * To prevent TiCDC's garbage collection from affecting transaction or incremental data extraction, it is recommended to set the global garbage collection life time to 24 hours with the command `SET GLOBAL tidb_gc_life_time = '24h'`.
 
   * TapData engine must be deployed on an **arm or amd** system architecture.
 
-  * Due to communication restrictions between TiDB components, when using the Tapdata Cloud product, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent).
+  * Due to communication restrictions between TiDB components, when using the Tapdata Cloud product, the deployed Agent must be a [semi-managed instance](../../billing/purchase#semi-and-full-agent.md).
 
 ## <span id="prerequisite">Prerequisites</span>
 
-1. Log in to the TiDB database and create a user account for data synchronization/development tasks using the following command:
+1. Log in to the TiDB database and create a user account for data synchronization/transformation tasks using the following command:
 
    ```sql
    CREATE USER 'username'@'host' IDENTIFIED BY 'password';
@@ -103,10 +103,10 @@ GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, DROP ON *.* TO 'username';
 * **database_name**: The database name.
 * **username**: The username.
 
-## Adding the Data Source
-1. [Log in to the TapData platform](../../user-guide/log-in.md).
+## Connect to TiDB
+1. [Log in to TapData platform](../../user-guide/log-in.md).
 
-2. In the left navigation bar, click **Connection Management**.
+2. In the left navigation bar, click **Connections**.
 
 3. On the right side of the page, click **Create**.
 
@@ -134,7 +134,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, DROP ON *.* TO 'username';
       * **Agent Settings**: Defaults to Platform automatic allocation, you can also manually specify an agent.
       * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
       * **Enable Heartbeat Table**: When the connection type is **Source&Target** or **Source**, you can enable this switch. TapData will create a _tapdata_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the [heartbeat task](../../best-practice/heart-beat-task.md) in the data source editing page.
-   * **SSL Settings**: Choose whether to enable SSL connection to the data source for enhanced data security. After enabling this feature, you will need to upload a CA file, client certificate, and key, and fill in the client password. For more information, see [Generating Self-Signed Certificates](https://docs.pingcap.com/zh/tidb/stable/generate-self-signed-certificates).
+   * **SSL Settings**: Choose whether to enable SSL connection to the data source for enhanced data security. After enabling this feature, you will need to upload a CA file, client certificate, and key, and fill in the client password. For more information, see [Generating Self-Signed Certificates](https://docs.pingcap.com/tidb/stable/generate-self-signed-certificates).
    
 6. Click **Test**. After the test passes, click **Save**.
 
