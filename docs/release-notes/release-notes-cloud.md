@@ -6,6 +6,21 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-09-20
+
+#### New Features
+
+* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases), providing more comprehensive features and enhanced production stability.
+* Added a [form-based mode](../user-guide/copy-data/quick-create-task.md) for building replication tasks, simplifying the task creation process and improving operational convenience.
+
+#### Enhancements
+
+- Added a new sorting feature for mining tasks based on today's mined volume, making task management and filtering more convenient.
+
+#### Bug Fixes
+
+- Fixed an issue where regular indexes were not properly synchronized after enabling the **Sync Indexes on Table Creation** option, ensuring data synchronization integrity.
+
 ### 2024-08-21
 
 #### New Features

@@ -104,7 +104,7 @@ As an example of creating a data replication task, the article demonstrates the 
 7. (Optional) Click the ![setting](../../images/setting.png) icon above to configure the <span id="task-attr">task properties</span>.
 
    * **Task name**: Fill in a name that has business significance.
-   * **Sync type**: You have the option to select F**ull + incremental synchronization**, or you can choose to perform **Initial sync** and **CDC** (Change Data Capture) separately. In real-time data synchronization scenarios, using the combination of full and incremental data copying allows you to copy existing data from the source database to the target database.
+   * **Sync type**: You have the option to select **Full + incremental synchronization**, or you can choose to perform **Initial sync** and **CDC** (Change Data Capture) separately. In real-time data synchronization scenarios, using the combination of full and incremental data copying allows you to copy existing data from the source database to the target database.
    * **Task description**: Provide a description for the task by filling in the relevant information.
    * **Advanced settings**: Set the start time of the task, select the incremental data processing mode, scheduled tasks, dynamic adjustment memory usage, specify the number of processor threads, and choose the appropriate agent.
 
