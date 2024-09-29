@@ -120,14 +120,14 @@ Since Kafka as a message queue only supports append operations, avoid duplicate 
 
 :::
 
-## Feature Limitations
+## Limitations
 
 - **Data Type Adaptation**: As a source, Kafka's data types need to be adjusted according to the target data source's requirements, or corresponding table structures should be manually created on the target side to ensure compatibility.
 - **Message Delivery Guarantee**: Due to Kafka's `At least once` delivery semantics and append-only behavior, duplicate consumption may occur. Idempotency must be ensured on the target side to avoid duplicate data resulting from repeated consumption.
 - **Consumption Mode Limitation**: Consumption threads use different consumer group numbers, so be aware of the impact on consumption concurrency.
 - **Security Authentication Limitation**: Currently, only authentication-free Kafka instances are supported.
 
-## Connecting Kafka-Enhanced
+## Connect Kafka-Enhanced
 
 1. [Log in to Tapdata platform](../../user-guide/log-in.md).
 2. In the left navigation bar, click **Connections**.
