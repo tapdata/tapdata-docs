@@ -4,28 +4,46 @@ import Content1 from '../../reuse-content/_all-features.md';
 
 <Content1 />
 
-Apache Doris is a new-generation open-source real-time data warehouse based on MPP architecture, with easier use and higher performance for big data analytics. TapData Cloud supports Doris as a source or target database to build data pipelines to help you quickly complete data flow in big data analytics scenarios.
-
-Next, follow this article to connect a Doris data source on the TapData Cloud platform.
+[Apache Doris](https://doris.apache.org/) is an MPP-based real-time data warehouse known for its high query speed. It can be used for report analysis, ad-hoc queries, unified data warehouse, and data lake query acceleration. Tapdata supports using Doris as both a source and a target database to build data pipelines, helping you quickly handle data flows for big data analysis scenarios. In this article, we will introduce how to connect to Doris on the Tapdata platform.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## Supported Versions
+## Supported Versions and Architectures
 
-Dorix 1.x, 2.x
+Doris 1.2 to 3.0 (no restrictions on deployment architecture)
 
-import Content from '../../reuse-content/_beta.md';
+## Supported Data Types
 
-<Content />
+| Category    | Data Types                               |
+| ----------- | ---------------------------------------- |
+| String      | CHAR, VARCHAR, STRING, TEXT              |
+| Boolean     | BOOLEAN                                  |
+| Integer     | TINYINT, SMALLINT, INT, BIGINT, LARGEINT |
+| Numeric     | DECIMAL, DECIMALV3, FLOAT, DOUBLE        |
+| Date/Time   | DATE, DATEV2, DATETIME, DATETIMEV2       |
+| Aggregation | HLL                                      |
 
+## SQL Operations for Sync 
 
+* **DML**: INSERT, UPDATE, DELETE
+* **DDL** (supported only as a target): ADD COLUMN, CHANGE COLUMN, DROP COLUMN, RENAME COLUMN
 
-## Precautions
+:::tip
 
-If you want to use Doris as the source database to synchronize incremental data changes, you need to [create a data transformation task](../../user-guide/data-development/create-task.md) and select **Incremental Synchronization Method** as the **Polling**.
+- When used as a source database, incremental data synchronization needs to be implemented through field polling and does not support DDL operations. For more details, see [Change Data Capture (CDC)](../../introduction/change-data-capture-mechanism.md).
+- When used as a target database, you can also configure DML write strategies through the advanced settings of the task node, such as whether to convert insert conflicts to updates.
+
+:::
+
+## Considerations
+
+* Due to the inherent limitations of Doris, frequent transactional operations (such as frequent updates and deletes) should be avoided when using it as a target database to prevent performance issues during data writes.
+* Currently, Tapdata supports data writing via the Stream Load method. Therefore, for tables created using the **Duplicate Key Model** or **Aggregation Key Model**, update and delete operations are not fully supported.
+* When using Doris as a target database for large-scale data ingestion, it is recommended to configure batch sizes between 10,000 to 100,000 records, based on the size of individual records, to improve performance. Avoid setting the batch size too large to prevent OOM issues.
+* To reduce the impact on query performance, it is advisable to perform large-scale data ingestion into Doris during off-peak business hours to avoid consuming excessive database I/O resources.
 
 ## Preparations
 
@@ -51,10 +69,12 @@ If you want to use Doris as the source database to synchronize incremental data 
 <Tabs className="unique-tabs">
 <TabItem value="As a Source Database">
 ```
+
 ```sql
 -- Replace the catalog_name, database_name, and username follow the tips below
 GRANT SELECT_PRIV ON catalog_name.database_name.* TO 'username'@'%';
 ```
+
 </TabItem>
 
 <TabItem value="As a Target Database">
@@ -63,55 +83,72 @@ GRANT SELECT_PRIV ON catalog_name.database_name.* TO 'username'@'%';
 -- Replace the catalog_name, database_name, and username follow the tips below
 GRANT SELECT_PRIV, ALTER_PRIV, CREATE_PRIV, DROP_PRIV, LOAD_PRIV ON catalog_name.database_name.* TO 'username'@'%';
 ```
+
 </TabItem>
 </Tabs>
+
+
 
 :::tip
 
 Please replace the username, password, and host in the command above.
-* **catalog_name**: The name of the data catalog. The default name is **internal**. You can view the created data catalog through the [SHOW CATALOGS](https://doris.apache.org/zh-CN/docs/1.2/sql-manual/sql-reference/Show-Statements/SHOW-CATALOGS) command. For more information, see [Multi Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
+
+* **catalog_name**: The name of the data catalog. The default name is **internal**. You can view the created data catalog through the [SHOW CATALOGS](https://doris.apache.org/docs/sql-manual/sql-statements/Show-Statements/SHOW-CATALOGS) command. For more information, see [Multi Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
 * **database_name**: Enter database name.
 * **username**: Enter user name.
 
 :::
 
-
-
 ## Connect to Doris
 
-1. [Log in to TapData Platform](../../user-guide/log-in.md).
+1. [Log in to Tapdata platform](../../user-guide/log-in.md).
 
-2. In the left navigation panel, click **Connections**.
+2. In the left navigation bar, click **Connections**.
 
 3. On the right side of the page, click **Create**.
 
 4. In the pop-up dialog, search for and select **Doris**.
 
-5. On the page you are redirected to, follow the instructions below to fill in the connection information for Doris.
+5. Fill in the Doris connection information as described below.
 
-   ![Connect Doris](../../images/connect_doris.png)
+   ![Connect to Doris](../../images/connect_doris.png)
 
-   - Basic Settings
-     - **Name**: Fill in a unique name that has business significance.
-     - **Type**: Doris is supported as a source or target database.
-     - **DB Address**: The connection address of Doris.
-     - **Port**: The query service port for Doris, the default port is **9030**.
-     - **Enable HTTPS**: Select whether to enable the certificate-free HTTPS connection feature.
-     - **HTTP/HTTPS Address**: The HTTP protocol address of the FE service, including address and port(e.g. http://192.168.1.18:8040), the default port is **8030**.
-     - **DB Name**: database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
-     - **User**, **Password**: The database username and password.
-   - Advanced Setting
-     - **Doris Catalog**: The catalog of Doris, whose hierarchy is above the database. If you use the default catalog, you can leave it empty. For more information, see [Multi-Catalog](https://doris.apache.org/docs/1.2/lakehouse/multi-catalog/).
-     - **Other Connection String Parameters**: Additionally connection parameters, empty by default.
-     - **Timezone**: Defaults to the time zone used by the database, which you can also manually specify according to your business needs.
-     - **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an Agent.
-     - **Model Load Time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-     - **Enable Heartbeat Table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+    - **Connection Settings**
+      - **Name**: Enter a meaningful and unique name.
+      - **Type**: Supports using Doris as a source or target database.
+      - **DB Address**: The Doris connection address.
+      - **Port**: The Doris query service port. The default port is **9030**.
+      - **Enable HTTPS**: Choose whether to enable the HTTPS connection without certificates.
+      - **HTTP/HTTPS Address**: The HTTP/HTTPS protocol access address for the FE service, including address and port information. The default port is **8030**.
+      - **DB Name**: One connection corresponds to one database. If there are multiple databases, you need to create multiple connections.
+      - **User** and **Password**: Enter the database username and password, respectively.
+    - **Advanced Settings**
+      - **Doris Catalog**: The Doris catalog, which is a higher level than the database. If using the default catalog, this can be left empty. For more details, see [Multi-Catalog](https://doris.apache.org/zh-CN/docs/1.2/lakehouse/multi-catalog/).
+      - **Additional Connection Parameters**: Any additional connection parameters, default is empty.
+      - **Timezone**: The default timezone is 0 UTC. Changing to a different timezone will affect the synchronization of fields without timezone information (such as `DATETIME`, `DATETIMEV2`), while fields like `DATE` and `DATE2` are not affected.
+      - **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
+      - **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+      - **Enable Heartbeat Table**: When the connection type is **Source&Target** or **Source**, you can enable this switch. TapData will create a _tapdata_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the [heartbeat task](../../best-practice/heart-beat-task.md) in the data source editing page.
 
-6. Click **Test Connection**, and when passed, click **Save**.
+6. Click **Test** at the bottom of the page. After passing the test, click **Save**.
 
    :::tip
 
-   If the connection test fails, follow the prompts on the page to fix it.
+   If the connection test fails, please follow the prompts on the page to resolve the issue.
 
    :::
+
+## Node Advanced Features
+
+When configuring data synchronization or transformation tasks with Doris as the target node, Tapdata provides advanced features to better meet complex business requirements and maximize performance. You can configure these features based on your business needs:
+
+![Doris Node Advanced Settings](../../images/doris_node_advanced_settings.png)
+
+| Configuration         | Description                                                  |
+| --------------------- | ------------------------------------------------------------ |
+| **Key Type**          | Choose the table key type: **Unique** (default, Unique Key Model), **Aggregate** (Aggregation Key Model), or **Duplicate** (Duplicate Key Model). For more information, see [Data Models](https://doris.apache.org/docs/table-design/data-model/overview). <br />When the key type is **Duplicate** and using append mode for writes, since there are no update conditions, you need to specify the sort fields. |
+| **Partition Key**     | Refers to the `DISTRIBUTED BY HASH` partition key used when creating the table. If a partition key is manually set, it will be prioritized. If not set, the primary key or update condition fields will be used by default. If neither is specified, all fields will be used (not recommended). |
+| **Number of Buckets** | Choose the number of buckets when creating the table, based on actual business needs. For more information, see [Bucket Design Recommendations](https://doris.apache.org/docs/table-design/data-partition?_highlight=bucket&_highlight=nu#recommendations-for-bucket-number-and-data-volume). |
+| **Table Properties**  | Supports specifying [table properties](https://doris.apache.org/docs/sql-manual/sql-statements/Data-Definition-Statements/Create/CREATE-TABLE#properties) during table creation based on business requirements. |
+| **Write Buffer Size**| Default is 10,240 KB. Increasing the size can improve performance for bulk data inserts, while decreasing it can limit memory usage and prevent OOM. |
+| **Write Format**     | Supports JSON (default) and CSV formats. JSON is more secure and suitable for complex data types but offers slightly lower performance. Choose based on data security and performance requirements. |
