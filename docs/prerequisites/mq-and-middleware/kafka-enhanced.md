@@ -10,7 +10,7 @@ This article explains how to add a Kafka-Enhanced data source in TapData, allowi
 
 :::tip
 
-Kafka Enhanced support will be available in the upcoming version 3.15.
+Kafka Enhanced will be available in the upcoming version 3.15.
 
 :::
 
