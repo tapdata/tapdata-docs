@@ -1,10 +1,10 @@
-# MongoDB
+# MongoDB Below 3.4
 
 import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
-[MongoDB](https://www.mongodb.com/) is a popular open-source NoSQL database that stores and retrieves data in a flexible and scalable manner. TapData supports the integration of MongoDB as both the **source** and **target** database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB to TapData, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
+[MongoDB](https://www.mongodb.com/) is a popular open-source NoSQL database that stores and retrieves data in a flexible and scalable manner. TapData supports the integration of MongoDB as both the **source** and **target** database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB (**3.4 and earlier**) to TapData, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 | Category     | Description                                                  |
 | ------------ | ------------------------------------------------------------ |
-| Version      | MongoDB 4.0 and above. For MongoDB 3.4 and below, please choose the data source named **MongoDB Below 3.4**. |
+| Version      | MongoDB 3.2 and 3.4. For MongoDB above 3.4, please choose the data source named **MongoDB**. |
 | Architecture | ● As a source: Supports replica set and sharded cluster architectures. Additionally, full and incremental data synchronization can be performed from the secondary nodes of a sharded cluster.<br />● As a target: Supports single node, replica set, and sharded cluster architectures. |
 
 ## Supported Data Types
@@ -120,7 +120,13 @@ db.createUser(
 )
 ```
 
-## Connect to MongoDB
+:::tip
+
+When using MongoDB version 3.2, you also need to grant read permissions for the **local** database.
+
+:::
+
+## Connect to MongoDB Below 3.4
 
 1. [Log in to TapData platform](../../user-guide/log-in.md).
 
@@ -128,11 +134,11 @@ db.createUser(
 
 3. Click **Create** on the right side of the page.
 
-4. In the pop-up dialog, search and select **MongoDB**.
+4. In the pop-up dialog, search and select **MongoDB Below 3.4**.
 
 5. On the redirected page, fill in the MongoDB connection information as described below.
 
-   ![MongoDB Connection Example](../../images/mongodb_connection.png)
+   ![MongoDB Connection Example](../../images/mongodb_below34_connection.png)
 
    * **Connection Settings**
       * **Name**: Fill in a unique name that has business significance.
@@ -176,24 +182,20 @@ DB as the source or target node, TapData provides more advanced features to bett
 
 | **Configuration**                  | **Description**                                              |
 | ---------------------------------- | ------------------------------------------------------------ |
-| **Document Preimages**             | Disabled by default. [Document Pre-Image](https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre--and-post-images) refers to the document before it is replaced, updated, or deleted. It is only supported in MongoDB 6.0 and above. When enabled, the UPDATE/DELETE event will record the pre-image, which TapData will use for data synchronization. |
 | **Filling Modified Data**          | Enabled by default. When enabled, it automatically fills in complete fields for **UPDATE** events. |
 | **Skip Deleted Events On Filling** | Enabled by default. Disabling this feature may cause incremental data issues in the following cases: tasks using non-`_id` fields for business logic; source field type is a sub-document and its attributes are modified; source field type is an embedded array and the `PULL` operation is executed. |
 | **No Cursor Timeout**              | Disabled by default. When enabled, MongoDB will disable cursor timeout to prevent timeout errors during data synchronization. |
-| **Write Concern**                  | Sets the [write concern level](https://www.mongodb.com/docs/manual/reference/write-concern/). In a sharded cluster, `mongos` will pass the write concern to the shards. The default value is **w1**. Options are as follows:<br />●  **w0 / Unacknowledged**: Does not wait for write acknowledgment. Fastest, but cannot confirm whether the write was successful.<br />●  **w1 / Acknowledged**: Acknowledges successful write to the primary node. Suitable for most scenarios, balancing performance and safety.<br />●  **w3**: Acknowledges successful write to 3 nodes, increasing data safety.<br />●  **majority**: Acknowledges successful write to most nodes. High security, but may impact performance if there are many nodes. |
 
 
 </TabItem>
 
 <TabItem value="MongoDB as a Target Node">
 
-| **Configuration**                     | **Description**                                              |
-| ------------------------------------- | ------------------------------------------------------------ |
-| **Sync Index**                        | Disabled by default. When enabled, indexes from the source database will be automatically synchronized to the target database during the full data synchronization phase. |
-| **Save Deleted Data**                 | Disabled by default. When enabled, deleted data will be cached in the intermediate database. |
-| **Time-Series Collection Attributes** | Disabled by default. When enabled, during synchronization between MongoDB 5.0 and above, time-series collections and their attributes can be synchronized. |
-| **Write Concern**                     | Sets the [write concern level](https://www.mongodb.com/docs/manual/reference/write-concern/). In a sharded cluster, the `mongos` service will pass the write concern to the shards. The default value is **w1**. Options are as follows:<br />●  **w0 / Unacknowledged**: Does not wait for write acknowledgment. Fastest, but cannot confirm whether the write was successful.<br />●  **w1 / Acknowledged**: Acknowledges successful write to the primary node. Suitable for most scenarios, balancing performance and safety.<br />●  **w3**: Acknowledges successful write to 3 nodes, increasing data safety.<br />●  **majority**: Acknowledges successful write to most nodes. High security, but may impact performance if there are many nodes. |
-| **Sync Partition Properties**         | Disabled by default. When enabled, sharding attributes are kept consistent during synchronization between MongoDB sharded clusters. |
+| **Configuration**             | **Description**                                              |
+| ----------------------------- | ------------------------------------------------------------ |
+| **Sync Index**                | Disabled by default. When enabled, indexes from the source database will be automatically synchronized to the target database during the full data synchronization phase. |
+| **Sync Partition Properties** | Disabled by default. When enabled, sharding attributes are kept consistent during synchronization between MongoDB sharded clusters. |
+| **Save Deleted Data**         | Disabled by default. When enabled, deleted data will be cached in the intermediate database. |
 
 </TabItem>
 </Tabs>
