@@ -162,6 +162,7 @@ const sidebars = {
                            'prerequisites/mq-and-middleware/ai-chat',
                            'prerequisites/mq-and-middleware/bes-channels',
                            'prerequisites/mq-and-middleware/hazelcast-cloud',
+                           'prerequisites/mq-and-middleware/kafka-enhanced',
                            'prerequisites/mq-and-middleware/kafka',
                            'prerequisites/mq-and-middleware/rabbitmq',
                            'prerequisites/mq-and-middleware/rocketmq',
