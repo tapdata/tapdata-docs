@@ -4,118 +4,171 @@ import Content from '../../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-TiDB is an open-source distributed relational database designed and developed by PingCAP. It is a distributed database product that supports both online transaction processing and online analytical processing. After completing the Agent deployment, you can follow this tutorial to add a TiDB data source in TapData and use it as a source or target database to build data pipelines.
+[TiDB](https://docs.pingcap.com/tidb/stable) is an open-source, distributed relational database developed by PingCAP. It is a hybrid database product that supports both Online Transaction Processing (OLTP) and Online Analytical Processing (OLAP). After deploying the Agent, you can follow this tutorial to add TiDB as a data source in TapData, where it can be used as a **source** or **target database** to build data pipelines.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-:::tip
+## Supported Versions and Architectures
 
-To further simplify the usage process, TapData's TiDB connector integrates TiCDC, which parses data change logs into ordered row-level change data. For more principles and concept introductions, see [TiCDC Overview](https://docs.pingcap.com/zh/tidb/stable/ticdc-overview).
+* **Versions**: Full data synchronization supports all versions, while incremental data synchronization supports versions 6.0.0 to 8.1.9.
+* **Architectures**: Single-node or clustered architectures.
 
-:::
+## Supported Data Types
 
-## Supported Versions
+| **Category** | **Data Types**                                               |
+| ------------ | ------------------------------------------------------------ |
+| Integer      | BIGINT, BIGINT UNSIGNED, INT, INT UNSIGNED, INTEGER, SMALLINT, SMALLINT UNSIGNED, MEDIUMINT, MEDIUMINT UNSIGNED, TINYINT, TINYINT UNSIGNED |
+| String       | CHAR, VARCHAR, TEXT, TINYTEXT, MEDIUMTEXT, LONGTEXT, CLOB, ENUM, SET |
+| Numeric      | DECIMAL, DECIMAL UNSIGNED, FLOAT, DOUBLE, DOUBLE UNSIGNED, REAL (not supported for full sync) |
+| Binary       | BINARY, VARBINARY, BLOB, TINYBLOB, MEDIUMBLOB, LONGBLOB      |
+| Boolean      | BOOLEAN, BIT                                                 |
+| Date/Time    | DATE, TIME, DATETIME, TIMESTAMP, YEAR                        |
+| JSON         | JSON                                                         |
 
-TiDB 6.0.0 and above
+## SQL Operations for Sync
 
-## Precautions
+- **DML**: INSERT, UPDATE, DELETE
 
-* To ensure proper data synchronization, the TiDB cluster and the TapData engine (Agent) must be on the same intranet and able to communicate properly.
+  :::tip
 
-* When using TiDB as a source for incremental data synchronization, you need to check the following:
+  When using TiDB as a target, you can select the write strategy through the advanced settings of the task node. In case of insert conflicts, you can choose to convert to an update or discard the record. In case of update failures, you can choose to convert to an insert or just log the issue.
 
-  * The tables to be synchronized must have a primary key or unique index, where the columns in the unique index cannot be NULL and cannot be virtual columns.
+  :::
 
-  * To avoid TiCDC garbage collection affecting transaction or incremental data extraction, it is recommended to set `SET GLOBAL tidb_gc_life_time= '24h'` to 24 hours.
+- **DDL**: ADD COLUMN, CHANGE COLUMN, DROP COLUMN, RENAME COLUMN
 
-  * Due to communication restrictions between TiDB components, when using Tapdata Cloud, the deployed Agent must be a [semi-managed instance](../../faq/agent-installation#semi-and-full-agent). 
+## Incremental Sync Principle
 
-## <span id="prerequisite">Preparation</span>
+To simplify the usage process, the TapData TiDB connector integrates with the [TiFlow component](https://github.com/pingcap/tiflow) (version 8.1.0), which parses change logs into ordered row-level changes. For more details, see the [TiCDC Overview](https://docs.pingcap.com/tidb/stable/ticdc-overview).
 
-1. Log in to the TiDB database and execute the following command to create an account for data synchronization/development tasks.
+## Considerations
+
+* To ensure proper data synchronization, the TiDB cluster and the TapData engine (Agent) must be within the same network and able to communicate properly.
+
+* When using TiDB as a source for incremental data synchronization, please check the following information:
+
+  * Tables to be synchronized must have a primary key or unique index, where the values in the unique index column cannot be **NULL** and cannot be a virtual column.
+
+  * To prevent TiCDC's garbage collection from affecting transaction or incremental data extraction, it is recommended to set the global garbage collection life time to 24 hours with the command `SET GLOBAL tidb_gc_life_time = '24h'`.
+
+  * TapData engine must be deployed on an **arm or amd** system architecture.
+
+  * Due to communication restrictions between TiDB components, when using the Tapdata Cloud product, the deployed Agent must be a [semi-managed instance](../../billing/purchase#semi-and-full-agent.md).
+
+## <span id="prerequisite">Prerequisites</span>
+
+1. Log in to the TiDB database and create a user account for data synchronization/transformation tasks using the following command:
 
    ```sql
    CREATE USER 'username'@'host' IDENTIFIED BY 'password';
    ```
 
    * **username**: The username.
-   * **host**: The host that the account is allowed to log in from, a percentage sign (%) indicates any host.
-   * **password**: The password.
+   * **host**: Host that is allowed to log in, with `%` representing any host.
+   * **password**: The user's password.
 
-   Example: Create an account named tapdata, allowing login from any host.
+   Example: Create a user named `tapdata` that is allowed to log in from any host.
 
    ```sql
    CREATE USER 'tapdata'@'%' IDENTIFIED BY 'your_passwd';
    ```
 
-2. Grant permissions to the newly created account.
+2. Grant permissions to the newly created user.
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="As Source Database">
+<TabItem value="As a Source">
 ```
-
 ```sql
--- Permissions required for full + incremental synchronization
+-- Permissions required for full + incremental sync
 GRANT SELECT ON *.* TO 'username' IDENTIFIED BY 'password';
 ```
 </TabItem>
 
-<TabItem value="As Target Database">
+<TabItem value="As a Target">
 
 ```sql
--- Grant permissions for a specific database
-GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, DROP ON database_name.* TO 'username';
+-- Grant permissions on a specific database
+GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, DROP ON database_name.* TO 'username';
 
--- Grant permissions for all databases
-GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, CREATE ROUTINE, CREATE TEMPORARY TABLES, DROP ON *.* TO 'username';
+-- Grant permissions on all databases
+GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, DROP ON *.* TO 'username';
 ```
 </TabItem>
 </Tabs>
 
-* **database_name**: The name of the <span id="ticdc">database</span>.
+* **database_name**: The database name.
 * **username**: The username.
 
 ## Connect to TiDB
+1. [Log in to TapData platform](../../user-guide/log-in.md).
 
-1. [Log in to TapData Platform](../../user-guide/log-in.md).
-
-2. In the left navigation panel, click **Connections**.
+2. In the left navigation bar, click **Connections**.
 
 3. On the right side of the page, click **Create**.
 
-4. In the pop-up dialog, search and select **TiDB**.
+4. In the pop-up dialog, search for and select **TiDB**.
 
-5. On the page that you are redirected to, follow the instructions below to fill in the connection information for TiDB.
+5. On the redirected page, fill in the TiDB connection information according to the following instructions.
 
-   ![TiDB Connection Example](../../images/tidb_connection_setting.png)
+   ![](../../images/tidb_connection_setting.png)
 
-   * **Connection Information**:
-      * **Name**: Enter a unique name that is meaningful for your business.
-      * **Type**: Support using TiDB database as either a source or target.
-      * **PD Server Address**: Enter the connection address and port of the PD Server. The default port number is **2379**. This parameter is required only when used as a source database.
-      * **DB Address**: Enter the database connection address.
-      * **Port**: The service port of the database.
-      * **DB Name**: The name of the database, where each connection corresponds to one database. If you have multiple databases, you need to create multiple data connections.
-      * **Username** and **Password**: The account and password for the database. For account creation and authorization methods, refer to the [Prerequisites](#prerequisite).
-   * **Advanced Settings**:
+   * **Connection Settings**
+      * **Name**: Enter a meaningful and unique name.
+      * **Type**: Supports using the TiDB database as a source or target.
+      * **PD Server Address**: Fill in the connection address and port of the PD Server. The default port is **2379**. This parameter should be filled in only when using TiDB as a source with incremental data synchronization.
+      * **DB Address**: The address of the database.
+      * **Port**: The service port of the database, default is **4000**.
+      * **DB Name**: The name of the database (case-sensitive). Each connection corresponds to a single database. If there are multiple databases, you need to create multiple data connections.
+      * **Username**, **Password**: The username and password for the database. For information on how to create and grant privileges, see the [prerequisite](#prerequisite).
+      * **TiKV Port**: The default port for TiKV, which serves as the storage layer for TiDB, providing data persistence, read-write services, and statistics data recording. The default port is **20160**. This parameter should be filled in only when using TiDB as a source with incremental data synchronization.
+   * **Advanced Settings**
       * **Other Connection String Parameters**: Additional connection parameters, which are empty by default.
-      * **Timezone for Time Types**: Default to the timezone used by the database. You can also manually specify it based on your business requirements.
-      * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log. This parameter is required only when used as a source database.
-      * **Contain Tables**: Default to **All**, and you can also customize and list the tables to include, separated by commas (,).
-      * **Exclude Tables**: When enabled, you can specify tables to exclude, separated by commas (,).
-      * **Agent Setting**: Default to **Platform Auto Allocation**, but you can also specify it manually.
-      * **Model Load Time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable Heartbeat Table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapData Cloud will generate a table named **tapdata_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
-   * **SSL Settings**: Choose whether to enable SSL connections to the data source to further enhance data security. After turn on this button, you will also need to upload a CA file, client certificate, and key, as well as fill in the client password. For more information, see [Generate Self-Signed Certificates](https://docs.pingcap.com/tidb/stable/generate-self-signed-certificates).
-
-6. Click on **Test**, and after successful testing, click **Save**.
+      * **Timezone**: The default time zone is 0 (UTC). If another time zone is configured, it may affect the synchronization of fields without time zone information (e.g., `datetime`). Fields with time zone information (e.g., `timestamp with time zone`) and `date` and `time` types will not be affected.
+      * **CDC Log Caching**: [Mining the source database's](../../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.
+      * **Contain Table**: The default option is All, which includes all tables. Alternatively, you can select Custom and manually specify the desired tables by separating their names with commas (,).
+      * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
+      * **Agent Settings**: Defaults to Platform automatic allocation, you can also manually specify an agent.
+      * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
+      * **Enable Heartbeat Table**: When the connection type is **Source&Target** or **Source**, you can enable this switch. TapData will create a _tapdata_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the [heartbeat task](../../best-practice/heart-beat-task.md) in the data source editing page.
+   * **SSL Settings**: Choose whether to enable SSL connection to the data source for enhanced data security. After enabling this feature, you will need to upload a CA file, client certificate, and key, and fill in the client password. For more information, see [Generating Self-Signed Certificates](https://docs.pingcap.com/tidb/stable/generate-self-signed-certificates).
+   
+6. Click **Test**. After the test passes, click **Save**.
 
    :::tip
 
-   If the connection test fails, follow the on-screen instructions to troubleshoot.
+   If the connection test fails, please follow the prompts on the page to troubleshoot.
 
    :::
+
+## FAQs
+
+* **Q: What ports need to be open to ensure data synchronization?**
+  **A**: Full synchronization requires communication between the TiDB cluster and TapData on port 4000. For incremental data synchronization, the following ports also need to be open:
+
+  * **Port 2379**: Used for communication between PD and TiKV/TiDB and to provide external API interfaces. TiKV and TiDB use this port to obtain configuration information and scheduling commands from PD.
+
+  - **Port 20160**: Used by TiKV to provide external storage services, including handling SQL requests from TiDB, reading and writing data, and internal communication with other TiKV nodes (e.g., Raft protocol messages).
+
+* **Q: Does TapData have any requirements for the deployment architecture of TiDB?**
+
+  **A**: Both single-node and cluster deployment architectures of TiDB are supported.
+
+* **Q: What should I do if my TiDB version is not within the 6.0.0 to 8.1.9 range and I need to perform incremental data synchronization?**
+
+  **A**: The TapData TiDB connector integrates with TiCDC to parse change logs into ordered row-level changes. If your database is outside the supported versions, you can download the corresponding version of the Tiflow component from [Github: tiflow](https://github.com/pingcap/tiflow/releases) and follow the steps below to compile the CDC tool yourself:
+
+  :::warning
+
+  Expanding to other versions of the Tiflow component may introduce uncertainties or affect running tasks. Please proceed with caution.
+
+  :::
+
+  1. Extract the downloaded file, then navigate to the extracted directory and run the `make` command to compile.
+
+  2. Locate the generated **cdc** binary file and place it in the **{tapData-dir}/run-resource/ti-db/tool** directory on the TapData engine machine (replace if necessary).
+
+  3. Use the `chmod` command to grant read, write, and execute permissions to the files in this directory.

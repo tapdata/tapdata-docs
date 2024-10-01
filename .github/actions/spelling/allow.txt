@@ -501,6 +501,7 @@ SMALLSERIAL
 usermanual
 vastbase
 vastdata
+walminer
 codepage
 DBADM
 LRI
@@ -520,3 +521,10 @@ LONGVARBINARY
 LONGVARCHAR
 SYSDATE
 TRX
+datetimeoffset
+nchar
+ntext
+nvarchar
+smalldatetime
+sqlcmd
+uniqueidentifier

@@ -1,6 +1,6 @@
 # Task Pre-check
 
-import Content from '../../reuse-content/_all-features.md';
+import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
@@ -10,7 +10,7 @@ To ensure the normal operation of data replication/development tasks, when you s
 
 After the data replication/development task configuration is completed, execute save or start the task, and the pre-check information will be displayed at the bottom of the page. Relevant examples are as follows:
 
-![Task Pre-check](../../images/task_pre_check.png)
+![Task Pre-check](../images/task_pre_check.png)
 
 ## Task Settings Check
 

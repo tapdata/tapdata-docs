@@ -16,7 +16,7 @@ TapData offers support for both full data synchronization and real-time incremen
 
 ## Data transformation
 
-Aiming at complex data processing needs, TapData supports a variety of [processing nodes](../user-guide/data-pipeline/data-development/process-node.md) between data sources based on data replication capabilities. These nodes provide advanced data processing capabilities such as data splitting, data splitting, field addition, and deletion, and shared mining.
+Aiming at complex data processing needs, TapData supports a variety of [processing nodes](../user-guide/data-development/process-node.md) between data sources based on data replication capabilities. These nodes provide advanced data processing capabilities such as data splitting, data splitting, field addition, and deletion, and shared mining.
 
 ![Data Transformation Workflow](../images/features_data_dev.png)
 

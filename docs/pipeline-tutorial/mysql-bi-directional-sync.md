@@ -63,7 +63,7 @@ Follow the instructions in the document to complete the Binlog configuration and
 
    2. On the left side of the page, drag the MySQL data sources created in the preparation work (named Region A and Region B) to the right canvas, and then connect them.
 
-   3. Click the Region A node, select the table to be synchronized, which is `customer` in this case. For more parameter details (such as advanced settings), see [Creating Data Replication Task](../user-guide/data-pipeline/copy-data/create-task.md).
+   3. Click the Region A node, select the table to be synchronized, which is `customer` in this case. For more parameter details (such as advanced settings), see [Creating Data Replication Task](../user-guide/copy-data/create-task.md).
 
       ![Forward sync Region A node configuration](../images/forward_sync_source.png)
 
@@ -122,7 +122,7 @@ Follow the instructions in the document to complete the Binlog configuration and
 
    :::tip
 
-   For Tapdata Enterprise, you can use the [data verification](../user-guide/data-pipeline/verify-data.md) to continuously verify the data of the two bi-directional sync tasks, better meeting your business needs.
+   For Tapdata Enterprise, you can use the [data verification](../user-guide/verify-data.md) to continuously verify the data of the two bi-directional sync tasks, better meeting your business needs.
 
    :::
 
@@ -130,4 +130,4 @@ Follow the instructions in the document to complete the Binlog configuration and
 
 In the task list page, you can start/stop, monitor, edit, copy, reset, and delete tasks.
 
-For detailed operations, see [Manage Tasks](../user-guide/data-pipeline/copy-data/manage-task.md).
+For detailed operations, see [Manage Tasks](../user-guide/copy-data/manage-task.md).

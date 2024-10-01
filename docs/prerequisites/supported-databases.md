@@ -8,8 +8,7 @@ TapData supports rich data sources as follows:
 
 :::tip
 
-* If you need to synchronize DDL operations, you need to enable DDL collection and DDL apply. For more information, see [Handle DDL Changes During Data Sync](../best-practice/handle-schema-changes.md).
-* The TapData Community only supports the following data sources: AWS ClickHouse, BigQuery, ClickHouse, Doris, Dummy, ElasticSearch, Kafka, MariaDB, Mock Source, Mock Target, MongoDB, MongoDB Atlas, MySQL, PostgreSQL, Redis, and TDengine.
+If you need to synchronize DDL operations, you need to enable DDL collection and DDL apply. For more information, see [Handle DDL Changes During Data Sync](../best-practice/handle-schema-changes.md).
 
 :::
 
@@ -47,6 +46,15 @@ import TabItem from '@theme/TabItem';
     <td>✅</td>
     <td>✅</td>
     <td>23 and above</td>
+  </tr>
+  <tr>
+    <td> Db2</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>✅</td>
+    <td>9.7 LUW</td>
   </tr>
   <tr>
     <td>ClickHouse</td>
@@ -175,15 +183,6 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>✅</td>
     <td>✅</td>
     <td>7.x, 8.x</td>
-  </tr>
-  <tr>
-    <td>IBM DB2</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>9.7 LUW</td>
   </tr>
   <tr>
     <td>DummyDB</td>

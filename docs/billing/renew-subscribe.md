@@ -1,10 +1,10 @@
-# Renew Instance
+# Manage Subscription
 
 import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-For annual and monthly instances, TapData Cloud will send you a reminder one month before the expiration date to ensure timely renewal. To prevent any disruption to your business operations, it is important to renew your instance before it expires. Alternatively, you can choose the continuous annual or monthly billing method during the initial purchase, which will automatically renew your subscription without the need for manual intervention. This helps ensure seamless continuity of your TapData Cloud services.
+For annual/monthly subscription instances, TapData Cloud will remind you to renew one month before the expiration date. To avoid any impact on your business, please renew your subscription in time before it expires, or choose the **Continuous Annual/Monthly** billing method at the time of purchase. Additionally, you can view traffic bills in the Subscription Center.
 
 
 
@@ -12,15 +12,14 @@ For annual and monthly instances, TapData Cloud will send you a reminder one mon
 
 1. Log in to [TapData Cloud](https://cloud.tapdata.io/).
 
-2. In the top-right corner of the page, click your username and select **Subscription Center**.
+2. In the left navigation bar, click **Subscriptions**.
 
-   ![User Center](../images/user_center.png)
-
-3. Scroll down to the bottom of the page, and in the **Service Subscription Information** area, you can see your current subscription information.
-
-4. Locate the target Agent instance and click **Renew**. If your instance is on a continuous annual/monthly subscription, there is no need to perform this operation.
+3. View your current subscription information, locate the target instance, and choose the action you wish to perform:
 
    ![Renew Instance](../images/renew_subscribe.png)
 
-5. Follow the instructions on the payment page to complete the payment process.
-
+   - **Renew**: Renew the instance. If you have a continuous annual/monthly subscription, this action is not required.
+   - **Change**: Upgrade the instance specifications and follow the prompts to complete the payment process. You can also view the instance change history.
+   - **Unsubscribe**: If the instance is no longer needed, you can [unsubscribe](refund.md) as long as its associated tasks do not impact your business.
+   - **Authorization Code**: This section displays the authorization code information for Agent instances purchased through the Alibaba Cloud Marketplace. You can choose to issue invoices or renew subscriptions.
+   - **Traffic Bill**: View the traffic bills for data synchronization, with charges billed monthly.

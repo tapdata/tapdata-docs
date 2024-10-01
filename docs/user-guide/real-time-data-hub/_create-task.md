@@ -79,7 +79,7 @@ import TabItem from '@theme/TabItem';
 
 2. In the pop-up dialog, enter the task name and choose whether to run the task.
 
-   * <b>Only Save</b>: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../data-pipeline/data-development/process-node.md) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click the <b>Start</b> in the upper right corner of the page.
+   * <b>Only Save</b>: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../data-development/process-node.md) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click the <b>Start</b> in the upper right corner of the page.
    * <b>Save and Run</b>: No further action is necessary as TapData automatically generates a data transformation task and initiates it to synchronize the table in real-time with the Data Processing Layer.
 
    Once setup is complete, TapData will automatically create a data transformation task to synchronize your source tables in real-time to the selected target data source and provide them to the final business. You can also click the task name in the target data card to enter the task monitoring page to see the detailed operation status. For more information, see <a href="../data-development/monitor-task">Monitor Task</a>. 

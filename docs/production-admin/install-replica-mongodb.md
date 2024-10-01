@@ -72,15 +72,35 @@ We recommend using MongoDB version 4.0 or higher. This example uses CentOS 7 to 
      dbPath: /var/lib/mongo
      journal:
        enabled: true
+     directoryPerDB: true
+      syncPeriodSecs: 60
+      engine: wiredTiger
+      wiredTiger:
+         engineConfig:
+            cacheSizeGB: 8
+            journalCompressor: snappy
+            directoryForIndexes: false
+         collectionConfig:
+            blockCompressor: snappy
+         indexConfig:
+            prefixCompression: true
    net:
      port: 27017
      bindIp: 0.0.0.0
+        maxIncomingConnections: 20000
    replication:
+      oplogSizeMB: 512000
      replSetName: repl
    security:
      authorization: enabled
      keyFile: /etc/mongodb/repl.key
    ```
+
+   :::tip
+
+   In the configuration file above, we have specified the log file, storage directory, service port, authentication, and other details. The `cacheSizeGB` can be set to 30% of the total memory. You can also add or adjust more parameters based on your business needs. For detailed information about these parameters, see [MongoDB Configuration File Options](https://www.mongodb.com/docs/v4.4/reference/configuration-options).
+
+   :::
 
 7. Start the MongoDB service on all servers.
 

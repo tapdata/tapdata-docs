@@ -55,7 +55,7 @@ For example, in MySQL, suppose there is a table `orders` where the `last_updated
 SELECT * FROM orders WHERE last_updated > '2024-06-01 00:00:00';
 ```
 
-After completing [permission granting and data source connection](../prerequisites/on-prem-databases/mysql.md), you can set the incremental synchronization method to **Polling** for the source node and select the target field (`last_updated`) in Tapdata when [configuring the data transformation task](../user-guide/data-pipeline/data-development/create-task.md).
+After completing [permission granting and data source connection](../prerequisites/on-prem-databases/mysql.md), you can set the incremental synchronization method to **Polling** for the source node and select the target field (`last_updated`) in Tapdata when [configuring the data transformation task](../user-guide/data-development/create-task.md).
 
 ![Select Field Polling](..//images/obtain_cdc_via_polling.png)
 
@@ -149,4 +149,4 @@ This method is not optimal and increases maintenance costs, so Tapdata does not 
   A: To maximize compatibility and collection performance, Tapdata supports the following CDC collection methods:
   * **Database Log API**: The default collection method, supported by most databases. If permission restrictions prevent log access or for certain SaaS data sources, choose the **Field Polling** method.
   * **Database Log File**: Currently supported only for Oracle and Db2 data sources.
-  * **Field Polling**: Set the incremental synchronization method for the source node in Tapdata when [configuring the data transformation task](../user-guide/data-pipeline/data-development/create-task.md).
+  * **Field Polling**: Set the incremental synchronization method for the source node in Tapdata when [configuring the data transformation task](../user-guide/data-development/create-task.md).

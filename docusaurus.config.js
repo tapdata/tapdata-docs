@@ -39,6 +39,12 @@ const config = {
           trackingID: 'G-PVNR6DP305', // Measurement ID, which can be find in Data streams page on Google Analytics platform.
          },
         blog: false, // Disable the blog plugin
+        sitemap: {
+          changefreq: 'daily',
+          priority: 0.5,
+          ignorePatterns: ['/reuse/**','/markdown-page'],
+          filename: 'sitemap.xml',
+        },
       }),
     ],
   ],
