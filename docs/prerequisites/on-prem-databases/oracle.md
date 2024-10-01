@@ -343,7 +343,7 @@ TO  username CONTAINER=all;
 
 
 
-### <span id="ssl">Enabling SSL Connection (Optional)</span>
+### <span id="ssl">Enable SSL Connection (Optional)</span>
 
 To further enhance the security of your data connection, you can opt to enable SSL (Secure Sockets Layer) encryption for Oracle databases. This process encrypts network connections at the transport layer, thereby improving the security of communication data and ensuring data integrity.
 
