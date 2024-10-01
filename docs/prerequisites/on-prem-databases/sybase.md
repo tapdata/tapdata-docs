@@ -1,5 +1,9 @@
 # Sybase
 
+import Content from '../../reuse-content/_enterprise-and-cloud-features.md';
+
+<Content />
+
 [Sybase Database](https://infocenter.sybase.com/help/index.jsp), also known as Adaptive Server Enterprise (ASE), is a high-performance, reliable, and scalable enterprise-grade relational database management system. Sybase is nearing the end of its support lifecycle, and it is recommended to migrate to other databases to reduce risk. With TapData, you can easily build real-time synchronization pipelines to sync Sybase data to other database platforms, ensuring business continuity.
 
 ## Supported Versions and Architectures
@@ -61,12 +65,15 @@ DML Operations: INSERT, UPDATE, DELETE
 
 5. On the following page, fill in the connection information for Sybase based on the instructions below.
 
+   ![Sybase Connection Settings](../../images/sybase_connection.png)
+
    * **Connection Information**
      * **Name**: Enter a unique, meaningful name.
      * **Type**: Sybase can be used as a source or target database.
-     * **DB Address**: The database connection address.
+     * **Host**: The database connection address.
      * **Port**: The database service port.
-     * **DB Name**: The name of the database. Each connection corresponds to one database; if there are multiple databases, multiple connections need to be created.
+     * **Database**: The name of the database. Each connection corresponds to one database; if there are multiple databases, multiple connections need to be created.
+     * **Schema**: The schema name.
      * **Username**: The database username.
      * **Password**: The password associated with the database account.
      * **Byte Order**: Choose between big-endian and little-endian based on the machine architecture. For example, Linux machines typically use little-endian, while some dedicated Sybase machines use big-endian. Incorrect configuration may cause inconsistent data during the incremental synchronization phase.

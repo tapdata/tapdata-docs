@@ -279,7 +279,7 @@ import Content from '../../reuse-content/_preparations.md';
 
    ![PostgreSQL Connection Example](../../images/postgresql_connection.png)
 
-   * **Connection Information Settings**
+   * **Connection Settings**
       * **Connection name**: Fill in a unique name that has business significance.
       * **Connection type**: Supports PostgreSQL as a source or target database.
       * **Host**: The database connection address.
