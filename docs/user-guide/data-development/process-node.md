@@ -1,5 +1,5 @@
 # Add Processing Node
-import Content from '../../../reuse-content/_all-features.md';
+import Content from '../../reuse-content/_all-features.md';
 
 <Content />
 
@@ -14,7 +14,7 @@ The main usage of processing nodes in TapData is to filter table data, where use
 * **Conditional expression**: An expression that sets a filter condition
 * **Example expression**: Filter out individuals who are either men over 50 years old or people under 30 years old with incomes of 10,000 or less. The filtering condition can be expressed as `( record.gender == 0&& record.age > 50) || ( record.age >= 30&& record.salary <= 10000)`.
 
-![](../../../images/data_dev_row_filter_setting_en.png)
+![](../../images/data_dev_row_filter_setting_en.png)
 
 
 
@@ -22,7 +22,7 @@ The main usage of processing nodes in TapData is to filter table data, where use
 
 The **Add and Delete Fields** node can be added to the canvas and its parameters can be configured after connecting it to the data node. It allows for adding new fields or deleting existing fields, and if a field is deleted, it will not be passed to the next node, and you can also adjust the fields order.
 
-![](../../../images/add_and_delete_fields.png)
+![](../../images/add_and_delete_fields.png)
 
 
 
@@ -30,7 +30,7 @@ The **Add and Delete Fields** node can be added to the canvas and its parameters
 
 To rename or convert the case of a field, add the **Field Rename** node to the canvas, connect it to the data node in the desired processing order, and configure the node parameters accordingly.
 
-![](../../../images/rename_fields.png)
+![](../../images/rename_fields.png)
 
 
 
@@ -38,7 +38,7 @@ To rename or convert the case of a field, add the **Field Rename** node to the c
 
 To assign a value to a field by performing calculations between fields, add the **Field Calculation** node to the canvas. Connect the node to the data node in the desired processing order and configure the calculation rules for the target field using  JavaScript (JS) expressions.
 
-![](../../../images/field_calculation_en.png)
+![](../../images/field_calculation_en.png)
 
 
 
@@ -46,7 +46,7 @@ To assign a value to a field by performing calculations between fields, add the 
 
 The Type modification node can be used to adjust the data type of the field.
 
-![](../../../images/data_dev_column_type_setting.png)
+![](../../images/data_dev_column_type_setting.png)
 
 
 
@@ -56,13 +56,13 @@ In big data processing and analysis, merging and transforming data is a pivotal 
 
 :::tip
 
-When using the Master Slave Merge, it's essential to [upgrade the Agent instance](../../manage-agent.md) to version 3.5.1. Additionally, the target database should be either a self-deployed MongoDB or MongoDB Atlas.
+When using the Master Slave Merge, it's essential to [upgrade the Agent instance](../manage-agent.md) to version 3.5.1. Additionally, the target database should be either a self-deployed MongoDB or MongoDB Atlas.
 
 :::
 
 **Procedure**:
 
-1. [Log in to TapData Platform](../../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
 2. On the left navigation bar, click **Data Transformation**.
 
@@ -70,19 +70,19 @@ When using the Master Slave Merge, it's essential to [upgrade the Agent instance
 
 4. Drag and drop the data sources you want to merge from the left side of the page to the right canvas. Then, drag the **Master Slave Merge** node from the bottom-left corner and connect them in the sequence shown below.
 
-   ![Adding Primary-Secondary Merge Node](../../../images/primary_secondary_merge_node_conn1.png)
+   ![Adding Primary-Secondary Merge Node](../../images/primary_secondary_merge_node_conn1.png)
 
 5. Click on each of the data sources you want to merge sequentially and select the tables to be merged (**lineorder** / **date**) from the panel on the right.
 
 6. Click the **Master Slave Merge** node, drag and drop the `date` table into the `lineorder` table to signify their relationship. Subsequently, you can view the merged table structure.
 
-   ![Setting up Primary-Secondary Merge Node](../../../images/primary_secondary_merge_node_setting.gif)
+   ![Setting up Primary-Secondary Merge Node](../../images/primary_secondary_merge_node_setting.gif)
 
 7. Drag a MongoDB or MongoDB Atlas data source from the left side of the page to store the merged table and then connect the **Master Slave Merge** node to this data source.
 
 8. Click the data source you intend to store the merged table in, then select a target table or input a table name for TapData to automatically create in the right panel. After setting up, choose to update conditions.
 
-   ![Append Merge Example](../../../images/primary_secondary_merge_node_conn2.png)
+   ![Append Merge Example](../../images/primary_secondary_merge_node_conn2.png)
 
 9. After confirming the configurations are correct, click **Start**.
 
@@ -104,21 +104,21 @@ The **Union** node in TapData merges multiple tables with the same or similar st
 
 Assume that we want to merge(Union) **student1** and **student2** tables with the same table structure into one table, and then store the result in the **student_merge** table. The tables structure and data are as follows:
 
-![Append merge data sample](../../../images/table_union_demo.png)
+![Append merge data sample](../../images/table_union_demo.png)
 
 
 
 **Operation**:
 
-1. [Log in to TapData Platform](../../log-in.md).
+1. [Log in to TapData Platform](../log-in.md).
 
-2. In the left navigation bar, click **Data Pipelines**.
+2. In the left navigation bar, click **Data Transformation**.
 
 3. On the right side of the page, click **Create** to configure the task.
 
 4. Drag the desired data source from the left side of the page and place it onto the right canvas. Then, locate the **Union** node at the bottom left corner of the page and drag it onto the canvas. Finally, connect the data source node to the Union node to perform the append merge operation.
 
-   ![Add Union Node](../../../images/add_union_node_en.png)
+   ![Add Union Node](../../images/add_union_node_en.png)
 
 5. Click on the desired data source that you want to perform the append merge with. In the panel on the right side of the page, select the table that you wish to merge, either **student1** or **student2**.
 
@@ -134,13 +134,13 @@ Assume that we want to merge(Union) **student1** and **student2** tables with th
 
    :::
 
-   ![Union example](../../../images/union_table_demo_en.png)
+   ![Union example](../../images/union_table_demo_en.png)
 
 9. After confirming that the configuration is correct, simply click on the **Start** to initiate the task. 
 
    After the operation is completed, you can observe the performance of the task on the current page. This includes metrics such as RPS (Records Per Second), delay, task time statistics, and more.
 
-   ![union_table_result](../../../images/union_table_result_en.png)
+   ![union_table_result](../../images/union_table_result_en.png)
 
 
 
@@ -171,7 +171,7 @@ mysql> select * from student_merge;
 
 If the built-in processing nodes don't fully meet your specific needs, or if you want to process data in a more detailed and personalized manner, you can add a Python processing node. By writing custom python scripts, you can manage the processing/logic of data. The processed data will then be synchronized to the target database, allowing you to customize the data link freely and better control the flow and processing of data.
 
-![Python Node](../../../images/python_node.png)
+![Python Node](../../images/python_node.png)
 
 The Python processing node supports version Python 2.7.3. The supported third-party packages include: **requests-2.2.1**, **PyYAML-3.13**, and **setuptools-44.0.0**. The content description for `context` in the above image is as follows:
 
@@ -241,7 +241,7 @@ return record
 
 ## <span id="Unwind">Unwind</span>
 
-import Content2 from '../../../reuse-content/_enterprise-features.md';
+import Content2 from '../../reuse-content/_enterprise-features.md';
 
 <Content2 />
 
@@ -249,7 +249,7 @@ import Content2 from '../../../reuse-content/_enterprise-features.md';
 
 Suppose there is a collection named `customer_json` that records the list of products purchased by each customer. To analyze the sales of each product in more detail, we want to convert the product list from an array format to separate data rows. In this way, each product will have a corresponding customer purchase record. To achieve this requirement, we can add an **Unwind** node when configuring the data transformation task. The node configuration example is as follows.
 
-![unwind_node](../../../images/unwind_node.png)
+![unwind_node](../../images/unwind_node.png)
 
 :::tip
 
@@ -263,23 +263,23 @@ In real-time data integration and synchronization processes, capturing and synch
 
 When the data source lacks complete CDC support or is restricted by permission controls from accessing incremental logs, we can add a time field injection node to the data synchronization chain. This node automatically adds timestamp information to the source table data read. Subsequently, in the target table's configuration, this field (of DATETIME type) can be selected for polling to achieve incremental data retrieval, thereby further enhancing the flexibility of real-time data acquisition methods.
 
-![Time Field Injection](../../../images/time_field_injection.png)
+![Time Field Injection](../../images/time_field_injection.png)
 
 ## <span id="js-process">JS Processing</span>
 
-import Content3 from '../../../reuse-content/_enterprise-features.md';
+import Content3 from '../../reuse-content/_enterprise-features.md';
 
 <Content3 />
 
 Support is provided for data processing through JavaScript or Java code. When writing the code, it is important to ensure  source node and the target node is connected. This ensures seamless data processing between the two nodes.
 
-![](../../../images/js_nodes_en.png)
+![](../../images/js_nodes_en.png)
 
 ### Model Declarations
 
 For JS nodes, TapData deduces the model information of the node by sampling data trial run. If the deduced model is found to be inaccurate or the number of fields changes, the field information in the model can be defined explicitly by the model declaration.
 
-![](../../../images/model_declarations_en.png)
+![](../../images/model_declarations_en.png)
 
 In the development task, the method that the model declares support is as follows:
 
@@ -329,6 +329,6 @@ Parameter Description
 
 ### JS Built-in Function Description
 
-* [Standard JS](../../../appendix/standard-js.md): TapData supports processing and operating on data records, providing various functions and operations to manipulate and transform data. For example, you can use JavaScript or Java code to convert date strings to Date types. This allows you to perform date-related operations, comparisons, and formatting on the data records as needed. With this capability, you have flexibility in manipulating and transforming your data to meet your specific requirements.
-* [Enhanced JS (Beta)](../../../appendix/enhanced-js.md): TapData supports making external calls in JavaScript code using standard built-in functions. This allows you to perform network requests, interact with databases, and perform other operations by utilizing the capabilities of JavaScript and its built-in functions.
+* [Standard JS](../../appendix/standard-js.md): TapData supports processing and operating on data records, providing various functions and operations to manipulate and transform data. For example, you can use JavaScript or Java code to convert date strings to Date types. This allows you to perform date-related operations, comparisons, and formatting on the data records as needed. With this capability, you have flexibility in manipulating and transforming your data to meet your specific requirements.
+* [Enhanced JS (Beta)](../../appendix/enhanced-js.md): TapData supports making external calls in JavaScript code using standard built-in functions. This allows you to perform network requests, interact with databases, and perform other operations by utilizing the capabilities of JavaScript and its built-in functions.
 

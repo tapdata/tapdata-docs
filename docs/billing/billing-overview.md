@@ -24,7 +24,8 @@ There are several subscription options available for TapData Cloud:
 
 :::tip
 
-When you select the recurring monthly or annual billing method, TapData Cloud will automatically deduct the subscription fee for the next billing cycle on the expiration date of each period. You can conveniently review the charge details in the **user center**, allowing you to stay informed about the payment information and have a clear understanding of the billing process for your TapData Cloud subscription.
+- When you select the recurring monthly or annual billing method, TapData Cloud will automatically deduct the subscription fee for the next billing cycle on the expiration date of each period. You can conveniently review the charge details in the **user center**, allowing you to stay informed about the payment information and have a clear understanding of the billing process for your TapData Cloud subscription.
+- When selecting a **fully managed** instance, you will also need to pay for traffic based on the amount of synchronized data (charged monthly)
 
 :::
 

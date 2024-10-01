@@ -67,4 +67,4 @@ Before setting up a data sync pipeline on TapData Cloud, connect your data sourc
 
 ## See also
 
-For more advanced features like table merging or building wide tables, you can [create data transformation task](../user-guide/data-pipeline/data-development/create-task.md) on TapData Cloud. Additionally, you can explore the [Real-Time Data Hub](../user-guide/real-time-data-hub/daas-mode/enable-daas-mode.md), simply drag the source table to generate a data pipeline, which will then automatically start the task. This greatly simplifies the task configuration process.
+For more advanced features like table merging or building wide tables, you can [create data transformation task](../user-guide/data-development/create-task.md) on TapData Cloud. Additionally, you can explore the [Real-Time Data Hub](../user-guide/real-time-data-hub/daas-mode/enable-daas-mode.md), simply drag the source table to generate a data pipeline, which will then automatically start the task. This greatly simplifies the task configuration process.

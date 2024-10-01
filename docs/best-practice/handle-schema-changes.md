@@ -9,7 +9,7 @@ During data migration and synchronization with TapData Cloud, recognizing the im
 
 To ensure the high availability and fault tolerance of data replication/transformation tasks, by default, TapData does not synchronize the DDL statements from the source database to the target database. If you need to enable this feature, please follow these steps:
 
-1. When creating or editing a [data replication](../user-guide/data-pipeline/copy-data/create-task.md) or [data transformation](../user-guide/data-pipeline/data-development/create-task.md) task, go to the configuration page of the source database node.
+1. When creating or editing a [data replication](../user-guide/copy-data/create-task.md) or [data transformation](../user-guide/data-development/create-task.md) task, go to the configuration page of the source database node.
 
 2. Find the **Advanced Settings** tab and check if the **Sync DDL Events** option is available.
 
@@ -44,7 +44,7 @@ For data sources with weak Schema constraints, the Schema information of histori
 
 If a DDL synchronization error causes a data synchronization task to interrupt, you can either undo the relevant DDL operation in the source database or choose to [reload the source database's Schema](../user-guide/manage-connection.md), then reset and restart the task to repair it.
 
-Additionally, consulting the [task log](../user-guide/data-pipeline/copy-data/monitor-task.md) and [error codes](../user-guide/error-code-solution.md) can aid in identifying and rectifying the root causes of the task failure. A normal DDL collection and application log example is as follows:
+Additionally, consulting the [task log](../user-guide/copy-data/monitor-task.md) and [error codes](../user-guide/error-code-solution.md) can aid in identifying and rectifying the root causes of the task failure. A normal DDL collection and application log example is as follows:
 
 ![DDL Log Information](../images/ddl_apply_logs.png)
 
@@ -55,4 +55,4 @@ To safely manage DDL changes and reduce the potential risk to data synchronizati
 1. **Pre-change Verification**: Verify the full extent of DDL changes in a test environment before applying them in a production environment to identify potential issues that may interrupt synchronization.
 2. **Planning and Notification**: Schedule DDL changes during off-peak business hours and notify related teams in advance.
 3. **Pipeline Configuration Updates**: Regularly review and update your data pipeline configurations to match the latest table structures.
-4. **Monitoring and Alerts**: Set up [monitoring](../user-guide/data-pipeline/copy-data/monitor-task.md) and alerts for your data pipelines to respond quickly to unsupported DDL operations.
+4. **Monitoring and Alerts**: Set up [monitoring](../user-guide/copy-data/monitor-task.md) and alerts for your data pipelines to respond quickly to unsupported DDL operations.

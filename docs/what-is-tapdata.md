@@ -18,7 +18,7 @@ Compared to traditional data migration/synchronization tools, TapData offers a f
 
   Supports mainstream databases, including commercial databases, open-source databases, cloud databases, SaaS platform data sources, file data sources, and allows for custom data sources.
 
-* **[Reliable Data Consistency](user-guide/data-pipeline/verify-data.md)**
+* **[Reliable Data Consistency](user-guide/verify-data.md)**
 
   Ensures high consistency between target data and source data through various proprietary technologies, supports multiple verification methods, and meets the stringent requirements of production environments.
 

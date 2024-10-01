@@ -34,9 +34,9 @@ Based on the understanding of the data source, the next step is to configure dat
 
 ## Monitor and Maintain
 
-After starting the task, regularly check the task [monitoring page](../user-guide/data-pipeline/copy-data/monitor-task.md) for details such as the synchronization rate during the full synchronization phase and changes in the source database data, so you can ensure timely identification and resolution of any issues. If you encounter task anomalies, consult the task logs for detailed [Error Codes and Solutions](../user-guide/error-code-solution.md) to facilitate troubleshooting.
+After starting the task, regularly check the task [monitoring page](../user-guide/copy-data/monitor-task.md) for details such as the synchronization rate during the full synchronization phase and changes in the source database data, so you can ensure timely identification and resolution of any issues. If you encounter task anomalies, consult the task logs for detailed [Error Codes and Solutions](../user-guide/error-code-solution.md) to facilitate troubleshooting.
 
 ## See also
 
-* [Create Data Replication Tasks](../user-guide/data-pipeline/copy-data/README.md)
+* [Create Data Replication Tasks](../user-guide/copy-data/README.md)
 * [Frequently Asked Questions](../faq/README.md)

@@ -66,7 +66,9 @@ The email authorization code is a special password used by QQ Mail to log into t
    * **SMTP Service Port**: Enter **465** or **587**.
    * **Email Sending Address**: Enter your QQ email address.
    * **Email Receiving Addresses**: Enter the email addresses that will receive the alert messages, separated by commas (,).
-   * **Prefix for Email Subject**: Optional, set a prefix for the email subject to quickly identify the source of the email.
+   * **Email Subject Prefix (Optional)**: You can set a prefix for the email subject to help you quickly identify the source of the emails.
+   * **SMTP Proxy Service Host (Optional)**: If the email requires access through a proxy, enter the hostname or IP address of the proxy server.
+   * **SMTP Proxy Service Port (Optional)**: If the email requires access through a proxy, enter the proxy service port.
 
 5. After setting up, click **Test Connection** at the bottom of the page. Once you confirm the receipt of the test email in QQ Mail, click **Save**.
 

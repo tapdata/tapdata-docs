@@ -501,6 +501,7 @@ SMALLSERIAL
 usermanual
 vastbase
 vastdata
+walminer
 codepage
 DBADM
 LRI
@@ -529,3 +530,10 @@ myprovince
 signkey
 walminer
 XLog
+datetimeoffset
+nchar
+ntext
+nvarchar
+smalldatetime
+sqlcmd
+uniqueidentifier

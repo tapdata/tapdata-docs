@@ -8,8 +8,8 @@ TapData allows you to synchronize data from various sources and process it durin
 
 | Task Type | Applicable scenario |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Create a data replication task](../user-guide/data-pipeline/copy-data/create-task.md) | Real-time synchronization between similar or heterogeneous data sources can be achieved easily in a few simple steps. This capability is well-suited for various business scenarios such as data migration/synchronization, data disaster recovery, and improving reading performance. |
-| [Create a data transformation task](../user-guide/data-pipeline/data-development/create-task.md) | A variety of processing nodes can be added between source/target data sources. These nodes provide advanced data processing capabilities such as data splitting, merging, field addition, and deletion, and shared mining.  |
+| [Create a data replication task](../user-guide/copy-data/create-task.md) | Real-time synchronization between similar or heterogeneous data sources can be achieved easily in a few simple steps. This capability is well-suited for various business scenarios such as data migration/synchronization, data disaster recovery, and improving reading performance. |
+| [Create a data transformation task](../user-guide/data-development/create-task.md) | A variety of processing nodes can be added between source/target data sources. These nodes provide advanced data processing capabilities such as data splitting, merging, field addition, and deletion, and shared mining.  |
 
 ## See also
 
