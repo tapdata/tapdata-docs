@@ -8,6 +8,12 @@ import Content from '../../reuse-content/_all-features.md';
 
 This article explains how to add a Kafka-Enhanced data source in TapData, allowing it to be used as a **source** or **target** for building real-time data pipelines, such as for real-time data warehouses.
 
+:::tip
+
+Kafka Enhanced support will be available in the upcoming version 3.15.
+
+:::
+
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -130,10 +136,16 @@ Since Kafka as a message queue only supports append operations, avoid duplicate 
 ## Connect Kafka-Enhanced
 
 1. [Log in to Tapdata platform](../../user-guide/log-in.md).
+
 2. In the left navigation bar, click **Connections**.
+
 3. On the right side of the page, click **Create**.
+
 4. On the redirected page, search for and select **Kafka-Enhanced**.
+
 5. Complete the data source configuration as described below.
+
+    ![Kafka Enhanced Connection](../../images/kafka_enhanced_connection.png)
 
     * **Connection Settings**
         * **Name**: Enter a meaningful and unique name.
@@ -163,7 +175,9 @@ Since Kafka as a message queue only supports append operations, avoid duplicate 
 
 ## Advanced Node Features
 
-When configuring data replication or transformation tasks, and using Kafka-Enhanced as either a source or target node, TapData provides additional advanced features to maximize performance and meet business needs:
+When configuring data replication or transformation tasks, and using Kafka-Enhanced as either a ource or target node, TapData provides additional advanced features to maximize performance and meet business needs:
+
+![kafka Eenhanced Advanced Node Features](../../images/kafka_advanced_settings.png)
 
 * As a source node
 
@@ -171,7 +185,7 @@ When configuring data replication or transformation tasks, and using Kafka-Enhan
 
 * As a target node
 
-  - **Replication Factor**: Default is `1`, used when creating topics. Does not take effect if the topic already exists.
+  - **Number of Replicas**: Default is `1`, used when creating topics. Does not take effect if the topic already exists.
 
-  - **Partition Count**: Default is `3`, used when creating topics. If the configuration is greater than the number of partitions for the corresponding topic, it will automatically expand the partitions.
+  - **Number of Partitions**: Default is `3`, used when creating topics. If the configuration is greater than the number of partitions for the corresponding topic, it will automatically expand the partitions.
 
