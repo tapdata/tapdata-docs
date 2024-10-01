@@ -516,6 +516,11 @@ SCN
 sutil
 userenv
 xlarge
+LOGMNR
+LONGVARBINARY
+LONGVARCHAR
+SYSDATE
+TRX
 CAcreateserial
 clientcert
 crt
