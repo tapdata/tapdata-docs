@@ -6,6 +6,23 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.14
+
+### New Features
+
+* Doris, ClickHouse, PostgreSQL, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+* When using PostgreSQL as a source, it is now possible to specify the time point for incremental data in task settings.
+
+### Enhancements
+
+* When configuring an Elasticsearch data source, the task setup now allows you to select an update strategy for data writing.
+* For data replication tasks, the source node's table selection defaults to primary key tables, with an added prompt message.
+
+### Bug Fixes
+
+- Fixed an issue where tasks would encounter errors during the incremental phase after enabling the heartbeat table in new tasks.
+- Fixed the issue where tasks got stuck in the full phase and could not move to the incremental phase after a reset.
+
 ## 3.13
 
 ### New Features
