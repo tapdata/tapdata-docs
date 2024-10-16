@@ -4,6 +4,26 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.14
+
+### New Features
+
+* Doris, ClickHouse, KingBaseES-R6, PostgreSQL, SQL Server, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+* Support for [user login authentication via LDAP](../user-guide/other-settings/system-settings#ldap) integration with Active Directory (AD), enabling unified user identity management.
+* When using PostgreSQL as a source, it is now possible to specify the time point for incremental data in task settings.
+
+### Enhancements
+
+* When configuring an Elasticsearch data source, the task setup now allows you to select an update strategy for data writing.
+* For data replication tasks, the source node's table selection defaults to primary key tables, with an added prompt message.
+
+### Bug Fixes
+
+- Fixed an issue where tasks would encounter errors during the incremental phase after enabling the heartbeat table in new tasks.
+- Fixed the issue where only one page of data validation tasks was displayed in the task list.
+- Fixed the issue where tasks got stuck in the full phase and could not move to the incremental phase after a reset.
+- Fixed the issue where the shared mining source node would automatically refresh and deselect tables after selection.
+
 ## 3.13
 
 ### New Features

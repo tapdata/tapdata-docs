@@ -137,3 +137,21 @@ Task settings are mainly used to configure some parameters during task runtime. 
 - **Incremental event save time** (days)
 - **Retry Interval** (Second)
 - **Maximum Retry Time**(Minute)
+
+
+
+## <span id="ldap">LDAP Login Settings</span>
+
+![LDAP Authentication Settings](../../images/ldap_settings.png)
+
+TapData supports integrating with LDAP (Lightweight Directory Access Protocol) for user login authentication. By integrating LDAP, organizations can centralize user management within existing directory services, enhancing efficiency and security while simplifying administrative processes to ensure data platform security and compliance. The configuration parameters are as follows:
+
+* **Use LDAP Login**: Determines whether LDAP is enabled for user login authentication.
+* **LDAP Server Address**: The host address or IP of the LDAP server. TapData will use this address to connect and communicate with the LDAP server.
+* **LDAP Server Port**: The port used to establish communication with the LDAP server. The default port for non-encrypted connections is `389`, while SSL-encrypted connections use port `636`.
+* **LDAP Base DN**: The starting point for LDAP queries, used to define the user search scope in Active Directory (AD). Multiple groups are supported and can be separated by semicolons (`;`), e.g., `cn=Users,dc=example,dc=com;cn=Test,dc=example,dc=com`. Configuring multiple Base DNs allows for flexible definition of different user groups for authentication, ensuring precise coverage of the search scope.
+* **LDAP Account**: The account used to authenticate with the LDAP server, typically an LDAP administrator with query permissions, formatted as a full Distinguished Name (DN), e.g., `administrator@ad.tapdata.io`.
+* **LDAP Password**: The password corresponding to the LDAP account, used for authentication and to allow TapData to retrieve user information from the LDAP server.
+* **Enable SSL**: Specifies whether to connect to the LDAP server using SSL encryption. If enabled, an SSL certificate file must also be uploaded.
+
+Once the settings are configured, you can click **Test** to verify the correctness of the configuration.
