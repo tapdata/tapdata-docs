@@ -6,6 +6,23 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.15
+
+### New Features
+
+* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+
+### Enhancements
+
+- Optimized the cache management logic for processing nodes, enhancing resource usage efficiency and improving task execution speed.
+
+### Bug Fixes
+
+- Fixed an issue where, after enabling the heartbeat table, tasks displayed no delay but data was not synchronized.
+- Fixed an issue where not all tags could be viewed when setting tags.
+- Fixed an issue where the task retry start time was incorrectly displayed as 1970.
+- Fixed an issue where index creation failed when Elasticsearch was used as the target database.
+
 ## 3.14
 
 ### New Features

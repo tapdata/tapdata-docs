@@ -315,11 +315,21 @@ After completing the configuration, be sure to securely store the certificate-re
 
    :::
 
-## Advanced Node Features
+## <span id="advanced-settings">Advanced Node Features</span>
 
-When configuring data synchronization or transformation tasks with SQL Server as a source node, you can enable **Hash Partitioning** and set the maximum number of partitions. During full synchronization, data is split into multiple partitions based on hash values and read concurrently to significantly improve performance, though it may increase the load on the database.
+When configuring SQL Server as the source node for a task, TapData provides several advanced features to enhance performance and handle complex scenarios:
 
-![Advanced Node Settings](../../images/sql_server_node_advanced_settings.png)
+![Node Advanced Settings](../../images/sql_server_node_advanced_settings.png)
+
+* **Hash Split**: Disabled by default. When enabled, TapData will split the data into multiple shards based on hash values during the full sync phase, allowing concurrent reads. This significantly improves read performance but increases the load on the database.
+
+* **Multi-threaded CT Table Polling**: Disabled by default. If the source SQL Server has a large number of tables (over 500) that need to be synchronized, enabling this option will optimize incremental data collection performance and improve synchronization efficiency.
+
+  :::tip
+
+  This feature is only supported when configuring data replication tasks.
+
+  :::
 
 ## Frequently Asked Questions
 
