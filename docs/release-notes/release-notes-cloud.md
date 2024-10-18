@@ -6,6 +6,25 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-10-17
+
+#### New Features
+
+* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+
+#### Enhancements
+
+- Added a [Multi-threaded CT Table Polling](../prerequisites/on-prem-databases/sqlserver#advanced-settings) option to improve incremental data collection performance for SQL Server environments with a large number of tables (over 500), significantly increasing synchronization efficiency.
+- Optimized the cache management logic for processing nodes, enhancing resource usage efficiency and improving task execution speed.
+- Introduced an automatic retry mechanism for Oracle LogMiner errors caused by exceeding PGA limits, improving fault tolerance.
+
+#### Bug Fixes
+
+- Fixed an issue where, after enabling the heartbeat table, tasks displayed no delay but data was not synchronized.
+- Fixed an issue where not all tags could be viewed when setting tags.
+- Fixed an issue where the task retry start time was incorrectly displayed as 1970.
+- Fixed an issue where index creation failed when Elasticsearch was used as the target database.
+
 ### 2024-10-10
 
 #### New Features
