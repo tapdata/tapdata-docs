@@ -90,6 +90,7 @@ const sidebars = {
                           'prerequisites/warehouses-and-lake/doris',
                           'prerequisites/warehouses-and-lake/gaussdb',
                           'prerequisites/warehouses-and-lake/greenplum',
+                          'prerequisites/warehouses-and-lake/hudi',
                           'prerequisites/warehouses-and-lake/selectdb',
                           'prerequisites/warehouses-and-lake/tablestore',
                           'prerequisites/warehouses-and-lake/yashandb',
@@ -185,6 +186,7 @@ const sidebars = {
                     link: {type: 'doc', id: 'prerequisites/saas-and-api/README'},
                     items: [
                             'prerequisites/saas-and-api/coding',
+                            'prerequisites/saas-and-api/feishu-bitable',
                             'prerequisites/saas-and-api/github',
                             'prerequisites/saas-and-api/lark-approval',
                             'prerequisites/saas-and-api/lark-doc',
@@ -223,6 +225,8 @@ const sidebars = {
                             'prerequisites/others/custom-connection',
                             'prerequisites/others/dummy',
                             'prerequisites/others/http-receiver',
+                            'prerequisites/others/mock-source',
+                            'prerequisites/others/mock-target',
                            ]
                    },
          ]
