@@ -345,6 +345,20 @@ When configuring SQL Server as the source node for a task, TapData provides seve
   <summary>SQL Server 2005 as a Source Solution</summary>
   Since CDC is supported from SQL Server 2008 onward, for earlier versions, you can simulate change data capture using Custom SQL. When replicating data from older versions, the source table must have a change-tracking column, such as <b>LAST_UPDATED_TIME</b>, which is updated with every insert or update. When creating the data replication task, set the task synchronization type to <b>Full</b>, enable <b>Repeat Custom SQL</b> as <b>True</b>, and provide appropriate Custom SQL in the mapping design.
   </details>
+  
+* **Q**: When certain tables cannot enable CDC while others work normally. How can I resolve this issue without restarting the entire database?
+
+  **A**: You can resolve this by manually clearing the CDC metadata for the affected table (e.g., change capture tables). Use the following SQL statements to perform the cleanup:
+
+  ```sql
+  -- Replace with the actual schema and table name
+  DROP TABLE cdc.<schema>_<tableName>_CT;
+  DELETE FROM cdc.captured_columns WHERE object_id = OBJECT_ID('<schema>.<tableName>');
+  DELETE FROM cdc.change_tables WHERE capture_instance = '<schema>_<tableName>';
+  DROP FUNCTION cdc.fn_cdc_get_all_changes_<schema>_<tableName>;
+  DROP FUNCTION cdc.fn_cdc_get_net_changes_<schema>_<tableName>;
+  
+  ```
 
 ## Additional Reading
 
