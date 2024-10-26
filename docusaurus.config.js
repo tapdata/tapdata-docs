@@ -113,6 +113,13 @@ const config = {
           },
         ],
       },
+      // algolia search plugin
+     algolia: {
+      appId: 'QMWL076P1O',
+      apiKey: '76c365bb35304a755c612e0d58b1df5e',
+      indexName: 'tapdata-io',
+      contextualSearch: true,
+      },
       footer: {
         style: 'dark',
         links: [
