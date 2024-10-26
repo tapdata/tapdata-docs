@@ -49,21 +49,6 @@ const config = {
     ],
   ],
 
-// Local search engine configuration
-  themes: [
-    [
-      "@easyops-cn/docusaurus-search-local",
-      {
-        hashed: true,
-        language: ["en"],
-        highlightSearchTermsOnTargetPage: true,
-        explicitSearchResultPath: true,
-        docsRouteBasePath: "/",
-        indexBlog: false,
-      },
-    ],
-  ],
-
 // An Image Zoom plugin for Docusaurus 2
   plugins: [
     'plugin-image-zoom',
