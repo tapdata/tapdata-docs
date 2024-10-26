@@ -49,21 +49,6 @@ const config = {
     ],
   ],
 
-// Local search engine configuration
-  themes: [
-    [
-      "@easyops-cn/docusaurus-search-local",
-      {
-        hashed: true,
-        language: ["en"],
-        highlightSearchTermsOnTargetPage: true,
-        explicitSearchResultPath: true,
-        docsRouteBasePath: "/",
-        indexBlog: false,
-      },
-    ],
-  ],
-
 // An Image Zoom plugin for Docusaurus 2
   plugins: [
     'plugin-image-zoom',
@@ -112,6 +97,13 @@ const config = {
             position: 'right',
           },
         ],
+      },
+      // algolia search plugin
+     algolia: {
+      appId: 'QMWL076P1O',
+      apiKey: '76c365bb35304a755c612e0d58b1df5e',
+      indexName: 'tapdata-io',
+      contextualSearch: true,
       },
       footer: {
         style: 'dark',
