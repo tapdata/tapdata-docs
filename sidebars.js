@@ -349,6 +349,32 @@ const sidebars = {
     },
     {
      type: 'category',
+     label: 'TapFlow Developer Guide (Preview)',
+     link: {type: 'doc', id: 'tapflow/README'},
+     items: [
+            'tapflow/introduction',
+            'tapflow/quick-start',
+            {
+             type: 'category',
+             label: 'TapData Shell Reference',
+             link: {type: 'doc', id: 'tapflow/tapcli-reference/README'},
+             items: [
+                    'tapflow/tapcli-reference/manage-data-sources',
+                    'tapflow/tapcli-reference/manage-real-time-jobs',
+             ]
+            },
+            {
+             type: 'category',
+             label: 'Typical Use Cases',
+             link: {type: 'doc', id: 'tapflow/tapflow-tutorial/README'},
+             items: [
+                    'tapflow/tapflow-tutorial/build-real-time-wide-table',
+             ]
+            },            
+            ]
+    },   
+    {
+     type: 'category',
      label: 'Deployment & Maintenance',
      link: {type: 'doc', id: 'production-admin/README'},
      items: [
