@@ -6,6 +6,24 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-10-30
+
+#### New Features
+
+- Added HTTPS connection support for [Elasticsearch data sources](../prerequisites/on-prem-databases/elasticsearch.md), enhancing data transmission security to meet more stringent data security and compliance requirements.
+- Enabled support for synchronizing tables without primary keys by adding a hash field (default name: `_no_pk_hash`), ensuring data consistency and stable synchronization in non-primary key scenarios.
+
+#### Enhancements
+
+- Enhanced data filtering logic in Row Filter nodes, ensuring that target data is updated to maintain consistency when data status changes from meeting to not meeting filter conditions.
+- Improved support for handling changes in composite primary keys in Oracle.
+
+#### Bug Fixes
+
+- Fixed an issue preventing the display of all tables (completed, in progress, and not started) in full sync details.
+- Corrected inaccuracies in time and milestone statistics.
+- Resolved an issue with MongoDB Atlas functionality when DNS resolution fails.
+
 ### 2024-10-17
 
 #### New Features
