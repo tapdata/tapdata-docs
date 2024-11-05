@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 | Bit            | bit, bit varying                                             |
 | Boolean        | boolean                                                      |
 | Date & Time    | timestamp without time zone, timestamp with time zone, date, time without time zone, <br />time with time zone, interval |
-| Spatial Data   | point, polygon, circle, path, box, line, lseg                |
+| Spatial Data   | geometry, point, polygon, circle, path, box, line, lseg      |
 | Network Types  | inet, cidr, macaddr                                          |
 | Identifier     | uuid, oid, regproc, regprocedure, regoper, regoperator, regclass, regtype, regconfig, regdictionary |
 | Text Search    | tsvector, tsquery                                            |
