@@ -13,11 +13,31 @@ import TabItem from '@theme/TabItem';
 
 1. [Download and install Python 3](https://www.python.org/downloads/), version 3.6 or higher.
 
-2. Run `pip3 install tapcli` to install the TapData Shell tool.
+2. Run the following command to create a virtual environment. This isolates dependencies and avoids conflicts with the system Python environment.
 
-3. Type `tap` to launch TapData Shell.
+   ```bash
+   python3 -m venv tapcli_env
+   ```
 
-4. Select your deployment type and configure the required authentication information. For this example, we’ll connect to TapData Cloud:
+2. Activate the virtual environment by running:
+
+   ```bash
+   source tapcli_env/bin/activate
+   ```
+
+3. Install TapData Shell and its dependencies with the following command:
+
+   ```bash
+   pip3 install tapcli
+   # or
+   pip install tapcli
+   ```
+
+   Installation is now complete. To use TapData Shell after exiting the command line, you will need to activate the virtual environment again.
+   
+5. Type `tap` to launch TapData Shell.
+
+6. Select your deployment type and configure the required authentication information. For this example, we’ll connect to TapData Cloud:
 
    ```bash
    Tap Flow requires TapData Live Data Platform (LDP) cluster to run. 
