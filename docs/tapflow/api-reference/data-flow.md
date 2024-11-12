@@ -1,14 +1,14 @@
-# Manage Real-Time Sync Tasks
+# Data Flow APIs
 
-This guide provides a comprehensive reference for using TapData Shell to manage data synchronization tasks, including setting up data sources, defining tasks, and applying data transformations.
+This document provides a complete reference for managing data flows using the Data Flow API, including operations for defining tasks, and performing data filtering.
 
-## Create Task
+## Create Data Flow Task
 
-To create a real-time synchronization task, use the commands `read_from`, `write_to`, and `save` in sequence.
+To create a data flow task, use the commands `read_from`, `write_to`, and `save` in sequence.
 
 #### read_from
 
-**Command Description**: Specifies the primary data source table for the real-time synchronization task. You can specify it using `data_source_name.table_name`, where `data_source_name` can be retrieved via `show dbs` or by [creating a new data source](manage-data-sources.md).
+**Command Description**: Specifies the primary data source table for the data flow task. You can specify it using `data_source_name.table_name`, where `data_source_name` can be retrieved via `show dbs` or by [creating a new data source](data-source.md).
 
 Additionally, you can define a custom query via `query`, replacing the default `select * from table`.
 
@@ -34,7 +34,7 @@ tap > myflow.write_to("MongoDB_Local.ecom_orders");
 **Command Description**: Saves the current task configuration, making it a persistent task. Once saved, the data synchronization task can be started or stopped.
 
 ```python
-# Save and create a persistent data synchronization task
+# Save and create a persistent data flow task
 tap > myflow.save();
 ```
 
@@ -43,7 +43,7 @@ tap > myflow.save();
 Combining all steps into a complete example, this task reads order data from MySQL and writes it to MongoDB. Once saved, you can run the [start](#start) command to begin the task.
 
 ```python
-# Creating a data synchronization task
+# Creating a data flow task
 tap > myflow = Flow("DataFlow_Test")
           .read_from("mySqlSource.ecom_orders", query="SELECT * FROM ecom_orders LIMIT 2000")
           .write_to("mongodbSource.Orders")
@@ -60,7 +60,7 @@ The example above is a minimal setup. TapData also supports adding [processing n
 
 ### js
 
-**Command Description**: Embeds JavaScript code within the data synchronization task to allow custom processing of data from the source. For more details, refer to [Standard](../../appendix/standard-js.md) / [Enhanced](../../appendix/standard-js.md) JS built-in functions.
+**Command Description**: Embeds JavaScript code within the data flow task to allow custom processing of data from the source. For more details, refer to [Standard](../../appendix/standard-js.md) / [Enhanced](../../appendix/standard-js.md) JS built-in functions.
 
 **Example**: The following example adds a confirmation status field to delivered orders in a JavaScript processing node. The processed records are then written to the `updatedCollection` collection in MongoDB.
 
@@ -73,7 +73,7 @@ if (record.order_status == 'delivered') {
 return record;  // Returns the processed record
 '''
 
-# Creating a data synchronization task, applying JavaScript code, and writing results to the target database
+# Creating a data flow task, applying JavaScript code, and writing results to the target database
 tap > flow = Flow("Order_Status_Update")  \
           .read_from(mySqlSource.ecom_orders)  \
           .js(jscode)  \
@@ -83,7 +83,7 @@ tap > flow = Flow("Order_Status_Update")  \
 
 ### py
 
-**Command Description**: Embeds Python functions within the data synchronization task to filter and transform data according to custom logic.
+**Command Description**: Embeds Python functions within the data flow task to filter and transform data according to custom logic.
 
 **Example**: The following example defines a Python function `pyfunc` to keep only delivered orders, filtering out other records. The processed records are then written to the `pythonProcessedCollection` collection in MongoDB.
 
@@ -94,7 +94,7 @@ tap > def pyfunc(record):
              return None  # Return None to filter out records that don't meet the condition
          return record  # Returns the processed record
 
-# Creating a data synchronization task, applying Python function, and writing results to the target database
+# Creating a data flow task, applying Python function, and writing results to the target database
 tap > flow = Flow("Python_Function")  \
           .read_from(mySqlSource.ecom_orders)  \
           .py(pyfunc)  \
@@ -109,7 +109,7 @@ tap > flow = Flow("Python_Function")  \
 **Example**: In the following example, two new fields are added: `status_flag` is set to `'completed'`, and `order_value` is set to `100.5`. The result is written to the `additionalFieldsCollection` collection in MongoDB.
 
 ```python
-# Creating a data synchronization task to add new fields with specified values
+# Creating a data flow task to add new fields with specified values
 tap > flow = Flow("Add_Field_Test")  \
           .read_from(mySqlSource.ecom_orders)  \
           .add_fields([['status_flag', 'String', "'completed'"], ['order_value', 'Double', '100.5']])  \
@@ -139,7 +139,7 @@ tap > flow = Flow("Rename_Fields_Test")  \
 **Example**: The following example retains only the `order_status` and `order_id` fields, with processed records written to the `includedFieldsCollection` collection in MongoDB.
 
 ```python
-# Creating a data synchronization task to retain specified fields
+# Creating a data flow task to retain specified fields
 tap > flow = Flow("Include_Fields_Test")  \
           .read_from(mySqlSource.ecom_orders)  \
           .include("order_status", "order_id")  \
@@ -154,7 +154,7 @@ tap > flow = Flow("Include_Fields_Test")  \
 **Example**: The following example excludes the `order_status` and `order_delivered_customer_date` fields, with the processed records written to the `excludedFieldsCollection` collection in MongoDB.
 
 ```python
-# Creating a data synchronization task to exclude specified fields
+# Creating a data flow task to exclude specified fields
 tap > flow = Flow("Exclude_Fields_Test")  \
           .read_from(mySqlSource.ecom_orders)  \
           .exclude("order_status", "order_delivered_customer_date")  \
@@ -189,86 +189,9 @@ tap > flow = Flow("Order_Payment_Join")
 
 Here, `ecom_orders` is the main table, `order_payments` is the related table, joined by `order_id`. The payments data is embedded under the `payments` field as an array, allowing one-to-many data integration.
 
-## Manage Tasks
-### show jobs
 
-**Command Description**: Lists all real-time synchronization tasks, including task names, statuses, and synchronization types (e.g., **initial_sync** for full data synchronization and **cdc** for incremental synchronization).
 
-**Example**:
+## See also
 
-```python
-tap > show jobs
-d7c298: Oracle_Sync_Test       complete     sync/initial_sync+cdc
-```
+Manage flow tasks through [TapData Shell](../tapcli-reference), including starting and stopping tasks, checking task status, deleting tasks, and more.
 
-### **stats <flow name/id>**
-
-**Command Description**: Displays runtime statistics for a data synchronization task.
-
-**Example**:
-
-```python
-stats MySQL_A_to_B
-job current status is: running, qps is: 0.0, total rows: 0, delay is: 0ms
-```
-
-### start <flow name/id>
-
-**Command Description**: Starts the specified real-time synchronization
-
- task. By default, the first run will perform a full data synchronization, followed by incremental synchronization. If the task is configured as full-only, it will complete a single full synchronization; if incremental-only, it will begin at the specified starting point or current time.
-
-**Example**:
-
-```python
-tap > start MySQL_A_to_B
-Task start succeed 
-```
-
-### stop <flow name/id>
-
-**Command Description**: Stops the specified real-time synchronization task, which will resume from the last incremental point on the next start.
-
-**Example**:
-
-```python
-tap > stop MySQL_A_to_B
-Task stop succeed 
-```
-
-### **logs <flow name/id>**
-
-**Command Description**: Displays logs for the specified real-time synchronization task.
-
-```python
-tap > logs Oracle_Sync_Test
-{'id': '671f9c54cc9caf4b1cb1942b', 'customId': '638af042703dd67b8fb63af8', 'level': 'INFO', 'timestamp': 1730124884471, 'date': '2024-10-28T14:14:43.568+00:00', 'taskId': '668f197a37800f4b2a167806', 'taskRecordId': '671f9bee548ec6691e89681c', 'taskName': 'MySQL_A_to_B', 'nodeId': '4eb098ee-19f8-4e63-a7bf-9d7e726c62ea', 'nodeName': 'Region_A', 'message': 'Node Region_A[4eb098ee-19f8-4e63-a7bf-9d7e726c62ea] start preload schema,table counts: 1', 'logTags': [], 'data': [], 'user_id': '638af042c162f518b1b9bdf4'}
-```
-
-### reset <flow name/id>
-
-**Command Description**: Clears synchronization progress, and the task will restart from scratch on the next start.
-
-**Example**:
-
-```python
-tap > reset MySQL_B_to_A
-Task reset success 
-```
-
-### delete <flow name/id>
-
-**Command Description**: Deletes the specified real-time synchronization task.
-
-:::warning
-
-This action is irreversible. Proceed with caution.
-
-:::
-
-**Example**:
-
-```python
-tap > delete MySQL_A_to_B
-Task deleted successfully
-```

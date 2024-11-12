@@ -353,16 +353,17 @@ const sidebars = {
      link: {type: 'doc', id: 'tapflow/README'},
      items: [
             'tapflow/introduction',
-            'tapflow/quick-start',
+            'tapflow/quick-start',            
             {
              type: 'category',
-             label: 'TapData Shell Reference',
-             link: {type: 'doc', id: 'tapflow/tapcli-reference/README'},
+             label: 'API Reference',
+             link: {type: 'doc', id: 'tapflow/api-reference/README'},
              items: [
-                    'tapflow/tapcli-reference/manage-data-sources',
-                    'tapflow/tapcli-reference/manage-real-time-jobs',
+                    'tapflow/api-reference/data-source',
+                    'tapflow/api-reference/data-flow',
              ]
             },
+            'tapflow/tapcli-reference',
             {
              type: 'category',
              label: 'Typical Use Cases',
@@ -372,7 +373,7 @@ const sidebars = {
              ]
             },            
             ]
-    },   
+    },  
     {
      type: 'category',
      label: 'Deployment & Maintenance',

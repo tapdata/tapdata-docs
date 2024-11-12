@@ -1,24 +1,20 @@
-# Manage Data Sources
+# Data Source APIs
 
-TapData Shell allows users to create and manage data sources via command line, with simple configurations to connect to various data sources. It supports viewing status, switching contexts, retrieving schema details, and more. You can also manage data sources through the [web interface](../../prerequisites/README.md) to suit your preferred workflow.
-
-## Create a Data Source
-
-**Command Description**: Create a new data source connection. TapData Shell supports [dozens of common data sources](../../prerequisites/supported-databases.md), and data sources are configured using `name`, `type`, and `config` parameters.
+This document explains how to create a new data source connection in TapFlow, which serves as the source and target for subsequent flow tasks. Additionally, you can manage data sources [through the interface](../../prerequisites/README.md) for convenience based on your preferences.
 
 :::tip
 
-Each data source type may require different parameters. For detailed configuration requirements, permissions, and parameter descriptions, see [Connecting Data Sources](../../prerequisites/README.md).
+TapFlow supports [dozens of common data sources](../../prerequisites/supported-databases.md). You can configure a data source by setting the `name`, `type`, and `config` parameters. Configuration details, required permissions, and parameter descriptions vary by data source type. For more information, see [Connect Data Sources](../../prerequisites/README.md).
 
 :::
 
-**Parameter Descriptions**:
+## Parameter Descriptions
 
 - **name**: Data source name, following variable naming conventions.
 - **type**: Data source type. Options include `source` (as source database), `target` (as target database), and `source_and_target` (as both source and target).
 - **config**: Data source connection parameters, provided in JSON or dictionary format.
 
-**Viewing Data Source Help Information**
+## Viewing Data Source Help Information
 
 Before configuring, use `h <database_type>` to view configuration requirements for each data source type.
 
@@ -47,7 +43,7 @@ optional config:
   - `password`: Database password
   - `masterSlaveAddress`: Master-slave address
 
-**Configuration Example**:
+## Configuration Example
 
 The example below demonstrates creating a MySQL data source named `MySQL-EcommerceData`. Other data sources can be configured similarly by adjusting the settings based on the data source type.
 
@@ -65,7 +61,7 @@ mysql_json_config = {
 mysql_conn = DataSource('mysql', 'MySQL_ECommerce', mysql_json_config).type('source').save()
 ```
 
-**Output Example**:
+## Output Example
 
 ```python
 datasource MySQL_ECommerce creating, please wait...                                
@@ -79,68 +75,8 @@ If you encounter a `load schema status: error`, it usually indicates an issue wi
 
 :::
 
-## Manage Data Sources
 
-### show dbs
 
-**Command Description**: List all connected data sources, including connection ID, status, database type, and data source name.
+## See also
 
-**Example**:
-
-```python
-tap > show dbs
-id         status     database_type        name                                      
-4fa6c6     ready      MongoDB              MongoDB_ECommerce                       
-4fa6c1     ready      Mysql                MySQL_ECommerce  
-```
-
-### use <db_name>
-
-**Command Description**: Select a data source for further operations, such as viewing tables.
-
-**Example**:
-
-```python
-tap > use MySQL_ECommerce
-datasource switch to: MySQL_ECommerce
-```
-
-### show tables
-
-**Command Description**: After selecting a data source, use this command to list all tables in the current database.
-
-**Example**:
-
-```python
-tap > show tables
-ecom_customers        ecom_order_items      ecom_order_payments   ecom_orders           ecom_product_category 
-ecom_products         ecom_sellers   
-```
-
-### desc <table_name>
-
-**Command Description**: After selecting a data source, use this command to view the schema information of a specific table (such as column types).
-
-**Example**:
-
-```python
-desc ecom_customers
-{
-  "customer_id": "varchar(255)",
-  "customer_unique_id": "varchar(255)",
-  "customer_zip_code_prefix": "varchar(255)",
-  "customer_city": "varchar(255)",
-  "customer_state": "varchar(255)"
-}
-```
-
-### count  <table_name>
-
-**Command Description**: After selecting a data source, use this command to view the row count of a specific table.
-
-**Example**:
-
-```python
-count ecom_customers
-table ecom_customers has 99002 records  
-```
+Manage data sources with [TapData Shell](../tapcli-reference), such as viewing data source status, table structure information, deleting data sources, and other operations.

@@ -1,6 +1,6 @@
 # Builde Real-Time Wide Table with TapFlow
 
-TapFlow is a programming framework that supports real-time data replication, data processing, and materialized view creation. It offers APIs, a Python SDK, and command-line tools (TapData Shell) to efficiently build and manage data synchronization tasks. This guide demonstrates using TapData Shell and the Python SDK to build a real-time wide table to support efficient queries in an e-commerce application by joining multiple tables of order information.
+TapFlow is a programming framework that supports real-time data replication, data processing, and materialized view creation. It offers APIs, a Python SDK, and command-line tools (TapData Shell) to efficiently build and manage data flow tasks. This guide demonstrates using TapData Shell and the Python SDK to build a real-time wide table to support efficient queries in an e-commerce application by joining multiple tables of order information.
 
 ## Background
 
@@ -34,10 +34,10 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
 
 1. Run `tap` to open the TapData Shell command interface.
 
-2. Specify the source table for the real-time synchronization task.
+2. Specify the source table for the data flow.
 
    ```python
-   # Create a data synchronization task and set the primary table "ecom_orders" as the data flow entry point
+   # Create a data data flow task and set the primary table "ecom_orders" as the data flow entry point
    orderFlow = Flow("Order_SingleView_Sync") \
          .read_from("MySQL_ECommerce.ecom_orders");  # Set MySQL source table ecom_orders
    ```
@@ -81,7 +81,7 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
    ```python
    # Specify MongoDB collection name for data write
    orderFlow.write_to("MongoDB_ECommerce.orderSingleView");
-   # Save the task configuration
+   # Save the data flow configuration
    orderFlow.save()
    ```
 

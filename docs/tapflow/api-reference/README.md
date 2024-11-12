@@ -1,6 +1,6 @@
-# TapData Shell Reference
+# API Reference
 
-The TapData Shell is a command-line tool provided by TapData, allowing you to conveniently invoke TapFlow functions from the command line for managing data synchronization tasks, configuring data source connections, and executing data processing operations. It’s particularly useful for scenarios requiring automation or script-based management of data synchronization.
+TapFlow offers a comprehensive set of APIs that simplify the management of data flow tasks, data source connection configuration, and complex data processing operations, making it ideal for scenarios requiring automated or script-based data synchronization management.
 
 After completing the [installation and login](../quick-start.md) to TapData Shell, enter `h` to display a prompt with usage information. An example is shown below:
 

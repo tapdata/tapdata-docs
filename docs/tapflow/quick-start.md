@@ -1,8 +1,6 @@
 # Getting Started
 
-TapFlow is a real-time data processing programming framework provided by TapData. It offers a range of APIs and command-line tools, allowing you to efficiently implement real-time data processing across homogeneous or heterogeneous data sources through programming. TapFlow can be used for quick implementations of data synchronization, real-time materialized views, real-time wide tables, multi-table processing, and other scenarios.
-
-This guide will demonstrate how to build a real-time replication task using TapData Shell, helping you quickly manage data replication and streaming processes.
+This guide demonstrates how to use TapFlow to build a basic data flow task, helping you quickly understand data replication and stream processing workflows. For more complex business needs, such as multi-table processing to create real-time wide tables, refer to [Typical Use Cases](tapflow-tutorial/README.md).
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -19,25 +17,23 @@ import TabItem from '@theme/TabItem';
    python3 -m venv tapcli_env
    ```
 
-2. Activate the virtual environment by running:
+3. Run the following commands to activate the virtual environment, and install TapData Shell along with its dependencies.
 
    ```bash
+   # Activate the virtual environment
    source tapcli_env/bin/activate
-   ```
-
-3. Install TapData Shell and its dependencies with the following command:
-
-   ```bash
+   
+   # Install TapData Shell
    pip3 install tapcli
    # or
    pip install tapcli
    ```
 
-   Installation is now complete. To use TapData Shell after exiting the command line, you will need to activate the virtual environment again.
-   
-5. Type `tap` to launch TapData Shell.
+   Installation is now complete. If you exit the command line, remember to reactivate the virtual environment before using TapData Shell again.
 
-6. Select your deployment type and configure the required authentication information. For this example, we’ll connect to TapData Cloud:
+4. Type `tap` to launch TapData Shell.
+
+5. Select your deployment type and configure the required authentication information. For this example, we’ll connect to TapData Cloud:
 
    ```bash
    Tap Flow requires TapData Live Data Platform (LDP) cluster to run. 
@@ -51,8 +47,8 @@ import TabItem from '@theme/TabItem';
    (if pressed enter/C)
    # You may obtain the keys by logging onto TapFlow Cloud, and clicking: "User Center" on the top right, then copying & pasting the access key and secret key pair.
    # You can sign up for a new account from: https://cloud.tapdata.io if you don't have one
-   Enter AK:   xxxxxxxxxxxxxxx
-   Enter SK:   xxxxxxxxxxxxxxx
+   Enter AK:   
+   Enter SK:   
    ```
 
    * Press `C` or Enter to connect to TapData Cloud, then input your Access Key and Secret Key.
@@ -138,14 +134,20 @@ Next, configure your data sources via TapData Shell. In this example, we’ll us
 
 :::
 
-## Step 3: Create a Real-Time Sync Task
+## Step 3: Create a Data Flow Task
 
-After configuring data sources, we can use TapData Shell to create a real-time sync task that replicates MySQL data to MongoDB.
+After configuring the data source, we can use TapData Shell to create a data flow that synchronizes data from MySQL to MongoDB.
+
+<details><summary>What is a Data Flow?</summary>
+In Tapdata, a Data Flow is an execution unit used for data synchronization, processing, and transformation between data sources. It can include multiple data synchronization tasks, allowing data from different sources to be integrated, cleansed, and transformed before being written to a target system.
+
+Data flows are more advanced than individual real-time synchronization tasks and are suitable for defining complex data pipelines. They support requirements such as multi-table joins and data aggregation, forming the foundation for real-time data processing in Tapdata.
+</details>
 
 1. Create a data flow task named **MySQL_to_MongoDB_Order_Sync** to synchronize order data from MySQL to MongoDB.
 
    ```python
-   # Create a data synchronization task object and specify the source and target tables
+   # Create a data flow task object and specify the source and target tables
    myflow = Flow("MySQL_to_MongoDB_Order") \
           .read_from("MySQL_ECommerce.ecom_orders") \
           .write_to("MongoDB_ECommerce.orders_collection") \
@@ -189,5 +191,6 @@ After configuring data sources, we can use TapData Shell to create a real-time s
 
 ## See also
 
-* [TapData Shell Reference](tapcli-reference/README.md)
 * [Builde Real-Time Wide Tables](tapflow-tutorial/build-real-time-wide-table.md)
+* [API Reference](api-reference/README.md)
+* [Command Reference](tapcli-reference.md)
