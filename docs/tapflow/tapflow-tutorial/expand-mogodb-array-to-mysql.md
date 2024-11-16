@@ -36,13 +36,13 @@ Additionally, TapFlow’s real-time sync capabilities ensure that MySQL reflects
 
 ## Prerequisites
 
-Install TapData Shell and configure MySQL and MongoDB data sources as described in [Quick Start](../quick-start.md).
+Install Tap Shell and configure MySQL and MongoDB data sources as described in [Quick Start](../quick-start.md).
 
 ## Procedures
 
 Next, we demonstrate how to expand the `order_payments` array and rename fields for easier identification.
 
-1. Enter TapData Shell by running `tap` in the command line.
+1. Enter Tap Shell by running `tap` in the command line.
 
 2. Create a data flow task named `MySQL_to_MongoDB_Order` and set `order_collection` as the data source.
 

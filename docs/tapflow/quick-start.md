@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 ```
 
-## Step 1: Install TapData Shell
+## Step 1: Install Tap Shell
 
 1. [Download and install Python 3](https://www.python.org/downloads/), version 3.6 or higher.
 
@@ -17,21 +17,21 @@ import TabItem from '@theme/TabItem';
    python3 -m venv tapcli_env
    ```
 
-3. Run the following commands to activate the virtual environment, and install TapData Shell along with its dependencies.
+3. Run the following commands to activate the virtual environment, and install Tap Shell along with its dependencies.
 
    ```bash
    # Activate the virtual environment
    source tapcli_env/bin/activate
    
-   # Install TapData Shell
+   # Install Tap Shell
    pip3 install tapcli
    # or
    pip install tapcli
    ```
 
-   Installation is now complete. If you exit the command line, remember to reactivate the virtual environment before using TapData Shell again.
+   Installation is now complete. If you exit the command line, remember to reactivate the virtual environment before using Tap Shell again.
 
-4. Type `tap` to launch TapData Shell.
+4. Type `tap` to launch Tap Shell.
 
 5. Select your deployment type and configure the required authentication information. For this example, we’ll connect to TapData Cloud:
 
@@ -89,7 +89,7 @@ Agent name: agent-192*****67, ip: 172.17.0.3, cpu usage: 16%
 
 ## Step 2: Conect to Data Sources
 
-Next, configure your data sources via TapData Shell. In this example, we’ll use MySQL as the source database and MongoDB as the target.
+Next, configure your data sources via Tap Shell. In this example, we’ll use MySQL as the source database and MongoDB as the target.
 
 1. Run the following command to add a MySQL data source named `MySQL_ECommerce`.
 
@@ -129,14 +129,14 @@ Next, configure your data sources via TapData Shell. In this example, we’ll us
 
 :::tip
 
-- TapData Shell supports [many popular data sources](../prerequisites/supported-databases.md), with slight configuration differences depending on the source. For more on permissions and parameters, see [Connecting Data Sources](../prerequisites/README.md).
+- Tap Shell supports [many popular data sources](../prerequisites/supported-databases.md), with slight configuration differences depending on the source. For more on permissions and parameters, see [Connecting Data Sources](../prerequisites/README.md).
 - If you receive a “**load schema status: error**” error, it’s typically a permission or configuration issue. Retrying with the same name will overwrite the previous configuration with “**database MongoDB_ECommerce exists, will update its config**.”
 
 :::
 
 ## Step 3: Create a Data Flow Task
 
-After configuring the data source, we can use TapData Shell to create a data flow that synchronizes data from MySQL to MongoDB.
+After configuring the data source, we can use Tap Shell to create a data flow that synchronizes data from MySQL to MongoDB.
 
 <details><summary>What is a Data Flow?</summary>
 In Tapdata, a Data Flow is an execution unit used for data synchronization, processing, and transformation between data sources. It can include multiple data synchronization tasks, allowing data from different sources to be integrated, cleansed, and transformed before being written to a target system.

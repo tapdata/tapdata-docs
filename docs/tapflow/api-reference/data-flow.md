@@ -193,5 +193,5 @@ Here, `ecom_orders` is the main table, `order_payments` is the related table, jo
 
 ## See also
 
-Manage flow tasks through [TapData Shell](../tapcli-reference), including starting and stopping tasks, checking task status, deleting tasks, and more.
+Manage flow tasks through [Tap Shell](../tapcli-reference), including starting and stopping tasks, checking task status, deleting tasks, and more.
 

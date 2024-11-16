@@ -1,6 +1,6 @@
 # Command Reference
 
-TapData Shell offers a comprehensive set of commands for managing data sources and data flow tasks. This document provides detailed instructions on how to use these commands. For automated management of data sources and data flow tasks via API, please refer to the [API Reference Guide](api-reference/README.md).
+Tap Shell offers a comprehensive set of commands for managing data sources and data flow tasks. This document provides detailed instructions on how to use these commands. For automated management of data sources and data flow tasks via API, please refer to the [API Reference Guide](api-reference/README.md).
 
 ## Manage Data Sources
 

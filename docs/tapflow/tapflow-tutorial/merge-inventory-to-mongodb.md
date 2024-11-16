@@ -50,7 +50,7 @@ flowchart LR
 
 ## Prerequisites
 
-Install TapData Shell and ensure connectivity to MySQL and MongoDB databases. Refer to the [Quick Start Guide](../quick-start.md) for installation and setup.
+Install Tap Shell and ensure connectivity to MySQL and MongoDB databases. Refer to the [Quick Start Guide](../quick-start.md) for installation and setup.
 
 For clarity, this example assumes all regional tables are in the same MySQL database (`MySQL_Demo`) and the target MongoDB database is named `MongoDB_Demo`.
 
@@ -58,7 +58,7 @@ For clarity, this example assumes all regional tables are in the same MySQL data
 
 This guide demonstrates how to consolidate regional inventory data into MongoDB while standardizing fields such as `PK_CERT_NBR` and adding a region identifier for each record.
 
-1. Enter TapData Shell by running `tap` in the command line.
+1. Enter Tap Shell by running `tap` in the command line.
 
 2. Add JavaScript Processing Logic.
 
