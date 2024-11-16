@@ -81,15 +81,15 @@ tap > show flows
 d7c298: Oracle_Sync_Test       complete     sync/initial_sync+cdc
 ```
 
-### **stats <flow name/id>**
+### **status <flow name/id>**
 
 **Command Description**: Displays runtime statistics for a data synchronization task.
 
 **Example**:
 
 ```python
-stats MySQL_A_to_B
-job current status is: running, qps is: 0.0, total rows: 0, delay is: 0ms
+status MySQL_A_to_B
+job current status is: running, qps is: 31808.0, total rows: 1300000, delay is: 706ms
 ```
 
 ### start <flow name/id>
