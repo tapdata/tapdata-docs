@@ -49,6 +49,11 @@ const config = {
     ],
   ],
 
+markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
 // An Image Zoom plugin for Docusaurus 2
   plugins: [
     'plugin-image-zoom',

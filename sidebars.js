@@ -371,6 +371,7 @@ const sidebars = {
              items: [
                     'tapflow/tapflow-tutorial/build-real-time-wide-table',
                     'tapflow/tapflow-tutorial/expand-mogodb-array-to-mysql',
+                    'tapflow/tapflow-tutorial/merge-inventory-to-mongodb',
              ]
             },            
             ]

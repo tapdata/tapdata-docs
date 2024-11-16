@@ -85,10 +85,10 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
    orderFlow.save()
    ```
 
-5. Run `orderFlow.start()` to start the task. After the task starts, use the `stat` command to monitor the task’s status, as shown below:
+5. Run `orderFlow.start()` to start the task. After the task starts, use the `status` command to monitor the task’s status, as shown below:
 
    ```python
-   stats Order_SingleView_Sync
+   status Order_SingleView_Sync
    job current status is: running, qps is: 3521.2, total rows: 99441, delay is: 332ms 
    ```
 

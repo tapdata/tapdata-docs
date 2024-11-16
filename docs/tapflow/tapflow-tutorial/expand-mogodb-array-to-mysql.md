@@ -91,7 +91,7 @@ Next, we demonstrate how to expand the `order_payments` array and rename fields 
 
    After the task starts, TapFlow continuously captures changes in the MongoDB source and transforms each `order_payments` array element, synchronizing it in real-time with the MySQL target table.
 
-7. While the task runs, you can check the task status and statistics using the command `stats MySQL_to_MongoDB_Order`.
+7. While the task runs, you can check the task status and statistics using the command `status MySQL_to_MongoDB_Order`.
 
    Additionally, you can [monitor the task status through the Web UI](../../user-guide/data-development/monitor-task).
 
