@@ -110,7 +110,7 @@ Please note that the performance of the following tables is provided for referen
 
 :::tip
 
-① In order to ensure the maximum data flow performance, it is recommended that the machine deployed by the Agent (referred to as the **host** in the above table) has sufficient resources such as computing, storage and bandwidth. For more information, see [Install Agent](../quick-start/install/install-tapdata-agent.md).
+① In order to ensure the maximum data flow performance, it is recommended that the machine deployed by the Agent (referred to as the **host** in the above table) has sufficient resources such as computing, storage and bandwidth. For more information, see [Install Agent](../installation/install-tapdata-agent.md).
 
 :::
 

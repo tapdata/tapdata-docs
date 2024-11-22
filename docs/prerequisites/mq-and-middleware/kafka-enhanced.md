@@ -78,7 +78,7 @@ When configuring the Kafka-Enhanced connection, you can select from the followin
 
 **Description**: Uses Kafka's native data synchronization method, supporting append-only operations similar to `INSERT`. As a source, it handles complex, unstructured data and passes it downstream; as a target, it allows flexible control over partitions, headers, keys, and values, enabling custom data insertion.
 
-**Typical Use Case**: Used for **homogeneous data migration** or **unstructured data transformation**, enabling data filtering and transformation through a Kafka -> [JS Processing Node](../../user-guide/data-development/process-node#js-process) -> Kafka/MySQL data pipeline.
+**Typical Use Case**: Used for **homogeneous data migration** or **unstructured data transformation**, enabling data filtering and transformation through a Kafka -> [JS Processing Node](../../user-guide/data-development/process-node.md#js-process) -> Kafka/MySQL data pipeline.
 
 **Sample Data**:
 

@@ -94,7 +94,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
     <td>Local</td>
   </tr>
   <tr>
-    <td><a href="../production-admin/install-tapdata-ha">Horizontal Scaling of Processing Engine</a></td>
+    <td><a href="../administration/production-deploy/install-tapdata-ha">Horizontal Scaling of Processing Engine</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>➖</td>
@@ -199,7 +199,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
     <td>➖</td>
   </tr>
   <tr>
-    <td><a href="../best-practice/heart-beat-task">Heartbeat Task Management</a></td>
+    <td><a href="../case-practices/best-practice/heart-beat-task">Heartbeat Task Management</a></td>
     <td>✅</td>
     <td>✅</td>
     <td>➖</td>
@@ -243,7 +243,7 @@ Building on the free offerings of TapData Community for developers, TapData Ente
   <td>➖</td>
   </tr>
   <tr>
-  <td><a href="../user-guide/manage-system/manage-external-storage">External Storage Management</a></td>
+  <td><a href="../user-guide/advanced-settings/manage-external-storage">External Storage Management</a></td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
@@ -256,13 +256,13 @@ Building on the free offerings of TapData Community for developers, TapData Ente
   </tr>
   <tr>
   <td rowspan="2">Monitoring and Alerts</td>
-  <td><a href="../user-guide/notification">Custom Notifications</a></td>
+  <td><a href="../user-guide/other-settings/notification">Custom Notifications</a></td>
   <td>✅</td>
   <td>✅</td>
   <td>✅</td>
   </tr>
   <tr>
-  <td><a href="../../user-guide/notification">Custom Monitoring</a></td>
+  <td><a href="../user-guide/other-settings/notification">Custom Monitoring</a></td>
   <td>✅</td>
   <td>✅</td>
   <td>➖</td>

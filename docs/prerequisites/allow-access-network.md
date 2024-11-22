@@ -18,7 +18,7 @@ Before deploying the Agent, you need to refer to the requirements in this docume
 
 
 
-If you have subscribed to the [Fully Managed Agent](../billing/purchase#hosted-mode) and the data source you intend to connect with only allows connections from specific IP addresses, then you will need to add the server address of the Agent to the appropriate security settings of the data source. For instance, you might need to add it to the whitelist rules of your self-hosted database's firewall. This ensures that the Agent can establish communication and transfer data with your data source. The server addresses for Agent in various regions are as follows: 
+If you have subscribed to the [Fully Managed Agent](../billing/purchase.md#hosted-mode) and the data source you intend to connect with only allows connections from specific IP addresses, then you will need to add the server address of the Agent to the appropriate security settings of the data source. For instance, you might need to add it to the whitelist rules of your self-hosted database's firewall. This ensures that the Agent can establish communication and transfer data with your data source. The server addresses for Agent in various regions are as follows: 
 
 
 

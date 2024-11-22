@@ -23,7 +23,7 @@ After registering with TapData Cloud, you will receive the benefit of creating o
    ![Select Agent Specification](../images/select_agent_spec.png)
 
    * **Deploy Mode**: Choose the deploy mode based on your business needs:
-     * **Self-Hosted Mode**: You need provide the equipment for [deploying](../quick-start/install/install-tapdata-agent.md) and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
+     * **Self-Hosted Mode**: You need provide the equipment for [deploying](../installation/install-tapdata-agent.md) and maintaining the Agent. This allows for the optimal utilization of existing hardware resources, resulting in lower costs and enhanced security.
      * **Fully Managed Mode**: TapData Cloud provides the required computing/storage resources for running the Agent and deploys it automatically. Additionally, we offer unified operational maintenance and resource monitoring to enhance reliability. This enables one-click delivery and usage, eliminating the need for deployment and operational efforts, allowing you to focus on your core business activities.
        :::tip
        When selecting the **Fully Managed Mode**, you also need to choose the cloud provider and region where the Agent will be deployed.
@@ -41,7 +41,7 @@ After registering with TapData Cloud, you will receive the benefit of creating o
 
 7. After the payment is successful, return to the TapData Cloud platform to see that the Agent instance you purchased is **To be deployed**.
 
-   Next, you can deploy the Agent on your server. For more information, see [Install Agent](../quick-start/install/install-tapdata-agent.md).
+   Next, you can deploy the Agent on your server. For more information, see [Install Agent](../installation/install-tapdata-agent.md).
 
    ![Subscription is successful](../images/purchase_success.png)
 

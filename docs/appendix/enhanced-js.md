@@ -6,7 +6,7 @@ import Content from '../reuse-content/_all-features.md';
 
 Enhanced JS nodes allow you to utilize all built-in functions for external calls, such as networking and database operations. If your requirement is solely to process and operate on data records, it is recommended to use [standard JS nodes](standard-js.md).
 
-For detailed instructions on how to use enhanced JS nodes and explore various scenarios, please refer to the documentation and resources available for [JS processing node](../user-guide/data-development/process-node#js-process).
+For detailed instructions on how to use enhanced JS nodes and explore various scenarios, please refer to the documentation and resources available for [JS processing node](../user-guide/data-development/process-node.md#js-process).
 
 :::tip
 
