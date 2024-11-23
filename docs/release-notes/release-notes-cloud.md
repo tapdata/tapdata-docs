@@ -6,6 +6,37 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-11-29
+
+#### Enhancements
+
+- Enabled copy all selected table names during task configuration, improving operational efficiency.
+- Expanded the range of built-in error codes for better issue identification and diagnosis.
+- Enhanced milestone tracking and display logic during task execution.
+- Improved log viewing experience for script processing nodes by supporting split log display.
+
+#### Bug Fixes
+
+- Fixed an issue where syncing PostgreSQL to SQL Server failed to sync newly added partitioned child tables if the parent table’s partitions were not created before task execution.
+- Resolved an issue where MongoDB indexes were not correctly loaded, causing schema loading failures.
+- Fixed an issue where data extraction tasks could get stuck at the table structure replication stage.
+
+
+### 2024-11-15
+
+#### New Features
+
+- Added support for real-time synchronization of PostgreSQL partitioned tables to SQL Server.
+
+#### Enhancements
+
+- Expanded the range of built-in error codes for faster issue identification and diagnosis.
+
+#### Bug Fixes
+
+- Fixed an issue where resetting tasks on the edit page failed, causing a “current status not allowed” error when saving the task.
+- Resolved an issue where removing and re-adding a table being synchronized in a replication task failed to resume synchronization correctly.
+
 ### 2024-10-30
 
 #### New Features
