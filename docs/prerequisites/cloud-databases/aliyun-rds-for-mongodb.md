@@ -138,9 +138,9 @@ When using the MongoDB cluster as the source library, TapData will create a thre
 
 - **Stop balancer**
   For detailed instructions on stopping the balancer, see:
-  [MongoDB Documentation: How to stop the balancer]( https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/ )
+  [MongoDB Documentation: How to stop the balancer](https://docs.mongodb.com/manual/reference/method/sh.stopBalancer/)
 - **Use the cleanOrphan command, see**
-  [MongoDB Documentation: How to clean up orphan documents](https://docs.mongodb.com/manual/reference/command/cleanupOrphaned/ )
+  [MongoDB Documentation: How to clean up orphan documents](https://www.mongodb.com/docs/manual/reference/command/cleanupOrphaned/)
 
 ##  MongoDB TLS/SSL configuration
 
