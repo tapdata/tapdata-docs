@@ -6,7 +6,32 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
-## 3.16
+## 3.18.0
+
+### Enhancements
+
+- Enabled copy all selected table names during task configuration, improving operational efficiency.
+- Expanded the range of built-in error codes for better issue identification and diagnosis.
+- Enhanced milestone tracking and display logic during task execution.
+- Improved log viewing experience for script processing nodes by supporting split log display.
+
+### Bug Fixes
+
+- Resolved an issue where MongoDB indexes were not correctly loaded, causing schema loading failures.
+- Fixed an issue where data extraction tasks could get stuck at the table structure replication stage.
+
+## 3.17.0
+
+### Enhancements
+
+- Expanded the range of built-in error codes for faster issue identification and diagnosis.
+
+### Bug Fixes
+
+- Fixed an issue where resetting tasks on the edit page failed, causing a “current status not allowed” error when saving the task.
+- Resolved an issue where removing and re-adding a table being synchronized in a replication task failed to resume synchronization correctly.
+
+## 3.16.0
 
 ### New Features
 
@@ -23,7 +48,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Corrected inaccuracies in time and milestone statistics.
 - Resolved an issue with MongoDB Atlas functionality when DNS resolution fails.
 
-## 3.15
+## 3.15.0
 
 ### New Features
 
@@ -40,7 +65,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where the task retry start time was incorrectly displayed as 1970.
 - Fixed an issue where index creation failed when Elasticsearch was used as the target database.
 
-## 3.14
+## 3.14.0
 
 ### New Features
 
@@ -57,7 +82,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where tasks would encounter errors during the incremental phase after enabling the heartbeat table in new tasks.
 - Fixed the issue where tasks got stuck in the full phase and could not move to the incremental phase after a reset.
 
-## 3.13
+## 3.13.0
 
 ### New Features
 
@@ -67,7 +92,7 @@ This document introduces the recent release notes for TapData Community. For mor
 
 - Fixed an issue where regular indexes were not properly synchronized after enabling the **Sync Indexes on Table Creation** option, ensuring data synchronization integrity.
 
-## 3.12
+## 3.12.0
 
 ### New Features
 
@@ -98,7 +123,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
 - Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
 
-## 3.11
+## 3.11.0
 
 ### New Features
 
@@ -114,7 +139,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
 - Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
 
-## 3.10
+## 3.10.0
 
 ### New Features
 

@@ -4,7 +4,39 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
-## 3.16
+## 3.18.0
+
+### Enhancements
+
+- Added a built-in help documentation link at the top of the page, allowing quick access to usage guides in network-isolated environments.
+- Improved data validation logic to support comparisons between Boolean values and numeric 0/1, ensuring accuracy in heterogeneous data source synchronization scenarios.
+- Enabled copy all selected table names during task configuration, improving operational efficiency.
+- Expanded the range of built-in error codes for better issue identification and diagnosis.
+- Enhanced milestone tracking and display logic during task execution.
+- Improved log viewing experience for script processing nodes by supporting split log display.
+
+### Bug Fixes
+
+- Fixed an issue where syncing PostgreSQL to SQL Server failed to sync newly added partitioned child tables if the parent table’s partitions were not created before task execution.
+- Resolved an issue where MongoDB indexes were not correctly loaded, causing schema loading failures.
+- Fixed an issue where data extraction tasks could get stuck at the table structure replication stage.
+
+## 3.17.0
+
+### New Features
+
+- Added support for real-time synchronization of PostgreSQL partitioned tables to SQL Server.
+
+### Enhancements
+
+- Expanded the range of built-in error codes for faster issue identification and diagnosis.
+
+### Bug Fixes
+
+- Fixed an issue where resetting tasks on the edit page failed, causing a “current status not allowed” error when saving the task.
+- Resolved an issue where removing and re-adding a table being synchronized in a replication task failed to resume synchronization correctly.
+
+## 3.16.0
 
 ### New Features
 
@@ -22,7 +54,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Corrected inaccuracies in time and milestone statistics.
 - Resolved an issue with MongoDB Atlas functionality when DNS resolution fails.
 
-## 3.15
+## 3.15.0
 
 ### New Features
 
@@ -43,7 +75,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue in verification tasks where a full re-verification was triggered when there was a discrepancy in the comparison results.
 - Fixed an issue where the detailed download was empty when verification tasks showed inconsistent results in the associated key verification.
 
-## 3.14
+## 3.14.0
 
 ### New Features
 
@@ -63,7 +95,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed the issue where tasks got stuck in the full phase and could not move to the incremental phase after a reset.
 - Fixed the issue where the shared mining source node would automatically refresh and deselect tables after selection.
 
-## 3.13
+## 3.13.0
 
 ### New Features
 
@@ -80,7 +112,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue where the `admin` user lost permissions after changing the username, ensuring proper permission management.
 - Fixed an issue where a success message was returned despite the failure of sending test emails, improving operational feedback accuracy.
 
-## 3.12
+## 3.12.0
 
 ### New Features
 
@@ -118,7 +150,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
 - Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
 
-## 3.11
+## 3.11.0
 
 ### New Features
 
@@ -139,7 +171,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
 - Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
 
-## 3.10
+## 3.10.0
 
 ### New Features
 
