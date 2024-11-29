@@ -39,7 +39,7 @@ After completing [permission granting and data source connection](../prerequisit
 <TabItem value="Database Log File">
 For Oracle and Db2 data sources, Tapdata provides raw log parsing capability in addition to the traditional LogMiner-based CDC. This approach directly parses the native binary log files, achieving more efficient event capture with higher collection performance (Records Per Second, RPS, over 20,000), and reduces the impact on the source database.
 
-This solution requires the additional installation of a log parsing plugin. For example, with Oracle, after [contacting Tapdata technical support](../support.md) to complete the plugin deployment, you can choose the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md). Then, fill in the IP address of the raw log service, with the default service port of **8190**.
+This solution requires the additional installation of a log parsing plugin. For example, with Oracle, after [contacting Tapdata technical support](../appendix/support.md) to complete the plugin deployment, you can choose the log plugin as **bridge** when [configuring the Oracle connection](../prerequisites/on-prem-databases/oracle.md). Then, fill in the IP address of the raw log service, with the default service port of **8190**.
 
 ![Set Raw Log Plugin](..//images/raw_log_configuration.png)
 

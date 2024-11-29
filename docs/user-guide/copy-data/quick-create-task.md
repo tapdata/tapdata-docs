@@ -10,7 +10,7 @@ The data replication feature helps you achieve real-time synchronization between
 
 <details>
   <summary>Best Practices</summary>
-  To build efficient and reliable data replication tasks, it is recommended to read <a href="../../../best-practice/data-sync">Data Synchronization Best Practices</a> before starting to configure tasks.
+  To build efficient and reliable data replication tasks, it is recommended to read <a href="../../../case-practices/best-practice/data-sync">Data Synchronization Best Practices</a> before starting to configure tasks.
 </details>
 
 1. [Log in to TapData platform](../log-in.md).
@@ -57,7 +57,7 @@ The data replication feature helps you achieve real-time synchronization between
      - **Multi-threaded Incremental Write**: The number of concurrent threads for incremental data writing. It is disabled by default. You can enable and adjust based on the write performance of the target database.
      - **Number of Writes Per Batch**: The number of entries per batch during full synchronization.
      - **Write The Maximum Waiting Time for Each Batch**: Set the maximum wait time based on the target database performance and network latency. The unit is milliseconds.
-     - **DDL Synchronization Settings**: Select the DDL event handling strategy. The default is **Automatically Ignore All DDL**. You can choose **Sync DDL Events** and select the DDL events to capture, typically including **Add Column**, **Change Column Name**, **Modify Column Attribute**, **Drop Column**. For more information, see [Handling Schema Changes](../../best-practice/handle-schema-changes.md).
+     - **DDL Synchronization Settings**: Select the DDL event handling strategy. The default is **Automatically Ignore All DDL**. You can choose **Sync DDL Events** and select the DDL events to capture, typically including **Add Column**, **Change Column Name**, **Modify Column Attribute**, **Drop Column**. For more information, see [Handling Schema Changes](../../case-practices/best-practice/handle-schema-changes.md).
      - **Data Read Settings**: Choose the number of entries to read per batch in the full and incremental stages. The default values are 500 and 1, respectively. You can also choose to enable **Enable Concurrent Table Reading** (suitable for scenarios with many small tables).
      - **Data Write Settings**: Choose the data write strategy:
        - **Process by by Event Type**: After selecting this option, you need to choose the data write strategy for insert, update, and delete events.

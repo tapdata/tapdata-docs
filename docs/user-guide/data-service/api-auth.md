@@ -62,5 +62,5 @@ Authorization: bearer eyJhbGciOiJIUzI1NiJ9.eyJjbGllbnRJ********
 
 ## Recommended Reading
 
-* [Querying via RESTful API](query-via-restful)
-* [Querying via GraphQL API](query-via-graphql)
+* [Querying via RESTful API](query-via-restful.md)
+* [Querying via GraphQL API](query-via-graphql.md)

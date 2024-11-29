@@ -46,7 +46,7 @@ TapData offers two deployment modes, **Cloud**, **Enterprise** and **Community**
 
 :::tip
 
-For more information, see [Edition Comparison](introduction/compare-editions).
+For more information, see [Edition Comparison](introduction/compare-editions.md).
 
 :::
 

@@ -54,7 +54,7 @@ Recommended classification principles are as follows:
 
 ### What if the task status remains "starting"? How to resolve it?
 
-You can [contact us for technical support](../support.md).
+You can [contact us for technical support](../appendix/support.md).
 
 ### Task reset failed?
 
@@ -209,7 +209,7 @@ infers the field types and lengths of the target database based on general compa
 
 ### Does it support synchronizing DDL changes?
 
-Yes, you need to turn on the corresponding switch during task configuration. Additionally, you need to understand the potential impacts of table structure changes (such as adding or removing columns) on the data synchronization process to avoid affecting normal business operations. For more details, see [DDL Synchronization Explanation](../best-practice/handle-schema-changes.md).
+Yes, you need to turn on the corresponding switch during task configuration. Additionally, you need to understand the potential impacts of table structure changes (such as adding or removing columns) on the data synchronization process to avoid affecting normal business operations. For more details, see [DDL Synchronization Explanation](../case-practices/best-practice/handle-schema-changes.md).
 
 ### How long is it recommended to keep the source database's incremental logs for incremental synchronization?
 
@@ -229,15 +229,15 @@ Incremental data can be obtained through field polling. This field is usually an
 
 ### Does it support synchronizing DDL changes?
 
-Yes, you need to turn on the corresponding switch during task configuration. Additionally, you need to understand the potential impacts of table structure changes (such as adding or removing columns) on the data synchronization process to avoid affecting normal business operations. For more details, see [DDL Synchronization Explanation](../best-practice/handle-schema-changes.md).
+Yes, you need to turn on the corresponding switch during task configuration. Additionally, you need to understand the potential impacts of table structure changes (such as adding or removing columns) on the data synchronization process to avoid affecting normal business operations. For more details, see [DDL Synchronization Explanation](../case-practices/best-practice/handle-schema-changes.md).
 
 ### If manual deletion of a field in the target table causes an error during incremental synchronization, how can it be fixed?
 
-You can edit the task, add an [add/remove field node](../user-guide/data-development/process-node#add-and-del-cols) before the target node, filter out the deleted field, and then restart the task.
+You can edit the task, add an [add/remove field node](../user-guide/data-development/process-node.md#add-and-del-cols) before the target node, filter out the deleted field, and then restart the task.
 
 :::tip
 
-During the task operation phase, do not manually adjust the structure of the target table to avoid task interruptions due to table structure changes. If you need to adjust the table structure, you should enable task DDL operations and adjust the table structure in the source database. For more details, see [Handling DDL Changes](../best-practice/handle-schema-changes.md).
+During the task operation phase, do not manually adjust the structure of the target table to avoid task interruptions due to table structure changes. If you need to adjust the table structure, you should enable task DDL operations and adjust the table structure in the source database. For more details, see [Handling DDL Changes](../case-practices/best-practice/handle-schema-changes.md).
 
 :::
 
@@ -301,4 +301,4 @@ For MongoDB databases, if row count validation is inconsistent, check for orphan
 
 ### What to do if the validation task indicates failure?
 
-Click **Details** corresponding to the validation task, review the related error messages, or [contact us for technical support](../support.md).
+Click **Details** corresponding to the validation task, review the related error messages, or [contact us for technical support](../appendix/support.md).

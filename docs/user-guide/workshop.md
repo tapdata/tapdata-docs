@@ -63,6 +63,6 @@ The console page mainly includes the following key indicators:
 
 Just 3 simple steps to experience the powerful and convenient data flow capabilities of TapData:
 
-* [Install TapData](../quick-start/install/README.md)
+* [Install TapData](../installation/README.md)
 * [Connect to a Database](../quick-start/connect-database.md)
 * [Create a Data Pipeline](../quick-start/create-task.md)

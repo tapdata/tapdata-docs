@@ -15,4 +15,4 @@ TapData allows you to synchronize data from various sources and process it durin
 
 * [Enable Data Service Platform](../user-guide/real-time-data-hub/daas-mode/enable-daas-mode.md)
 * [Supported Data Sources](../prerequisites/supported-databases.md)
-* [Best Practices](../best-practice/README.md)
+* [Best Practices](../case-practices/best-practice/README.md)

@@ -6,7 +6,7 @@ import Content from '../reuse-content/_all-features.md';
 
 Standard JS nodes can only process and operate on data records. If you require the usage of system built-in functions for external calls, such as networking or database operations, you can utilize [enhanced JS nodes](enhanced-js.md).
 
-For information on how to use and scenarios, see [JS processing node](../user-guide/data-development/process-node#js-process).
+For information on how to use and scenarios, see [JS processing node](../user-guide/data-development/process-node.md#js-process).
 
 ## DateUtil
 

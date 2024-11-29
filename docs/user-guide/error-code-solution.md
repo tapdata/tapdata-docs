@@ -23,7 +23,7 @@ If you encounter an exception with a task, you can view the relevant log informa
 **Solutions**:
 
 * Try to re-enter the password and test the connection.
-* Try using a password without special characters and report to [technical support](../support.md) for resolution.
+* Try using a password without special characters and report to [technical support](../appendix/support.md) for resolution.
 
 ## 10003
 
@@ -99,7 +99,7 @@ Before reading, the engine needs to locate the specific position in the logs to 
 
 **Error Code Description**: Unknown error.
 
-**Solution**: Contact [technical support](../support.md) for resolution.
+**Solution**: Contact [technical support](../appendix/support.md) for resolution.
 
 ## 13002
 

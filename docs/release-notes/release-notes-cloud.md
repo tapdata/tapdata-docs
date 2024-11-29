@@ -59,11 +59,11 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), providing more advanced features and enhanced production stability.
 
 #### Enhancements
 
-- Added a [Multi-threaded CT Table Polling](../prerequisites/on-prem-databases/sqlserver#advanced-settings) option to improve incremental data collection performance for SQL Server environments with a large number of tables (over 500), significantly increasing synchronization efficiency.
+- Added a [Multi-threaded CT Table Polling](../prerequisites/on-prem-databases/sqlserver.md#advanced-settings) option to improve incremental data collection performance for SQL Server environments with a large number of tables (over 500), significantly increasing synchronization efficiency.
 - Optimized the cache management logic for processing nodes, enhancing resource usage efficiency and improving task execution speed.
 - Introduced an automatic retry mechanism for Oracle LogMiner errors caused by exceeding PGA limits, improving fault tolerance.
 
@@ -78,7 +78,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-* Doris, ClickHouse, KingBaseES-R6, PostgreSQL, SQL Server, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+* Doris, ClickHouse, KingBaseES-R6, PostgreSQL, SQL Server, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), providing more advanced features and enhanced production stability.
 * When using PostgreSQL as a source, it is now possible to specify the time point for incremental data in task settings.
 
 #### Enhancements
@@ -95,7 +95,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases), providing more comprehensive features and enhanced production stability.
+* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases.md), providing more comprehensive features and enhanced production stability.
 * Added a [form-based mode](../user-guide/copy-data/quick-create-task.md) for building replication tasks, simplifying the task creation process and improving operational convenience.
 
 #### Enhancements
@@ -110,7 +110,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-- Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
+- Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), offering richer features and higher production stability.
 - Added [traffic billing](../billing/billing-overview.md) feature for fully managed instances, supporting [traffic bill viewing and payment](../billing/renew-subscribe.md), enabling users to easily monitor traffic usage and manage bills conveniently.
 - For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
 - Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
@@ -146,7 +146,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-- Oracle, Kafka, and Db2 have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases), offering enhanced capabilities and production stability.
+- Oracle, Kafka, and Db2 have completed the TapData certification testing process, upgraded to [GA-level data sources](../prerequisites/supported-databases.md), offering enhanced capabilities and production stability.
 - Added traffic billing view and payment features in the cloud version.
 
 #### Enhancements
@@ -186,10 +186,10 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-- Added a [Union Node](../user-guide/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- Added a [Union Node](../user-guide/copy-data/process-node.md) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
 - [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
 - MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
-- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.
+- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase.md) data source, with a maturity level of Beta, further enriching the variety of data sources.
 
 #### Enhancements
 
@@ -273,7 +273,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 #### New Features
 
-* Added support for dynamically generating date suffixes for target table names when [configuring data transformation tasks](../user-guide/data-development/create-task#target-node-set), suitable for daily batch processing scenarios.
+* Added support for dynamically generating date suffixes for target table names when [configuring data transformation tasks](../user-guide/data-development/create-task.md#target-node-set), suitable for daily batch processing scenarios.
 * Added support for setting partitions when configuring Doris data sources.
 * Added support for the Oracle mode of OceanBase data sources, with the data source name OceanBase(Oracle).
 
@@ -295,12 +295,12 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 * Support for bidirectional data synchronization between MySQL instances and between PostgreSQL instances, better meeting the needs of active-active and disaster recovery scenarios.
 * Support for importing files from [MongoDB Relmig](https://www.mongodb.com/docs/relational-migrator/) version 1.3.0 and above, further enhancing ecosystem integration capabilities.
 * Support for synchronizing MongoDB [Oplog](https://www.mongodb.com/docs/manual/core/replica-set-oplog/) (operation log) data.
-* Support for filtering the time field of tables in the source node’s **[Advanced Settings](../user-guide/data-development/create-task#full-sql-query)** when configuring data transformation tasks (e.g., relative dates).
+* Support for filtering the time field of tables in the source node’s **[Advanced Settings](../user-guide/data-development/create-task.md#full-sql-query)** when configuring data transformation tasks (e.g., relative dates).
 * Display milestone information for tasks on the [Task List](../user-guide/copy-data/manage-task.md) page, helping users quickly understand key progress statuses.
 
 #### Enhancements
 
-* Improved [Unwind Node](../user-guide/data-development/process-node#unwind) functionality, allowing users to set expansion modes, such as **Embedded Objects** or **Flatten Fields**.
+* Improved [Unwind Node](../user-guide/data-development/process-node.md#unwind) functionality, allowing users to set expansion modes, such as **Embedded Objects** or **Flatten Fields**.
 * Enhanced full synchronization detail page display, supporting quick table name filtering.
 
 #### Bug Fixes
@@ -363,9 +363,9 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 ### New Features
 
-* Support for setting [default alarm recipients](user-guide/workshop#notifications), allowing customization of alarm receipt email addresses (supports multiple addresses).
-* New options in [DDL synchronization settings](../best-practice/handle-schema-changes.md): **Stop Task on DDL Error** and **Automatically Ignore All DDLs**, catering to different business scenario needs.
-* Added a [time field injection](user-guide/data-development/process-node#time_injection) node, allowing the addition of a custom timestamp field to data during synchronization. This provides a more flexible way to capture incremental changes from the source database.
+* Support for setting [default alarm recipients](../user-guide/workshop.md), allowing customization of alarm receipt email addresses (supports multiple addresses).
+* New options in [DDL synchronization settings](../case-practices/best-practice/handle-schema-changes.md): **Stop Task on DDL Error** and **Automatically Ignore All DDLs**, catering to different business scenario needs.
+* Added a [time field injection](../user-guide/data-development/process-node.md#time_injection) node, allowing the addition of a custom timestamp field to data during synchronization. This provides a more flexible way to capture incremental changes from the source database.
 
 ### Enhancements
 
@@ -389,7 +389,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 ### Bug Fixes
 
-- Fixed an issue with the [Primary-Secondary Merge Node](user-guide/data-development/process-node#pri-sec-merged) where changes in the key conditions between the primary and secondary tables resulted in data not matching expectations.
+- Fixed an issue with the [Primary-Secondary Merge Node](../user-guide/data-development/process-node.md#pri-sec-merged) where changes in the key conditions between the primary and secondary tables resulted in data not matching expectations.
 
 ## 2024-01-12
 
@@ -450,7 +450,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 ### New Features
 
-* Support for loading table comments on [Oracle data sources](prerequisites/on-prem-databases/oracle#advanced), which can be enabled in the **Advanced Settings** when configuring the data source. This makes it easier to quickly identify the business meaning of tables through their comments.
+* Support for loading table comments on [Oracle data sources](../prerequisites/on-prem-databases/oracle.md#advanced), which can be enabled in the **Advanced Settings** when configuring the data source. This makes it easier to quickly identify the business meaning of tables through their comments.
 * In the task [monitoring page](../user-guide/copy-data/monitor-task.md), support viewing RPS (Records Per Second) information based on the size of events.
 
 ### Enhancements
@@ -486,8 +486,8 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 ### New Features
 
-- Added support for [automatically creating sharded collections](user-guide/copy-data/create-task#advanced-settings) when MongoDB Cluster is set as the target.
-- Add support for [Unwind Processing Node](user-guide/data-development/process-node#Unwind), which can help you efficiently "unwind" each element in an array, converting each element into independent data rows.
+- Added support for [automatically creating sharded collections](../user-guide/copy-data/create-task.md#advanced-settings) when MongoDB Cluster is set as the target.
+- Add support for [Unwind Processing Node](../user-guide/data-development/process-node.md#Unwind), which can help you efficiently "unwind" each element in an array, converting each element into independent data rows.
 - Added support for disabling node capabilities when configuring tasks. You can access this feature by hovering over a node, which can help reduce the cost of data flow during processing.
 
 ### Enhancements
@@ -525,7 +525,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 ### New Features
 
-- Added [Python processing node](user-guide/data-development/process-node#python), which supports customizing data processing logic through Python scripts. This offers improved performance compared to the JS processing node.
+- Added [Python processing node](../user-guide/data-development/process-node.md#python), which supports customizing data processing logic through Python scripts. This offers improved performance compared to the JS processing node.
 - Added a "**Contact Us**" entry point, making it easier for users to quickly reach out to technical support when faced with issues.
 
 ### Feature Improvements
@@ -542,7 +542,7 @@ To enhance the user experience, TapData Cloud continuously enriches and optimize
 
 ### New Features
 
-- Introduced the [Primary-Secondary Merge Node](user-guide/data-development/process-node#pri-sec-merged), enabling quick construction and real-time updates of wide tables, assisting you in achieving better data analysis.
+- Introduced the [Primary-Secondary Merge Node](../user-guide/data-development/process-node.md#pri-sec-merged), enabling quick construction and real-time updates of wide tables, assisting you in achieving better data analysis.
 - [Real-Time Data Hub](../user-guide/real-time-data-hub/daas-mode/enable-daas-mode.md) now offer a storage instances for free trial, with more new specifications available, including M10, M20, and M30.
 - Added support for connecting [existing MongoDB Atlas instances](../user-guide/real-time-data-hub/daas-mode/enable-daas-mode.md#atlas) as data storage for the Real-Time Data Hub.
 
