@@ -33,7 +33,7 @@ import Content from '../../reuse-content/_beta.md';
    CREATE USER 'tapdata' IDENTIFIED BY 'Tap@123456';
    ```
 
-2. Grant the newly created account all privileges on a specified database, so that TapData Cloud can automatically create the target tables for synchronization. You can also set more granular permissions based on business needs. For more, see [GRANT Syntax](https://databend.rs/doc/sql-commands/ddl/user/grant-privileges).
+2. Grant the newly created account all privileges on a specified database, so that TapData Cloud can automatically create the target tables for synchronization. You can also set more granular permissions based on business needs. For more, see [GRANT Syntax](https://docs.databend.com/sql/sql-commands/ddl/user/grant).
 
    ```sql
    -- Replace database_name and username as per the instructions below
@@ -64,7 +64,7 @@ import Content from '../../reuse-content/_beta.md';
       - **Port**: The service port of Databend, typically **8000**.
       - **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
       - **Account**, **Password**: Fill in the database account and password respectively.
-      - **Connection Parameters**: Additional [connection parameters](https://databend.rs/doc/develop/jdbc#configuring-connection-string), default is empty.
+      - **Connection Parameters**: Additional [connection parameters](https://docs.databend.com/developer/drivers/jdbc#configuring-connection-string), default is empty.
     - **Advanced Settings**
       - **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
       - **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.

@@ -624,7 +624,7 @@ The performance tests covered both full and incremental data read/write operatio
 
 ## Related Topics
 
-[Oracle to Tablestore Real-Time Sync](../../pipeline-tutorial/oracle-to-tablestore.md)
+[Oracle to Tablestore Real-Time Sync](../../case-practices/pipeline-tutorial/oracle-to-tablestore.md)
 
 
 

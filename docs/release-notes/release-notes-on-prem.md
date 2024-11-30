@@ -4,15 +4,65 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
-## 3.15
-
-### New Features
-
-* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+## 3.18.0
 
 ### Enhancements
 
-- Added a [Multi-threaded CT Table Polling](../prerequisites/on-prem-databases/sqlserver#advanced-settings) option to improve incremental data collection performance for SQL Server environments with a large number of tables (over 500), significantly increasing synchronization efficiency.
+- Added a built-in help documentation link at the top of the page, allowing quick access to usage guides in network-isolated environments.
+- Improved data validation logic to support comparisons between Boolean values and numeric 0/1, ensuring accuracy in heterogeneous data source synchronization scenarios.
+- Enabled copy all selected table names during task configuration, improving operational efficiency.
+- Expanded the range of built-in error codes for better issue identification and diagnosis.
+- Enhanced milestone tracking and display logic during task execution.
+- Improved log viewing experience for script processing nodes by supporting split log display.
+
+### Bug Fixes
+
+- Fixed an issue where syncing PostgreSQL to SQL Server failed to sync newly added partitioned child tables if the parent table’s partitions were not created before task execution.
+- Resolved an issue where MongoDB indexes were not correctly loaded, causing schema loading failures.
+- Fixed an issue where data extraction tasks could get stuck at the table structure replication stage.
+
+## 3.17.0
+
+### New Features
+
+- Added support for real-time synchronization of PostgreSQL partitioned tables to SQL Server.
+
+### Enhancements
+
+- Expanded the range of built-in error codes for faster issue identification and diagnosis.
+
+### Bug Fixes
+
+- Fixed an issue where resetting tasks on the edit page failed, causing a “current status not allowed” error when saving the task.
+- Resolved an issue where removing and re-adding a table being synchronized in a replication task failed to resume synchronization correctly.
+
+## 3.16.0
+
+### New Features
+
+- Added HTTPS connection support for [Elasticsearch data sources](../prerequisites/on-prem-databases/elasticsearch.md), enhancing data transmission security to meet more stringent data security and compliance requirements.
+- Enabled support for synchronizing tables without primary keys by adding a hash field (default name: `_no_pk_hash`), ensuring data consistency and stable synchronization in non-primary key scenarios.
+
+### Enhancements
+
+- Enhanced data filtering logic in Row Filter nodes, ensuring that target data is updated to maintain consistency when data status changes from meeting to not meeting filter conditions.
+- Improved support for handling changes in composite primary keys in Oracle.
+
+### Bug Fixes
+
+- Fixed an issue preventing the display of all tables (completed, in progress, and not started) in full sync details.
+- Corrected inaccuracies in time and milestone statistics.
+- Resolved an issue with MongoDB Atlas functionality when DNS resolution fails.
+
+## 3.15.0
+
+### New Features
+
+* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), providing more advanced features and enhanced production stability.
+
+### Enhancements
+
+- Added a [Multi-threaded CT Table Polling](../prerequisites/on-prem-databases/sqlserver.md#advanced-settings) option to improve incremental data collection performance for SQL Server environments with a large number of tables (over 500), significantly increasing synchronization efficiency.
 - Optimized the cache management logic for processing nodes, enhancing resource usage efficiency and improving task execution speed.
 - Introduced an automatic retry mechanism for Oracle LogMiner errors caused by exceeding PGA limits, improving fault tolerance.
 
@@ -25,12 +75,12 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue in verification tasks where a full re-verification was triggered when there was a discrepancy in the comparison results.
 - Fixed an issue where the detailed download was empty when verification tasks showed inconsistent results in the associated key verification.
 
-## 3.14
+## 3.14.0
 
 ### New Features
 
-* Doris, ClickHouse, KingBaseES-R6, PostgreSQL, SQL Server, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
-* Support for [user login authentication via LDAP](../user-guide/other-settings/system-settings#ldap) integration with Active Directory (AD), enabling unified user identity management.
+* Doris, ClickHouse, KingBaseES-R6, PostgreSQL, SQL Server, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), providing more advanced features and enhanced production stability.
+* Support for [user login authentication via LDAP](../user-guide/other-settings/system-settings.md#ldap) integration with Active Directory (AD), enabling unified user identity management.
 * When using PostgreSQL as a source, it is now possible to specify the time point for incremental data in task settings.
 
 ### Enhancements
@@ -45,11 +95,11 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed the issue where tasks got stuck in the full phase and could not move to the incremental phase after a reset.
 - Fixed the issue where the shared mining source node would automatically refresh and deselect tables after selection.
 
-## 3.13
+## 3.13.0
 
 ### New Features
 
-* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases), providing more comprehensive features and enhanced production stability.
+* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases.md), providing more comprehensive features and enhanced production stability.
 
 ### Enhancements
 
@@ -62,12 +112,12 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue where the `admin` user lost permissions after changing the username, ensuring proper permission management.
 - Fixed an issue where a success message was returned despite the failure of sending test emails, improving operational feedback accuracy.
 
-## 3.12
+## 3.12.0
 
 ### New Features
 
-- Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
-- When configuring [alert recipient email](../best-practice/alert-via-qqmail.md), support for using proxy services has been added, allowing for timely alert notifications even in restricted network environments.
+- Oracle, Dameng, and Db2 have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), offering richer features and higher production stability.
+- When configuring [alert recipient email](../case-practices/best-practice/alert-via-qqmail.md), support for using proxy services has been added, allowing for timely alert notifications even in restricted network environments.
 - For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
 - Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
 - Added support for batch API publishing, simplifying multi-interface management and enhancing publishing efficiency.
@@ -100,7 +150,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
 - Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
 
-## 3.11
+## 3.11.0
 
 ### New Features
 
@@ -121,15 +171,15 @@ import Content from '../reuse-content/_enterprise-features.md';
 - Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
 - Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
 
-## 3.10
+## 3.10.0
 
 ### New Features
 
 - [Data Verification](../user-guide/verify-data.md) feature now allows downloading detailed discrepancy data from the verification task details page for in-depth analysis.
-- Added a [Union Node](../user-guide/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- Added a [Union Node](../user-guide/copy-data/process-node.md#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
 - [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
 - MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
-- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.
+- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase.md) data source, with a maturity level of Beta, further enriching the variety of data sources.
 
 ### Enhancements
 
@@ -222,8 +272,8 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-* Added support for dynamically generating date suffixes for target table names when [configuring data transformation tasks](../user-guide/data-development/create-task#target-node-set), suitable for daily batch processing scenarios.
-* Added support for [integrating with third-party platforms via Webhook](../user-guide/notification.md) to enable more alert notification channels.
+* Added support for dynamically generating date suffixes for target table names when [configuring data transformation tasks](../user-guide/data-development/create-task.md#target-node-set), suitable for daily batch processing scenarios.
+* Added support for [integrating with third-party platforms via Webhook](../user-guide/other-settings/notification.md) to enable more alert notification channels.
 * Added support for performing Hash validation between MySQL, Oracle, SQL Server, PostgreSQL, and GaussDB data sources when [configuring data validation tasks](../user-guide/verify-data.md), improving validation efficiency.
 * Added support for setting partitions when configuring Doris data sources.
 * Added support for the Oracle mode of OceanBase data sources, with the data source name OceanBase(Oracle).
@@ -246,12 +296,12 @@ import Content from '../reuse-content/_enterprise-features.md';
 * Support for bidirectional data synchronization between MySQL instances and between PostgreSQL instances, better meeting the needs of active-active and disaster recovery scenarios.
 * Support for importing files from [MongoDB Relmig](https://www.mongodb.com/docs/relational-migrator/) version 1.3.0 and above, further enhancing ecosystem integration capabilities.
 * Support for synchronizing MongoDB [Oplog](https://www.mongodb.com/docs/manual/core/replica-set-oplog/) (operation log) data.
-* Support for filtering the time field of tables in the source node’s **[Advanced Settings](../user-guide/data-development/create-task#full-sql-query)** when configuring data transformation tasks (e.g., relative dates).
+* Support for filtering the time field of tables in the source node’s **[Advanced Settings](../user-guide/data-development/create-task.md#full-sql-query)** when configuring data transformation tasks (e.g., relative dates).
 * Display milestone information for tasks on the [Task List](../user-guide/copy-data/manage-task.md) page, helping users quickly understand key progress statuses.
 
 ### Enhancements
 
-* Improved [Unwind Node](../user-guide/data-development/process-node#unwind) functionality, allowing users to set expansion modes, such as **Embedded Objects** or **Flatten Fields**.
+* Improved [Unwind Node](../user-guide/data-development/process-node.md#unwind) functionality, allowing users to set expansion modes, such as **Embedded Objects** or **Flatten Fields**.
 * Enhanced full synchronization detail page display, supporting quick table name filtering.
 
 ### Bug Fixes
@@ -285,7 +335,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### Enhancements
 
-* Optimized the data synchronization task scenario, allowing source nodes to [configure DDL synchronization settings](../best-practice/handle-schema-changes.md) and specify DDL statements to ignore (based on regular expressions) in case of DDL errors.
+* Optimized the data synchronization task scenario, allowing source nodes to [configure DDL synchronization settings](../case-practices/best-practice/handle-schema-changes.md) and specify DDL statements to ignore (based on regular expressions) in case of DDL errors.
 * Enhanced data verification capabilities to support tasks that include processing nodes.
 * Improved the data verification results page display, enabling quick filtering of consistent and inconsistent tables.
 
@@ -314,9 +364,9 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-* Support for sending email reminders one week before the license expires (once a day), which can be combined with [configuring SMTP email services](best-practice/alert-via-qqmail.md) to enhance operational convenience.
-* New options in [DDL synchronization settings](../best-practice/handle-schema-changes.md): **Stop Task on DDL Error** and **Automatically Ignore All DDLs**, catering to different business scenario needs.
-* Added a [time field injection](user-guide/data-development/process-node#time_injection) node, allowing the addition of a custom timestamp field to data during synchronization. This provides a more flexible way to capture incremental changes from the source database.
+* Support for sending email reminders one week before the license expires (once a day), which can be combined with [configuring SMTP email services](../case-practices/best-practice/alert-via-qqmail.md) to enhance operational convenience.
+* New options in [DDL synchronization settings](../case-practices/best-practice/handle-schema-changes.md): **Stop Task on DDL Error** and **Automatically Ignore All DDLs**, catering to different business scenario needs.
+* Added a [time field injection](../user-guide/data-development/process-node.md#time_injection) node, allowing the addition of a custom timestamp field to data during synchronization. This provides a more flexible way to capture incremental changes from the source database.
 * Support for setting the expiration time and size of engine logs, enabling automatic log cleanup.
 
 ### Enhancements
@@ -331,17 +381,17 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-- [Shared Mining](user-guide/advanced-settings/share-mining.md) functionality supports using RocksDB as local external storage for incremental log storage expansion.
-- [TDengine Connector](prerequisites/on-prem-databases/tdengine.md) supports using multiple databases as incremental sources.
+- [Shared Mining](../user-guide/advanced-settings/share-mining.md) functionality supports using RocksDB as local external storage for incremental log storage expansion.
+- [TDengine Connector](../prerequisites/on-prem-databases/tdengine.md) supports using multiple databases as incremental sources.
 
 ### Enhancements
 
-- [Task Monitoring Page](user-guide/copy-data/monitor-task.md) adds a time filter option for the incremental phase to quickly observe the RPS (Records Per Second) of the incremental phase.
+- [Task Monitoring Page](../user-guide/copy-data/monitor-task.md) adds a time filter option for the incremental phase to quickly observe the RPS (Records Per Second) of the incremental phase.
 - Added related prompt information for key operations that may affect the database (such as filtering source table data).
 
 ### Bug Fixes
 
-* Fixed the issue where the final data does not match the expectation when the primary and secondary table key conditions change in [Primary-Secondary Merge Node](user-guide/data-development/process-node#pri-sec-merged).
+* Fixed the issue where the final data does not match the expectation when the primary and secondary table key conditions change in [Primary-Secondary Merge Node](../user-guide/data-development/process-node.md#pri-sec-merged).
 
 ## V3.5.10
 
@@ -374,12 +424,12 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-- Newly supports [Azure Cosmos DB](prerequisites/cloud-databases/azure-cosmos-db.md) as a data source, capable of synchronizing full data from the source to help facilitate rapid data flow in the cloud.
+- Newly supports [Azure Cosmos DB](../prerequisites/cloud-databases/azure-cosmos-db.md) as a data source, capable of synchronizing full data from the source to help facilitate rapid data flow in the cloud.
 
 ### Enhancements
 
-- Enhanced data source connection methods, [SQL Server](prerequisites/on-prem-databases/sqlserver.md) supports SSL connections to further enhance data security.
-- Optimized the method of adjusting field types in [data replication tasks](user-guide/copy-data/create-task.md); in addition to manual input, it now supports direct selection of common types from the target database.
+- Enhanced data source connection methods, [SQL Server](../prerequisites/on-prem-databases/sqlserver.md) supports SSL connections to further enhance data security.
+- Optimized the method of adjusting field types in [data replication tasks](../user-guide/copy-data/create-task.md); in addition to manual input, it now supports direct selection of common types from the target database.
 - For the source node settings of the task, supports setting the number of records read per batch during the incremental phase to better meet the performance requirements of incremental synchronization.
 
 ### Bug Fixes
@@ -391,9 +441,9 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-- Supports loading table comments for [Oracle data sources](prerequisites/on-prem-databases/oracle#advanced), which can be enabled in the advanced options during data source configuration, allowing quick identification of tables' business meanings through comments.
-- Supports deployment of TapData on [Windows platform](../quick-start/install/install-tapdata-enterprise/install-on-windows.md), further expanding the range of supported deployment platforms.
-- In the task operation [monitoring page](user-guide/copy-data/monitor-task.md), supports viewing RPS (Records Per Second) information based on the dimension of event size.
+- Supports loading table comments for [Oracle data sources](../prerequisites/on-prem-databases/oracle.md#advanced), which can be enabled in the advanced options during data source configuration, allowing quick identification of tables' business meanings through comments.
+- Supports deployment of TapData on [Windows platform](../installation/install-tapdata-enterprise/install-on-windows.md), further expanding the range of supported deployment platforms.
+- In the task operation [monitoring page](../user-guide/copy-data/monitor-task.md), supports viewing RPS (Records Per Second) information based on the dimension of event size.
 
 ### Bug Fixes
 
@@ -404,8 +454,8 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### Enhancements
 
-- Optimized [data source connections](prerequisites/README.md), with MySQL, PostgreSQL, Kafka, TiDB, MariaDB, etc., supporting SSL connections to further enhance data security.
-- Enhanced the filtering function of [data verification](user-guide/verify-data.md), supporting custom query and aggregation query filtering through SQL.
+- Optimized [data source connections](../prerequisites/README.md), with MySQL, PostgreSQL, Kafka, TiDB, MariaDB, etc., supporting SSL connections to further enhance data security.
+- Enhanced the filtering function of [data verification](../user-guide/verify-data.md), supporting custom query and aggregation query filtering through SQL.
 - Optimized interface interaction logic.
 - For non-primary key update conditions, created a unique index to solve the problem of data duplication.
 
@@ -419,14 +469,14 @@ import Content from '../reuse-content/_enterprise-features.md';
 ### New Features
 
 - Newly supports Hive3 as a target.
-- When MongoDB is the target, newly supports [automatic creation of sharded collections](user-guide/copy-data/create-task#advanced-settings).
-- Newly added [Unwind Processing Node](user-guide/data-development/process-node#Unwind), helping you efficiently "unwind" elements in an array, converting each element into a separate data row.
+- When MongoDB is the target, newly supports [automatic creation of sharded collections](../user-guide/copy-data/create-task.md#advanced-settings).
+- Newly added [Unwind Processing Node](../user-guide/data-development/process-node.md#Unwind), helping you efficiently "unwind" elements in an array, converting each element into a separate data row.
 - When configuring tasks, newly supports the ability to disable nodes. Hovering over a node now offers this functionality, helping to reduce the cost of data flow in the process.
 
 ### Enhancements
 
-- Optimized the setting of [published API scope](user-guide/data-service/create-api-service#settings), allowing adjustments without needing to publish.
-- When [configuring data replication tasks](user-guide/copy-data/create-task.md), the **selectable table range** dropdown box allows quick filtering of tables with or without primary keys, where tables with primary keys include those without primary keys but with unique indexes.
+- Optimized the setting of [published API scope](../user-guide/data-service/create-api-service.md#settings), allowing adjustments without needing to publish.
+- When [configuring data replication tasks](../user-guide/copy-data/create-task.md), the **selectable table range** dropdown box allows quick filtering of tables with or without primary keys, where tables with primary keys include those without primary keys but with unique indexes.
 
 ### Bug Fixes
 
@@ -437,21 +487,21 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### New Features
 
-- Added [building materialized views](user-guide/data-development/create-materialized-view.md) feature, enabling quick construction of real-time data models.
-- Added support for configuring source nodes of [shared mining](user-guide/advanced-settings/share-mining.md) tasks, including settings for enabling **incremental multi-threaded writing** and **supplementing updated data with complete fields**.
-- Kafka data source added support for [setting the number of replicas and partitions](pipeline-tutorial/oracle-to-kafka#advanced_settings).
+- Added [building materialized views](../user-guide/data-development/create-materialized-view.md) feature, enabling quick construction of real-time data models.
+- Added support for configuring source nodes of [shared mining](../user-guide/advanced-settings/share-mining.md) tasks, including settings for enabling **incremental multi-threaded writing** and **supplementing updated data with complete fields**.
+- Kafka data source added support for [setting the number of replicas and partitions](../case-practices/pipeline-tutorial/oracle-to-kafka.md).
 - Added support for the `$unset` operation during synchronization between MongoDB instances.
 
 ### Enhancements
 
-- [Data verification](user-guide/verify-data.md) feature field filtering experience optimization.
+- [Data verification](../user-guide/verify-data.md) feature field filtering experience optimization.
 - Supported quick node targeting at the top of the data replication/data transformation configuration page through node search.
 
 ## V3.5.2
 
 ### New Features
 
-* Added [Python Processing Node](user-guide/data-development/process-node#python), supporting custom data processing logic through Python scripts, offering performance improvements compared to JS processing nodes.
+* Added [Python Processing Node](../user-guide/data-development/process-node.md#python), supporting custom data processing logic through Python scripts, offering performance improvements compared to JS processing nodes.
 * Added support for data synchronization between Redis instances.
 
 ### Enhancements
@@ -463,7 +513,7 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 ## V3.5.1
 
 ### New Features
-- Now when [creating a role](user-guide/manage-system/manage-role.md), it supports the granular granting of functional and data rights.
+- Now when [creating a role](../user-guide/manage-system/manage-role.md), it supports the granular granting of functional and data rights.
 
 ### Enhancements
 - Enhanced the UI prompts and guidance when setting up core data sources like PostgreSQL, Redis, etc.
@@ -477,10 +527,10 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 ## V3.4
 
 ### New Features
-- When task configurations are set for full + incremental sync, there's now support to turn on the [scheduled periodic task feature](user-guide/copy-data/create-task#task-attr). The task will automatically stop, reset, and run again at the set time.
-- For the [add/remove field node](user-guide/data-development/process-node#add-and-del-cols), field order adjustment is now supported.
-- A new feature to [dynamically adjust memory](user-guide/copy-data/create-task#task-attr) has been introduced (enabled by default). During the full synchronization phase, it identifies memory usage and auto-adjusts the memory queue, effectively preventing memory overflow scenarios.
-- The data panel has been renamed to the [Real-time Data Center](user-guide/real-time-data-hub/README.md), with added guidance on usage and task creation.
+- When task configurations are set for full + incremental sync, there's now support to turn on the [scheduled periodic task feature](../user-guide/copy-data/create-task.md#task-attr). The task will automatically stop, reset, and run again at the set time.
+- For the [add/remove field node](../user-guide/data-development/process-node.md#add-and-del-cols), field order adjustment is now supported.
+- A new feature to [dynamically adjust memory](../user-guide/copy-data/create-task.md#task-attr) has been introduced (enabled by default). During the full synchronization phase, it identifies memory usage and auto-adjusts the memory queue, effectively preventing memory overflow scenarios.
+- The data panel has been renamed to the [Real-time Data Center](../user-guide/real-time-data-hub/README.md), with added guidance on usage and task creation.
 - Introduced a target write strategy, where if an update event does not exist, it can be written to a local log.
 
 ### Enhancements
@@ -499,17 +549,17 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 ## V3.3
 
 ### New Features
-- [Kafka data source](prerequisites/mq-and-middleware/kafka.md) now supports custom message body formats.
-- Added the [API interface documentation export feature](user-guide/data-service/create-api-service#release330-export-api) to help teams quickly establish and enhance API usage documents.
-- Shared mining functionality supports [configuring task alerts](user-guide/advanced-settings/share-mining#release330-alert), allowing alerts via system notifications or emails for better task monitoring.
-- The [data validation function](user-guide/verify-data.md) allows setting data filters, enabling validation of specific conditional data only, reducing validation scope and increasing efficiency.
-- In data service platform mode, when dragging a data table to the platform cache layer to generate a task, it supports [setting the synchronization type of the task to be full or incremental](../user-guide/real-time-data-hub/daas-mode/create-daas-task/#release330-task).
+- [Kafka data source](../prerequisites/mq-and-middleware/kafka.md) now supports custom message body formats.
+- Added the [API interface documentation export feature](../user-guide/data-service/create-api-service.md#release330-export-api) to help teams quickly establish and enhance API usage documents.
+- Shared mining functionality supports [configuring task alerts](../user-guide/advanced-settings/share-mining.md#release330-alert), allowing alerts via system notifications or emails for better task monitoring.
+- The [data validation function](../user-guide/verify-data.md) allows setting data filters, enabling validation of specific conditional data only, reducing validation scope and increasing efficiency.
+- In data service platform mode, when dragging a data table to the platform cache layer to generate a task, it supports [setting the synchronization type of the task to be full or incremental](../user-guide/real-time-data-hub/daas-mode/create-daas-task.md#release330-task).
 
 ### Enhancements
-- Introduced [rolling upgrades](production-admin/operation#release330-upgrade), which, compared to the downtime upgrade method, further reduces business impacts.
-- Post-error in [shared mining tasks](user-guide/advanced-settings/share-mining.md), associated tasks now include alert prompts.
-- In the [row filter processing node](user-guide/data-development/process-node.md), added usage examples when filtering with the DATE type.
-- [Time operation node](user-guide/data-development/process-node#date-calculation) now displays adjusted fields.
+- Introduced [rolling upgrades](../administration/operation.md#release330-upgrade), which, compared to the downtime upgrade method, further reduces business impacts.
+- Post-error in [shared mining tasks](../user-guide/advanced-settings/share-mining.md), associated tasks now include alert prompts.
+- In the [row filter processing node](../user-guide/data-development/process-node.md), added usage examples when filtering with the DATE type.
+- [Time operation node](../user-guide/data-development/process-node.md#date-calculation) now displays adjusted fields.
 - Optimized algorithm for estimating remaining time for full synchronization.
 - Field processing nodes now support one-click copy and paste for configurations.
 
@@ -525,23 +575,23 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 
 ### New Features
 
-- In the data platform mode, it can directly [display the relationship of table-level traceability](../user-guide/real-time-data-hub/daas-mode/daas-mode-dashboard#release320-daas), helping you to visually show the link relationship of data tables.
-- In the data platform mode, it supports [deleting tables from the platform processing layer](../user-guide/real-time-data-hub/daas-mode/daas-mode-dashboard#release320-daas).
-- When configuring the target node of a task, it supports [adjusting field length by a coefficient](user-guide/copy-data/create-task#release320-col-length) to avoid data write failures due to different character encodings.
-- [Data verification](user-guide/verify-data) feature supports SelectDB data source.
-- In scenarios where Redis is the target node, and data is stored in List or Hash format with a single key, it [supports writing the source table schema into a Hash key](pipeline-tutorial/mysql-to-redis#release320-contain-table-head) (default name is `-schema-key-`). The value is used to store the source table's table name and column name information.
-- Added [**type filter**](user-guide/data-development/process-node#release320-type-filter) processing node, which can quickly filter columns of the same type. Filtered fields will not be passed to the next node.
+- In the data platform mode, it can directly [display the relationship of table-level traceability](../user-guide/real-time-data-hub/daas-mode/daas-mode-dashboard.md#release320-daas), helping you to visually show the link relationship of data tables.
+- In the data platform mode, it supports [deleting tables from the platform processing layer](../user-guide/real-time-data-hub/daas-mode/daas-mode-dashboard.md#release320-daas).
+- When configuring the target node of a task, it supports [adjusting field length by a coefficient](../user-guide/copy-data/create-task.md#release320-col-length) to avoid data write failures due to different character encodings.
+- [Data verification](../user-guide/verify-data.md) feature supports SelectDB data source.
+- In scenarios where Redis is the target node, and data is stored in List or Hash format with a single key, it [supports writing the source table schema into a Hash key](../case-practices/pipeline-tutorial/mysql-to-redis.md) (default name is `-schema-key-`). The value is used to store the source table's table name and column name information.
+- Added [**type filter**](../user-guide/data-development/process-node.md#release320-type-filter) processing node, which can quickly filter columns of the same type. Filtered fields will not be passed to the next node.
 - **Field editing** processing node supports conversion between snake_case and camelCase naming.
-- Data copy tasks, data conversion tasks, data panels, and caching creation support [displaying table description information](user-guide/copy-data/create-task#310-table-model), defaulting to table comment information.
+- Data copy tasks, data conversion tasks, data panels, and caching creation support [displaying table description information](../user-guide/copy-data/create-task.md#310-table-model), defaulting to table comment information.
 
 ### Enhancements
 
-- Product menu adjustments: data development is renamed to [data conversion](user-guide/data-development/). Some functions have been moved to [advanced settings](user-guide/advanced-settings/) (e.g., shared cache).
-- Improved interaction for tables without primary keys, e.g., [support for filtering non-primary key tables and adding primary key table identification](user-guide/copy-data/create-task#310-table-model) when configuring data copy tasks.
-- For external storage configurations of MongoDB data sources, [connection testing capability](user-guide/manage-system/manage-external-storage#320-external-storage) has been added.
-- When creating a new external storage and choosing MongoDB, it supports [using SSL connections](user-guide/manage-system/manage-external-storage#320-external-storage).
-- Creating an HttpReceiver data source now [supports script trial runs](prerequisites/others/http-receiver) and [access authentication functionality](prerequisites/others/http-receiver).
-- Standard JS node capabilities adjusted, adding [Linked HashMap data structure](appendix/standard-js#linkedhashmap) and [context.global object](appendix/standard-js#global).
+- Product menu adjustments: data development is renamed to [data conversion](../user-guide/data-development/). Some functions have been moved to [advanced settings](../user-guide/advanced-settings/) (e.g., shared cache).
+- Improved interaction for tables without primary keys, e.g., [support for filtering non-primary key tables and adding primary key table identification](../user-guide/copy-data/create-task.md#310-table-model) when configuring data copy tasks.
+- For external storage configurations of MongoDB data sources, [connection testing capability](../user-guide/advanced-settings/manage-external-storage.md#320-external-storage) has been added.
+- When creating a new external storage and choosing MongoDB, it supports [using SSL connections](../user-guide/advanced-settings/manage-external-storage.md#320-external-storage).
+- Creating an HttpReceiver data source now [supports script trial runs](../prerequisites/others/http-receiver.md) and [access authentication functionality](../prerequisites/others/http-receiver.md).
+- Standard JS node capabilities adjusted, adding [Linked HashMap data structure](appendix/standard-js.md#linkedhashmap) and [context.global object](appendix/standard-js.md#global).
 - **Field editing** processing node's UI interaction has been improved.
 - Redundant prompts for task startup and schema reload have been optimized.
 - Data copy tasks support manually adding new tables. New tables can achieve full + incremental data synchronization.
@@ -564,18 +614,18 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 
 ### New Features
 
-- [Data panel functionality](user-guide/real-time-data-hub/etl-mode) now supports table-level traceability capabilities. You can view data lineage relationships through table details.
-- When [configuring data copy tasks](./user-guide/copy-data/create-task#310-table-model), you can view the table model in the processing node.
-- Supports publishing API data services based on Doris data source [Release API Data Services](user-guide/data-service/create-api-service.md).
-- [Cluster management](user-guide/manage-system/manage-cluster.md) page allows downloading thread resource monitoring and data source usage data.
+- [Data panel functionality](../user-guide/real-time-data-hub/etl-mode) now supports table-level traceability capabilities. You can view data lineage relationships through table details.
+- When [configuring data copy tasks](../user-guide/copy-data/create-task.md#310-table-model), you can view the table model in the processing node.
+- Supports publishing API data services based on Doris data source [Release API Data Services](../user-guide/data-service/create-api-service.md).
+- [Cluster management](../user-guide/manage-system/manage-cluster.md) page allows downloading thread resource monitoring and data source usage data.
 
 ### Enhancements
 
-- Shared mining task management improved, supporting [starting/stopping mining tasks for individual tables](user-guide/advanced-settings/share-mining.md#release310-share-mining).
-- [Shared cache](user-guide/advanced-settings/share-cache.md), [functions](user-guide/advanced-settings/manage-function.md), [API data services](user-guide/data-service/create-api-service) support import/export functions.
-- [Data verification](user-guide/verify-data) supports configuring alert rules and notification methods.
-- Auto-fill table logic for [data verification](user-guide/verify-data) has been optimized.
-- Frontend added explanations for the distinction between [standard JS](appendix/standard-js) and [enhanced JS](appendix/enhanced-js).
+- Shared mining task management improved, supporting [starting/stopping mining tasks for individual tables](../user-guide/advanced-settings/share-mining.md#release310-share-mining).
+- [Shared cache](../user-guide/advanced-settings/share-cache.md), [functions](../user-guide/advanced-settings/manage-function.md), [API data services](../user-guide/data-service/create-api-service.md) support import/export functions.
+- [Data verification](../user-guide/verify-data.md) supports configuring alert rules and notification methods.
+- Auto-fill table logic for [data verification](../user-guide/verify-data.md) has been optimized.
+- Frontend added explanations for the distinction between [standard JS](appendix/standard-js.md) and [enhanced JS](appendix/enhanced-js.md).
 - JS processor standardization, JS usage, and trial run have been restructured.
 - In all processing nodes supporting JS scripting, typing `record.` automatically prompts for the current model's field names.
 - Resolving timeout issues caused by clearing external storage data during a reset has been optimized.
@@ -605,16 +655,16 @@ source error codes](troubleshooting/error-code.md), covering more scenarios and 
 
 ### New Features
 
-- [Integrated GraphQL capability](user-guide/data-service/query-via-graphql.md), enriching API query methods.
-- Added [application categorization capability for APIs](user-guide/data-service/create-api-service.md), facilitating categorization based on business.
-- Introduced [time calculation processing node](user-guide/data-development/process-node#time-calculation) for flexible handling of discrepancies in source and destination database time zones.
-- Introduced [full-scale partitioning capability](best-practice/full-breakpoint-resumption.md), currently only supported for MongoDB.
+- [Integrated GraphQL capability](../user-guide/data-service/query-via-graphql.md), enriching API query methods.
+- Added [application categorization capability for APIs](../user-guide/data-service/create-api-service.md), facilitating categorization based on business.
+- Introduced [time calculation processing node](../user-guide/data-development/process-node.md#time-calculation) for flexible handling of discrepancies in source and destination database time zones.
+- Introduced [full-scale partitioning capability](../case-practices/best-practice/full-breakpoint-resumption.md), currently only supported for MongoDB.
 
 ### Enhancements
 
-- [Shared cache function](user-guide/advanced-settings/share-mining.md) improved, offering an observable page to monitor mining progress and troubleshoot failures.
-- [Full custom query function](user-guide/data-development/create-task#full-sql-query) relaxed the restriction of only using JS nodes, now allowing the addition of other processing nodes with the node model directly utilizing the source table's model.
-- The field [processing node](user-guide/data-development/process-node.md) supporting operations like adding/deleting fields, type modifications, and renaming fields now includes a field search function.
+- [Shared cache function](../user-guide/advanced-settings/share-mining.md) improved, offering an observable page to monitor mining progress and troubleshoot failures.
+- [Full custom query function](../user-guide/data-development/create-task.md#full-sql-query) relaxed the restriction of only using JS nodes, now allowing the addition of other processing nodes with the node model directly utilizing the source table's model.
+- The field [processing node](../user-guide/data-development/process-node.md) supporting operations like adding/deleting fields, type modifications, and renaming fields now includes a field search function.
 - Adjusted wording for Schema loading frequency configuration in connection settings.
 - Optimization of table name modification logic in the **Table Editing Node**; removed the apply button for direct configuration effectiveness.
 - During the startup of the management process (frontend), it now includes heapDump and stackTrace parameters, similar to the synchronization governance process.

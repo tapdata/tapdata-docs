@@ -6,11 +6,53 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
-## 3.15
+## 3.18.0
+
+### Enhancements
+
+- Enabled copy all selected table names during task configuration, improving operational efficiency.
+- Expanded the range of built-in error codes for better issue identification and diagnosis.
+- Enhanced milestone tracking and display logic during task execution.
+- Improved log viewing experience for script processing nodes by supporting split log display.
+
+### Bug Fixes
+
+- Resolved an issue where MongoDB indexes were not correctly loaded, causing schema loading failures.
+- Fixed an issue where data extraction tasks could get stuck at the table structure replication stage.
+
+## 3.17.0
+
+### Enhancements
+
+- Expanded the range of built-in error codes for faster issue identification and diagnosis.
+
+### Bug Fixes
+
+- Fixed an issue where resetting tasks on the edit page failed, causing a “current status not allowed” error when saving the task.
+- Resolved an issue where removing and re-adding a table being synchronized in a replication task failed to resume synchronization correctly.
+
+## 3.16.0
 
 ### New Features
 
-* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+- Added HTTPS connection support for [Elasticsearch data sources](../prerequisites/on-prem-databases/elasticsearch.md), enhancing data transmission security to meet more stringent data security and compliance requirements.
+- Enabled support for synchronizing tables without primary keys by adding a hash field (default name: `_no_pk_hash`), ensuring data consistency and stable synchronization in non-primary key scenarios.
+
+### Enhancements
+
+- Enhanced data filtering logic in Row Filter nodes, ensuring that target data is updated to maintain consistency when data status changes from meeting to not meeting filter conditions.
+
+### Bug Fixes
+
+- Fixed an issue preventing the display of all tables (completed, in progress, and not started) in full sync details.
+- Corrected inaccuracies in time and milestone statistics.
+- Resolved an issue with MongoDB Atlas functionality when DNS resolution fails.
+
+## 3.15.0
+
+### New Features
+
+* Kafka-Enhanced and TiDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), providing more advanced features and enhanced production stability.
 
 ### Enhancements
 
@@ -23,11 +65,11 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where the task retry start time was incorrectly displayed as 1970.
 - Fixed an issue where index creation failed when Elasticsearch was used as the target database.
 
-## 3.14
+## 3.14.0
 
 ### New Features
 
-* Doris, ClickHouse, PostgreSQL, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), providing more advanced features and enhanced production stability.
+* Doris, ClickHouse, PostgreSQL, and MongoDB have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), providing more advanced features and enhanced production stability.
 * When using PostgreSQL as a source, it is now possible to specify the time point for incremental data in task settings.
 
 ### Enhancements
@@ -40,21 +82,21 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where tasks would encounter errors during the incremental phase after enabling the heartbeat table in new tasks.
 - Fixed the issue where tasks got stuck in the full phase and could not move to the incremental phase after a reset.
 
-## 3.13
+## 3.13.0
 
 ### New Features
 
-* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases), providing more comprehensive features and enhanced production stability.
+* MySQL has passed the TapData certification testing process, upgrading it to a [certified data source](../prerequisites/supported-databases.md), providing more comprehensive features and enhanced production stability.
 
 ### Bug Fixes
 
 - Fixed an issue where regular indexes were not properly synchronized after enabling the **Sync Indexes on Table Creation** option, ensuring data synchronization integrity.
 
-## 3.12
+## 3.12.0
 
 ### New Features
 
-- Dameng have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases), offering richer features and higher production stability.
+- Dameng have passed the TapData certification testing process and have been upgraded to [Certified Data Sources](../prerequisites/supported-databases.md), offering richer features and higher production stability.
 - For [PostgreSQL](../prerequisites/on-prem-databases/postgresql.md) data sources, incremental data synchronization is now supported using the walminer plugin, catering to more use cases.
 - Data replication tasks now support reading from multiple tables simultaneously, improving parallel processing capabilities and task execution efficiency.
 
@@ -81,7 +123,7 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where an unexpected `_id` field appeared in the model when synchronizing MongoDB oplog to Kafka.
 - Fixed an issue where MongoDB oplog data replication tasks could not replicate properly during synchronization.
 
-## 3.11
+## 3.11.0
 
 ### New Features
 
@@ -97,14 +139,14 @@ This document introduces the recent release notes for TapData Community. For mor
 - Fixed an issue where MongoDB database cursor timeout prevented normal full synchronization.
 - Fixed an issue where the custom SQL filter switch could not be turned on in the source node data filtering settings.
 
-## 3.10
+## 3.10.0
 
 ### New Features
 
-- Added a [Union Node](../user-guide/copy-data/process-node#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
+- Added a [Union Node](../user-guide/copy-data/process-node.md#union-node) to data replication tasks, enabling the merging (UNION) of multiple tables within the same database. This is useful for data integration and analysis scenarios.
 - [Doris](../prerequisites/warehouses-and-lake/doris.md) data source now supports certificate-free HTTPS connections.
 - MySQL, Oracle, OpenGauss, SQL Server, and PostgreSQL data sources now support enabling the **Hash Sharding** feature in the advanced settings of nodes during task configuration, significantly improving the full data sync speed for large tables.
-- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase) data source, with a maturity level of Beta, further enriching the variety of data sources.
+- Added support for [VastBase](../prerequisites/on-prem-databases/vastbase.md) data source, with a maturity level of Beta, further enriching the variety of data sources.
 
 ### Enhancements
 

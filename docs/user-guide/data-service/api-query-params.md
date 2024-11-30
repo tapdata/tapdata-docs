@@ -11,7 +11,7 @@ When invoking published API interfaces, it's possible to add query conditions in
 - **[Skip Filter (Skip Specified Record Count Filter)](#skip)**: Skips a specified number of rows in the returned data.
 - **[Where Filter (Query Condition Filter)](#where)**: Queries and returns data based on a set of logically related conditions, similar to SQL's WHERE clause.
 
-In this case, we have published the `customer` table [as an API service](create-api-service), and the data comes from a randomly generated source. Its table structure and data sample are as follows:
+In this case, we have published the `customer` table [as an API service](create-api-service.md), and the data comes from a randomly generated source. Its table structure and data sample are as follows:
 
 ```sql
 mysql> SELECT * FROM customer LIMIT 1\G;

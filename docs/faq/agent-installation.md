@@ -24,7 +24,7 @@ TapData Agent obtains data from the source, processes and transforms it, then se
 
 The TapData Agent should be installed in the local network where the database is located since data flow is usually time-sensitive.
 
-See [Deploying TapData Agent](../quick-start/install/install-tapdata-agent.md) for more information.
+See [Deploying TapData Agent](../installation/install-tapdata-agent.md) for more information.
 
 ### How many agents need to be deployed?
 
@@ -52,7 +52,7 @@ When Oracle is in RAC mode with two nodes, the TapData Agent can be deployed on 
 
 ### What should I do if the test fails after installing Docker on Windows (64-bit)?
 
-The best way to [deploy Agent](../quick-start/install/install-tapdata-agent.md) is directly through Docker.
+The best way to [deploy Agent](../installation/install-tapdata-agent.md) is directly through Docker.
 
 ### How do I get the tokens needed for deployment again?
 
@@ -60,7 +60,7 @@ The best way to [deploy Agent](../quick-start/install/install-tapdata-agent.md) 
 
 ### How can the deployment status of the TapData Agent be detected?
 
-To detect the deployment status of the TapData Agent, follow the provided instructions to complete the deployment process. Once the deployment is finished, the Agent state will automatically change to **running**. If more than 5 minutes have passed and the state has not changed to normal, it may indicate a deployment failure. In such cases, it is recommended to contact [technical support](../support.md) for assistance. Providing logs will aid in identifying and resolving the problem effectively.
+To detect the deployment status of the TapData Agent, follow the provided instructions to complete the deployment process. Once the deployment is finished, the Agent state will automatically change to **running**. If more than 5 minutes have passed and the state has not changed to normal, it may indicate a deployment failure. In such cases, it is recommended to contact [technical support](../appendix/support.md) for assistance. Providing logs will aid in identifying and resolving the problem effectively.
 
 
 
@@ -68,7 +68,7 @@ To detect the deployment status of the TapData Agent, follow the provided instru
 
 ### Agent startup error: "start timout"?
 
-If you encounter the failure of starting the Agent, you can check the log file **logs/tapdata-agent.log** in the installation directory to determine whether it is a network problem, you can also contact us for [technical support](../support.md).
+If you encounter the failure of starting the Agent, you can check the log file **logs/tapdata-agent.log** in the installation directory to determine whether it is a network problem, you can also contact us for [technical support](../appendix/support.md).
 
 ### Enter the token and report an error: "java.lang.IllegalStateException: Cannot load configuration class: io.tapdata.Application"?
 
@@ -86,7 +86,7 @@ The package is incomplete. Please replace it with a new version.
 
 ### Agent unexpectedly stopped, how to start the agent?
 
-Log in to the device where the Agent is deployed and enter the Agent installation directory, execute the `./tapdata start` command, if you cannot start, you can contact us for [technical support](../support.md), and provide logs to assist in locating the problem.
+Log in to the device where the Agent is deployed and enter the Agent installation directory, execute the `./tapdata start` command, if you cannot start, you can contact us for [technical support](../appendix/support.md), and provide logs to assist in locating the problem.
 
 ### The Agent is running normally, but appears to be offline in TapData Cloud?
 

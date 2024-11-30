@@ -104,7 +104,7 @@ Before connecting to a Db2 database, you need to complete account authorization 
       </TabItem>
       </Tabs>
 
-3. To perform incremental data synchronization, [contact the TapData team](../../support.md) to obtain and deploy the raw log service.
+3. To perform incremental data synchronization, [contact the TapData team](../../appendix/support.md) to obtain and deploy the raw log service.
 
    :::tip
    To simplify the process, this service will automatically execute `ALTER TABLE <schema>.<table> DATA CAPTURE CHANGES;` after it starts, enabling table-level data change capture.
@@ -159,11 +159,11 @@ Before connecting to a Db2 database, you need to complete account authorization 
      * **Schema**: Schema name, one connection per Schema. For multiple Schemas, create multiple data connections.
      * **Additional Connection String Parameters**: Additional connection parameters, default is empty.
      * **User** and **Password**: Enter the database username and password.
-     * **Grpc Server Host**, **Grpc Server Port**: Contact the [TapData Team](../../support.md) for raw log collection components to capture Db2 incremental data, default service port is **50051**.
+     * **Grpc Server Host**, **Grpc Server Port**: Contact the [TapData Team](../../appendix/support.md) for raw log collection components to capture Db2 incremental data, default service port is **50051**.
      
    * **Advanced Settings**
       * **Time Zone**: Default is UTC (0).  If changed to another timezone, it will impact the synchronization time, particularly for fields without timezone information, such as TIMESTAMP and TIME types. However, DATE types will remain unaffected.
-      * **CDC Log Caching**: [Extract the incremental logs](../../user-guide/advanced-settings/share-mining) from the source database. This allows multiple tasks to share the incremental log extraction process from the same source, reducing the load on the source database. When enabled, you also need to select a storage location for the incremental log information.
+      * **CDC Log Caching**: [Extract the incremental logs](../../user-guide/advanced-settings/share-mining.md) from the source database. This allows multiple tasks to share the incremental log extraction process from the same source, reducing the load on the source database. When enabled, you also need to select a storage location for the incremental log information.
       * **Include Tables**: By default, all tables are included. You can choose to customize and specify the tables to include, separated by commas.
       * **Exclude Tables**: When enabled, you can specify tables to exclude, separated by commas.
       * **Agent Settings**: The default is automatic assignment by the platform. You can also manually specify an Agent.

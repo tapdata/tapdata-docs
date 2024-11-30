@@ -56,7 +56,7 @@ To simplify the usage process, the TapData TiDB connector integrates with the [T
 
   * TapData engine must be deployed on an **arm or amd** system architecture.
 
-  * Due to communication restrictions between TiDB components, when using the Tapdata Cloud product, the deployed Agent must be a [semi-managed instance](../../billing/purchase#semi-and-full-agent.md).
+  * Due to communication restrictions between TiDB components, when using the Tapdata Cloud product, the deployed Agent must be a [semi-managed instance](../../billing/purchase.md).
 
 ## <span id="prerequisite">Prerequisites</span>
 
@@ -133,7 +133,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE, ALTER, CREATE, DROP ON *.* TO 'username';
       * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
       * **Agent Settings**: Defaults to Platform automatic allocation, you can also manually specify an agent.
       * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable Heartbeat Table**: When the connection type is **Source&Target** or **Source**, you can enable this switch. TapData will create a _tapdata_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the [heartbeat task](../../best-practice/heart-beat-task.md) in the data source editing page.
+      * **Enable Heartbeat Table**: When the connection type is **Source&Target** or **Source**, you can enable this switch. TapData will create a _tapdata_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the [heartbeat task](../../case-practices/best-practice/heart-beat-task.md) in the data source editing page.
    * **SSL Settings**: Choose whether to enable SSL connection to the data source for enhanced data security. After enabling this feature, you will need to upload a CA file, client certificate, and key, and fill in the client password. For more information, see [Generating Self-Signed Certificates](https://docs.pingcap.com/tidb/stable/generate-self-signed-certificates).
    
 6. Click **Test**. After the test passes, click **Save**.

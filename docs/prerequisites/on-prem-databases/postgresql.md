@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 | Bit            | bit, bit varying                                             |
 | Boolean        | boolean                                                      |
 | Date & Time    | timestamp without time zone, timestamp with time zone, date, time without time zone, <br />time with time zone, interval |
-| Spatial Data   | point, polygon, circle, path, box, line, lseg                |
+| Spatial Data   | geometry, point, polygon, circle, path, box, line, lseg      |
 | Network Types  | inet, cidr, macaddr                                          |
 | Identifier     | uuid, oid, regproc, regprocedure, regoper, regoperator, regclass, regtype, regconfig, regdictionary |
 | Text Search    | tsvector, tsquery                                            |
@@ -137,7 +137,12 @@ When PostgreSQL is used as a target, you can choose write strategies through the
 4. Log in to the server hosting PostgreSQL, and choose the decoder plugin to install based on business needs and version:
 
    - [Wal2json](https://github.com/eulerto/wal2json/blob/master/README.md) (Recommended): Suitable for PostgreSQL 9.4 and above, converts WAL logs to JSON format, simple to use, but requires source tables to have primary keys; otherwise, delete operations cannot be synchronized.
-   - [Pgoutput](https://www.postgresql.org/docs/15/sql-createsubscription.html): An internal logical replication protocol introduced in PostgreSQL 10, no additional installation needed. For tables with primary keys and `replica identity` set to `default`, the `before` in update events will be empty, which can be solved by setting `replica identity full`.
+   - [Pgoutput](https://www.postgresql.org/docs/15/sql-createsubscription.html): An internal logical replication protocol introduced in PostgreSQL 10, no additional installation needed. For tables with primary keys and `replica identity` set to `default`, the `before` in update events will be empty, which can be solved by setting `replica identity full`. Additionally, if you do not have database-level **CREATE** permissions, you need to run the following commands to create the required PUBLICATION:
+
+     ```sql
+     CREATE PUBLICATION dbz_publication_root FOR ALL TABLES WITH (PUBLISH_VIA_PARTITION_ROOT = TRUE);
+     CREATE PUBLICATION dbz_publication FOR ALL TABLES;
+     ```
    - [Decoderbufs](https://github.com/debezium/postgres-decoderbufs): Suitable for PostgreSQL 9.6 and above, uses Google Protocol Buffers to parse WAL logs but requires more complex configuration.
    - [Walminer](https://gitee.com/movead/XLogMiner/tree/master/): Does not rely on logical replication, doesn't require setting `wal_level` to `logical`, or adjusting replication slot configuration, but requires superuser permissions.
 

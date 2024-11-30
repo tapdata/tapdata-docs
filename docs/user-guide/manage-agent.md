@@ -22,7 +22,7 @@ import TabItem from '@theme/TabItem';
 
 <Tabs className="unique-tabs">
     <TabItem value="create-agent" label="① Create Agent" default>
-    <p>Agent support multi-platform installation, see <a href="../quick-start/install/install-tapdata-agent">Install Agent</a>.</p>
+    <p>Agent support multi-platform installation, see <a href="../installation/install-tapdata-agent">Install Agent</a>.</p>
    </TabItem>
    <TabItem value="stop-agent" label="② Stop Agent">
    <p>Click <b>Stop</b> to pause the Agent, which can be used for temporary maintenance scenarios, to restart the Agent later, you should run it from the command line.</p>

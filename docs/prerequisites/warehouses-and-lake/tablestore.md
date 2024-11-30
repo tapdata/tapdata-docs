@@ -65,4 +65,4 @@ This article provides instructions on how to add Tablestore data sources to TapD
 
 ## Related Topics
 
-[Oracle to Tablestore Real-Time Sync](../../pipeline-tutorial/oracle-to-tablestore.md)
+[Oracle to Tablestore Real-Time Sync](../../case-practices/pipeline-tutorial/oracle-to-tablestore.md)

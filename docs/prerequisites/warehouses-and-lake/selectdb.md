@@ -14,7 +14,7 @@ SelectDB Cloud 2.0.13 and above
 
 ## Preparations
 
-Log in to [SelectDB platform](https://en.selectdb.cloud/) and grant privileges to the database username.
+Log in to [SelectDB platform](https://docs.selectdb.com/docs/cloud/management-guide/webui/login) and grant privileges to the database username.
 
 Grant all privileges to Specified DB:
 
@@ -48,7 +48,7 @@ GRANT PROCESS ON *.* TO 'tapdata' IDENTIFIED BY 'password';
     - **Connection type**: Currently only supported as a **Target**.
     - **Repo IP**: The public network connection address of the SelectDB's Warehouse.
     - **MySQL Port**: The service port of database.
-    - **HTTP Port**: HTTP protocol port, for information about the address and how to obtain it, see the [official documentation](https://en.selectdb.com/docs/User%20Guide/Connect%20Warehouse).
+    - **HTTP Port**: HTTP protocol port, for information about the address and how to obtain it, see the [official documentation](https://docs.selectdb.com/docs/cloud/management-guide/connections/connect-style).
     - **Database**: Database name, a connection corresponding to a database, if there are multiple databases, you need to create multiple connections.
     - **user**, **password**: The database username and password.
     - **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).

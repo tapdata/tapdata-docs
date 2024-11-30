@@ -22,7 +22,7 @@ In the Data Integration Mode, you can simply drag the source table to the target
 
    ![Create Task](../../../images/create_etl_task.gif)
 
-   - **Only Save**: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../../data-development/process-node) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click **Start** in the upper right corner of the page.
+   - **Only Save**: Save the task without running it. You can now click on the task name in the target data card to customize the task further. On the redirected task configuration page, you can add [processing nodes](../../data-development/process-node.md) to meet requirements such as table structure adjustment (e.g., adding fields), table merging, and building wide tables. Once the setup is complete, click **Start** in the upper right corner of the page.
 
    - **Save and Run**: No additional action is required. TapData will automatically create a data transformation task and run it to synchronize your source tables in real-time to the selected target data source. In this case, the **customer** table in the source MySQL will be synchronized to MongoDB in real-time.
 

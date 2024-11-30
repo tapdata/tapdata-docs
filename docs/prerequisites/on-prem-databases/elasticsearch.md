@@ -31,6 +31,7 @@ Elasticsearch 7.6
    * **DB Host**: Fill in the Elasticsearch connection address.
    * **Port**: Fill in the service port for Elasticsearch, for example **9200**.
    * **User Name**, **Password**: Fill in the username and password for Elasticsearch separately. If authentication is not enabled, you can leave it blank.
+   * **Whether HTTPS is Enabled**: Choose whether to enable an HTTPS connection. When this option is enabled, you can select whether to verify the certificate and upload certificate files.
    * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
    * **Model load time**: When the number of models in the data source is less than 10,000, the model information is refreshed every hour; if the model data exceeds 10,000, the model information is refreshed every day at the time you specify.
 

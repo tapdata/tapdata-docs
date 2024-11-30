@@ -43,7 +43,7 @@ import TabItem from '@theme/TabItem';
 
 * Incremental data capture is mainly achieved through parsing the binlog, which may consume CPU and disk I/O resources if there are frequent data changes.
 * In MySQL 5.6 and earlier versions, preprocess negative values for the **TIME** type (e.g., convert to a legal positive value) to avoid issues with incremental data capture.
-* For some data sources based on the MySQL kernel, using schemas or functions not supported by native MySQL might cause errors in incremental data capture. In such cases, please contact [TapData Support](../../support.md) for assistance.
+* For some data sources based on the MySQL kernel, using schemas or functions not supported by native MySQL might cause errors in incremental data capture. In such cases, please contact [TapData Support](../../appendix/support.md) for assistance.
 
 ## Preparation
 
@@ -341,6 +341,6 @@ When configuring data synchronization/transformation tasks with MySQL as a sourc
 
 ## Related Topics
 
-* [Real-time Sync from MySQL to Redis](../../pipeline-tutorial/mysql-to-redis.md)
-* [Collect Excel Data into MySQL](../../pipeline-tutorial/excel-to-mysql.md)
-* [Build an Array Extraction Pipeline for Simplified Data Analysis](../../pipeline-tutorial/extract-array.md)
+* [Real-time Sync from MySQL to Redis](../../case-practices/pipeline-tutorial/mysql-to-redis.md)
+* [Collect Excel Data into MySQL](../../case-practices/pipeline-tutorial/excel-to-mysql.md)
+* [Build an Array Extraction Pipeline for Simplified Data Analysis](../../case-practices/pipeline-tutorial/extract-array.md)
