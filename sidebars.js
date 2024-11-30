@@ -378,18 +378,6 @@ const sidebars = {
     },  
     {
      type: 'category',
-     label: 'Deployment & Maintenance',
-     link: {type: 'doc', id: 'production-admin/README'},
-     items: [
-            'production-admin/install-tapdata-ha',
-            'production-admin/install-tapdata-ha-with-3-node',
-            'production-admin/install-replica-mongodb',
-            'production-admin/operation',
-            'production-admin/emergency-plan',
-        ]
-    },
-    {
-     type: 'category',
      label: 'Admin & Operations',
      link: {type: 'doc', id: 'administration/README'},
      items: [
