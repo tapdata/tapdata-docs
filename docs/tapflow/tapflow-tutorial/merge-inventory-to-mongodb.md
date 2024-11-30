@@ -2,6 +2,11 @@
 
 TapFlow offers robust data transformation and integration capabilities, enabling the consolidation of multiple regional MySQL inventory tables into a unified MongoDB collection. This case study demonstrates how to leverage TapFlow's processing power to standardize and merge Point-of-Sale (POS) inventory data from different regions into a unified collection in MongoDB, supporting unified inventory queries and analytics across regions.
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## Background
 
 A global retail company maintains separate POS inventory tables in MySQL databases for Canada, the United States, and Singapore, with identical table structures for regional operations. These tables are designed for efficient regional management but present challenges when performing global inventory analysis, including:
@@ -55,6 +60,11 @@ Install Tap Shell and ensure connectivity to MySQL and MongoDB databases. Refer 
 For clarity, this example assumes all regional tables are in the same MySQL database (`MySQL_Demo`) and the target MongoDB database is named `MongoDB_Demo`.
 
 ## Procedure
+
+```mdx-code-block
+<Tabs className="unique-tabs">
+<TabItem value="Using Interactive Commands" default>
+```
 
 This guide demonstrates how to consolidate regional inventory data into MongoDB while standardizing fields such as `PK_CERT_NBR` and adding a region identifier for each record.
 
@@ -125,6 +135,99 @@ This guide demonstrates how to consolidate regional inventory data into MongoDB 
    # Example task status output
    job current status is: running, qps is: 62808.0, total rows: 2998889, delay is: 7006ms
    ```
+
+</TabItem>
+<TabItem value="Using Python Programming">
+
+Below is a complete Python example demonstrating how to use TapFlow to merge inventory tables from multiple regions into a MongoDB collection while standardizing field values. You can run the script using `tap -f inventory_merge.py`:
+
+- **Data Source**: Inventory tables from MySQL: `usaPOSGoldMaterial`, `canPOSGoldMaterial`, and `sgPOSGoldMaterial`.
+- **Processing Logic**: Normalize fields using JavaScript and merge data from different regions using `union`.
+- **Output**: The processed results are saved in real time to the `inventory_merge_all` collection in MongoDB, containing merged inventory records from different regions, each with a region identifier and a standardized `NBR` field.
+
+```python title="inventory_merge.py"
+# Import TapFlow dependencies
+from tapflow.lib import *
+
+# Define JavaScript processing logic
+usaWarehouseJs = '''
+record.FROM = 'usaWarehouse';
+if (record.PK_CERT_NBR) {
+    var certNbr = record.PK_CERT_NBR;
+    record.NBR = certNbr.includes('|') ? certNbr.split('|')[0] : certNbr;
+}
+return record;
+'''
+
+canWarehouseJs = '''
+record.FROM = 'canWarehouse';
+if (record.PK_CERT_NBR) {
+    var certNbr = record.PK_CERT_NBR;
+    record.NBR = certNbr.includes('|') ? certNbr.split('|')[0] : certNbr;
+}
+return record;
+'''
+
+sgWarehouseJs = '''
+record.FROM = 'sgWarehouse';
+if (record.PK_CERT_NBR) {
+    var certNbr = record.PK_CERT_NBR;
+    record.NBR = certNbr.includes('|') ? certNbr.split('|')[0] : certNbr;
+}
+return record;
+'''
+
+# Create a data flow task and merge data from regions
+flow = Flow("Inventory_Merge")
+flow.read_from("MySQL_Demo.usaPOSGoldMaterial").js(usaWarehouseJs).union() \
+    .read_from("MySQL_Demo.canPOSGoldMaterial").js(canWarehouseJs).union() \
+    .read_from("MySQL_Demo.sgPOSGoldMaterial").js(sgWarehouseJs).union()
+
+# Specify the target MongoDB collection and set primary keys
+flow.write_to(
+    "MongoDB_Demo.inventory_merge_all", 
+    pk=["INVNT_ID", "SEQ_NBR", "FROM"]
+)
+
+# Save the task configuration
+flow.save()
+
+# Start the data flow task
+flow.start()
+print("Multi-table merge data flow task has started.")
+
+# Output task status
+while True:
+    status = flow.status()
+    print(f"Task status: {status}")
+    if status == "running":
+        print("Task has successfully started and is running.")
+        break
+    elif status == "error":
+        print("Task failed to start. Please check the configuration or logs.")
+        break
+```
+
+Sample output from running the script:
+
+```bash
+Flow updated: source added
+Flow updated: custom function added
+Flow updated: source added
+Flow updated: custom function added
+Flow updated: source added
+Flow updated: custom function added
+Flow updated: sink added
+Multi-table merge data flow task has started.
+Task status: running
+Task has successfully started and is running.
+```
+
+
+</TabItem>
+</Tabs>
+
+
 
 ## Validation
 

@@ -1,6 +1,6 @@
 # TapFlow Developer Guide (Preview)
 
-**TapFlow** is a stream data processing development framework based on [Change Data Capture (CDC)](../introduction/change-data-capture-mechanism.md) technology. In addition to using the TapData product through a graphical interface, TapFlow provides a rich set of APIs and tools, allowing you to quickly implement real-time processing tasks for homogeneous or heterogeneous data sources, making real-time data processing more flexible and automated.
+**Tap Flow** is an API framework for the TapData Live Data Platform, offering a programmable interface for tasks such as managing replication pipelines, building wide tables or materialized views, and performing general data integration. The framework currently includes a Python SDK and an interactive CLI for flexible development and management.
 
 import DocCardList from '@theme/DocCardList';
 

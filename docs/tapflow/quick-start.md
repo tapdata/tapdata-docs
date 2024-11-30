@@ -14,19 +14,19 @@ import TabItem from '@theme/TabItem';
 2. Run the following command to create a virtual environment. This isolates dependencies and avoids conflicts with the system Python environment.
 
    ```bash
-   python3 -m venv tapcli_env
+   python3 -m venv tapflow_env
    ```
 
 3. Run the following commands to activate the virtual environment, and install Tap Shell along with its dependencies.
 
    ```bash
    # Activate the virtual environment
-   source tapcli_env/bin/activate
+   source tapflow_env/bin/activate
    
    # Install Tap Shell
-   pip3 install tapcli
+   pip3 install tapflow
    # or
-   pip install tapcli
+   pip install tapflow
    ```
 
    Installation is now complete. If you exit the command line, remember to reactivate the virtual environment before using Tap Shell again.
@@ -87,7 +87,23 @@ TapData Cloud Service Running Agent: 1
 Agent name: agent-192*****67, ip: 172.17.0.3, cpu usage: 16%
 ```
 
-## Step 2: Conect to Data Sources
+## Step 2: Create a Data Flow Task
+
+After configuring the data sources, you can create a data flow to synchronize MySQL data to MongoDB using either of the following methods:
+
+- **Using Interactive Commands**: Define and adjust data flows directly through the command line interface in real-time. Ideal for quick testing and building simple tasks.
+- **Using Python Programming**: Use Python code to control data flow logic, enabling easy saving, reuse, and version management. Best suited for complex scenarios requiring dynamic task creation and automated deployment.
+
+<details><summary>What is a Data Flow?</summary>
+In Tapdata, a Data Flow is an execution unit used for data synchronization, processing, and transformation between data sources. It can include multiple data synchronization tasks, allowing data from different sources to be integrated, cleansed, and transformed before being written to a target system.
+Data flows are more advanced than individual real-time synchronization tasks and are suitable for defining complex data pipelines. They support requirements such as multi-table joins and data aggregation, forming the foundation for real-time data processing in Tapdata.
+</details>
+
+
+```mdx-code-block
+<Tabs className="unique-tabs">
+<TabItem value="Using Interactive Commands" default>
+```
 
 Next, configure your data sources via Tap Shell. In this example, we’ll use MySQL as the source database and MongoDB as the target.
 
@@ -127,24 +143,14 @@ Next, configure your data sources via Tap Shell. In this example, we’ll use My
    mongodb_conn = DataSource("mongodb", "MongoDB_ECommerce", mongodb_json_config).type("target").save()
    ```
 
-:::tip
+   :::tip
 
-- Tap Shell supports [many popular data sources](../prerequisites/supported-databases.md), with slight configuration differences depending on the source. For more on permissions and parameters, see [Connecting Data Sources](../prerequisites/README.md).
-- If you receive a “**load schema status: error**” error, it’s typically a permission or configuration issue. Retrying with the same name will overwrite the previous configuration with “**database MongoDB_ECommerce exists, will update its config**.”
+   - Tap Shell supports [many popular data sources](../prerequisites/supported-databases.md), with slight configuration differences depending on the source. For more on permissions and parameters, see [Connecting Data Sources](../prerequisites/README.md).
+   - If you receive a “**load schema status: error**” error, it’s typically a permission or configuration issue. Retrying with the same name will overwrite the previous configuration with “**database MongoDB_ECommerce exists, will update its config**.”
 
-:::
+   :::
 
-## Step 3: Create a Data Flow Task
-
-After configuring the data source, we can use Tap Shell to create a data flow that synchronizes data from MySQL to MongoDB.
-
-<details><summary>What is a Data Flow?</summary>
-In Tapdata, a Data Flow is an execution unit used for data synchronization, processing, and transformation between data sources. It can include multiple data synchronization tasks, allowing data from different sources to be integrated, cleansed, and transformed before being written to a target system.
-
-Data flows are more advanced than individual real-time synchronization tasks and are suitable for defining complex data pipelines. They support requirements such as multi-table joins and data aggregation, forming the foundation for real-time data processing in Tapdata.
-</details>
-
-1. Create a data flow task named **MySQL_to_MongoDB_Order_Sync** to synchronize order data from MySQL to MongoDB.
+3. Create a data flow task named **MySQL_to_MongoDB_Order_Sync** to synchronize order data from MySQL to MongoDB.
 
    ```python
    # Create a data flow task object and specify the source and target tables
@@ -188,6 +194,109 @@ Data flows are more advanced than individual real-time synchronization tasks and
    Additionally, you can monitor progress or debug with `logs <flow name/id>`.
 
 4. (Optional) To stop the sync task, use `stop <flow name/id>`.
+
+</TabItem>
+<TabItem value="Using Python Programming">
+
+By using a programming approach, you can flexibly define and manage data flows. The following example demonstrates how to create a data flow from MySQL to MongoDB using Python.
+
+1. Import the required modules in your Python script:
+
+   ```python
+   from tapflow.lib import *
+   ```
+
+2. Define the connection configurations for the source database (MySQL) and the target database (MongoDB), and create their respective connection objects:
+
+   ```python
+   # Define the connection configuration for the MySQL data source
+   mysql_config = {
+       'database': 'ECommerceData',
+       'port': 3306,
+       'host': '192.168.1.18',
+       'username': 'your_username',
+       'password': 'your_password'
+   }
+   
+   # Create the MySQL data source object and save it as a source database
+   mysql_source = DataSource('mysql', 'MySQL_ECommerce', mysql_config).type('source').save()
+   
+   # Define the connection configuration for the MongoDB data source
+   mongodb_config = {
+       'uri': 'mongodb://your_username:your_password@192.168.1.18:29917/ecommerce?authSource=admin'
+   }
+   
+   # Create the MongoDB data source object and save it as a target database
+   mongodb_target = DataSource('mongodb', 'MongoDB_ECommerce', mongodb_config).type('target').save()
+   ```
+
+3. Define a data flow to synchronize data from the `ecom_orders` table in MySQL to the `orders_collection` collection in MongoDB:
+
+   ```python
+   # Create a data flow task
+   flow = Flow("MySQL_to_MongoDB_Order_Sync")
+   flow.read_from("MySQL_ECommerce.ecom_orders")
+   flow.write_to("MongoDB_ECommerce.orders_collection")
+   ```
+
+4. Save the data flow configuration and start the task:
+
+   ```python
+   # Save the data flow configuration
+   flow.save()
+   
+   # Start the data flow task
+   flow.start()
+   print("The data flow task has started.")
+   ```
+
+5. (Optional) Monitor the task status using the following code:
+
+   ```python
+   # Output the task status
+   while True:
+       status = flow.status()
+       if status == "running":
+           print(f"Task status: {status}")
+           break
+       elif status == "error":
+           print("Task failed to start. Please check the configuration or logs.")
+           break
+   ```
+
+6. Combine the above code into a single script, save it as `ecom_flow.py`, and run it with the following command:
+
+   ```shell
+   tap -f ecom_flow.py
+   ```
+
+   Example output:
+
+   ```bash
+   datasource MySQL_ECommerce creating, please wait...                                  
+   save datasource MySQL_ECommerce success, will load schema, please wait...            
+   load schema status: finished
+   datasource MongoDB_ECommerce creating, please wait...                                
+   save datasource MongoDB_ECommerce success, will load schema, please wait...          
+   load schema status: finished
+   Flow updated: source added
+   Flow updated: sink added
+   The data flow task has started.
+   Task status: running
+   ```
+
+<details><summary>Further Optimization</summary>
+
+- **Configuration Management**: Extract data source configurations into a configuration file or environment variables to protect sensitive information.
+- **Exception Handling**: Add exception handling to manage potential connection errors or runtime issues.
+- **Logging**: Use the `logging` module to record task execution details for easier debugging and monitoring.
+
+</details>
+
+
+</TabItem>
+</Tabs>
+
 
 ## See also
 

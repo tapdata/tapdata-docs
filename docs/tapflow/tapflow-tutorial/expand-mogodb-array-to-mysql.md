@@ -2,6 +2,11 @@
 
 TapFlow offers powerful data transformation and processing capabilities, enabling seamless conversion of nested array structures in document models to relational table structures. This guide demonstrates how to unfold nested arrays from MongoDB documents and synchronize them in real-time with MySQL flat tables, supporting efficient relational database queries and data analysis.
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## Background
 
 In modern e-commerce applications, order information typically includes multiple payment records, product items, and customer details. These datasets are often stored in NoSQL databases like MongoDB in a nested array format, simplifying design and querying on the application side. However, when performing complex analytics or integrating data into other relational systems, this structure presents challenges.
@@ -39,6 +44,11 @@ Additionally, TapFlow’s real-time sync capabilities ensure that MySQL reflects
 Install Tap Shell and configure MySQL and MongoDB data sources as described in [Quick Start](../quick-start.md).
 
 ## Procedures
+
+```mdx-code-block
+<Tabs className="unique-tabs">
+<TabItem value="Using Interactive Commands" default>
+```
 
 Next, we demonstrate how to expand the `order_payments` array and rename fields for easier identification.
 
@@ -94,6 +104,72 @@ Next, we demonstrate how to expand the `order_payments` array and rename fields 
 7. While the task runs, you can check the task status and statistics using the command `status MySQL_to_MongoDB_Order`.
 
    Additionally, you can [monitor the task status through the Web UI](../../user-guide/data-development/monitor-task).
+
+</TabItem>
+<TabItem value="Using Python Programming">
+
+Below is a complete Python example demonstrating how to use TapFlow to unwind the `order_payments` array in MongoDB and synchronize it to a MySQL table while renaming fields for easier business usage. You can run the script using `tap -f unwind_mongo_array.py`:
+
+- **Data Source**: `MongoDB_Demo.order_collection` collection, containing a nested `order_payments` array field.
+- **Processing Logic**: Store each element of the array field as a separate row in the target table and set primary keys for real-time updates.
+- **Output**: The processed data is saved in real time to the `unwind_order_payments` table in the MySQL database, with fields expanded and renamed.
+
+```python title="unwind_mongo_array.py"
+# Import TapFlow dependencies
+from tapflow.lib import *
+
+# Create a data flow task
+flow = Flow("Unwind_MongoDB_Array")
+
+# Specify the source MongoDB collection
+flow.read_from("MongoDB_Demo.order_collection")
+
+# Retain and unwind the order_payments array field
+flow.include("order_payments") \
+    .flat_unwind(
+        path="order_payments", 
+        index_name="", 
+        array_elem="OBJECT", 
+        joiner="_"
+    )
+
+# Rename the expanded fields
+flow.rename_fields({
+    "order_payments_order_id": "order_id",
+    "order_payments_payment_type": "payment_type",
+    "order_payments_payment_installments": "payment_installments",
+    "order_payments_payment_value": "payment_value",
+    "order_payments_payment_sequential": "payment_sequential"
+})
+
+# Specify the MySQL target table and set primary keys
+flow.write_to(
+    "MySQL_Demo.unwind_order_payments", 
+    pk=["order_id", "payment_sequential"]
+)
+
+# Save the data flow configuration
+flow.save()
+
+# Start the data flow task
+flow.start()
+print("Unwind and synchronize data flow task has started.")
+
+# Output task status
+while True:
+    status = flow.status()
+    print(f"Task status: {status}")
+    if status == "running":
+        break
+    elif status == "error":
+        print("Task failed to start. Please check the configuration or logs.")
+        break
+```
+
+</TabItem>
+</Tabs>
+
+
 
 ## Verification
 

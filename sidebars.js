@@ -356,7 +356,7 @@ const sidebars = {
             'tapflow/quick-start',            
             {
              type: 'category',
-             label: 'API Reference',
+             label: 'TapFlow API Reference',
              link: {type: 'doc', id: 'tapflow/api-reference/README'},
              items: [
                     'tapflow/api-reference/data-source',

@@ -2,6 +2,11 @@
 
 TapFlow is a programming framework that supports real-time data replication, data processing, and materialized view creation. It offers APIs, a Python SDK, and command-line tools (Tap Shell) to efficiently build and manage data flow tasks. This guide demonstrates using Tap Shell and the Python SDK to build a real-time wide table to support efficient queries in an e-commerce application by joining multiple tables of order information.
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
 ## Background
 
 As the business and data volume grows, the e-commerce company **XYZ** faces challenges in order and inventory management. Order data and inventory information are distributed across multiple database tables, and operations personnel often need to perform complex cross-table queries for order details. The primary challenges are:
@@ -29,6 +34,11 @@ Next, we’ll walk through setting up TapFlow to meet these requirements.
 Install Tap Shell and add MySQL/MongoDB data sources. For detailed steps, see [Quick Start](../quick-start.md).
 
 ## Step 1: Builde a Real-Time Wide Table
+
+```mdx-code-block
+<Tabs className="unique-tabs">
+<TabItem value="Using Interactive Commands" default>
+```
 
 In this example, the MySQL data source is named `MySQL_ECommerce`, and the MongoDB data source is named `MongoDB_ECommerce`. We will build the real-time wide table using Tap Shell commands.
 
@@ -98,6 +108,99 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
    use MongoDB_ECommerce
    count orderSingleView
    ```
+
+
+</TabItem>
+<TabItem value="Using Python Programming">
+
+Below is a complete Python example demonstrating how to use TapFlow to join multiple MySQL tables in real time to create a MongoDB wide-table view. You can execute it using `tap -f real_time_order_view.py`:
+
+- **Main Table**: `ecom_orders`, containing basic order information.
+- **Associated Tables**: `ecom_customers` (customer info), `ecom_order_payments` (payment info), `ecom_order_items` (product info), etc.
+- **Output**: `orderSingleView` collection in MongoDB, containing complete order information along with its associated customer, payment, product, and seller details.
+
+```python title="real-time-wide-table.py"
+# Import TapFlow dependencies
+from tapflow.lib import *
+
+# Create a data flow task
+orderFlow = Flow("Order_SingleView_Sync")
+
+# Specify the main table ecom_orders
+orderFlow.read_from("MySQL_ECommerce.ecom_orders")
+
+# Join the customer information table
+orderFlow.lookup("MySQL_ECommerce.ecom_customers", 
+                 path="customer_info", 
+                 type="object", 
+                 relation=[["customer_id", "customer_id"]])
+
+# Join the payment information table
+orderFlow.lookup("MySQL_ECommerce.ecom_order_payments", 
+                 path="order_payments", 
+                 type="array", 
+                 relation=[["order_id", "order_id"]])
+
+# Join the order items table
+orderFlow.lookup("MySQL_ECommerce.ecom_order_items", 
+                 path="order_items", 
+                 type="array", 
+                 relation=[["order_id", "order_id"]])
+
+# Join the product information table
+orderFlow.lookup("MySQL_ECommerce.ecom_products", 
+                 path="order_items.product", 
+                 type="object", 
+                 relation=[["product_id", "order_items.product_id"]])
+
+# Join the seller information table
+orderFlow.lookup("MySQL_ECommerce.ecom_sellers", 
+                 path="order_items.seller", 
+                 type="object", 
+                 relation=[["seller_id", "order_items.seller_id"]])
+
+# Specify the target collection
+orderFlow.write_to("MongoDB_ECommerce.orderSingleView")
+
+# Save and start the task
+orderFlow.save()
+orderFlow.start()
+print("Real-time wide-table task has started.")
+
+# Monitor the task status
+while True:
+    status = orderFlow.status()
+    if status == "running":
+        print(f"Task status: {status}")
+        break
+    elif status == "error":
+        print("Task failed to start. Please check the configuration or logs.")
+        break
+```
+
+The program outputs as follows during execution:
+
+```bash
+Flow updated: source added
+Flow updated: source added
+Flow updated: new table ecom_customers added as child table                          
+Flow updated: source added
+Flow updated: new table ecom_order_payments added as child table                     
+Flow updated: source added
+Flow updated: new table ecom_order_items added as child table                        
+Flow updated: source added
+Flow updated: new table ecom_products added as child table                           
+Flow updated: source added
+Flow updated: new table ecom_sellers added as child table                            
+Flow updated: sink added
+Real-time wide-table task has started.
+Task status: running
+```
+
+</TabItem>
+</Tabs>
+
+
 
 ## Step 2: Verify Real-Time Performance
 
