@@ -14,7 +14,7 @@
   --ifm-color-primary-lighter: #616bea;
   --ifm-color-primary-lightest: #878fef;
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(238,233, 233, 0.2);
 }
 
 /* Modify the font size of the title*/
@@ -52,7 +52,7 @@ div[class^='announcementBar_'] {
   --ifm-color-primary-lighter: #7cbaff;
   --ifm-color-primary-lightest: #aed4ff;
   --ifm-background-color: #06070a;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --docusaurus-highlighted-code-line-bg: rgba(173, 216, 230, 0.3);
 }
 
 /* Code block line warp 

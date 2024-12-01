@@ -26,13 +26,19 @@ Compared to traditional data migration/synchronization tools, TapData offers a f
 
   Based on proprietary CDC log parsing technology, it enables real-time data collection with zero intrusion and virtually no impact on the source database. Every new piece of data that enters the platform is responded to, computed, processed, and written into the target table within seconds. Additionally, it supports sharing incremental data to avoid repeated reads of source database incremental logs.
 
+* **[Efficient Data Flow Programming Framework](tapflow/README.md)**
+
+  Provides a real-time data processing framework (TapFlow) for developers, enabling fully code-based task definitions. With a rich set of APIs and command-line tools (Tap Shell), it supports task scheduling, data cleansing, and processing. Ideal for complex business scenarios and script-based management, TapFlow significantly enhances development efficiency and flexibility.
+
 * **[Unified Real-Time Data Hub](user-guide/real-time-data-hub/README.md)**
 
   Based on the concept of layered data governance, it synchronizes data scattered across different business systems to a unified platform cache layer. This minimizes the impact of data extraction on business and provides foundational data for subsequent data processing and business, thus building a consistent, real-time data platform and bridging data silos.
 
-* **[No-code Operation Page](user-guide/workshop.md)**
+* **[Modernized User Interface](user-guide/workshop.md)**
 
-  Say goodbye to SQL and coding. Simple mouse drag-and-drop actions can quickly complete table renaming and other transformation rules. Additionally, UDF (User-Defined Functions) based on Javascript are supported.
+  Offers a visual interface where tasks like renaming tables can be completed with simple drag-and-drop actions. Additionally, TapData supports JavaScript-based UDF (User-Defined Functionality) to meet flexible customization requirements.
+
+  
 
 ## Product Pricing
 

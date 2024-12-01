@@ -506,9 +506,7 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 ### Enhancements
 
-* Enhanced [data
-
-source error codes](troubleshooting/error-code.md), covering more scenarios and providing solutions.
+* Enhanced [data source error codes](../administration/troubleshooting/error-code.md), covering more scenarios and providing solutions.
 
 ## V3.5.1
 
