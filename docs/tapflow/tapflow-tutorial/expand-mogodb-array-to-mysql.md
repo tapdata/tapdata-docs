@@ -47,7 +47,7 @@ Install Tap Shell and configure MySQL and MongoDB data sources as described in [
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="Using Interactive Commands" default>
+<TabItem value="Using Interactive Shell" default>
 ```
 
 Next, we demonstrate how to expand the `order_payments` array and rename fields for easier identification.
@@ -106,7 +106,7 @@ Next, we demonstrate how to expand the `order_payments` array and rename fields 
    Additionally, you can [monitor the task status through the Web UI](../../user-guide/data-development/monitor-task).
 
 </TabItem>
-<TabItem value="Using Python Programming">
+<TabItem value="Using Python Script">
 
 Below is a complete Python example demonstrating how to use TapFlow to unwind the `order_payments` array in MongoDB and synchronize it to a MySQL table while renaming fields for easier business usage. You can run the script using `tap -f unwind_mongo_array.py`:
 

@@ -63,7 +63,7 @@ For clarity, this example assumes all regional tables are in the same MySQL data
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="Using Interactive Commands" default>
+<TabItem value="Using Interactive Shell" default>
 ```
 
 This guide demonstrates how to consolidate regional inventory data into MongoDB while standardizing fields such as `PK_CERT_NBR` and adding a region identifier for each record.
@@ -137,7 +137,7 @@ This guide demonstrates how to consolidate regional inventory data into MongoDB 
    ```
 
 </TabItem>
-<TabItem value="Using Python Programming">
+<TabItem value="Using Python Script">
 
 Below is a complete Python example demonstrating how to use TapFlow to merge inventory tables from multiple regions into a MongoDB collection while standardizing field values. You can run the script using `tap -f inventory_merge.py`:
 

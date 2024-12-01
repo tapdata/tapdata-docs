@@ -91,8 +91,8 @@ Agent name: agent-192*****67, ip: 172.17.0.3, cpu usage: 16%
 
 After configuring the data sources, you can create a data flow to synchronize MySQL data to MongoDB using either of the following methods:
 
-- **Using Interactive Commands**: Define and adjust data flows directly through the command line interface in real-time. Ideal for quick testing and building simple tasks.
-- **Using Python Programming**: Use Python code to control data flow logic, enabling easy saving, reuse, and version management. Best suited for complex scenarios requiring dynamic task creation and automated deployment.
+- **Using Interactive Shell**: Define and adjust data flows directly through the command line interface in real-time. Ideal for quick testing and building simple tasks.
+- **Using Python Script**: Use Python code to control data flow logic, enabling easy saving, reuse, and version management. Best suited for complex scenarios requiring dynamic task creation and automated deployment.
 
 <details><summary>What is a Data Flow?</summary>
 In Tapdata, a Data Flow is an execution unit used for data synchronization, processing, and transformation between data sources. It can include multiple data synchronization tasks, allowing data from different sources to be integrated, cleansed, and transformed before being written to a target system.
@@ -102,7 +102,7 @@ Data flows are more advanced than individual real-time synchronization tasks and
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="Using Interactive Commands" default>
+<TabItem value="Using Interactive Shell" default>
 ```
 
 Next, configure your data sources via Tap Shell. In this example, we’ll use MySQL as the source database and MongoDB as the target.
@@ -196,7 +196,7 @@ Next, configure your data sources via Tap Shell. In this example, we’ll use My
 4. (Optional) To stop the sync task, use `stop <flow name/id>`.
 
 </TabItem>
-<TabItem value="Using Python Programming">
+<TabItem value="Using Python Script">
 
 By using a programming approach, you can flexibly define and manage data flows. The following example demonstrates how to create a data flow from MySQL to MongoDB using Python.
 
@@ -230,26 +230,26 @@ By using a programming approach, you can flexibly define and manage data flows. 
    mongodb_target = DataSource('mongodb', 'MongoDB_ECommerce', mongodb_config).type('target').save()
    ```
 
-3. Define a data flow to synchronize data from the `ecom_orders` table in MySQL to the `orders_collection` collection in MongoDB:
+3. Define and save a data flow to synchronize data from the `ecom_orders` table in MySQL to the `orders_collection` collection in MongoDB:
 
    ```python
    # Create a data flow task
    flow = Flow("MySQL_to_MongoDB_Order_Sync")
    flow.read_from("MySQL_ECommerce.ecom_orders")
    flow.write_to("MongoDB_ECommerce.orders_collection")
-   ```
-
-4. Save the data flow configuration and start the task:
-
-   ```python
+   
    # Save the data flow configuration
    flow.save()
-   
+   ```
+
+4. Start the data flow task. You can directly start the task within the script using the method below, or choose to start it through [Tap Shell](tapcli-reference.md) or other external schedulers to accommodate different business needs.
+
+   ```python
    # Start the data flow task
    flow.start()
    print("The data flow task has started.")
    ```
-
+   
 5. (Optional) Monitor the task status using the following code:
 
    ```python

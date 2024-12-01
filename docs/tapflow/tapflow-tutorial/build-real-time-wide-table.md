@@ -37,7 +37,7 @@ Install Tap Shell and add MySQL/MongoDB data sources. For detailed steps, see [Q
 
 ```mdx-code-block
 <Tabs className="unique-tabs">
-<TabItem value="Using Interactive Commands" default>
+<TabItem value="Using Interactive Shell" default>
 ```
 
 In this example, the MySQL data source is named `MySQL_ECommerce`, and the MongoDB data source is named `MongoDB_ECommerce`. We will build the real-time wide table using Tap Shell commands.
@@ -111,7 +111,7 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
 
 
 </TabItem>
-<TabItem value="Using Python Programming">
+<TabItem value="Using Python Script">
 
 Below is a complete Python example demonstrating how to use TapFlow to join multiple MySQL tables in real time to create a MongoDB wide-table view. You can execute it using `tap -f real_time_order_view.py`:
 
