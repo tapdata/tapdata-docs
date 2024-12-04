@@ -200,10 +200,13 @@ Next, configure your data sources via Tap Shell. In this example, we’ll use My
 
 By using a programming approach, you can flexibly define and manage data flows. The following example demonstrates how to create a data flow from MySQL to MongoDB using Python.
 
-1. Import the required modules in your Python script:
+1. Import the required modules and and initialize the configuration settings in your Python script:
 
    ```python
    from tapflow.lib import *
+   from tapflow.cli.cli import init
+   
+   init()
    ```
 
 2. Define the connection configurations for the source database (MySQL) and the target database (MongoDB), and create their respective connection objects:
@@ -267,7 +270,7 @@ By using a programming approach, you can flexibly define and manage data flows. 
 6. Combine the above code into a single script, save it as `ecom_flow.py`, and run it with the following command:
 
    ```shell
-   tap -f ecom_flow.py
+   python ecom_flow.py
    ```
 
    Example output:

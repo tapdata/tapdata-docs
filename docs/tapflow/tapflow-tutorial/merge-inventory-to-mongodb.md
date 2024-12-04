@@ -139,7 +139,7 @@ This guide demonstrates how to consolidate regional inventory data into MongoDB 
 </TabItem>
 <TabItem value="Using Python Script">
 
-Below is a complete Python example demonstrating how to use TapFlow to merge inventory tables from multiple regions into a MongoDB collection while standardizing field values. You can run the script using `tap -f inventory_merge.py`:
+Below is a complete Python example demonstrating how to use TapFlow to merge inventory tables from multiple regions into a MongoDB collection while standardizing field values. You can run the script using `python inventory_merge.py`:
 
 - **Data Source**: Inventory tables from MySQL: `usaPOSGoldMaterial`, `canPOSGoldMaterial`, and `sgPOSGoldMaterial`.
 - **Processing Logic**: Normalize fields using JavaScript and merge data from different regions using `union`.
@@ -148,6 +148,10 @@ Below is a complete Python example demonstrating how to use TapFlow to merge inv
 ```python title="inventory_merge.py"
 # Import TapFlow dependencies
 from tapflow.lib import *
+from tapflow.cli.cli import init
+
+# Initialize configuration settings
+init()
 
 # Define JavaScript processing logic
 usaWarehouseJs = '''

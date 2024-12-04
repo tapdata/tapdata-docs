@@ -113,7 +113,7 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
 </TabItem>
 <TabItem value="Using Python Script">
 
-Below is a complete Python example demonstrating how to use TapFlow to join multiple MySQL tables in real time to create a MongoDB wide-table view. You can execute it using `tap -f real_time_order_view.py`:
+Below is a complete Python example demonstrating how to use TapFlow to join multiple MySQL tables in real time to create a MongoDB wide-table view. You can execute it using `python real_time_order_view.py`:
 
 - **Main Table**: `ecom_orders`, containing basic order information.
 - **Associated Tables**: `ecom_customers` (customer info), `ecom_order_payments` (payment info), `ecom_order_items` (product info), etc.
@@ -122,6 +122,10 @@ Below is a complete Python example demonstrating how to use TapFlow to join mult
 ```python title="real-time-wide-table.py"
 # Import TapFlow dependencies
 from tapflow.lib import *
+from tapflow.cli.cli import init
+
+# Initialize configuration settings
+init()
 
 # Create a data flow task
 orderFlow = Flow("Order_SingleView_Sync")
