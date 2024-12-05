@@ -108,7 +108,7 @@ Next, we demonstrate how to expand the `order_payments` array and rename fields 
 </TabItem>
 <TabItem value="Using Python Script">
 
-Below is a complete Python example demonstrating how to use TapFlow to unwind the `order_payments` array in MongoDB and synchronize it to a MySQL table while renaming fields for easier business usage. You can run the script using `tap -f unwind_mongo_array.py`:
+Below is a complete Python example demonstrating how to use TapFlow to unwind the `order_payments` array in MongoDB and synchronize it to a MySQL table while renaming fields for easier business usage. You can run the script using `python unwind_mongo_array.py`:
 
 - **Data Source**: `MongoDB_Demo.order_collection` collection, containing a nested `order_payments` array field.
 - **Processing Logic**: Store each element of the array field as a separate row in the target table and set primary keys for real-time updates.
@@ -117,6 +117,10 @@ Below is a complete Python example demonstrating how to use TapFlow to unwind th
 ```python title="unwind_mongo_array.py"
 # Import TapFlow dependencies
 from tapflow.lib import *
+from tapflow.cli.cli import init
+
+# Initialize configuration settings
+init()
 
 # Create a data flow task
 flow = Flow("Unwind_MongoDB_Array")
