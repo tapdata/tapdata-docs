@@ -77,13 +77,13 @@ In this example, the MySQL data source is named `MySQL_ECommerce`, and the Mongo
    orderFlow.lookup("MySQL_ECommerce.ecom_products", 
                      path="order_items.product",             # Embed path points to order_items.product
                      type="object",                          # Embed type as object
-                     relation=[["product_id", "order_items.product_id"]]);  # Join on product_id
+                     relation=[["order_items.product_id", "product_id"]]);  # Join on product_id
    
    # Embed 'ecom_sellers' table data as an object in the order_items array based on seller_id
    orderFlow.lookup("MySQL_ECommerce.ecom_sellers", 
                      path="order_items.seller",              # Embed path points to order_items.seller
                      type="object",                          # Embed type as object
-                     relation=[["seller_id", "order_items.seller_id"]]);  # Join on seller_id
+                     relation=[["order_items.seller_id", "seller_id"]]);  # Join on seller_id
    ```
 
 4. Specify MongoDB as the output destination, saving the consolidated data in a collection called `orderSingleView`.
@@ -155,13 +155,13 @@ orderFlow.lookup("MySQL_ECommerce.ecom_order_items",
 orderFlow.lookup("MySQL_ECommerce.ecom_products", 
                  path="order_items.product", 
                  type="object", 
-                 relation=[["product_id", "order_items.product_id"]])
+                 relation=[["order_items.product_id","product_id"]])
 
 # Join the seller information table
 orderFlow.lookup("MySQL_ECommerce.ecom_sellers", 
                  path="order_items.seller", 
                  type="object", 
-                 relation=[["seller_id", "order_items.seller_id"]])
+                 relation=[["order_items.seller_id", "seller_id"]])
 
 # Specify the target collection
 orderFlow.write_to("MongoDB_ECommerce.orderSingleView")
