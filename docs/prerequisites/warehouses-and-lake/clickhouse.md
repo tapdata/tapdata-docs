@@ -134,9 +134,14 @@ GRANT SELECT, INSERT, CREATE TABLE, ALTER TABLE, ALTER UPDATE, DROP TABLE, TRUNC
 
 ## Advanced Node Features
 
-When configuring data synchronization/transformation tasks with ClickHouse as a target node, you can set the Optimize Interval in the advanced node configuration to adjust the [Optimize Table](https://clickhouse.com/docs/en/sql-reference/statements/optimize) frequency, balancing performance and data consistency.
+When configuring data synchronization/transformation tasks and using ClickHouse as the target node, TapData offers a range of advanced features to better meet complex business requirements and maximize performance. You can configure these features according to your business needs:
 
 ![ClickHouse Advanced Node Features](../../images/clickhouse_node_advanced_settings.png)
+
+- **Optimize Interval**: Adjust the frequency of [Optimize Table](https://clickhouse.com/docs/en/sql-reference/statements/optimize) operations, measured in minutes, to achieve a balance between performance and data consistency.
+- **Mix Fast Write**: Disabled by default. When enabled, TapData will add two new fields to the target table to record modification time and deletion flag. Records with a deletion flag set to **1** will be automatically cleared using the modification time and TTL index. This approach allows updates and deletions to be executed by inserting new records with the same primary key, significantly improving write performance for relational data sources.
+
+
 
 ## Performance Testing
 
