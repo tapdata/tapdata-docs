@@ -35,7 +35,7 @@ optional config:
     password: database_password (Type: string)                                                                                                    
     timezone:  (Type: string)                                                                                                                     
         Enum values: -11:00, -10:00, -09:00, ...
-    addtionalString: addtionalString (Type: string)                                                                                               
+    additionalString: additionalString (Type: string)                                                                                               
     masterSlaveAddress:  (Type: array)                                                                                                            
         Array[port: number, host: string]
 ```
