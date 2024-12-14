@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
    pip install tapflow
    ```
 
-   Installation is now complete. If you exit the command line, remember to reactivate the virtual environment before using Tap Shell again.
+   The installation is now complete. Before using Tap Shell again after exiting the command line, you need to activate the virtual environment. Alternatively, you can install TapFlow using [pipx](https://github.com/pypa/pipx). Simply run `pipx install tapflow`, and pipx will automatically create and manage the virtual environment for you.
 
 4. Type `tap` to launch Tap Shell.
 
