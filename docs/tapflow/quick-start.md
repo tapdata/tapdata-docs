@@ -89,7 +89,7 @@ Agent name: agent-192*****67, ip: 172.17.0.3, cpu usage: 16%
 
 :::tip
 
-By default, TapFlow generates the configuration file at `~/.tapflow/config.ini`. You can modify this file to update authentication details or specify a custom configuration file path using `tap -f <filename>`.
+By default, TapFlow generates the configuration file at `~/.tapflow/config.ini`. You can modify this file to update authentication details or specify a custom configuration file path using `tap -c <filename>`.
 
 :::
 
