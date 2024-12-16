@@ -20,12 +20,12 @@ Additionally, objects instantiated from the `Source API` can be directly used as
 
 ```python
 # Example 1: Simple table read
-tap > myflow = Flow("DataFlow_Test")  \
+tap> myflow = Flow("DataFlow_Test")  \
           .read_from("MongoDB_Demo.ecom_orders")
 
 # Example 2: Use a Source API object as the data source
-tap > source = Source("MongoDB_Demo", table=["ecom_orders"], mode="migrate")
-tap > myflow = Flow("DataFlow_Test")  \
+tap> source = Source("MongoDB_Demo", table=["ecom_orders"], mode="migrate")
+tap> myflow = Flow("DataFlow_Test")  \
           .read_from(source)
 ```
 
@@ -43,7 +43,7 @@ myflow.read_from("MongoDB_Demo.ecom_orders", query="SELECT * FROM ecom_orders WH
 
 ```python
 # Real-time write to MongoDB
-tap > myflow.write_to("MongoDB_Demo.ecom_orders");
+tap> myflow.write_to("MongoDB_Demo.ecom_orders");
 ```
 
 
@@ -56,7 +56,7 @@ tap > myflow.write_to("MongoDB_Demo.ecom_orders");
 
 ```python
 # Save and create a persistent data flow task
-tap > myflow.save();
+tap> myflow.save();
 ```
 
 
@@ -67,7 +67,7 @@ Here is a simple end-to-end example where data is read from the `ecom_orders` ta
 
 ```python
 # Create and configure a data flow task
-tap > myflow = Flow("DataFlow_Test")  \
+tap> myflow = Flow("DataFlow_Test")  \
           .read_from("MySQL_Demo.ecom_orders", query="SELECT * FROM ecom_orders LIMIT 2000")  \
           .write_to("MongoDB_Demo.Orders")  \
           .save();
@@ -91,9 +91,9 @@ A full data sync task loads all historical data from the source table to the tar
 
 ```python
 # Configure full sync only
-tap > myflow.full_sync();
+tap> myflow.full_sync();
 # Save task configuration
-tap > myflow.save();
+tap> myflow.save();
 ```
 
 
@@ -106,9 +106,9 @@ An incremental data sync task only captures change data (CDC) from the source ta
 
 ```python
 # Configure incremental sync only, starting from the current time
-tap > myflow.only_cdc();
+tap> myflow.only_cdc();
 # Save task configuration
-tap > myflow.save();
+tap> myflow.save();
 ```
 
 **Start Incremental Sync from a Specified Time**
@@ -117,10 +117,10 @@ To start collecting incremental data from a specific time, use the `config_cdc_s
 
 ```python
 # Configure incremental sync only, starting from 2023-12-14 17:40:00
-tap > myflow.only_cdc();
-tap > myflow.config_cdc_start_time(1702546800000, tz="+8");
+tap> myflow.only_cdc();
+tap> myflow.config_cdc_start_time(1702546800000, tz="+8");
 # Save task configuration
-tap > myflow.save();
+tap> myflow.save();
 ```
 
 **Parameters**
@@ -135,9 +135,9 @@ A full + incremental data sync task first completes a full sync of historical da
 
 ```python
 # Configure full + incremental sync (default)
-tap > myflow.include_cdc();
+tap> myflow.include_cdc();
 # Save task configuration
-tap > myflow.save();
+tap> myflow.save();
 ```
 
 ## Add Processing Nodes
@@ -152,14 +152,14 @@ tap > myflow.save();
 
 ```python
 # Create a data flow task that retains records that meet the condition
-tap > flow = Flow("Filter_Data_Test")  \
+tap> flow = Flow("Filter_Data_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .filter("order_amount > 100 and user_gender='male'")  \
           .write_to(MongoDB_Demo.filteredOrders)  \
           .save();
 
 # Create a data flow task that discards records that meet the condition
-tap > flow = Flow("Filter_Data_Discard")  \
+tap> flow = Flow("Filter_Data_Discard")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .filter("order_amount <= 100 or user_gender='male'", filterType=FilterType.delete)  \
           .write_to(MongoDB_Demo.filteredOrders)  \
@@ -176,14 +176,14 @@ tap > flow = Flow("Filter_Data_Discard")  \
 
 ```python
 # Create a data flow task that retains records that meet the condition
-tap > flow = Flow("Row_Filter_Test")  \
+tap> flow = Flow("Row_Filter_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .rowFilter("record.price > 100")  \
           .write_to(MongoDB_Demo.highValueOrders)  \
           .save();
 
 # Create a data flow task that discards records that meet the condition
-tap > flow = Flow("Row_Filter_Discard")  \
+tap> flow = Flow("Row_Filter_Discard")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .rowFilter("record.price > 100", rowFilterType=RowFilterType.discard)  \
           .write_to(MongoDB_Demo.highValueOrders)  \
@@ -200,7 +200,7 @@ tap > flow = Flow("Row_Filter_Discard")  \
 
 ```python
 # Create a data flow task to add 8 hours to the order time
-tap > flow = Flow("Adjust_Time_Test")  \
+tap> flow = Flow("Adjust_Time_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .adjust_time(addHours=8, t=["order_time"])  \
           .write_to(MongoDB_Demo.adjustedOrders)  \
@@ -219,7 +219,7 @@ tap > flow = Flow("Adjust_Time_Test")  \
 
 ```python
 # Create a data flow task that renames the target table with a prefix and suffix
-tap > flow = Flow("Rename_Table_Test")  \
+tap> flow = Flow("Rename_Table_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .renameTable(prefix="v1_", suffix="_backup")  \
           .write_to(MongoDB_Demo.versionedTable)  \
@@ -236,7 +236,7 @@ tap > flow = Flow("Rename_Table_Test")  \
 
 ```python
 # Create a data flow task to add new fields and specify field values
-tap > flow = Flow("Add_Field_Test")  \
+tap> flow = Flow("Add_Field_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .add_fields([['status_flag', 'String', "'completed'"], ['order_value', 'Double', '100.5']])  \
           .write_to(MongoDB_Demo.additionalFieldsCollection)  \
@@ -253,7 +253,7 @@ tap > flow = Flow("Add_Field_Test")  \
 
 ```python
 # Create a data flow task to rename specific fields
-tap > flow = Flow("Rename_Fields_Test")  \
+tap> flow = Flow("Rename_Fields_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .rename_fields({'order_status': 'status', 'order_id': 'id'})  \
           .write_to(MongoDB_Demo.renamedFieldsCollection)  \
@@ -270,7 +270,7 @@ tap > flow = Flow("Rename_Fields_Test")  \
 
 ```python
 # Create a data flow task that retains only specific fields
-tap > flow = Flow("Include_Fields_Test")  \
+tap> flow = Flow("Include_Fields_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .include("order_status", "order_id")  \
           .write_to(MongoDB_Demo.includedFieldsCollection)  \
@@ -287,7 +287,7 @@ tap > flow = Flow("Include_Fields_Test")  \
 
 ```python
 # Create a data flow task that excludes specific fields
-tap > flow = Flow("Exclude_Fields_Test")  \
+tap> flow = Flow("Exclude_Fields_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .exclude("order_status", "order_delivered_customer_date")  \
           .write_to(MongoDB_Demo.excludedFieldsCollection)  \
@@ -304,7 +304,7 @@ tap > flow = Flow("Exclude_Fields_Test")  \
 
 ```python
 # Create a data flow task to exclude fields of the OBJECT_ID type
-tap > flow = Flow("Exclude_Type_Test")  \
+tap> flow = Flow("Exclude_Type_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .exclude_type("OBJECT_ID")  \
           .write_to(MongoDB_Demo.cleanedOrders)  \
@@ -321,7 +321,7 @@ tap > flow = Flow("Exclude_Type_Test")  \
 
 ```python
 # Create a data flow task to add a timestamp field to each data record
-tap > flow = Flow("Add_Date_Field_Test")  \
+tap> flow = Flow("Add_Date_Field_Test")  \
           .read_from(MySQL_Demo.ecom_orders)  \
           .add_date_field("processed_time")  \
           .write_to(MongoDB_Demo.timestampedOrders)  \
@@ -340,16 +340,16 @@ tap > flow = Flow("Add_Date_Field_Test")  \
 
 - **from_table_name**: The related table’s name in the format `data_source_name.table_name`.
 - **relation**: Mapping of join fields for an equality join between the main and related tables.
-- **embed_path**: The path for embedding data (e.g., `object` or `array`).
-- **embed_type**: Defines the embedded data structure type, either `object` (one-to-one) or `array` (one-to-many).
-- **includes**: Fields to include in the results, separated by commas.
+- **embed_path** (optional): The path where the associated data will be embedded. It can embed the data as a sub-document (`object`, default) or as an array (`array`).
+- **embed_type** (optional): Specifies the type of the embedded data structure. The default is `object`, representing a **one-to-one** relationship, while `array` is used for a **one-to-many** relationship.
+- **includes**(optional): Specifies the fields to include in the result. Field names should be separated by commas.
 
 **Example**:
 
 This example demonstrates using `lookup` to embed data from the `order_payments` table into `ecom_orders`, creating a wide table with order and payment details, and writing the result to the `ordersWithPayments` collection in MongoDB.
 
 ```python
-tap > flow = Flow("Order_Payment_Join")
+tap> flow = Flow("Order_Payment_Join")
           .read_from(mySqlSource.ecom_orders)
           .lookup("mySqlSource.order_payments", relation=[["order_id", "order_id"]],
                   embed_path="payments", embed_type="array")
@@ -369,7 +369,7 @@ Here, `ecom_orders` is the main table, `order_payments` is the related table, jo
 
 ```python
 # Defining JavaScript code to add a confirmation status to delivered orders
-tap > jscode = '''
+tap> jscode = '''
 if (record.order_status == 'delivered') {
     record.confirmation_status = 1;  // Adds a confirmation field to delivered orders
 }
@@ -377,7 +377,7 @@ return record;  // Returns the processed record
 '''
 
 # Creating a data flow task, applying JavaScript code, and writing results to the target database
-tap > flow = Flow("Order_Status_Update")  \
+tap> flow = Flow("Order_Status_Update")  \
           .read_from(mySqlSource.ecom_orders)  \
           .js(jscode)  \
           .write_to(mongodbSource.updatedCollection)  \
@@ -394,13 +394,13 @@ tap > flow = Flow("Order_Status_Update")  \
 
 ```python
 # Defining a Python function to retain only delivered orders
-tap > def pyfunc(record):
+tap> def pyfunc(record):
          if record['order_status'] != 'delivered':
              return None  # Return None to filter out records that don't meet the condition
          return record  # Returns the processed record
 
 # Creating a data flow task, applying Python function, and writing results to the target database
-tap > flow = Flow("Python_Function")  \
+tap> flow = Flow("Python_Function")  \
           .read_from(mySqlSource.ecom_orders)  \
           .py(pyfunc)  \
           .write_to(mongodbSource.pythonProcessedCollection)  \

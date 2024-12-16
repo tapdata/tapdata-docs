@@ -20,7 +20,7 @@ Before configuring a data source, you can use the `h <database_type>` command to
 
 ```python
 # View the required and optional parameters for a MySQL data source
-tap > h mysql
+tap> h mysql
 required config:
     database: database_name (Type: string)                                                                                                        
     port: database_port (Type: string)                                                                                                            
