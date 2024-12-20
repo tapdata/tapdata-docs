@@ -4,6 +4,24 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+## 3.19.0
+
+### New Features
+
+- In the **[Data Verification](../user-guide/verify-data.md)** task's advanced settings, a "**Custom Collate**" option has been added, allowing you to specify the sorting rules for both the source and target databases to ensure consistent character sorting during verification.
+
+### Enhancements
+
+- Optimized and added new engine error codes to help users quickly locate the cause of issues.
+
+### Bug Fixes
+
+- Fixed an issue where the system failed to start when configuring SSL connections for MongoDB as an intermediate database.
+- Fixed an issue where data was not updated to the target during incremental synchronization when synchronizing Oracle tables with multi-column composite primary keys to GaussDB (DWS).
+- Fixed an issue where the task incorrectly reported missing table creation privileges after synchronizing some tables to MySQL.
+- Fixed a system error that occurred when viewing the source node list of a data mining task.
+- Fixed an issue where the row count displayed in the real-time data platform's table details was inconsistent with the actual row count.
+
 ## 3.18.0
 
 ### Enhancements
