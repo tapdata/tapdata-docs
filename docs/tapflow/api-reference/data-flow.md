@@ -6,7 +6,53 @@ This document provides a comprehensive reference for managing data flows using t
 
 ## **Creating a Data Flow Task**
 
-To create a data flow task, you need to sequentially call the `read_from`, `write_to`, and `save` APIs.
+The core APIs for creating data flow tasks include `read_from`, `write_to`, and `save`. Additionally, you can add processing nodes or configure task synchronization types as needed.
+
+```mermaid
+%%{ init: { 'theme': 'neo', 'themeVariables': { 'primaryColor': '#1E88E5', 'edgeLabelBackground':'#F1F8E9', 'tertiaryColor': '#FAFAFA'}} }%%
+
+flowchart LR
+    %% Data Source Section
+    subgraph read_from["read_from (Define Source Tables)"]
+        direction LR
+        table1["Simple Table Name<br>(data_source.table_name)"]
+        table2["Advanced Configuration (Optional)<br>(Source API Instance)"]
+    end
+
+    %% Flow API Pipeline
+    subgraph flow_api["Real-Time Data Processing (Optional)"]
+        direction TB
+        process_nodes["Data Filtering, Table Renaming, Lookup, etc."]
+    end
+
+    %% Target Table Section
+    subgraph write_to["write_to (Define Target Tables)"]
+        direction LR
+        simple_target["Simple Table Name<br>(data_source.table_name)"]
+        complex_target["Advanced Configuration (Optional)<br>(Sink API Instance)"]
+    end
+
+    %% Task-Level Configuration
+    subgraph sync_and_save["Task-Level Configuration"]
+        direction TB
+        sync_type["Synchronization Type (Optional)<br>(Full, Incremental, Full + Incremental)"]
+        save_task["save<br>Save Task"]
+    end
+
+    %% Data Flow Connections
+    read_from --> process_nodes
+    process_nodes --> write_to
+    write_to --> sync_and_save
+
+    %% Style Optimization
+    style read_from fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rounded
+    style flow_api fill:#f1f8e9,stroke:#43a047,stroke-width:2px,rounded
+    style write_to fill:#ede7f6,stroke:#673ab7,stroke-width:2px,rounded
+    style sync_and_save fill:#fffde7,stroke:#fdd835,stroke-width:2px,rounded
+
+    %% Connection and Arrow Style Optimization
+    linkStyle default stroke-width:2px,stroke:#2196f3,curve:basis
+```
 
 
 
@@ -24,7 +70,7 @@ tap> myflow = Flow("DataFlow_Test")  \
           .read_from("MongoDB_Demo.ecom_orders")
 
 # Example 2: Use a Source API object as the data source
-tap> source = Source("MongoDB_Demo", table=["ecom_orders"], mode="migrate")
+tap> source = Source("MongoDB_Demo", table=["ecom_orders"])
 tap> myflow = Flow("DataFlow_Test")  \
           .read_from(source)
 ```
@@ -37,15 +83,24 @@ myflow.read_from("MongoDB_Demo.ecom_orders", query="SELECT * FROM ecom_orders WH
 
 ### write_to
 
-**Node Description**: Writes data to the specified target data source.
+**Node Description**: Specifies the target table for the data flow task. You can define a simple target table using the `data_source_name.table_name` format, where `data_source_name` can be retrieved via the `show dbs` command or by [creating a new data source](data-source.md).
 
-**Usage Example**:
+Additionally, you can configure the target table using a `Sink API` instance, which is especially useful for advanced configurations such as high-concurrency writes, data cleanup, or customized write behaviors. For more details and parameter options, see [Advanced Sink Settings](#sink).
+
+**Examples**:
 
 ```python
-# Real-time write to MongoDB
-tap> myflow.write_to("MongoDB_Demo.ecom_orders");
-```
+# Example 1: Simple table write
+tap> myflow = Flow("DataFlow_Test")  \
+          .write_to("MongoDB_Demo.ecom_orders")
 
+# Example 2: Configure target table and behavior using Sink API
+tap> sink = Sink("MongoDB_Demo", table="ecom_orders")
+tap> sink.keep_data()          # Retain existing data in the target table
+tap> sink.set_write_batch(500) # Write 500 records per batch
+tap> myflow = Flow("DataFlow_Test")  \
+          .write_to(sink)
+```
 
 
 ### save
@@ -77,7 +132,212 @@ tap> myflow = Flow("DataFlow_Test")  \
 This is a minimal example. TapData also supports adding **processing nodes** before `write_to` to achieve more complex and customized data processing, which will be discussed later in this document.
 :::
 
+## <span id="srouce">Advanced Source Configuration</span>
 
+In TapFlow, the **`Source` API** serves as the starting point for data flow tasks. It defines data sources, table names, and task types, and it also loads the source table data required for task execution. Additionally, `Source` provides advanced features and configuration options to support data synchronization, Change Data Capture (CDC), and performance optimization.
+
+:::tip
+
+The advanced configuration of the `Source API` only applies to the subsequent [data flow tasks](data-flow.md). It does not modify the global default settings of the data source or affect other pre-defined data flow tasks.
+
+:::
+
+
+
+### Select Tables and Task Type
+
+The **Source API** offers flexible table selection and task mode configuration for a variety of data flow scenarios:
+
+- **Data Transformation Task** (Single Table): If the task only processes one specific table, the task type is automatically set to **data transformation task**. This mode is suitable for data modeling, ETL, data cleaning, and wide table construction.
+
+  ```python
+  # Data transformation task: Process only the ecom_orders table
+  source = Source('MySQL_ECommerce', table='ecom_orders')
+  ```
+
+- **Data Replication Task** (Multiple Tables): If multiple tables or regex patterns are specified, the task is automatically set as a **data replication task**. This mode is useful for database migration, cloud migration, database backup, and multi-table synchronization.
+
+  ```python
+  # Data replication task: Specify multiple tables
+  source = Source('MySQL_ECommerce', table=['ecom_orders', 'ecom_customers'])
+  
+  # Data replication task: Use regex to match table names
+  source = Source('MySQL_ECommerce', table_re='sales_.*')
+  ```
+
+:::tip
+
+Regular expressions are useful for dynamically tracking and syncing newly added tables.
+
+:::
+
+
+
+### Enable DDL Synchronization
+
+Enable **DDL synchronization** (disabled by default) to ensure that structural changes to the source database (like adding, renaming, or deleting columns) are also synchronized to the target database.
+
+```python
+source.enableDDL()
+```
+
+:::tip
+
+To enable DDL synchronization, the target database must also support DDL application. You can check the [list of supported data sources](../../prerequisites/supported-databases.md) for each database's support for DDL events. For more details, see [Best Practices for Handling Schema Changes](../../case-practices/best-practice/handle-schema-changes.md).
+
+:::
+
+
+
+### Enable MongoDB PreImage
+
+Enable **[PreImage](https://www.mongodb.com/docs/manual/changeStreams/#change-streams-with-document-pre--and-post-images)** for MongoDB (disabled by default). When enabled, it captures the original (pre-update) values for change events, allowing audit trails or rollbacks.
+
+```python
+source.enablePreImage()
+```
+
+
+
+### Disable Update Field Completion
+
+The **Update Field Completion** feature (enabled by default) ensures that all fields (including unchanged fields) are written to the target database during an update to ensure data consistency. To reduce storage overhead, you can disable this feature using the following command:
+
+```python
+source.disable_filling_modified_data()
+```
+
+
+
+### Set Incremental Read Batch Size
+
+Defines the number of records to read in each batch during incremental synchronization. The default value is **1**. Increasing this value can improve throughput but may increase latency.
+
+```python
+# Set batch size to read 10 records at a time
+source.increase_read_size(10)  
+```
+
+
+
+### Set Full Read Batch Size
+
+Defines the number of records to read in each batch during full synchronization. The default value is **100**. Adjusting this value can improve performance during initial data migration.
+
+```python
+# Set batch size to read 500 records at a time
+source.initial_read_size(500)  
+```
+
+### Comprehensive Configuration Example
+
+The following example demonstrates how to configure the **Source API** to support flexible data source configuration and improve performance by increasing batch sizes for full and incremental reads.
+
+```python
+# Reference an existing data source and configure it as a data replication task for multiple tables
+source = Source('MySQL_ECommerce', table=['ecom_orders', 'ecom_customers'])
+
+# Enable DDL change synchronization
+source.enableDDL()
+
+# Set the incremental batch read size to 10 records
+source.increase_read_size(10)
+
+# Set the full batch read size to 500 records
+source.initial_read_size(500)
+
+print("Advanced data source configuration complete. Ready to create data flow tasks...")
+```
+
+By configuring advanced settings, you can optimize the performance, flexibility, and robustness of your data flow tasks. This includes enabling DDL synchronization, increasing batch sizes, and enhancing data extraction and replication processes.
+
+## <span id="sink">Advanced Target Configuration</span>
+
+In TapFlow, the `Sink` API serves as the endpoint for a data flow task, allowing you to define target table write configurations. `Sink` supports flexible behavior definitions and performance tuning options to meet various needs, such as full synchronization, incremental updates, and high-performance writes.
+
+`Sink` configurations apply only to the current data flow task. They do not alter global settings of the target database or affect other data flow tasks.
+
+### Define the Target Table
+
+Use the `Sink` object to specify the target database and table name:
+
+```python
+# Define single target table
+sink = Sink('database_name.table_name')
+
+# Define multiple target tables
+sink = Sink('database_name', table=['table_name_1', 'table_name_2'])
+```
+
+### Configure Target Table Write Behavior
+
+`Sink` provides multiple options to address diverse business needs flexibly:
+
+- **Preserve Target Table Data** (default): Appends new data to the target table while keeping the existing data:
+
+  ```python
+  sink.keep_data()
+  ```
+
+- **Clear Target Table Data**: Deletes all data from the table before writing, retaining the table structure:
+
+  ```python
+  sink.clean_data()
+  ```
+
+- **Drop and Recreate Target Table**: Deletes the target table and recreates it before writing:
+
+  ```python
+  sink.clean_table()
+  ```
+
+### Optimize Write Performance
+
+For high-throughput or real-time scenarios, `Sink` offers various performance tuning options. Proper configuration of write thread count, batch size, and interval can improve efficiency, balance source data generation rates with target processing capacity, and prevent overloading the target database.
+
+- **Incremental Write Threads**: Specifies the number of concurrent write threads for incremental synchronization tasks (default: `1`), ideal for scenarios requiring high real-time performance:
+
+  ```python
+  sink.set_cdc_threads(4)  # Use 4 threads for incremental writes
+  ```
+
+- **Full Write Threads**: Configures the number of concurrent write threads for full synchronization tasks (default: `1`), suitable for accelerating large-scale data writes:
+
+  ```python
+  sink.set_init_thread(6)  # Use 6 threads for full writes
+  ```
+
+- **Write Batch Size**: Defines the number of records per write batch (default: `500`). Adjust this based on the target database's performance and data volume:
+
+  ```python
+  sink.set_write_batch(500)  # Write 500 records per batch
+  ```
+
+- **Write Batch Interval**: Sets the time interval between write batches (default: `500` milliseconds), useful for throttling traffic to the target database:
+
+  ```python
+  sink.set_write_wait(200)  # Wait 200 milliseconds between batches
+  ```
+
+### Comprehensive Configuration Example
+
+The following example demonstrates how to configure target table write behavior and optimize performance using the `Sink API`:
+
+```python
+# Define the target table
+sink = Sink('MongoDB_Demo.orders')
+
+# Configure write behavior
+sink.keep_data()              # Preserve existing data in the target table
+
+# Configure performance optimization parameters
+sink.set_cdc_threads(4)       # Incremental task write threads
+sink.set_init_thread(6)       # Full task write threads
+sink.set_write_batch(500)     # Write 500 records per batch
+sink.set_write_wait(200)      # Wait 200 milliseconds between batches
+
+print("Target write configuration complete!")
+```
 
 ## Config Task Sync Types
 

@@ -104,7 +104,7 @@ tap> status MySQL_A_to_B
 job current status is: running, qps is: 31808.0, total rows: 1300000, delay is: 706ms
 ```
 
-### start <flow name/id>
+### <span id="start">start</span> <flow name/id>
 
 **Command Description**: Starts the specified data flow task. By default, the first run will perform a full data synchronization, followed by incremental synchronization. If the task is configured as full-only, it will complete a single full synchronization; if incremental-only, it will begin at the specified starting point or current time.
 
