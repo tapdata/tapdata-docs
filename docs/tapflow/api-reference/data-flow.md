@@ -2,135 +2,221 @@
 
 This document provides a comprehensive reference for managing data flows using the TapFlow API, including defining task sources/targets, executing data transformations, and handling advanced data flow operations.
 
+```mdx-code-block
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
 
+## Create a Data Flow Task
 
-## **Creating a Data Flow Task**
+The core APIs for creating a data flow task include `read_from`, `write_to`, and `save`. Additionally, you can add processing nodes or set the sync type depending on your needs. Follow the tutorial below to understand both basic and advanced usage:
 
-The core APIs for creating data flow tasks include `read_from`, `write_to`, and `save`. Additionally, you can add processing nodes or configure task synchronization types as needed.
+```mdx-code-block
+<Tabs className="unique-tabs">
+<TabItem value="Quick Start" default>
+```
+
+In this section, we will introduce how to use the basic `read_from`, `write_to`, and `save` APIs to create a data flow task. This is suitable for simple real-time data synchronization. The process is as follows:
 
 ```mermaid
 %%{ init: { 'theme': 'neo', 'themeVariables': { 'primaryColor': '#1E88E5', 'edgeLabelBackground':'#F1F8E9', 'tertiaryColor': '#FAFAFA'}} }%%
-
 flowchart LR
-    %% Data Source Section
-    subgraph read_from["read_from (Define Source Tables)"]
+    %% Data Source Part
+    subgraph read_from["read_from (Define Source Table)"]
         direction LR
-        table1["Simple Table Name<br>(data_source.table_name)"]
-        table2["Advanced Configuration (Optional)<br>(Source API Instance)"]
+        simple_table["data_source.table_name"]
     end
 
-    %% Flow API Pipeline
-    subgraph flow_api["Real-Time Data Processing (Optional)"]
-        direction TB
-        process_nodes["Data Filtering, Table Renaming, Lookup, etc."]
-    end
-
-    %% Target Table Section
-    subgraph write_to["write_to (Define Target Tables)"]
+    %% Target Table Part
+    subgraph write_to["write_to (Define Target Table)"]
         direction LR
-        simple_target["Simple Table Name<br>(data_source.table_name)"]
-        complex_target["Advanced Configuration (Optional)<br>(Sink API Instance)"]
+        simple_target["data_source.table_name"]
     end
 
-    %% Task-Level Configuration
-    subgraph sync_and_save["Task-Level Configuration"]
+    %% Save Data Flow Task
+    subgraph sync_and_save["save (Save Data Flow Task)"]
         direction TB
-        sync_type["Synchronization Type (Optional)<br>(Full, Incremental, Full + Incremental)"]
-        save_task["save<br>Save Task"]
     end
 
     %% Data Flow Connections
+    read_from --> write_to
+    write_to --> sync_and_save
+
+    %% Style Optimization
+    style read_from fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rounded
+    style write_to fill:#ede7f6,stroke:#673ab7,stroke-width:2px,rounded
+    style sync_and_save fill:#fffde7,stroke:#fdd835,stroke-width:2px,rounded
+
+    %% Link Style Optimization
+    linkStyle default stroke-width:2px,stroke:#2196f3,curve:basis
+```
+
+- **read_from**: Specifies the main data source table for the data flow task. You can specify the source table using the `data_source_name.table_name` format. The `data_source_name` can be obtained using the `show dbs` command, or you can [create a new data source](data-source.md). For example:
+
+  ```python
+  # Specify the source table to read from
+  tap> myflow = Flow("DataFlow_Test")  \
+            .read_from("MongoDB_Demo.ecom_orders")
+  ```
+
+- **write_to**: Specifies the target table for the data flow task. You can define a simple target table using the `data_source_name.table_name` format. The `data_source_name` can be retrieved using the `show dbs` command, or you can [create a new data source](data-source.md). For example:
+
+  ```python
+  # Write data from the source table to ecom_orders table in the target
+  tap> myflow = Flow("DataFlow_Test")  \
+            .write_to("MongoDB_Demo.ecom_orders")
+  ```
+
+- **save**: Saves the current task configuration, making it a persistent task. After calling `save()`, the data flow task can be started or stopped. For example:
+
+  ```python
+  # Save the data flow task
+  tap> myflow.save();
+  ```
+
+**Simple Example**
+
+Combining all the steps into a complete example, this task reads order data from MySQL and writes it to MongoDB. After saving the task, you can run the [start](../tapcli-reference.md#start) command to begin execution.
+
+```python
+# Create a data flow task
+tap> myflow = Flow("DataFlow_Advanced")  \
+          .read_from("MySQL_Demo.ecom_orders")  \
+          .write_to("MongoDB_Demo.Orders")  \
+          .save();
+```
+
+For more advanced usage, you can further configure multi-table reading, data processing nodes, and sync types. See the **Advanced Features** tab for more details.
+
+</TabItem>
+
+<TabItem value="Advanced Features">
+
+In this section, we will explore how to further configure and customize data flow tasks, suitable for scenarios involving multi-table reading, adding data processing nodes, and setting sync types. The process is as follows:
+
+```mermaid
+%%{ init: { 'theme': 'neo', 'themeVariables': { 'primaryColor': '#1E88E5', 'edgeLabelBackground':'#F1F8E9', 'tertiaryColor': '#FAFAFA'}} }%%
+flowchart LR
+    %% Data Source Part
+    subgraph read_from["read_from (Define Source)"]
+        direction LR
+        table["Source Table and Reading Behavior<br> (Source API Instance)"]
+    end
+
+    %% Flow API Pipeline
+    subgraph flow_api["Real-time Processing (Optional)"]
+        direction TB
+        process_nodes["Data Filtering<br>Rename Tables<br>Lookup<br>More..."]
+    end
+
+    %% Target Table Part
+    subgraph write_to["write_to (Define Target)"]
+        direction LR
+        complex_target["Target Table and Write Behavior<br> (Sink API Instance)"]
+    end
+
+    %% Sync Type Configuration
+    subgraph sync["Sync Type Configuration (Optional)"]
+        direction TB
+        sync_type["Full<br>Incremental<br>Full+Incremental"]
+    end
+    
+    %% Save Data Flow Task
+    subgraph save["save<br> (Save Data Flow Task)"]
+    end   
+    
+    %% Data Flow Connections
     read_from --> process_nodes
     process_nodes --> write_to
-    write_to --> sync_and_save
+    write_to --> sync
+    sync --> save
 
     %% Style Optimization
     style read_from fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,rounded
     style flow_api fill:#f1f8e9,stroke:#43a047,stroke-width:2px,rounded
     style write_to fill:#ede7f6,stroke:#673ab7,stroke-width:2px,rounded
-    style sync_and_save fill:#fffde7,stroke:#fdd835,stroke-width:2px,rounded
+    style sync fill:#fff3e0,stroke:#fb8c00,stroke-width:2px,rounded
+    style save fill:#fffde7,stroke:#fdd835,stroke-width:2px,rounded
+    style table fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,rounded
+    style process_nodes fill:#bbdefb,stroke:#1e88e5,stroke-width:2px,rounded
+    style complex_target fill:#d1c4e9,stroke:#673ab7,stroke-width:2px,rounded
+    style sync_type fill:#ffe0b2,stroke:#fb8c00,stroke-width:2px,rounded
 
-    %% Connection and Arrow Style Optimization
+
+    %% Link Style Optimization
     linkStyle default stroke-width:2px,stroke:#2196f3,curve:basis
 ```
 
+- **read_from**: Specifies the [source table](data-source.md) for the data flow task. You can either define it simply using the `data_source_name.table_name` format or instantiate it using the `Source API` for more complex configurations (e.g., multi-table sync, performance optimization). For more details, see [Advanced Source Settings](#source). Example:
 
+  ```python
+  # Instantiate the source table using the Source API
+  tap> source = Source('MySQL_ECommerce', table=['ecom_orders', 'ecom_customers'])
+  # Configure source reading behavior
+  tap> source.initial_read_size(500)  # Set full read batch size to 500 records
+  tap> myflow = Flow("DataFlow_Advanced")  \
+            .read_from(source)
+  ```
 
-### read_from
+  To use custom queries, you can specify the `query` parameter directly, e.g., `myflow.read_from("MongoDB_Demo.ecom_orders", query="SELECT * FROM ecom_orders WHERE status='active'")`.
 
-**Node Description**: Specifies the primary data source table for the data flow task. You can define it using the `data_source_name.table_name` format, where `data_source_name` can be obtained via the `show dbs` command or by [creating a new data source](data-source.md).
+- **Add Processing Nodes**: Before writing data to the target, you can add different types of processing nodes to perform data preprocessing, structure adjustments, and more complex tasks. For more details, see [Processing Node Documentation](#add-nodes).
 
-Additionally, objects instantiated from the `Source API` can be directly used as a data source, which is particularly useful for more complex configurations (such as multi-table sync or performance optimization). For more details on usage and parameters, see [Advanced Data Source Configuration](data-source.md#advanced).
+- **write_to**: Specifies the [target table](data-source.md) for the data flow task. You can define it simply using the `data_source_name.table_name` format or instantiate it using the `Sink API` for more complex configurations (e.g., high-concurrency writes, write behavior). For more details, see [Advanced Sink Settings](#sink). Example:
 
-**Usage Examples**:
+  ```python
+  # Instantiate the target table using the Sink API
+  tap> sink = Sink("MongoDB_Demo", table="ecom_orders")
+  # Configure target write behavior
+  tap> sink.keep_data()           # Retain existing data in the target table
+  tap> sink.set_write_batch(500)  # Write 500 records per batch
+  tap> myflow = Flow("DataFlow_Test")  \
+            .write_to(sink)
+  ```
 
-```python
-# Example 1: Simple table read
-tap> myflow = Flow("DataFlow_Test")  \
-          .read_from("MongoDB_Demo.ecom_orders")
+- **save**: Saves the current task configuration, making it a persistent task. After calling `save()`, the data flow task can be started or stopped.
 
-# Example 2: Use a Source API object as the data source
-tap> source = Source("MongoDB_Demo", table=["ecom_orders"])
-tap> myflow = Flow("DataFlow_Test")  \
-          .read_from(source)
-```
+  ```python
+  # Save and create the data flow task
+  tap> myflow.save();
+  ```
 
-You can also use a custom query to extract specific data from the source:
+**Complete Example**
 
-```python
-myflow.read_from("MongoDB_Demo.ecom_orders", query="SELECT * FROM ecom_orders WHERE status='active'")
-```
-
-### write_to
-
-**Node Description**: Specifies the target table for the data flow task. You can define a simple target table using the `data_source_name.table_name` format, where `data_source_name` can be retrieved via the `show dbs` command or by [creating a new data source](data-source.md).
-
-Additionally, you can configure the target table using a `Sink API` instance, which is especially useful for advanced configurations such as high-concurrency writes, data cleanup, or customized write behaviors. For more details and parameter options, see [Advanced Sink Settings](#sink).
-
-**Examples**:
-
-```python
-# Example 1: Simple table write
-tap> myflow = Flow("DataFlow_Test")  \
-          .write_to("MongoDB_Demo.ecom_orders")
-
-# Example 2: Configure target table and behavior using Sink API
-tap> sink = Sink("MongoDB_Demo", table="ecom_orders")
-tap> sink.keep_data()          # Retain existing data in the target table
-tap> sink.set_write_batch(500) # Write 500 records per batch
-tap> myflow = Flow("DataFlow_Test")  \
-          .write_to(sink)
-```
-
-
-### save
-
-**Node Description**: Saves the current task configuration, making it persistent. Once `save()` is called, the data flow task can be started, stopped, or updated.
-
-**Usage Example**:
+This example demonstrates how to read multiple tables from MySQL, configure batch writes, retain existing data, and add a filtering node to keep only records where the order amount is greater than 100. The processed data is then synchronized in real-time to a MongoDB target table. After saving the task, you can run the [start](../tapcli-reference.md#start) command to execute it.
 
 ```python
-# Save and create a persistent data flow task
-tap> myflow.save();
+# Reference an existing data source and configure multi-table sync
+source = Source('MySQL_ECommerce', table=['ecom_orders', 'ecom_customers'])
+
+# Advanced configuration for the source
+source.initial_read_size(500)  # Set full read batch size to 500 records
+
+print("Source advanced configuration complete, preparing to create the data flow task...")
+
+# Define the target table
+sink = Sink('MongoDB_Demo', table=['ecom_orders', 'ecom_customers'])
+
+# Advanced configuration for the target
+sink.keep_data()              # Retain target table structure and data
+sink.set_write_batch(500)     # Write 500 records per batch
+
+print("Target write configuration complete!")
+
+# Create the data flow task and add processing nodes
+flow = Flow("DataFlow_Advanced")  \
+          .read_from(source)      \
+          .filter("order_amount > 100")  # Add a filtering node to keep records where order amount > 100
+          .write_to(sink)         \
+          .save()
+
+print("Data flow task configuration complete!")
 ```
 
+</TabItem>
+</Tabs>
 
 
-### Simplest Example
-
-Here is a simple end-to-end example where data is read from the `ecom_orders` table in MySQL and written to the `Orders` collection in MongoDB. The task is saved and ready to be started.
-
-```python
-# Create and configure a data flow task
-tap> myflow = Flow("DataFlow_Test")  \
-          .read_from("MySQL_Demo.ecom_orders", query="SELECT * FROM ecom_orders LIMIT 2000")  \
-          .write_to("MongoDB_Demo.Orders")  \
-          .save();
-```
-
-:::tip
-This is a minimal example. TapData also supports adding **processing nodes** before `write_to` to achieve more complex and customized data processing, which will be discussed later in this document.
-:::
 
 ## <span id="srouce">Advanced Source Configuration</span>
 
