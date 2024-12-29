@@ -186,31 +186,33 @@ flowchart LR
 This example demonstrates how to read multiple tables from MySQL, configure batch writes, retain existing data, and add a filtering node to keep only records where the order amount is greater than 100. The processed data is then synchronized in real-time to a MongoDB target table. After saving the task, you can run the [start](../tapcli-reference.md#start) command to execute it.
 
 ```python
-# Reference an existing data source and configure multi-table sync
+# Reference an existing data source and set up a multi-table data replication task
 source = Source('MySQL_ECommerce', table=['ecom_orders', 'ecom_customers'])
 
-# Advanced configuration for the source
-source.initial_read_size(500)  # Set full read batch size to 500 records
+# Advanced source configuration
+source.initial_read_size(500)  # Set batch size for full read to 500 records
 
-print("Source advanced configuration complete, preparing to create the data flow task...")
+print("Source configuration completed. Preparing to create the data flow task...")
 
 # Define the target table
 sink = Sink('MongoDB_Demo', table=['ecom_orders', 'ecom_customers'])
 
-# Advanced configuration for the target
-sink.keep_data()              # Retain target table structure and data
-sink.set_write_batch(500)     # Write 500 records per batch
+# Advanced sink configuration
+sink.keep_data()               # Retain the structure and data of the target table
+sink.set_write_batch(500)      # Set the batch size for writes to 500 records
 
-print("Target write configuration complete!")
+print("Sink configuration completed!")
 
 # Create the data flow task and add processing nodes
-flow = Flow("DataFlow_Advanced")  \
-          .read_from(source)      \
-          .filter("order_amount > 100")  # Add a filtering node to keep records where order amount > 100
-          .write_to(sink)         \
-          .save()
+flow = (
+    Flow("DataFlow_Advanced")
+    .read_from(source)
+    .filter("order_amount > 100")  # Add a filter node to keep orders with amount > 100
+    .write_to(sink)
+    .save()
+)
 
-print("Data flow task configuration complete!")
+print("Data flow task configuration completed!")
 ```
 
 </TabItem>
