@@ -6,6 +6,20 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-12-17
+
+#### Enhancements
+
+- Optimized and added new engine error codes to help users quickly locate the cause of issues.
+
+#### Bug Fixes
+
+- Fixed an issue where the system failed to start when configuring SSL connections for MongoDB as an intermediate database.
+- Fixed an issue where data was not updated to the target during incremental synchronization when synchronizing Oracle tables with multi-column composite primary keys to GaussDB (DWS).
+- Fixed an issue where the task incorrectly reported missing table creation privileges after synchronizing some tables to MySQL.
+- Fixed a system error that occurred when viewing the source node list of a data mining task.
+- Fixed an issue where the row count displayed in the real-time data platform's table details was inconsistent with the actual row count.
+
 ### 2024-11-29
 
 #### Enhancements

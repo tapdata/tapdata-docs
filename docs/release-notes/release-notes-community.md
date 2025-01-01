@@ -6,6 +6,18 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.19.0
+
+### Enhancements
+
+- Optimized and added new engine error codes to help users quickly locate the cause of issues.
+
+### Bug Fixes
+
+- Fixed an issue where the system failed to start when configuring SSL connections for MongoDB as an intermediate database.
+- Fixed an issue where data was not updated to the target during incremental synchronization when synchronizing Oracle tables with multi-column composite primary keys to GaussDB (DWS).
+- Fixed an issue where the task incorrectly reported missing table creation privileges after synchronizing some tables to MySQL.
+
 ## 3.18.0
 
 ### Enhancements
