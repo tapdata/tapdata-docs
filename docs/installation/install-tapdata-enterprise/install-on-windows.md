@@ -21,7 +21,7 @@ Stand-alone deployment is suitable for functional testing scenarios. For product
 
 ## Preparation
 
-1. Install MongoDB (version 4.0 and above), which will serve as the storage system for TapData to run related data, such as logs and metadata. For more information, see [Deploy MongoDB Replica Set](../../administration/production-deploy/install-replica-mongodb.md).
+1. [Install MongoDB](../../administration/production-deploy/install-replica-mongodb.md) (version 4.0 and above), which will serve as the storage system for TapData to run related data, such as logs and metadata.
 
 2. Log in to the target device, install Java 1.8 and set environment variables.
 

@@ -43,7 +43,7 @@ This guide uses CentOS 7 as an example to demonstrate the deployment process.
        yum -y install java-1.8.0-openjdk
        ```
 
-    2. Install MongoDB (version 4.0 and above), which will serve as the storage system for TapData to run related data, such as logs and metadata. For more information, see [Deploy MongoDB Replica Set](../../administration/production-deploy/install-replica-mongodb.md).
+    2. [Install MongoDB](../../administration/production-deploy/install-replica-mongodb.md) (version 4.0 and above), which will serve as the storage system for TapData to run related data, such as logs and metadata.
 
 3. Download the TapData installation package (contact us at [team@tapdata.io](mailto:team@tapdata.io) to obtain it) and upload it to the target device.
 
