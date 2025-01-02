@@ -4,6 +4,8 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+This article provides release notes for TapData Enterprise, including new features, improvements, and bug fixes.
+
 ## 3.20.0
 
 ### New Features
