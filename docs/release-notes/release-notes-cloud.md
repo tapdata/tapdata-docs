@@ -6,6 +6,18 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2024-12-30
+
+#### Enhancements
+
+- Added the ability to download log files from the task monitoring page for easier fault diagnosis.
+- Optimized engine startup to eliminate the need for MongoDB configuration during initialization.
+- Expanded error code coverage and provided more detailed solution hints.
+
+#### Bug Fixes
+
+- Fixed a problem where tasks synchronizing only primary key tables using regex continued to log "new table detected" after adding non-primary key tables.
+
 ### 2024-12-17
 
 #### Enhancements

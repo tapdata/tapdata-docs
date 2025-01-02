@@ -6,6 +6,18 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.20.0
+
+### Enhancements
+
+- Added the ability to download log files from the task monitoring page for easier fault diagnosis.
+- Optimized engine startup to eliminate the need for MongoDB configuration during initialization.
+- Expanded error code coverage and provided more detailed solution hints.
+
+### Bug Fixes
+
+- Fixed a problem where tasks synchronizing only primary key tables using regex continued to log "new table detected" after adding non-primary key tables.
+
 ## 3.19.0
 
 ### Enhancements

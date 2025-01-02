@@ -155,3 +155,9 @@ TapData supports integrating with LDAP (Lightweight Directory Access Protocol) f
 * **Enable SSL**: Specifies whether to connect to the LDAP server using SSL encryption. If enabled, an SSL certificate file must also be uploaded.
 
 Once the settings are configured, you can click **Test** to verify the correctness of the configuration.
+
+## <span id="login">Login Settings</span>
+
+![Login Settings](../../images/login_settings.png)
+
+**Single Session Login**: When enabled, a single account is only allowed to log in from one session at a time. A new login will automatically invalidate the previous session and log it out. This helps prevent multiple simultaneous logins or account sharing, enhancing the security and compliance of system access.
