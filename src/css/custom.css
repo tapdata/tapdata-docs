@@ -21,7 +21,7 @@
  h1 { font-size: 1.8rem !important; }
  h2 { font-size: 1.5rem !important; }
  h3 { font-size: 1.2rem !important; }
- h4 { font-size: 0.9rem !important; }
+ h4 { font-size: 1.1rem !important; }
 
 /* Custom announcement style */
 div[class^='announcementBar_'] {

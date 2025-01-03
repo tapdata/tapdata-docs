@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
    pip install tapflow
    ```
 
-   Installation is now complete. If you exit the command line, remember to reactivate the virtual environment before using Tap Shell again.
+   The installation is now complete. Before using Tap Shell again after exiting the command line, you need to activate the virtual environment. Alternatively, you can install TapFlow using [pipx](https://github.com/pypa/pipx). Simply run `pipx install tapflow`, and pipx will automatically create and manage the virtual environment for you.
 
 4. Type `tap` to launch Tap Shell.
 
@@ -86,6 +86,12 @@ Mon Oct 21 15:53:50 CST 2024 Welcome to TapData Live Data Platform, Enjoy Your D
 TapData Cloud Service Running Agent: 1
 Agent name: agent-192*****67, ip: 172.17.0.3, cpu usage: 16%
 ```
+
+:::tip
+
+By default, TapFlow generates the configuration file at `~/.tapflow/config.ini`. You can modify this file to update authentication details or specify a custom configuration file path using `tap -c <filename>`.
+
+:::
 
 ## Step 2: Create a Data Flow Task
 

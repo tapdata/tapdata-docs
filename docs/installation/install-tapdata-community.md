@@ -44,7 +44,7 @@ TapData Community includes the following main components:
 3. Run the following command to start the TapData container:
 
    ```bash
-   docker run -d -p 3030:3030 --restart always --name tapdata ghcr.io/tapdata/tapdata:latest
+   docker run -d -p 3030:3030 --restart always --name tapdata --privileged ghcr.io/tapdata/tapdata:latest
    ```
 
    Explanation of parameters:
@@ -53,6 +53,7 @@ TapData Community includes the following main components:
    - `-p 3030:3030`: Map port 3030 of the container to port 3030 on the host machine, allowing access to TapData through a browser.
    - `--name tapdata`: Assign a name to your container, in this case, **tapdata**.
    - `--restart always`: Automatically start this container when Docker services restart.
+   - `--privileged`: Grants the container elevated permissions to ensure proper functioning of dependencies (e.g., embedded MongoDB). It is recommended to configure permissions more precisely in production environments as needed.
 
    :::tip
 

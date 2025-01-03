@@ -14,54 +14,77 @@ TapFlow supports [dozens of common data sources](../../prerequisites/supported-d
 - **type**: Data source type. Options include `source` (as source database), `target` (as target database), and `source_and_target` (as both source and target).
 - **config**: Data source connection parameters, provided in JSON or dictionary format.
 
-## Viewing Data Source Help Information
+### View Data Source Help
 
-Before configuring, use `h <database_type>` to view configuration requirements for each data source type.
+Before configuring a data source, you can use the `h <database_type>` command to view specific configuration requirements for each data source.
 
 ```python
-# View required and optional parameters for a MySQL data source
-tap > h mysql
+# View the required and optional parameters for a MySQL data source
+tap> h mysql
 required config:
-    database: database_name                                                                                                                                              
-    port: database_port                                                                                                                                                  
-    host: database_host                                                                                                                                                  
-    username: database_username                                                                                                                                          
+    database: database_name (Type: string)                                                                                                        
+    port: database_port (Type: string)                                                                                                            
+    host: database_host (Type: string)                                                                                                            
+    username: database_username (Type: string)                                                                                                    
 optional config:
-    deploymentMode:                                                                                                                                                      
-    password: database_password                                                                                                                                          
-    masterSlaveAddress: 
+    deploymentMode:  (Type: string)                                                                                                               
+        Enum values: standalone, master-slave
+        Dependencies:
+            When value is standalone, requires: host, port
+            When value is master-slave, requires: masterSlaveAddress
+    password: database_password (Type: string)                                                                                                    
+    timezone:  (Type: string)                                                                                                                     
+        Enum values: -11:00, -10:00, -09:00, ...
+    additionalString: additionalString (Type: string)                                                                                               
+    masterSlaveAddress:  (Type: array)                                                                                                            
+        Array[port: number, host: string]
 ```
 
-* **required config**: Required settings, including:
-  - `database`: Database name
-  - `port`: Database port
-  - `host`: Database host address
-  - `username`: Database username
+**Explanations of Configuration Parameters**
 
-* **optional config**: Optional settings, including:
-  - `deploymentMode`: Deployment mode
-  - `password`: Database password
-  - `masterSlaveAddress`: Master-slave address
+- **required config**: Mandatory configuration options, including:
+  - **`database`**: Name of the database.
+  - **`port`**: Database port number.
+  - **`host`**: Database host address.
+  - **`username`**: Database username.
+- **optional config**: Optional configuration options, including:
+  - **`deploymentMode`**: The deployment mode.
+  - **`password`**: Database password.
+  - **`timezone`**: Timezone configuration, default is UTC+0. If set to another timezone, it will affect fields without timezone information (e.g., `datetime`), but will not affect fields with time zones (e.g., `timestamp`, `date`, `time`).
+  - **`masterSlaveAddress`**: Address of the master-slave setup.
 
-## Configuration Example
 
-The example below demonstrates creating a MySQL data source named `MySQL-EcommerceData`. Other data sources can be configured similarly by adjusting the settings based on the data source type.
+
+### Configuration Example
+
+The following example demonstrates how to create a MySQL data source named **MySQL-EcommerceData**. The configuration process for other data source types is similar. Simply adjust the configuration details based on the selected data source.
 
 ```python
-# Define a dictionary variable mysql_json_config for MySQL connection configuration
+# Define a dictionary to store MySQL data source connection details
 mysql_json_config = {
     'database': 'ECommerceData',  # Database name
-    'port': 3306,                 # MySQL port, usually 3306
+    'port': 3306,                 # MySQL port, typically 3306
     'host': '192.168.1.18',       # MySQL host address
     'username': 'your_username',  # Database username
-    'password': 'your_passwd'     # Database password
+    'password': 'your_password'   # Database password
 }
 
-# Create a data source connection object mysql_conn, referencing mysql_json_config and saving it as a source
-mysql_conn = DataSource('mysql', 'MySQL_ECommerce', mysql_json_config).type('source').save()
+# Initialize a MySQL data source object using the given configuration
+mysql_conn = DataSource('mysql', 'MySQL_ECommerce', mysql_json_config)
+
+# Set the data source type to 'source' (source database)
+mysql_conn.type('source')
+
+# Save the MySQL data source configuration to TapFlow
+mysql_conn.save()
+
+# (Optional) To delete the data source configuration, call the delete() method
+# mysql_conn.delete()
 ```
 
-## Output Example
+
+
+### Output Example
 
 ```python
 datasource MySQL_ECommerce creating, please wait...                                
@@ -71,11 +94,9 @@ load schema status: finished
 
 :::tip
 
-If you encounter a `load schema status: error`, it usually indicates an issue with permissions or configuration. Retry with the same name; the system will prompt `database MongoDB_ECommerce exists, will update its config` and overwrite the previous configuration.
+If an error message like `load schema status: error` appears, it is often due to incorrect permissions or configuration issues. You can try to recreate the source using the same name. The system will display a message like `database MySQL_ECommerce exists, will update its config`, which means it will overwrite the previous configuration.
 
 :::
-
-
 
 ## See also
 

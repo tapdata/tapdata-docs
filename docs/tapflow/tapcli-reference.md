@@ -11,7 +11,7 @@ Tap Shell offers a comprehensive set of commands for managing data sources and d
 **Example**:
 
 ```python
-tap > show dbs
+tap> show dbs
 id         status     database_type        name                                      
 4fa6c6     ready      MongoDB              MongoDB_ECommerce                       
 4fa6c1     ready      Mysql                MySQL_ECommerce  
@@ -24,7 +24,7 @@ id         status     database_type        name
 **Example**:
 
 ```python
-tap > use MySQL_ECommerce
+tap> use MySQL_ECommerce
 datasource switch to: MySQL_ECommerce
 ```
 
@@ -35,7 +35,7 @@ datasource switch to: MySQL_ECommerce
 **Example**:
 
 ```python
-tap > show tables
+tap> show tables
 ecom_customers        ecom_order_items      ecom_order_payments   ecom_orders           ecom_product_category 
 ecom_products         ecom_sellers   
 ```
@@ -47,7 +47,7 @@ ecom_products         ecom_sellers
 **Example**:
 
 ```python
-desc ecom_customers
+tap> desc ecom_customers
 {
   "customer_id": "varchar(255)",
   "customer_unique_id": "varchar(255)",
@@ -57,6 +57,18 @@ desc ecom_customers
 }
 ```
 
+### **peek <table_name>**
+
+**Command Description**: After selecting the data source, this command allows you to preview a few records from a specified table along with its total row count. By default, it displays **5 records**, but you can specify the number of records to display using the `-n` option.
+
+**Usage Example**:
+
+```python
+tap> peek ecom_customers -n 1
+table ecom_customers has 99002 records                                                                                                         
+{'customer_unique_id': '248ffe10d632bebe4f7267f1f44844c9', 'customer_state': 'SP', 'customer_id': '00012a2ce6f8dcda20d059ce98491703', 'customer_zip_code_prefix': '06273', 'customer_city': 'CITY_osasco'}
+```
+
 ### count  <table_name>
 
 **Command Description**: After selecting a data source, use this command to view the row count of a specific table.
@@ -64,7 +76,7 @@ desc ecom_customers
 **Example**:
 
 ```python
-count ecom_customers
+tap> count ecom_customers
 table ecom_customers has 99002 records  
 ```
 
@@ -77,7 +89,7 @@ table ecom_customers has 99002 records
 **Example**:
 
 ```python
-tap > show flows
+tap> show flows
 d7c298: Oracle_Sync_Test       complete     sync/initial_sync+cdc
 ```
 
@@ -88,18 +100,18 @@ d7c298: Oracle_Sync_Test       complete     sync/initial_sync+cdc
 **Example**:
 
 ```python
-status MySQL_A_to_B
+tap> status MySQL_A_to_B
 job current status is: running, qps is: 31808.0, total rows: 1300000, delay is: 706ms
 ```
 
-### start <flow name/id>
+### <span id="start">start</span> <flow name/id>
 
 **Command Description**: Starts the specified data flow task. By default, the first run will perform a full data synchronization, followed by incremental synchronization. If the task is configured as full-only, it will complete a single full synchronization; if incremental-only, it will begin at the specified starting point or current time.
 
 **Example**:
 
 ```python
-tap > start MySQL_A_to_B
+tap> start MySQL_A_to_B
 Task start succeed 
 ```
 
@@ -110,7 +122,7 @@ Task start succeed
 **Example**:
 
 ```python
-tap > stop MySQL_A_to_B
+tap> stop MySQL_A_to_B
 Task stop succeed 
 ```
 
@@ -119,7 +131,7 @@ Task stop succeed
 **Command Description**: Displays logs for the specified data flow task.
 
 ```python
-tap > logs Oracle_Sync_Test
+tap> logs Oracle_Sync_Test
 {'id': '671f9c54cc9caf4b1cb1942b', 'customId': '638af042703dd67b8fb63af8', 'level': 'INFO', 'timestamp': 1730124884471, 'date': '2024-10-28T14:14:43.568+00:00', 'taskId': '668f197a37800f4b2a167806', 'taskRecordId': '671f9bee548ec6691e89681c', 'taskName': 'MySQL_A_to_B', 'nodeId': '4eb098ee-19f8-4e63-a7bf-9d7e726c62ea', 'nodeName': 'Region_A', 'message': 'Node Region_A[4eb098ee-19f8-4e63-a7bf-9d7e726c62ea] start preload schema,table counts: 1', 'logTags': [], 'data': [], 'user_id': '638af042c162f518b1b9bdf4'}
 ```
 
@@ -130,7 +142,7 @@ tap > logs Oracle_Sync_Test
 **Example**:
 
 ```python
-tap > reset MySQL_B_to_A
+tap> reset MySQL_B_to_A
 Task reset success 
 ```
 
@@ -147,7 +159,7 @@ This action is irreversible. Proceed with caution.
 **Example**:
 
 ```python
-tap > delete MySQL_to_MongoDB_Order
+tap> delete MySQL_to_MongoDB_Order
 Are you sure you want to delete flow MySQL_to_MongoDB_Order (y/[n]): y
 Task deleted successfully            
 ```
