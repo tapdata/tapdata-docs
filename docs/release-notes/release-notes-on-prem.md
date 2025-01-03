@@ -4,6 +4,27 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 <Content />
 
+This article provides release notes for TapData Enterprise, including new features, improvements, and bug fixes.
+
+## 3.20.0
+
+### New Features
+
+- Added support for restricting [single-session login](../user-guide/other-settings/system-settings.md#login) per account to enhance login security.
+
+### Enhancements
+
+- Operation logs now include user creation and permission management activities.
+- Improved login failure messages for Active Directory (AD) integration to assist users in troubleshooting issues.
+- Added the ability to download log files from the task monitoring page for easier fault diagnosis.
+- Optimized engine startup to eliminate the need for MongoDB configuration during initialization.
+- Expanded error code coverage and provided more detailed solution hints.
+
+### Bug Fixes
+
+- Fixed an issue where user access tokens were not refreshed properly after being updated.
+- Fixed a problem where tasks synchronizing only primary key tables using regex continued to log "new table detected" after adding non-primary key tables.
+
 ## 3.19.0
 
 ### New Features
