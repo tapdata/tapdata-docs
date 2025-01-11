@@ -337,6 +337,29 @@ Focus on the following collections, which may change with version updates:
 
 
 
+## How to Confirm if Alert Emails Were Successfully Sent?
+
+TapData supports [sending alert emails via the SMTP](../case-practices/best-practice/alert-via-qqmail.md) protocol to help users stay informed about operational anomalies and ensure the stability of tasks.
+
+In case end users report not receiving alert emails, administrators can follow these steps to troubleshoot the email sending process:
+
+1. Log in to the MongoDB database that TapData depends on.
+
+2. Enter the `tapdata` database and execute the following command:
+
+   ```sql
+   db.Events.find().sort({_id: -1})
+   ```
+
+   This command will display the latest alert event records in reverse chronological order.
+
+3. **Analyze Key Fields**:
+
+   - If the record contains `successful`, it means the email was sent successfully.
+   - If the record contains `failed`, the email sending failed. You can check the value of the `fail_message` field to analyze the specific failure reason.
+
+
+
 ## What Are High-Risk Operations?
 
 By closely reviewing system high-risk operations, timely identification and response to potential threats can ensure data security, integrity, and availability in system operations. Understanding various high-risk operations helps establish reliable platform management systems, permission management systems, and improves the recognition of various security challenges, thus laying the foundation for the company's data processing procedures and platform management standards.
