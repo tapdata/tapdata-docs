@@ -6,6 +6,21 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 This article provides release notes for TapData Enterprise, including new features, improvements, and bug fixes.
 
+## 3.21.0
+
+### New Features
+
+- Enhanced [Sybase](../prerequisites/on-prem-databases/sybase.md)-to-PostgreSQL synchronization scenario, adding **index** migration and **sequence** synchronization features, further improving migration automation and ensuring sequence data consistency.
+
+### Feature Optimizations
+
+- Optimized the Oracle connection test feature, adding prompts for mismatched case sensitivity between username and schema to improve user experience.
+
+### Bug Fixes
+
+- Fixed the issue where webhook alerts configured by the admin user could not retrieve all alert data.
+- Fixed the issue where shared data mining tasks initiated by the admin user could not be used properly by other users.
+
 ## 3.20.0
 
 ### New Features
