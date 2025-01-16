@@ -6,6 +6,20 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2025-01-15
+
+#### New Features
+
+- Enhanced [Sybase](../prerequisites/on-prem-databases/sybase.md)-to-PostgreSQL synchronization scenario, adding index migration and **sequence** synchronization features, further improving migration automation and ensuring sequence data consistency.
+
+#### Feature Optimizations
+
+- Optimized the Oracle connection test feature, adding prompts for mismatched case sensitivity between username and schema to improve user experience.
+
+#### Bug Fixes
+
+- Fixed the issue where shared data mining tasks initiated by the admin user could not be used properly by other users.
+
 ### 2024-12-30
 
 #### Enhancements

@@ -6,6 +6,12 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.21.0
+
+### Bug Fixes
+
+- Fixed the issue where webhook alerts configured by the admin user could not retrieve all alert data.
+
 ## 3.20.0
 
 ### Enhancements
