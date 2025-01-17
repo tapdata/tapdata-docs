@@ -10,7 +10,7 @@ Object Storage Service (OSS) is a secure, cost-effective, and high-durability cl
 
     3. On the redirected page, fill in the name, display name, select the OpenAPI Access, and click **OK**.
 
-       ![Create User](../images/create_aliyun_user.png)
+       ![Create User](../images/create_aliyun_user.jpg)
 
     4. After the user creation is complete, click **Download CSV file** that contains the AccessKey information.
 
@@ -28,7 +28,7 @@ Object Storage Service (OSS) is a secure, cost-effective, and high-durability cl
 
     3. In the panel on the right, select the authorization scope, then search for and select the **AliyunOSSReadOnlyAccess** policy.
 
-       ![Grant OSS Read Permission](../images/grant_oss_read.png)
+       ![Grant OSS Read Permission](../images/grant_oss_read.jpg)
 
     4. Click **OK**, and then click **Complete**.
 
@@ -40,4 +40,4 @@ Object Storage Service (OSS) is a secure, cost-effective, and high-durability cl
 
     3. Click on the Overview tab on the left, then scroll down to the Port area and find the Endpoint for Access Over Internet.
 
-       ![Get Endpoint](../images/obtain_oss_endpoint.png)
+       ![Get Endpoint](../images/obtain_oss_endpoint.jpg)

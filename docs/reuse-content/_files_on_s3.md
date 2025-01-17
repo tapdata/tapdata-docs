@@ -46,5 +46,5 @@ Amazon Simple Storage Service (Amazon S3) is an object storage service that offe
 
     2. On the bucket list page, find the target bucket and view its region code.
 
-       ![Get Region Code](../images/obtain_s3_region.png)
+       ![Get Region Code](../images/obtain_s3_region.jpg)
 

@@ -2,17 +2,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs className="unique-tabs">
-   <TabItem value="local" label="Local">
-
-<p>When you store files on TapData Agent's device, it can be used as a data source, and the preparations are as follows: </p>
-  <ol>
-   <li>Log in to TapData Agent's device. </li>
-   <li>Create a folder first (e.g., <code>/root/files</code> for the root user) for easier file management.</li>
-   <li>Save the files to the folder that you created. </li>
-  </ol>
-  <p>When configuring the data source later, all you need to do is specify the <strong>file path</strong>. </p>
-
-</TabItem>
    <TabItem value="ftp" label="FTP">
     <p>File Transfer Protocol (FTP) is a set of standard protocols for file transfer over a network. To use the files in the FTP service as a data source, the preparations are as follows: </p>
   <ol>

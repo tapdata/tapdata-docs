@@ -1,10 +1,10 @@
-# Preparation
+# Message Queue and Middleware
 
-import Content from '../reuse-content/_all-features.md';
+import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-TapData supports nearly a hundred [diverse data sources](supported-databases.md), including commercial databases, open-source databases, cloud databases, data warehouses, data lakes, message queues, SaaS platforms, files, and custom data sources.
+ Please select the database you would like to add:
 
 import DocCardList from '@theme/DocCardList';
 

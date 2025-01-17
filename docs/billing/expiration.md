@@ -3,19 +3,12 @@ import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
 
-To prevent any disruptions to your business operations, we highly recommend [renewing](renew-subscribe.md) your annual/monthly instance before it expires. Alternatively, during the initial subscription process, you can choose the continuous annual/monthly payment method. This ensures seamless continuity of your instance and avoids any potential impact on your business.
+To ensure uninterrupted business operations, please ensure your payment method remains valid. If you manually cancel your subscription or your payment method becomes invalid and billing fails, the following impacts will occur:
 
+1.	Your created data sources and tasks will be retained and not deleted.
+2.	Any running tasks will immediately stop, and scheduled tasks will not be executed.
+3.	You will be unable to create or start new data sources and tasks.
+4.	Existing data sources will not support connection testing or table model loading.
+5.	Data in the Store will not be available for preview or statistical viewing.
 
-
-After the expiration of a subscribed Agent instance, the following effects can be observed:
-
-* The associated tasks can continue to run, but they will be unable to execute any scheduled policies within the tasks.
-* The data source associated with the Agent will be unable to load the Schema.
-* New tasks associated with the Agent cannot be started.
-* The data source associated with the Agent cannot undergo a connection test.
-
-:::tip
-
-It is important to keep these effects in mind and ensure timely renewal or consider the appropriate actions to maintain uninterrupted functionality and data source operations for your Agent instance.
-
-:::
+Once you resume your subscription, all services will return to normal. If your tasks have been inactive for an extended period, you may need to restart them to ensure data accuracy.

@@ -1,10 +1,10 @@
-# Step 2: Connect Data Sources
+# Step 2: Add Data Sources
 
 import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-Once you have [installed the Agent](install.md), you need to connect the Agent to the data sources through TapData, and you can create a data pipeline once the connection has been established.
+Once you have [Subscription Service](../billing/renew-subscribe), you need to connect the Agent to the data sources, and you can create a view task once the connection has been established.
 
 :::tip
 
@@ -13,14 +13,13 @@ Before connecting to the data sources, you also need to ensure that the network 
 :::
 
 ## Procedure
+1. Log in to Atlas-View Platform
 
-1. [Log in to TapData Platform](../user-guide/log-in.md).
-
-2. In the left navigation panel, click **Connections**.
+2. In the left navigation panel, click **Sources**.
 
 3. On the right side of the page, click on **Create**. A dialog box will appear, where you can select the desired data source to establish a connection with.
 
-   ![Connection Demo](../images/connect_database_demo.png)
+   ![Connection Demo](../images/connect_mysql.jpg)
 
 4. After being redirected to the connection configuration page, proceed to fill in the required data source connection information. 
 
@@ -31,8 +30,6 @@ Before connecting to the data sources, you also need to ensure that the network 
    The operation process will be demonstrated using MySQL as an example. For more examples, see [Connect Data Sources](../prerequisites/README.md).
 
    :::
-
-   ![Connection configuration example](../images/mysql_connection_demo.png)
 
    * **Connection name**: Enter a unique name that holds business significance.
    * **Connection type**: Select Source, Target, or Source&Target.

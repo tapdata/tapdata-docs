@@ -6,18 +6,18 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'TapData Documentation',
-  tagline: 'TapData Cloud, a Live Data Platform',
-  url: 'https://docs.tapdata.io',
+  title: 'AtlasView Documentation',
+  tagline: 'AtlasView Cloud, a cdc based live data platform for mongodb atlas',
+  url: 'https://docs.atlas-view.co',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'tapdata', // Usually your GitHub org/user name.
-  projectName: 'docs-en', // Usually your repo name.
+  organizationName: 'atlas-view', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
 
 
   presets: [
@@ -28,8 +28,6 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/tapdata/docs-en/tree/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -72,90 +70,51 @@ markdown: {
     // Website announcement
     announcementBar: {
             id: 'announcementBar-1',
-            content: `🎉️ More stable and user-friendly, build your real-time data platform with one click. Free trial with <a target="_blank" rel="noopener noreferrer" href="https://cloud.tapdata.io/">TapData Cloud</a> ! `,
-            backgroundColor: '#1d4378',
+            content: `🎉️ Build your real-time document based data platform in MongoDB. Free trial with <a target="_blank" rel="noopener noreferrer" href="https://app.atlas-view.co/">Atlas View Cloud</a> ! `,
+            backgroundColor: '#b636ba',
             textColor: '#ffffff',
             },
     // SEO Configuration, this would become <meta name="keywords" content="cooking, blog"> in the generated HTML
-      metadata: [{name: 'keywords', content: 'DaaS platform, data replication, data development,TapData'}],
+      metadata: [{name: 'keywords', content: 'data platform, data replication, data development, atlas-view, mongodb, mongodb atlas, etl tool, saas service, mview'}],
       navbar: {
         logo: {
-          alt: 'TapData',
+          alt: 'Atlas-View',
           src: 'img/logo.png',
-          href: 'https://tapdata.io/',
+          href: 'https://app.atlas-view.co',
         },
         items: [
           {
             type: 'doc',
-            docId: 'what-is-tapdata',
+            docId: 'what-is-atlas-view',
             position: 'left',
-            label: 'TapData Documentation',
+            label: 'Atlas-View Documentation',
           },
           {
-            href: 'https://cloud.tapdata.net/console/v3/',
+            href: 'https://app.atlas-view.co',
             position: 'right',
-            label: 'Log in TapData Cloud',
-          },
-          {
-            href: 'https://github.com/tapdata/tapdata',
-            label: 'GitHub⭐',
-            position: 'right',
-          },
+            label: 'Log in Atlas-View Cloud',
+          }
         ],
       },
       // algolia search plugin
      algolia: {
       appId: 'QMWL076P1O',
       apiKey: '76c365bb35304a755c612e0d58b1df5e',
-      indexName: 'tapdata-io',
+      indexName: 'atlas-view',
       contextualSearch: true,
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/quick-start',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Slack',
-                href: 'https://join.slack.com/t/tapdatacommunity/shared_invite/zt-1biraoxpf-NRTsap0YLlAp99PHIVC9eA',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/tapdata_daas',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/tapdata/docs-en',
-              },
-            ],
-          },
-        ], 
-        copyright: `Copyright © ${new Date().getFullYear()} TapData, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Atlas-View, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
         theme: require('prism-react-renderer/themes/dracula'),
       },
-      // Hotjar for Feedback
       hotjar: {
-      applicationId: '3447165',
-    },
+        applicationId: '3447165',
+      }
     }),
   scripts: [
     '/js/iframe.js'

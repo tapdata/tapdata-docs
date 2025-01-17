@@ -1,4 +1,4 @@
-# TapData Documentation
+# TapView Documentation
 
 <p align="left">
 <a href="https://auth.tapdata.net/" rel="nofollow"><img src="https://20778419.s21i.faiusr.com/4/2/ABUIABAEGAAg39a1kQYoqLyr0gEwyAE4Mw.png" style="zoom: 50%;" /></a> 
