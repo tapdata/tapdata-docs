@@ -7,6 +7,8 @@ This article introduces billing information such as billing items, billing metho
 
 TapView charges based on the subscribed compute engine specifications and the amount of data processed. The compute engine specifications determine the data processing speed, while the data volume is measured in GB.
 
+For detailed pricing information, you can visit https://tapview.co/#pricing to get the full and real-time pricing form.
+
 When subscribing to any engine specification, a certain amount of data quota is included. No additional charges will apply if your usage stays within this quota. However, if the usage exceeds the quota, charges will be applied based on the actual data consumption.
 
 Billing information is calculated hourly and charged on a monthly basis. If the accumulated charges are substantial, an earlier payment may be required. Please ensure your payment method remains valid.

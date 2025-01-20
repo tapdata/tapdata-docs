@@ -15,6 +15,9 @@ import Content from '../reuse-content/_all-features.md';
 
 1. Visit [TapView](https://app.tapview.co/) and sign up for free.
 2. Log in to your account use email or gmail/github account
+
+When you log in for the first time, you will receive a 14-day free trial service, which does not require you to provide credit card information. The free usage includes two types of resources: one is shared computing service resources, along with 2GB of data transfer traffic.
+
 3. Follow these quick guides to explore TapView's features:
    - **[Add Data Source](connect-database.md)**: Link your databases or data sources to the TapView platform
    - **[Create Your First View Task](create-task.md)**: Start build your view in MongoDB Atlas using platform
