@@ -154,6 +154,35 @@ You can re-edit the task. However, adding tables might affect the original synch
 
 TapData performs upsert operations. If there is already data in the target, it will be identified and updated according to the source. If the data from the secondary table is entirely new, it will not affect it.
 
+## Error Occurred During Sync data Between MongoDB Sharded Clusters
+
+When creating a sync task between MongoDB sharded clusters and selecting `_id` as the update condition, the following error may occur during task execution:
+
+> **“An upsert on a sharded collection must contain the shard key and have the simple collation.”**
+
+**Issue Analysis**
+
+In a sharded cluster, the shard key is used to determine where documents are stored. During an `upsert` operation, if the query does not match any existing document, it switches to an `insert`. In this case:
+
+1. The inserted data must include the shard key; otherwise, MongoDB cannot route the data to the correct shard.
+2. If the sync task uses only `_id` as the update condition while the target collection’s shard key is not `_id`, the routing will fail, resulting in the error.
+
+**Solution**
+
+1. Manually create the target collection in the MongoDB cluster and set the correct shard key. For example:
+
+   ```javascript
+   use my_database;
+   db.createCollection("my_collection");
+   sh.shardCollection("my_database.my_collection", { claim_id: 1 });
+   ```
+
+2. Adjust the TapData replication task configuration by selecting both the **shard key** and `_id` as the **update condition fields** in the target node.
+
+   ![Update Condition Settings](../images/mongodb_update_condition_fields.png)
+
+3. Start the data sync task.
+
 ### Why does enabling concurrent increment conflict with synchronization without a primary key?
 
 Incremental concurrency processes data in groups based on primary keys. Without primary keys, this capability fails, so they are mutually exclusive.

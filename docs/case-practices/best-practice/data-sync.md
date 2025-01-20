@@ -29,12 +29,14 @@ Based on the understanding of the data source, the next step is to configure dat
 | Category                         | Description                                                  |
 | -------------------------------- | ------------------------------------------------------------ |
 | **Task Segmentation Strategy**   | ●  **Based on Table Primary Key**: Filter out tables with and without primary keys during task configuration, and configure synchronization tasks for them separately to avoid affecting the synchronization performance of primary key tables. Additionally, when configuring tasks for tables without primary keys, manually select specific column combinations as update columns to ensure data uniqueness and avoid low synchronization efficiency due to full-field matching.<br />●  **Based on Data Size**: Configure tasks according to the size of tables (number of rows and data volume), e.g., set up separate synchronization tasks for large tables (like fact tables) and other tasks for multiple small tables (like dimension tables) to prevent large tables from impacting the overall synchronization task performance. |
-| **Performance Tuning**           | Adjust synchronization parameters appropriately based on the scale and read-write performance of the data source, such as **Batch Read Number**, **Multi-thread Writing**, etc. |
+| **Performance Tuning**           | ●  Gradually increase parameters such as **records per batch read** for the source node, **multi-threaded write threads**, and **write threads per batch** for the target node, based on the hardware specifications of the nodes and the database performance.<br />●  Enable periodic scheduled tasks to run the data replication tasks during the low-traffic periods of the source database, avoiding resource contention such as I/O. |
 | **DDL Synchronization Strategy** | Decide whether to change the source database's table structure. Understand the potential impacts of table structure changes (like adding or dropping columns) on the data synchronization process to avoid affecting normal business operations. For more information, see [DDL Synchronization Explanation](handle-schema-changes.md). |
 
 ## Monitor and Maintain
 
 After starting the task, regularly check the task [monitoring page](../../user-guide/copy-data/monitor-task.md) for details such as the synchronization rate during the full synchronization phase and changes in the source database data, so you can ensure timely identification and resolution of any issues. If you encounter task anomalies, consult the task logs for detailed [Error Codes and Solutions](../../user-guide/error-code-solution.md) to facilitate troubleshooting.
+
+Additionally, during the task execution, you can log into the TapData server and use commands like `top` or `free` to monitor whether the server's compute or memory resources have reached their limits.
 
 ## See also
 
