@@ -4,7 +4,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-[Sybase Database](https://infocenter.sybase.com/help/index.jsp), also known as Adaptive Server Enterprise (ASE), is a high-performance, reliable, and scalable enterprise-grade relational database management system. Sybase is nearing the end of its support lifecycle, and it is recommended to migrate to other databases to reduce risk. With Atlas-View, you can easily build real-time synchronization pipelines to sync Sybase data to other database platforms, ensuring business continuity.
+[Sybase Database](https://infocenter.sybase.com/help/index.jsp), also known as Adaptive Server Enterprise (ASE), is a high-performance, reliable, and scalable enterprise-grade relational database management system. Sybase is nearing the end of its support lifecycle, and it is recommended to migrate to other databases to reduce risk. With TapView, you can easily build real-time synchronization pipelines to sync Sybase data to other database platforms, ensuring business continuity.
 
 ## Supported Versions and Architectures
 * **Version**: Sybase 16
@@ -25,7 +25,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 - Due to Sybase limitations, if multiple synchronization tasks are enabled on the same database, you must enable **[Shared Mining](../user-guide/advanced-settings/share-mining.md)** in the Sybase connection and task configurations to prevent new tasks from failing to correctly sync incremental data.
 
 ## Considerations
-- When performing real-time incremental synchronization from Sybase, Atlas-View will set log checkpoints to prevent log cleanup, advancing every 15 minutes, which may consume additional disk space. Suspended incremental tasks can cause transaction logs to accumulate, so it's recommended to promptly delete unneeded tasks or manually reset tasks that have been paused for a long time.
+- When performing real-time incremental synchronization from Sybase, TapView will set log checkpoints to prevent log cleanup, advancing every 15 minutes, which may consume additional disk space. Suspended incremental tasks can cause transaction logs to accumulate, so it's recommended to promptly delete unneeded tasks or manually reset tasks that have been paused for a long time.
 - The full data synchronization phase may consume database and bandwidth resources, so ensure that sufficient hardware resources are available. The load impact during incremental synchronization is generally within 5%.
 
 ## <span id="prerequisites">Prerequisites</span>
@@ -45,7 +45,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
    * `<password>`: The password for the user.
 
 ## Add Sybase Data Source
-1. [Log in to Atlas-View platform](../user-guide/log-in.md).
+1. [Log in to TapView platform](../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -68,7 +68,6 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
      * **Password**: The password associated with the database account.
      * **Byte Order**: Choose between big-endian and little-endian based on the machine architecture. For example, Linux machines typically use little-endian, while some dedicated Sybase machines use big-endian. Incorrect configuration may cause inconsistent data during the incremental synchronization phase.
    * **Advanced Settings**
-      * **Shared Mining**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select external storage to store the incremental log information.
       * **Include Tables**: Default is **All**. You can customize and specify the topics to include by separating table names with commas (`,`).
       * **Exclude Tables**: When enabled, you can specify topics to exclude, separated by commas (`,`).
       * **Agent Settings**: Defaults to **Platform Automatic Allocation**, but you can manually assign an agent.

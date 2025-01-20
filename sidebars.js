@@ -18,7 +18,7 @@ const sidebars = {
 
 // TapData Documentation docs list
   TapData: [
-  'what-is-atlas-view',
+  'what-is-tapview',
   'introduction/security', 
 {
          type: 'category',

@@ -6,7 +6,7 @@ import Content1 from '../reuse-content/_all-features.md';
 
 [PostgreSQL](https://www.postgresql.org/) is a powerful open-source object-relational database management system (ORDBMS)
 
-This document will introduce how to connect PostgreSQL as a data source in the Atlas-View platform
+This document will introduce how to connect PostgreSQL as a data source in the TapView platform
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -176,7 +176,7 @@ import TabItem from '@theme/TabItem';
 
       :::
 
-   7. Modify the `pg_hba.conf` configuration file, adding the following content to ensure Atlas-View can access the database.
+   7. Modify the `pg_hba.conf` configuration file, adding the following content to ensure TapView can access the database.
 
       ```bash
       # Replace username with the actual username
@@ -343,7 +343,7 @@ To further enhance the security of the data pipeline, you can enable SSL (Secure
 
 ## Add PostgreSQL Data Source
 
-1. [Log in to Atlas-View Platform](../user-guide/log-in.md).
+1. [Log in to TapView Platform](../user-guide/log-in.md).
 
 1. In the left navigation bar, click **Connections**.
 
@@ -368,12 +368,11 @@ To further enhance the security of the data pipeline, you can enable SSL (Secure
    * **Advanced Settings**
       * **ExtParams**: Additional connection parameters, default is empty.
       * **Timezone**: Defaults to timezone 0. You can also specify it manually according to business needs. Configuring a different timezone will affect timezone-related fields, such as DATE, TIMESTAMP, TIMESTAMP WITH TIME ZONE, etc.
-      * **CDC Log Caching**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.
       * **Contain Table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
       * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
       * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
       * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable Heartbeat Table**: Once the task references and starts using this data source, Atlas-View will create a heartbeat table named _atlas_view_heartbeat_table in the source database and update its data every 10 seconds (the database account must have relevant permissions), to monitor the health of the data source connection and task.
+      * **Enable Heartbeat Table**: Once the task references and starts using this data source, TapView will create a heartbeat table named _atlas_view_heartbeat_table in the source database and update its data every 10 seconds (the database account must have relevant permissions), to monitor the health of the data source connection and task.
    * **SSL Settings**: Choose whether to [enable SSL](#enable-ssl-connection) to connect to the data source, which can further enhance data security. After enabling this function, you need to upload CA files, client certificates, and fill in the client password.
 
 5. Click **Test**, and after passing the test, click **Save**.
@@ -388,9 +387,9 @@ To further enhance the security of the data pipeline, you can enable SSL (Secure
 
 * Q: Why does resetting a task that uses PostgreSQL as the data source fail?
 
-  A: When resetting or deleting a task, Atlas-View needs to clean up the logical replication SLOT in the database. If the PostgreSQL database cannot be connected at this time, the reset may fail.
+  A: When resetting or deleting a task, TapView needs to clean up the logical replication SLOT in the database. If the PostgreSQL database cannot be connected at this time, the reset may fail.
 
-* Q: After running a Atlas-View task, there are many SLOTs in PostgreSQL. Can these be cleaned up?
+* Q: After running a TapView task, there are many SLOTs in PostgreSQL. Can these be cleaned up?
 
   A: Each task using a log plugin based on replication slots will leave a SLOT in PostgreSQL if the task is temporarily stopped. Cleaning these SLOTs may cause the task to lose the offset upon restart, leading to incomplete data. If the task is no longer needed, you can reset or delete the task to clean up the SLOT in a timely manner. Additionally, if using other slot-based synchronization tools, there may be situations where the replication slot cannot be cleaned up, requiring manual handling.
 
@@ -399,9 +398,9 @@ To further enhance the security of the data pipeline, you can enable SSL (Secure
   A: You can log in to the master node to delete the relevant SLOT to avoid it being continuously occupied. The cleaning method is as follows:
 
   ```sql
-  -- Check if there is any information with slot_name=Atlas-View
+  -- Check if there is any information with slot_name=TapView
   TABLE pg_replication_slots;
   
   -- Delete the Slot node
-  select * from pg_drop_replication_slot('Atlas-View');
+  select * from pg_drop_replication_slot('TapView');
   ```

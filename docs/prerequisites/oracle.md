@@ -4,7 +4,7 @@ import Content1 from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content1 />
 
-Oracle Database is a powerful and widely used relational database management system (RDBMS) developed by Oracle Corporation. It provides a comprehensive set of features to store, organize and retrieve large amounts of data efficiently. Because of its scalability, reliability, concurrency and performance, it is a popular choice for large-scale enterprise applications. This document will guide you through adding an Oracle data source in Atlas-View
+Oracle Database is a powerful and widely used relational database management system (RDBMS) developed by Oracle Corporation. It provides a comprehensive set of features to store, organize and retrieve large amounts of data efficiently. Because of its scalability, reliability, concurrency and performance, it is a popular choice for large-scale enterprise applications. This document will guide you through adding an Oracle data source in TapView
 
 
 ```mdx-code-block
@@ -328,7 +328,7 @@ XE=
 
 
 ## Add Oracle Data Source
-1. [Log in to Atlas-View Platform](../user-guide/log-in.md)
+1. [Log in to TapView Platform](../user-guide/log-in.md)
 
 2. In the left navigation panel, click **Connections**
 
@@ -358,7 +358,6 @@ XE=
       * **Use SSL**: Select whether to enable SSL connection for the data source to enhance data security. After enabling this feature, you will need to upload SSL certificate files and enter the certificate password. The relevant files can be obtained from [Enabling SSL Connection](#ssl)
       * **Timezone for datetime**: Default is set to UTC (0 timezone). If changed to another timezone, fields without timezone (such as TIMESTAMP) will be affected, while fields with timezone (such as TIMESTAMP WITH TIME ZONE) and DATE types will remain unaffected
       * **Socket Read Timeout**: Set this parameter to avoid zombie connections that may occur due to unexpected situations (e.g., socket interaction timeout) when LogMiner automatically mines incremental changes. The default value of 0 means no timeout is set
-      * **CDC Log Caching**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information
       * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,)
       * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded
       * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent
@@ -380,7 +379,7 @@ XE=
 
 ### Test Results
 
-The performance tests covered both full and incremental data read/write operations. The results are as follows, which are indicative of this specific environment and not the performance limits of Atlas-View
+The performance tests covered both full and incremental data read/write operations. The results are as follows, which are indicative of this specific environment and not the performance limits of TapView
 
 | **Category**                     | **Records Processed Per Second (RPS)** | **Remarks**                                    |
 | -------------------------------- | -------------------------------------- | ---------------------------------------------- |

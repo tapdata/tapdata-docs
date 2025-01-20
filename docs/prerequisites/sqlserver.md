@@ -4,7 +4,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-[SQL Server](https://www.microsoft.com/en-us/sql-server/) is a relational database management system (RDBMS) developed by Microsoft. Atlas-View supports using SQL Server as both a source and target database, helping you quickly build real-time data synchronization pipelines. In this guide, we will walk you through how to add SQL Server as a data source in Atlas-View.
+[SQL Server](https://www.microsoft.com/en-us/sql-server/) is a relational database management system (RDBMS) developed by Microsoft. TapView supports using SQL Server as both a source and target database, helping you quickly build real-time data synchronization pipelines. In this guide, we will walk you through how to add SQL Server as a data source in TapView.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -27,7 +27,7 @@ Single-node architecture for SQL Server 2008, 2008 R2, 2012, 2014, 2016, 2017, 2
 
 ## Considerations
 
-* Incremental data capture in SQL Server is based on Change Data Capture (CDC). Atlas-View polls the CT (Change Tracking) tables of each synchronized table to capture data changes. It is recommended to limit the number of tables in a single sync task to reduce the polling cycle and lower the incremental data delay. For low-performance databases, to avoid frequent CT table queries affecting performance, consider enabling CDC only at the table or column level as needed and adjust CT table data retention to reduce disk usage.
+* Incremental data capture in SQL Server is based on Change Data Capture (CDC). TapView polls the CT (Change Tracking) tables of each synchronized table to capture data changes. It is recommended to limit the number of tables in a single sync task to reduce the polling cycle and lower the incremental data delay. For low-performance databases, to avoid frequent CT table queries affecting performance, consider enabling CDC only at the table or column level as needed and adjust CT table data retention to reduce disk usage.
 
   ```sql
   -- Set CT table data retention to 24 hours, default is 3 days
@@ -35,7 +35,7 @@ Single-node architecture for SQL Server 2008, 2008 R2, 2012, 2014, 2016, 2017, 2
                              @retention = 24;
   ```
 
-* SQL Server's CDC solution has limited support for DDL capture. Implicitly committed DDLs are not recorded in the `cdc.ddl_history` table, which may affect synchronization. Additionally, after executing DDL operations, the CT table does not update automatically, and Atlas-View relies on polling to detect and rebuild the CT table. Therefore, if DDL and DML occur simultaneously or within a short period, it may lead to DML data loss.
+* SQL Server's CDC solution has limited support for DDL capture. Implicitly committed DDLs are not recorded in the `cdc.ddl_history` table, which may affect synchronization. Additionally, after executing DDL operations, the CT table does not update automatically, and TapView relies on polling to detect and rebuild the CT table. Therefore, if DDL and DML occur simultaneously or within a short period, it may lead to DML data loss.
 
 * When SQL Server is used as the source database and a DDL operation (such as adding a column) is performed on the fields of a table under incremental sync, you will need to restart change data capture for the table to avoid data synchronization errors or failures.
 
@@ -98,14 +98,14 @@ This guide uses SQL Server 2017 on Windows Server 2019 as an example. If you are
    * **database_name**: The default database the user will log into.
    * **schema_name**: The database schema name (e.g., **dbo**), which serves as the namespace for objects like tables, views, procedures, and functions. More info: [Create a Database Schema](https://learn.microsoft.com/en-us/sql/relational-databases/security/authentication-access/create-a-database-schema?view=sql-server-ver16).
 
-   Example: Create a user **Atlas-View** to log into the **demodata** database with **dbo** schema:
+   Example: Create a user **TapView** to log into the **demodata** database with **dbo** schema:
 
    ```sql
    -- Create login account
-   CREATE LOGIN Atlas-View WITH password='Tap@123456', default_database=demodata;
+   CREATE LOGIN TapView WITH password='Tap@123456', default_database=demodata;
    
    -- Create a database user
-   CREATE USER Atlas-View FOR LOGIN Atlas-View with default_schema=dbo;
+   CREATE USER TapView FOR LOGIN TapView with default_schema=dbo;
    ```
 
 3. Grant permissions to the newly created user, or customize permissions based on business needs.
@@ -133,11 +133,11 @@ This guide uses SQL Server 2017 on Windows Server 2019 as an example. If you are
    </TabItem>
    </Tabs>
 
-   Example: Grant the **Atlas-View** user select permission on all tables in the **dbo** and **cdc** schemas:
+   Example: Grant the **TapView** user select permission on all tables in the **dbo** and **cdc** schemas:
 
    ```sql
-   GRANT SELECT ON SCHEMA::dbo TO Atlas-View;
-   GRANT SELECT ON SCHEMA::cdc TO Atlas-View;
+   GRANT SELECT ON SCHEMA::dbo TO TapView;
+   GRANT SELECT ON SCHEMA::cdc TO TapView;
    ```
 
 4. If you need to capture incremental changes from the source database for synchronization, follow these steps:
@@ -213,7 +213,7 @@ After completing the configuration, be sure to securely store the certificate-re
 
 ## Add SQL Server Data Source
 
-1. [Log in to Atlas-View platform](../user-guide/log-in.md).
+1. [Log in to TapView platform](../user-guide/log-in.md).
 
 2. In the left-hand navigation bar, click **Connections**.
 
@@ -238,12 +238,11 @@ After completing the configuration, be sure to securely store the certificate-re
      * **Additional Connection Parameters**: Additional connection parameters, default empty.
      * **Timezone**: The default timezone is UTC (0 timezone). If another timezone is configured, it will affect synchronization times for fields without timezone information, such as `time`, `datetime`, `datetime2`, and `smalldatetime`. Fields with timezone information (e.g., `datetimeoffset`) and the `date` type will not be affected.
      * **Use SSL/TLS**: Select whether to enable SSL for a more secure connection. If enabled, you will need to upload a CA certificate, certificate password, and server hostname details (see the [Enable SSL](#ssl) section for files).
-     * **Using CDC Log Caching**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.
      * **Contain Table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
      * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
      * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
      * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-     * **Enable Heartbeat Table**: Atlas-View will create a heartbeat table in the source database (_atlas_view_heartbeat_table) and update it every 10 seconds (the database user must have the required permissions). Once the data replication/development task starts, the heartbeat task will automatically start. You can view the heartbeat task in the data source edit page.
+     * **Enable Heartbeat Table**: TapView will create a heartbeat table in the source database (_atlas_view_heartbeat_table) and update it every 10 seconds (the database user must have the required permissions). Once the data replication/development task starts, the heartbeat task will automatically start. You can view the heartbeat task in the data source edit page.
 
 6. Click **Test**, and if the test passes, click **Save**.
 
@@ -304,9 +303,9 @@ This section addresses common issues encountered when using the change data capt
 * **Enabling CDC for the Entire Database**
 
   ```sql
-  -- Replace Atlas-View with the actual database name
+  -- Replace TapView with the actual database name
   -- Replace INSURANCE with the actual schema name
-  USE Atlas-View
+  USE TapView
   GO
   EXEC sys.sp_cdc_enable_db;
   GO
@@ -315,11 +314,11 @@ This section addresses common issues encountered when using the change data capt
   DECLARE @database_name varchar(100);
   DECLARE @schema_name varchar(100);
   
-  SET @database_name = 'Atlas-View';
+  SET @database_name = 'TapView';
   SET @schema_name = 'INSURANCE';
   
   DECLARE my_cursor CURSOR FOR SELECT TABLE_NAME
-                               FROM Atlas-View.INFORMATION_SCHEMA.TABLES
+                               FROM TapView.INFORMATION_SCHEMA.TABLES
                                WHERE TABLE_CATALOG = @database_name
                                  AND TABLE_SCHEMA = @schema_name;
   OPEN my_cursor;
@@ -347,20 +346,20 @@ This section addresses common issues encountered when using the change data capt
 * **Disabling CDC for the Entire Database**
 
   ```sql
-  -- Replace Atlas-View with the actual database name
+  -- Replace TapView with the actual database name
   -- Replace INSURANCE with the actual schema name
-  USE Atlas-View
+  USE TapView
   GO
   
   DECLARE @table_name varchar(100);
   DECLARE @database_name varchar(100);
   DECLARE @schema_name varchar(100);
   
-  SET @database_name = 'Atlas-View';
+  SET @database_name = 'TapView';
   SET @schema_name = 'INSURANCE';
   
   DECLARE my_cursor CURSOR FOR SELECT TABLE_NAME
-                               FROM Atlas-View.INFORMATION_SCHEMA.TABLES
+                               FROM TapView.INFORMATION_SCHEMA.TABLES
                                WHERE TABLE_CATALOG = @database_name
                                  AND TABLE_SCHEMA = @schema_name;
   OPEN my_cursor;

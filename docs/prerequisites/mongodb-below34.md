@@ -4,7 +4,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-[MongoDB](https://www.mongodb.com/) is a popular open-source NoSQL database that stores and retrieves data in a flexible and scalable manner. Atlas-View supports the integration of MongoDB as both the **source** and **target** database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB (**3.4 and earlier**) to Atlas-View, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
+[MongoDB](https://www.mongodb.com/) is a popular open-source NoSQL database that stores and retrieves data in a flexible and scalable manner. TapView supports the integration of MongoDB as both the **source** and **target** database for building data pipelines. This article provides a comprehensive guide on how to add MongoDB (**3.4 and earlier**) to TapView, enabling you to leverage its scalability, flexibility, querying, and indexing capabilities for your data processing needs.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -58,7 +58,7 @@ When MongoDB is used as a target database, you can select the write strategy thr
    use admin
    db.createUser(
      {
-       user: "Atlas-View",
+       user: "TapView",
        pwd: "my_password",
        roles: [
           { role: "read", db: "database_name" },
@@ -77,7 +77,7 @@ When MongoDB is used as a target database, you can select the write strategy thr
    use admin
    db.createUser(
      {
-       user: "Atlas-View",
+       user: "TapView",
        pwd: "my_password",
        roles: [
           { role: "readAnyDatabase", db: "admin" },
@@ -95,9 +95,9 @@ When MongoDB is used as a target database, you can select the write strategy thr
 
    :::
 
-4. When the source database is a cluster, in order to improve data synchronization performance, Atlas-View Cloud will create a thread for each shard and read the data. Before configuring data synchronization/development tasks, you also need to perform the following operations.
+4. When the source database is a cluster, in order to improve data synchronization performance, TapView Cloud will create a thread for each shard and read the data. Before configuring data synchronization/development tasks, you also need to perform the following operations.
 
-5. For sharded cluster architectures, to improve data synchronization performance, Atlas-View will create a thread for each shard to read data. Before configuring data synchronization/development tasks, you also need to perform the following operations:
+5. For sharded cluster architectures, to improve data synchronization performance, TapView will create a thread for each shard to read data. Before configuring data synchronization/development tasks, you also need to perform the following operations:
 
    1. [Stop the Balancer](https://www.mongodb.com/docs/manual/reference/method/sh.stopBalancer/) to avoid data inconsistency caused by chunk migrations.
    2. [Clean up orphaned documents](https://www.mongodb.com/docs/manual/reference/command/cleanupOrphaned/) to avoid _id conflicts.
@@ -110,7 +110,7 @@ Grant write role to specified database (e.g. demodata) and **clusterMonitor** ro
 use admin
 db.createUser(
   {
-    user: "Atlas-View",
+    user: "TapView",
     pwd: "my_password",
     roles: [
        { role: "readWrite", db: "demodata" },
@@ -128,7 +128,7 @@ When using MongoDB version 3.2, you also need to grant read permissions for the 
 
 ## Add MongoDB Below 3.4 Data Source
 
-1. [Log in to Atlas-View platform](../user-guide/log-in.md).
+1. [Log in to TapView platform](../user-guide/log-in.md).
 
 2. In the left navigation bar, click **Connections**.
 
@@ -148,16 +148,15 @@ When using MongoDB version 3.2, you also need to grant read permissions for the 
          * **Standard mode**: After selecting this mode, you need to fill in the database address, name, account number, password and other connection string parameters.
    * **Advanced Settings**
       * **Use TLS/SSL Connection**: Choose according to your business needs:
-        * **TLS/SSL Connection**: Atlas-View will connect to a separate server in the network that provides a [TLS/SSL channel](https://www.mongodb.com/docs/manual/core/security-transport-encryption/) to the database. If your database is located in an inaccessible subnet, try this method and upload the client private key file, provide the private key password, and choose whether to validate the server certificate.
-        * **Direct Connection**: Atlas-View Cloud will connect directly to the database and you need to set up security rules to allow access.
+        * **TLS/SSL Connection**: TapView will connect to a separate server in the network that provides a [TLS/SSL channel](https://www.mongodb.com/docs/manual/core/security-transport-encryption/) to the database. If your database is located in an inaccessible subnet, try this method and upload the client private key file, provide the private key password, and choose whether to validate the server certificate.
+        * **Direct Connection**: TapView Cloud will connect directly to the database and you need to set up security rules to allow access.
       * **Number of Sampling Records for Loading Model**: Specifies the number of records to sample when loading the schema to ensure that the generated schema structure matches the source data. Default is **1000**.
       * **Fields Load Limit For Each Collection**: Limits the maximum number of fields loaded per collection to avoid slow schema generation due to excessive fields. Default is **1024**.
-      * **CDC Log Caching**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs, this feature allows multiple tasks to share incremental logs from the source database, avoiding redundant reads and thus significantly reducing the load on the source database during incremental synchronization. Upon enabling this feature, an external storage should be selected to store the incremental log.
       * **Contain Table**: The default option is All, which includes all tables. Alternatively, you can select Custom and manually specify the desired tables by separating their names with commas (,).
       * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
       * **Agent Settings**: Defaults to Platform automatic allocation, you can also manually specify an agent.
       * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable Heartbeat Table**: Atlas-View will create a _atlas_view_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the [heartbeat task](../case-practices/best-practice/heart-beat-task.md) in the data source editing page.
+      * **Enable Heartbeat Table**: TapView will create a _atlas_view_heartbeat_table heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the heartbeat task in the data source editing page.
    
 6. Click **Test**. Once it passes, click **Save**.
 

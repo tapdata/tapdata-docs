@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'AtlasView Documentation',
-  tagline: 'AtlasView Cloud, a cdc based live data platform for mongodb atlas',
-  url: 'https://docs.atlas-view.co',
+  title: 'TapView Documentation',
+  tagline: 'TapView Cloud, a cdc based live data platform for mongodb atlas',
+  url: 'https://docs.tapview.co',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
@@ -16,7 +16,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'atlas-view', // Usually your GitHub org/user name.
+  organizationName: 'TapView', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
 
@@ -70,42 +70,42 @@ markdown: {
     // Website announcement
     announcementBar: {
             id: 'announcementBar-1',
-            content: `🎉️ Build your real-time document based data platform in MongoDB. Free trial with <a target="_blank" rel="noopener noreferrer" href="https://app.atlas-view.co/">Atlas View Cloud</a> ! `,
+            content: `🎉️ Build your real-time document based data platform in MongoDB. Free trial with <a target="_blank" rel="noopener noreferrer" href="https://app.TapView.co/">TapView Cloud</a> ! `,
             backgroundColor: '#b636ba',
             textColor: '#ffffff',
             },
     // SEO Configuration, this would become <meta name="keywords" content="cooking, blog"> in the generated HTML
-      metadata: [{name: 'keywords', content: 'data platform, data replication, data development, atlas-view, mongodb, mongodb atlas, etl tool, saas service, mview'}],
+      metadata: [{name: 'keywords', content: 'data platform, data replication, data development, TapView, mongodb, mongodb atlas, etl tool, saas service, mview'}],
       navbar: {
         logo: {
-          alt: 'Atlas-View',
+          alt: 'TapView',
           src: 'img/logo.png',
-          href: 'https://app.atlas-view.co',
+          href: 'https://app.TapView.co',
         },
         items: [
           {
             type: 'doc',
-            docId: 'what-is-atlas-view',
+            docId: 'what-is-tapview',
             position: 'left',
-            label: 'Atlas-View Documentation',
+            label: 'TapView Documentation',
           },
           {
-            href: 'https://app.atlas-view.co',
+            href: 'https://app.TapView.co',
             position: 'right',
-            label: 'Log in Atlas-View Cloud',
+            label: 'Log in TapView Cloud',
           }
         ],
       },
       // algolia search plugin
      algolia: {
-      appId: 'QMWL076P1O',
-      apiKey: '76c365bb35304a755c612e0d58b1df5e',
-      indexName: 'atlas-view',
+      appId: '6Z2M2KBRXP',
+      apiKey: '97316abbb6721bc92f031756a89b0137',
+      indexName: 'docs_atlas_view_co_6z2m2kbrxp_pages',
       contextualSearch: true,
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Atlas-View, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} TapView, Inc. Built with Docusaurus`,
       },
       prism: {
         theme: lightCodeTheme,

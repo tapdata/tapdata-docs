@@ -2,13 +2,13 @@
 import Content from '../reuse-content/_cloud-features.md';
 
 <Content />
-Under normal circumstances, Atlas-View charges on a monthly basis. To avoid any disruptions to your business operations, please ensure your payment method remains valid. If you would like to view more details about billing and subscription, or if you wish to modify your subscription, please follow the instructions below.
+Under normal circumstances, TapView charges on a monthly basis. To avoid any disruptions to your business operations, please ensure your payment method remains valid. If you would like to view more details about billing and subscription, or if you wish to modify your subscription, please follow the instructions below.
 
 
 
 ## Procedure
 
-1. Log in to [Atlas-View](https://app.atlas-view.co).
+1. Log in to [TapView](https://app.tapview.co).
 
 2. In the left bottom navigation bar, click **Your Plan**.
 
@@ -22,4 +22,4 @@ If you want to change your subscription plan, click the “Upgrade Subscribe” 
 
 After payment is completed, you will receive a receipt from Stripe.
 
-If you have any questions regarding subscriptions or payments, please email us at support@atlas-view.co. We will respond within three business days. Your inquiries are always welcome!
+If you have any questions regarding subscriptions or payments, please email us at support@tapview.co. We will respond within three business days. Your inquiries are always welcome!

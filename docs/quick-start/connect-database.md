@@ -13,7 +13,7 @@ Before connecting to the data sources, you also need to ensure that the network 
 :::
 
 ## Procedure
-1. Log in to Atlas-View Platform
+1. Log in to TapView Platform
 
 2. In the left navigation panel, click **Sources**.
 

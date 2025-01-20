@@ -6,7 +6,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 [Apache Kafka](https://kafka.apache.org/) is a distributed data streaming platform that allows real-time publishing, subscribing, storing, and processing of data streams
 
-This article explains how to add a Kafka data source in Atlas-View
+This article explains how to add a Kafka data source in TapView
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -123,7 +123,7 @@ Since Kafka as a message queue only supports append operations, avoid duplicate 
 - **Security Authentication Limitation**: Currently, only authentication-free Kafka instances are supported.
 
 ## Add Kafka Data Source
-1. [Log in to Atlas-View platform](../user-guide/log-in.md).
+1. [Log in to TapView platform](../user-guide/log-in.md).
 
 2. In the left navigation bar, click **Connections**.
 
@@ -149,7 +149,6 @@ Since Kafka as a message queue only supports append operations, avoid duplicate 
         * **ACK Confirmation Mechanism**: Choose based on business needs: No confirmation, write to Master partition only, write most ISR partitions (default), or write to all ISR partitions.
         * **Compression Type**: Supports **lz4** (default), **gzip**, **snappy**, **zstd**. Enable compression for large messages to improve transmission efficiency.
         * **Extended Configuration**: Supports custom advanced connection properties for Kafka managers, producers, and consumers for optimization in specific scenarios.
-        * **CDC Log Caching**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.
         * **Include Tables**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired topics by separating their names with commas (,).
         * **Exclude Tables**: Once the switch is enabled, you have the option to specify topics to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple topics to be excluded.
         * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.

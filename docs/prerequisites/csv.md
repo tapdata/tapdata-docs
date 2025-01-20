@@ -6,13 +6,13 @@ import Content from '../reuse-content/_all-features.md';
 
 A comma-separated values (CSV) file is a delimited text file that uses a comma to separate values. Each line of the file is a data record. Each record consists of one or more fields, separated by separator (such as commas, semicolons, or tabs).
 
-Atlas-View supports reading CSV files stored on FTP, SFTP, SMB, or S3FS to meet a variety of data flow needs. This article describes how to connect to CSV data sources on Atlas-View
+TapView supports reading CSV files stored on FTP, SFTP, SMB, or S3FS to meet a variety of data flow needs. This article describes how to connect to CSV data sources on TapView
 
 
 ## Limitations
 - A connection only refers to a model (table). If there are multiple models, you need to create connection for each one separately.
-- If the headers of multiple files are inconsistent, Atlas-View uses the union as a model.
-- By default, Atlas-View checks for changes (such as adding or modifying) to the file every minute. Atlas-View synchronizes all files to accurately update the condition field when changes are detected. However, synchronous deletion of files or data is not supported.
+- If the headers of multiple files are inconsistent, TapView uses the union as a model.
+- By default, TapView checks for changes (such as adding or modifying) to the file every minute. TapView synchronizes all files to accurately update the condition field when changes are detected. However, synchronous deletion of files or data is not supported.
 - Data types that can be used in CSV files include BOOLEAN, DATETIME, INTEGER, NUMBER, STRING, and TEXT.
 
 
@@ -50,7 +50,7 @@ import Content3 from '../reuse-content/_files_on_oss.md';
 
 ## Add CSV Data Source
 
-1. [Log in to Atlas-View Platform](../user-guide/log-in.md).
+1. [Log in to TapView Platform](../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 

@@ -3,7 +3,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-MariaDB is a versatile open-source relational database management system used for high-availability transaction data, analytics, as an embedded server, and is widely supported by various tools and applications. Atlas-View Cloud provides comprehensive support for building data pipelines utilizing MariaDB as both the source and target database.
+MariaDB is a versatile open-source relational database management system used for high-availability transaction data, analytics, as an embedded server, and is widely supported by various tools and applications. TapView Cloud provides comprehensive support for building data pipelines utilizing MariaDB as both the source and target database.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -39,7 +39,7 @@ To ensure smooth execution of tasks, you need to enable Binlog in the MariaDB da
 
    * **username**: Enter user name.
    * **password**: Enter password.
-   * **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host. Example: Create an account named Atlas-View: `CREATE USER 'Atlas-View'@'%' IDENTIFIED BY 'Tap@123456';`
+   * **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host. Example: Create an account named TapView: `CREATE USER 'TapView'@'%' IDENTIFIED BY 'Tap@123456';`
    
 2. Grant privileges to the newly created account. Below is a simplified example, and it is recommended to set more detailed permissions based on business needs.
 
@@ -202,7 +202,7 @@ To further enhance the security of the data link, you can choose to enable SSL (
 
 ## Add MariaDB Data Source
 
-1. [Log in to Atlas-View Platform](../user-guide/log-in.md).
+1. [Log in to TapView Platform](../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -227,7 +227,7 @@ To further enhance the security of the data link, you can choose to enable SSL (
 
     * **Advanced settings**
 
-      * **Timezone**: By default, Atlas-View Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
+      * **Timezone**: By default, TapView Cloud utilizes the time zone used by the database. However, you also have the flexibility to manually specify the time zone based on your business requirements.
 
         For instance, let's consider a scenario where the source database operates in the default database time zone (+8:00), while the target database has a specified time zone of +0:00. In this case, if the source database stores a timestamp as **2020-01-01 16:00:00**, the same timestamp will be interpreted as **2020-01-01 08:00:00** in the target database due to the time zone conversion.
 

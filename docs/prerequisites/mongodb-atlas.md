@@ -6,7 +6,7 @@ import Content from '../reuse-content/_all-features.md';
 
 MongoDB Atlas is a multi-cloud application data platform provided by MongoDB
 
-This article describes how to add MongoDB Atlas to Atlas-View Cloud
+This article describes how to add MongoDB Atlas to TapView Cloud
 
 
 ## Supported Versions
@@ -35,7 +35,7 @@ Before establishing the connection, it is essential to complete the necessary pr
 
    2. On the right, click **ADD IP ADDRESS**.
 
-   3. In the pop-up dialog, fill in the public address of the Atlas-View Agent (CIDR format) and click **Confirm**.
+   3. In the pop-up dialog, fill in the public address of the TapView Agent (CIDR format) and click **Confirm**.
 
       ![Set Network Whitelist](../images/atlas_add_ip_address.png)
 
@@ -69,7 +69,7 @@ Before establishing the connection, it is essential to complete the necessary pr
 
 ## Add MongoDB Atlas Data Source
 
-1. [Log in to Atlas-View Platform](../user-guide/log-in.md).
+1. [Log in to TapView Platform](../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -91,22 +91,22 @@ Before establishing the connection, it is essential to complete the necessary pr
 
       * **Database URI**: Fill in the Database URI connection information, and URI should include the username and password, which are concatenated in the format.
 
-        For example, the connection string may look like: ` mongodb+srv://Atlas-View:Tap123456@cluster****.mongodb.net/demodata?retryWrites=true&w=majority`
+        For example, the connection string may look like: ` mongodb+srv://TapView:Tap123456@cluster****.mongodb.net/demodata?retryWrites=true&w=majority`
         :::tip
         Be sure to set the database you want to connect in the connection string, for example, in the above example set to **demodata**, otherwise, it will cause the connection to fail and prompt for an error: 'datbaseName can not be null'.
         :::
 
       * **Connect using TLS/SSL**: Choose how you want to connect:
 
-         * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, Atlas-View Cloud offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
-         * **Direct connection**: Atlas-View Cloud will connect directly to the database and you need to set up security rules to allow access.
+         * **TSL/SSL connection:** In cases where your database is located in an inaccessible subnet, TapView Cloud offers the option to establish a connection through a separate server within the network. This server acts as a TSL/SSL channel to facilitate the connection to the database. This method enables connectivity to the database even when it is in a subnet that would otherwise be inaccessible.
+         * **Direct connection**: TapView Cloud will connect directly to the database and you need to set up security rules to allow access.
 
    * Advanced settings
       * **Contain table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
       * **Exclude tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
       * **Agent settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
       * **Model load time**: If there are less than 10,000 models in the data source, their information will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. Atlas-View Cloud will generate a table named **Atlas-View_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+      * **Enable heartbeat table**: This switch is supported when the connection type is set as the **Source&Target** or **Source**. TapView Cloud will generate a table named **TapView_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
         :::tip
         After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
         :::

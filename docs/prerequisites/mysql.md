@@ -3,7 +3,7 @@ import Content from '../reuse-content/_all-features.md';
 
 <Content />
 
-MySQL is the most widely used open-source relational database, serving as the data storage solution for many websites, applications, and commercial products. This document will guide you through adding an MySQL data source in Atlas-View
+MySQL is the most widely used open-source relational database, serving as the data storage solution for many websites, applications, and commercial products. This document will guide you through adding an MySQL data source in TapView
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -55,10 +55,10 @@ CREATE USER 'username'@'host' IDENTIFIED WITH mysql_native_password BY 'password
 * **password**: Enter password.
 * **host**: Enter the host that can be accessed by the account, percent (%) means to allow all host.
 
-Example: Create an account named `Atlas-View`:
+Example: Create an account named `TapView`:
 
 ```sql
-CREATE USER 'Atlas-View'@'%' IDENTIFIED BY 'yourpasswd';
+CREATE USER 'TapView'@'%' IDENTIFIED BY 'yourpasswd';
 ```
 
 2. Grant permissions to the account that we just created, we recommend setting more granular permissions control based on business needs.
@@ -145,7 +145,7 @@ To further enhance the security of the data connection, you can choose to enable
    :::tip
 
    * Ensure that the device has **openssl** installed to run this program. For example, on CentOS, you can run `yum install openssl -y` to install it.
-   * After executing the command, the files `ca-key.pem`, `server-key.pem`, and `client-key.pem` will be automatically generated, typically located in the `/var/lib/mysql/` directory. You can download these files for use when configuring the connection in Atlas-View.
+   * After executing the command, the files `ca-key.pem`, `server-key.pem`, and `client-key.pem` will be automatically generated, typically located in the `/var/lib/mysql/` directory. You can download these files for use when configuring the connection in TapView.
 
    :::
 
@@ -183,7 +183,7 @@ To further enhance the security of the data connection, you can choose to enable
 4. Restart the MySQL database.
 
 ## Add MySQL Data Source
-1. [Log in to Atlas-View Platform](../user-guide/log-in.md).
+1. [Log in to TapView Platform](../user-guide/log-in.md).
 
 2. In the left navigation panel, click **Connections**.
 
@@ -207,12 +207,11 @@ To further enhance the security of the data connection, you can choose to enable
     * **Advanced Settings**
         * **Connection Parameter String**: Default is `useUnicode=yes&characterEncoding=UTF-8`, indicating that data transmission will use the UTF-8 encoded Unicode character set, which helps avoid character encoding issues.
         * **Timezone**: Default is set to 0 timezone. If configured to another timezone, it will affect fields without timezone information (e.g., `datetime`). Fields with timezone information (e.g., `timestamp`, `date`, and `time`) are not affected.
-        * **CDC Log Caching**: [Mining the source database's](../user-guide/advanced-settings/share-mining.md) incremental logs. This allows multiple tasks to share the same source database’s incremental log mining process, reducing duplicate reads and minimizing the impact of incremental synchronization on the source database. After enabling this feature, you will need to select an external storage to store the incremental log information.
         * **Contain Table**: The default option is **All**, which includes all tables. Alternatively, you can select **Custom** and manually specify the desired tables by separating their names with commas (,).
         * **Exclude Tables**: Once the switch is enabled, you have the option to specify tables to be excluded. You can do this by listing the table names separated by commas (,) in case there are multiple tables to be excluded.
         * **Agent Settings**: Defaults to **Platform automatic allocation**, you can also manually specify an agent.
         * **Model Load Time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-        * **Enable Heartbeat Table**: Atlas-View will create a `_atlas-view_heartbeat_table` heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the heartbeat task in the data source editing page.
+        * **Enable Heartbeat Table**: TapView will create a `_tapview_heartbeat_table` heartbeat table in the source database and update it every 10 seconds (requires appropriate permissions) to monitor the health of the data source connection and tasks. The heartbeat task starts automatically after the data replication/development task starts, and you can view the heartbeat task in the data source editing page.
     * **SSL Settings**: Choose whether to enable SSL for the data source connection to enhance data security. After enabling this feature, you need to upload CA files, client certificates, client key files, etc., which were obtained in the [Enable SSL Connection](#ssl) section.
 
 6. Click **Test**, and after passing the test, click **Save**.

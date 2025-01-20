@@ -4,7 +4,7 @@ import Content from '../reuse-content/_enterprise-and-cloud-features.md';
 
 <Content />
 
-[IBM DB2](https://www.ibm.com/do../DB2) is a relational database known for its high performance, scalability, and reliability in managing structured data. Atlas-View supports using DB2 as both a source and target database, helping you quickly build data pipelines. This guide will walk you through connecting a DB2 data source in Atlas-View.
+[IBM DB2](https://www.ibm.com/do../DB2) is a relational database known for its high performance, scalability, and reliability in managing structured data. TapView supports using DB2 as both a source and target database, helping you quickly build data pipelines. This guide will walk you through connecting a DB2 data source in TapView.
 
 ```mdx-code-block
 import Tabs from '@theme/Tabs';
@@ -92,7 +92,7 @@ Before connecting to a DB2 database, you need to complete account authorization 
       </TabItem>
       </Tabs>
 
-3. To perform incremental data synchronization, [contact the Atlas-View team](../appendix/support.md) to obtain and deploy the raw log service.
+3. To perform incremental data synchronization, [contact the TapView team](../appendix/support.md) to obtain and deploy the raw log service.
 
    :::tip
    To simplify the process, this service will automatically execute `ALTER TABLE <schema>.<table> DATA CAPTURE CHANGES;` after it starts, enabling table-level data change capture.
@@ -100,7 +100,7 @@ Before connecting to a DB2 database, you need to complete account authorization 
 
 ## Add DB2 Data Source
 
-1. [Log in to Atlas-View platform](../user-guide/log-in.md).
+1. [Log in to TapView platform](../user-guide/log-in.md).
 
 2. In the left navigation bar, click **Connections**.
 
@@ -122,16 +122,15 @@ Before connecting to a DB2 database, you need to complete account authorization 
      * **Schema**: Schema name, one connection per Schema. For multiple Schemas, create multiple data connections.
      * **Additional Connection String Parameters**: Additional connection parameters, default is empty.
      * **User** and **Password**: Enter the database username and password.
-     * **Grpc Server Host**, **Grpc Server Port**: Contact the [Atlas-View Team](../appendix/support.md) for raw log collection components to capture DB2 incremental data, default service port is **50051**.
+     * **Grpc Server Host**, **Grpc Server Port**: Contact the [TapView Team](../appendix/support.md) for raw log collection components to capture DB2 incremental data, default service port is **50051**.
      
    * **Advanced Settings**
       * **Time Zone**: Default is UTC (0).  If changed to another timezone, it will impact the synchronization time, particularly for fields without timezone information, such as TIMESTAMP and TIME types. However, DATE types will remain unaffected.
-      * **CDC Log Caching**: [Extract the incremental logs](../user-guide/advanced-settings/share-mining.md) from the source database. This allows multiple tasks to share the incremental log extraction process from the same source, reducing the load on the source database. When enabled, you also need to select a storage location for the incremental log information.
       * **Include Tables**: By default, all tables are included. You can choose to customize and specify the tables to include, separated by commas.
       * **Exclude Tables**: When enabled, you can specify tables to exclude, separated by commas.
       * **Agent Settings**: The default is automatic assignment by the platform. You can also manually specify an Agent.
       * **Model load time**: If there are less than 10,000 models in the data source, their schema will be updated every hour. But if the number of models exceeds 10,000, the refresh will take place daily at the time you have specified.
-      * **Enable Heartbeat Table**: Atlas-View Cloud will generate a table named **atlas-view_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
+      * **Enable Heartbeat Table**: TapView Cloud will generate a table named **tapview_heartbeat_table** in the source database, which is used to monitor the source database connection and task health.
         :::tip
         After referencing and starting the data replication/development task, the heartbeat task will be activated. At this point, you can click **View heartbeat task** to monitor the task.
         :::
