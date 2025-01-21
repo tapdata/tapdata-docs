@@ -90,7 +90,9 @@ TapData Community includes the following main components:
 
    For example, for version 3.5.16, the command would be: `tar -zxvf tapdata-v3.5.16-663b7b11.tar.gz && cd tapdata`
 
-3. Execute the following command to specify the MongoDB [URI connection string](https://www.mongodb.com/docs/v5.0/reference/connection-string/#standard-connection-string-format). TapData will use this MongoDB to store metadata and task configurations:
+3. [Install MongoDB](../administration/production-deploy/install-replica-mongodb.md) (version 4.0 or later). TapData will use it as an intermediary database to store tasks and metadata.
+
+3. Execute the following command to specify the [URI connection string](https://www.mongodb.com/docs/v5.0/reference/connection-string/#standard-connection-string-format) of the MongoDB instance you just deployed.
 
    ```bash
    export MONGO_URI='mongodb://{admin}:{password}@{host}:{port}/{database_name}?replicaSet={replica_name}&authSource=admin'
