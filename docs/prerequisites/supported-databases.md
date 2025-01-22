@@ -284,15 +284,6 @@ The beta version of the data sources is in public preview and has passed the bas
     <td>2.8 ~ 6.0</td>
   </tr>
   <tr>
-    <td>Sybase</td>
-    <td>✅</td>
-    <td>✅</td>
-    <td>➖</td>
-    <td>➖</td>
-    <td>➖</td>
-    <td>ASE 16.0</td>
-  </tr>
-  <tr>
     <td>TDengine</td>
     <td>✅</td>
     <td>✅</td>
