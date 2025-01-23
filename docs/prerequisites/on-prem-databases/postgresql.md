@@ -46,7 +46,9 @@ When using PostgreSQL as the target database or obtaining incremental data via t
 **INSERT**, **UPDATE**, **DELETE**
 
 :::tip
-When PostgreSQL is used as a target, you can choose write strategies through the advanced configuration of task nodes, such as updating or discarding on insert conflicts and inserting or just logging on update failures. You can also apply and execute source-database parsed operations like ADD COLUMN, CHANGE COLUMN, DROP COLUMN, and RENAME COLUMN.
+
+When used as a **target**, you can configure advanced write strategies in the task node settings. Options include update or discard on insert conflict, insert or log on update failure, and enable file-based writes. Additionally, you can apply and execute source-side ADD COLUMN, CHANGE COLUMN, DROP COLUMN, and RENAME COLUMN operations.
+
 :::
 
 ## Limitations
@@ -457,6 +459,7 @@ When configuring data synchronization/conversion tasks, you can use PostgreSQL a
   * **Partition Table CDC Root Table**: Supported only in PostgreSQL 13 and above, and when selecting the pgoutput log plugin. When enabled, only CDC events for root tables will be detected; when disabled, only CDC events for child tables will be detected.
 * As a Target Node
   * **Ignore NotNull**: Default is off, meaning NOT NULL constraints will be ignored when creating tables in the target database.
+  * **Enable File Input**: Disabled by default. When enabled, TapData uses the **[COPY](https://www.postgresql.org/docs/current/sql-copy.html)** method to efficiently batch write data in file format, avoiding performance degradation caused by constraint conflicts. This significantly improves synchronization efficiency for large datasets. Note that binary data types (bytea) are not supported in this mode.
 
 ## FAQs
 

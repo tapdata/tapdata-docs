@@ -27,7 +27,7 @@ TapData helps enterprises achieve the following goals through cross-regional dat
 
 :::tip
 
-Tapdata supports bi-directional data synchronization for MySQL ↔ MySQL, PostgreSQL ↔ PostgreSQL, MongoDB ↔ MongoDB, and PostgreSQL ↔ MySQL. Next, we will introduce the specific operation process using MySQL bi-directional synchronization as an example.
+Tapdata supports bi-directional data synchronization for MySQL ↔ MySQL, PostgreSQL ↔ PostgreSQL, MongoDB ↔ MongoDB, PostgreSQL ↔ MySQL, and SQL Server ↔ SQL Server. Next, we will introduce the specific operation process using MySQL bi-directional synchronization as an example.
 
 :::
 
