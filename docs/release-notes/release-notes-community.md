@@ -6,6 +6,16 @@ import Content from '../reuse-content/_community-features.md';
 
 This document introduces the recent release notes for TapData Community. For more information on earlier versions, please refer to the [GitHub Release Page](https://github.com/tapdata/tapdata/releases).
 
+## 3.22.0
+
+### Enhancements
+
+- Improved the method for retrieving software version information to prevent version discrepancies caused by page caching.
+
+### Bug Fixes
+
+- Fixed an issue where heartbeat task startup failures prevented data synchronization tasks from starting properly.
+
 ## 3.21.0
 
 ### Bug Fixes

@@ -6,6 +6,17 @@ import Content from '../reuse-content/_enterprise-features.md';
 
 This article provides release notes for TapData Enterprise, including new features, improvements, and bug fixes.
 
+## 3.22.0
+
+### Enhancements
+
+- Improved the method for retrieving software version information to prevent version discrepancies caused by page caching.
+
+### Bug Fixes
+
+- Fixed an issue where heartbeat task startup failures prevented data synchronization tasks from starting properly.
+- Resolved an issue where enabling SSL for MongoDB, a core system dependency,  led to API service failures.
+
 ## 3.21.0
 
 ### New Features

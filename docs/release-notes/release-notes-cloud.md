@@ -6,6 +6,13 @@ import Content from '../reuse-content/_cloud-features.md';
 
 To enhance the user experience, TapData Cloud continuously enriches and optimizes product features and rectifies known defects by releasing new versions. This article provides an update log for TapData Cloud, helping you grasp the new feature specifications more effectively.
 
+### 2025-01-24
+
+#### Bug Fixes
+
+- Fixed an issue where heartbeat task startup failures prevented data synchronization tasks from starting properly.
+- Fixed a problem where notification settings  were not applied after saving.
+
 ### 2025-01-15
 
 #### New Features
