@@ -7,7 +7,7 @@ TapData provides a user-friendly interface, allowing you to set up and manage da
 
 ## TapData Cloud
 
-TapData Cloud is ideal for scenarios requiring quick deployment and low initial investment, helping you focus more on business development rather than infrastructure management. You can simply visit the [TapData Cloud](https://cloud.tapdata.net/console/v3/) platform and sign up to log in, with support for registration and login via email/phone number, WeChat QR code, and third-party accounts (GitHub/Google).
+TapData Cloud is ideal for scenarios requiring quick deployment and low initial investment, helping you focus more on business development rather than infrastructure management. You can simply visit the [TapData Cloud](https://cloud.tapdata.io) platform and sign up to log in, with support for registration and login via email/phone number, WeChat QR code, and third-party accounts (GitHub/Google).
 
 ![Log in to TapData Cloud](../images/login-cloud.png)
 

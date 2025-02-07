@@ -92,7 +92,7 @@ markdown: {
             label: 'TapData Documentation',
           },
           {
-            href: 'https://cloud.tapdata.net/console/v3/',
+            href: 'https://cloud.tapdata.io',
             position: 'right',
             label: 'Log in TapData Cloud',
           },
